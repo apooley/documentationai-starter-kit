@@ -1,0 +1,307 @@
+---
+title: Routing and handoffs
+description: Configure how AI conversations are routed between assistants and playbooks, and when to hand off to human agents with safe, testable workflows.
+---
+
+## Understand routing and handoffs
+
+Routing controls which assistant or playbook handles an incoming interaction, and how conversations move between AI and humans over time.
+
+Use routing to:
+
+- Direct different channels to different assistants.
+- Match specific intents or topics to specialized playbooks.
+- Treat high‑value customers differently from general traffic.
+- Define when AI should escalate to a human and when humans can send work back to AI.
+
+Handoffs define how ownership of a conversation changes between AI and human operators. A handoff can be:
+
+- **AI → human**: when the model is unsure, out of scope, or a policy requires a person.
+- **Human → AI**: when an operator wants the assistant to draft replies or continue automation.
+- **AI → AI**: when one assistant or playbook reaches its goal and another configuration is better suited for the next step.
+
+<Callout kind="info">
+
+You need tenant admin or equivalent configuration permissions to edit routing logic and handoff rules. Coordinate with operations and support leads before changing production behavior.
+
+</Callout>
+
+## Key concepts
+
+Routing in Autoch.at builds on the same ideas as email and SMS workflows: each path defines a goal, a priority, and a series of steps from intake through resolution.
+
+### Sources and channels
+
+Sources describe **where** a conversation starts:
+
+- Email, SMS, or chat widgets.
+- Integrations that create conversations from external systems.
+- Internal tools that open a new thread on behalf of a customer.
+
+Configure routing so each source and channel goes to the right starting assistant or playbook.
+
+### Assistants and playbooks
+
+Assistants are reusable AI configurations that bundle instructions, tools, and context. Playbooks add structured workflows and goals on top of those assistants.
+
+Routing rules decide:
+
+- Which assistant should own a new conversation.
+- Which playbook runs first for a given type of request.
+- When to move between assistants or playbooks as the conversation evolves.
+
+Link this page with:
+
+- [Assistants](/pages/ai-config/assistants) to standardize AI behavior and create variants.
+- [Playbooks](/pages/ai-config/playbooks) to define step‑by‑step automation.
+
+### Conditions and priorities
+
+Routing conditions mirror the workflow matching behavior in email and SMS:
+
+- Match on **channel**, **sender**, **subject/content patterns**, or **metadata** like customer segment.
+- Assign **priorities** so more specific rules override general defaults.
+- Always keep a **fallback route** for traffic that does not match any explicit path.
+
+Use test tools where available (similar to email workflow matching) to verify how an example message or conversation will be routed before you launch changes.
+
+### Handoff triggers
+
+Common triggers for a handoff include:
+
+- Model confidence falls below a threshold.
+- The user asks for a human or mentions a regulated topic.
+- A playbook step reaches a goal and needs a different assistant to continue.
+- A human operator clicks a control to take over, request a draft, or send back to AI.
+
+Treat each trigger as a condition you can tune and monitor rather than a one‑time switch.
+
+## Configure a safe routing and handoff workflow
+
+This workflow walks through designing, configuring, and validating routing and handoffs before they affect real customers.
+
+<Steps>
+
+<Step title="Map your routing and handoff goals" icon="settings">
+
+Start by writing down how you want conversations to flow across channels and teams.
+
+- List your primary channels (email, SMS, chat) and where you want each to land first.
+- Identify specialized topics or intents that need dedicated assistants or playbooks.
+- Decide when AI must escalate to humans by policy (for example, billing disputes or account closure).
+- Capture where humans should be able to send work back to AI, like drafting long explanations or following a structured playbook.
+
+You should end this step with a simple diagram or bullet list of your desired paths, including at least one default route and one escalation path.
+
+</Step>
+
+<Step title="Prepare assistants and playbooks" icon="zap">
+
+Create or refine the assistants and playbooks that routing will target.
+
+- Use the **Assistants** configuration to define behavior, tools, and tone for each role (for example, general support, billing, technical).
+- Create variants for experimentation, such as a new assistant version you want to test on a subset of traffic.
+- Configure **Playbooks** for repeatable flows like onboarding, FAQ deflection, or triage steps.
+
+Confirm that each assistant and playbook behaves as expected in isolation before wiring them into routing rules.
+
+</Step>
+
+<Step title="Define entry routing by channel" icon="mail">
+
+Set up how new conversations are routed from each entry point.
+
+- For each email, SMS, or chat source, assign a default assistant or playbook that should own new conversations.
+- Apply conditions to override the default when you detect specific patterns (for example, subject words, keywords in the first message, or custom tags).
+- Align priorities so the most specific, high‑impact routes execute first, with a clear fallback for unmatched traffic.
+
+Verify that every entry route links to a real, active assistant or playbook and that you have no overlapping rules with the same priority.
+
+</Step>
+
+<Step title="Add intent and segment-based routing" icon="users">
+
+Layer additional routing rules that refine who handles which requests.
+
+- Use model‑identified intents or content patterns to route specialized topics to focused assistants.
+- Treat high‑value or at‑risk customer segments differently by routing them directly to dedicated playbooks or faster human queues.
+- Keep a generalist assistant or playbook as a safety net for unexpected topics.
+
+Test a few representative examples for each intent or segment to confirm that traffic lands where you expect.
+
+</Step>
+
+<Step title="Configure AI to human handoffs" icon="users">
+
+Create clear, predictable paths from AI to human operators.
+
+- Define thresholds for when the model should offer or force escalation (for example, repeated misunderstandings, policy topics, or explicit user requests).
+- Specify which queues or teams should receive escalated conversations from each assistant or playbook.
+- Include guidance for operators on what context the AI will provide and what they should do first when they take over.
+
+A successful handoff preserves the conversation history and clearly marks why the AI escalated, so humans can act quickly without guessing.
+
+</Step>
+
+<Step title="Configure human to AI collaboration" icon="terminal">
+
+Give operators safe ways to leverage AI without losing control.
+
+- Enable controls that let humans request AI‑generated drafts while they remain the final approver.
+- Allow operators to send routine or well‑defined follow‑up steps back into a playbook once they confirm the situation is safe for automation.
+- Prevent loops by defining when AI must not hand back to humans automatically (for example, after a human has already made a final decision).
+
+Train operators on how and when to use these tools, and include expectations around reviewing and editing AI suggestions before sending.
+
+</Step>
+
+<Step title="Test with non-production traffic" icon="play-circle">
+
+Before routing real customers, test your configuration on controlled or low‑risk traffic.
+
+- Use internal test accounts, seed email addresses, or training numbers to generate sample conversations.
+- Exercise each routing rule and handoff path, including edge cases like ambiguous intents and escalation triggers.
+- Validate that the right assistant or playbook is selected, and that handoffs preserve full context and metadata.
+
+Your routing is ready for limited rollout when tests demonstrate consistent, predictable flows across all mapped scenarios.
+
+</Step>
+
+<Step title="Roll out gradually and monitor" icon="bar-chart">
+
+Launch routing and handoffs in stages so you can respond quickly if behavior does not match expectations.
+
+- Start with a small percentage of traffic or a limited set of channels or segments.
+- Monitor conversation outcomes, escalation rates, and operator feedback.
+- Adjust conditions, priorities, and thresholds based on real‑world data, then expand coverage incrementally.
+
+Keep change logs and communicate updates with support and operations teams so they understand how routing and handoffs are evolving.
+
+</Step>
+
+</Steps>
+
+## Common routing strategies
+
+Different teams organize routing around different anchors. Use these strategies as starting points and combine them where it makes sense.
+
+<Tabs>
+
+<Tab title="By channel" icon="mail">
+
+Routing by channel focuses on **where** the conversation originates.
+
+Use this strategy when:
+
+- Teams are organized by channel (email support vs SMS vs live chat).
+- You want different assistants or playbooks for synchronous vs asynchronous conversations.
+- Some channels are more sensitive and need stricter human review.
+
+Typical setup:
+
+- Route all email from support addresses to a general support assistant plus playbook.
+- Send SMS from shortcodes to a concise, mobile‑optimized assistant.
+- Direct web chat to a faster‑responding assistant with tighter escalation thresholds.
+
+Combine channel‑based routing with priorities so channel defaults do not override more specific rules like high‑value customers or sensitive intents.
+
+</Tab>
+
+<Tab title="By intent or topic" icon="code">
+
+Intent‑based routing focuses on **what** the customer is asking for.
+
+Use this strategy when:
+
+- You have clear categories like billing, technical issues, onboarding, or cancellations.
+- Specialized assistants or playbooks handle each category better than a single generalist.
+- You want to measure performance per intent (deflection, CSAT, resolution time).
+
+Typical setup:
+
+- Use early messages to detect intent (from subject lines, first questions, or keywords).
+- Route billing intents to a billing assistant with access to relevant context and policies.
+- Route technical intents to a troubleshooting playbook with guided steps and tool use.
+- Keep a fallback intent that routes to a general assistant or human triage queue.
+
+As your library of intents grows, revisit priorities and coverage to avoid gaps or overlaps across categories.
+
+</Tab>
+
+<Tab title="By customer segment" icon="users">
+
+Segment‑based routing focuses on **who** is contacting you.
+
+Use this strategy when:
+
+- You distinguish between tiers like enterprise, premium, and standard customers.
+- Certain customers need faster responses or more experienced operators.
+- You use different policies or SLAs for different groups.
+
+Typical setup:
+
+- Enrich conversations with CRM data to tag each contact with a segment.
+- Route high‑value or high‑risk segments directly to specialized assistants plus lower thresholds for human handoff.
+- Use more automation for low‑risk, high‑volume segments by keeping them in playbooks longer before escalation.
+
+Always keep a visible path for any segment to reach a human when required, regardless of automation level or tier.
+
+</Tab>
+
+</Tabs>
+
+## Operate and iterate safely
+
+Once routing and handoffs are live, treat them as an operational system rather than a one‑time configuration.
+
+- **Review metrics regularly**: Track deflection, escalation rates, handle times, and customer satisfaction by channel, intent, and segment.
+- **Run structured experiments**: Use assistant variants and playbook changes to trial new behaviors on limited traffic before making them defaults.
+- **Align with training data**: Update your training context and examples when you add new routing paths or change policies, so the AI understands the new expectations.
+- **Coordinate with workflows**: Make sure email and SMS workflows still behave as intended when you add or modify AI‑driven routing rules.
+
+<Callout kind="info">
+
+When you change routing or handoff behavior, update runbooks for support and operations teams so they know how conversations should flow and how to override AI when necessary.
+
+</Callout>
+
+## Related pages
+
+<Columns cols={2}>
+
+<Card
+  title="Configure Assistants"
+  href="/pages/ai-config/assistants"
+  icon="zap"
+  cta="Standardize AI behavior"
+/>
+
+<Card
+  title="Configure Playbooks"
+  href="/pages/ai-config/playbooks"
+  icon="book-open"
+  cta="Automate multi-step workflows"
+/>
+
+<Card
+  title="Training context"
+  href="/pages/ai-config/training-context"
+  icon="database"
+  cta="Ground assistants in your data"
+/>
+
+<Card
+  title="Email Workflows"
+  href="/pages/conversations/email-workflows"
+  icon="mail"
+  cta="Route and automate inbound email"
+/>
+
+<Card
+  title="SMS Workflows"
+  href="/pages/conversations/sms-workflows"
+  icon="smartphone"
+  cta="Route and automate inbound SMS"
+/>
+
+</Columns>

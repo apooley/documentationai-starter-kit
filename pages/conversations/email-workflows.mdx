@@ -1,0 +1,274 @@
+---
+title: Configure email workflows
+description: Configure automated inbound email handling on the Email Workflows page, including workflow builders, context library, test matching, and email settings.
+---
+
+## Email Workflows page
+
+Automate how inbound emails are routed, processed, and answered from the Email Workflows page at route `/EmailWorkflows`.
+
+Each workflow defines a goal, priority, and a series of steps that determine how your assistants handle specific types of emails across your tenant.
+
+<Callout kind="info">
+
+Email workflows require feature access for `emailWorkflowsEnabled` and an active email plan on your tenant. If the page is unavailable, contact your account owner or administrator.
+
+</Callout>
+
+## Page layout and access
+
+The Email Workflows page is an authenticated, tenant-scoped page. All actions apply only to the current tenant and require login.
+
+You see the following sections:
+
+- **Workflow list** — cards for each email workflow with key metadata and actions.
+- **Workflow editor** — create or edit a workflow in list or visual mode.
+- **Context Library** — shared key/value context entries available to workflows.
+- **Test Matching** — tool to test how an incoming email will be matched.
+- **Email Config** — incoming address, verification status, and auto-respond toggles.
+
+Use the top of the page to manage workflows and the lower sections to refine behavior and verify matches before you enable automation.
+
+## Manage email workflows
+
+Use workflows to define how different types of emails should be handled, based on their content and goals.
+
+<Steps>
+
+<Step title="Create a workflow from a template" icon="plus">
+
+Templates provide pre-configured goals and steps for common email scenarios, so you can get started faster.
+
+1. In the workflow list, select **New workflow**.
+2. In the creation dialog, choose **Start from template** to open the template selector modal.
+3. Browse templates by name, description, goal, step count, or category, then select a template.
+4. Confirm to open the workflow editor pre-populated with the chosen template.
+5. Adjust the **Name**, **Goal**, and any steps as needed, then save.
+
+After saving, the new workflow appears in the workflow list with its goal, priority, and step count.
+
+</Step>
+
+<Step title="Create a blank workflow" icon="plus">
+
+Blank workflows let you design a fully custom behavior when templates do not fit your use case.
+
+1. In the workflow list, select **New workflow**.
+2. Choose **Create blank** instead of using a template.
+3. In the editor, fill in the required **Name** and **Goal** fields.
+4. Optionally add **Description**, **Context**, **Assigned Agent**, **Priority**, and whether the workflow is **Active**.
+5. Build your steps using either the list or visual editor, then save.
+
+A blank workflow starts with no predefined steps, so add at least one step to make the workflow useful.
+
+</Step>
+
+<Step title="Edit an existing workflow" icon="edit">
+
+Editing lets you refine goals, steps, or priorities as your email handling strategy evolves.
+
+1. In the workflow list, find the card for the workflow you want to change.
+2. Select **Edit** on the card.
+3. Update the **Name**, **Goal**, **Description**, **Context**, **Assigned Agent**, **Priority**, or the **Active** flag.
+4. Switch between the list and visual editors as needed to modify steps.
+5. Save your changes to apply them to future incoming emails.
+
+The workflow card updates with the new description, goal, step count, and priority after you save.
+
+</Step>
+
+<Step title="Enable or disable a workflow" icon="check-circle">
+
+The **Active** state controls whether a workflow participates in matching and execution.
+
+1. Locate the workflow card in the list.
+2. Use the **Active** toggle on the card to enable or disable the workflow.
+3. Optionally open the editor and use the **Active** checkbox inside the form for the same effect.
+
+When you disable a workflow, it no longer matches incoming emails. When you enable it, it becomes eligible based on its matching rules and priority.
+
+</Step>
+
+<Step title="Delete a workflow" icon="trash">
+
+Delete workflows that are no longer relevant to keep your configuration clean.
+
+1. Find the workflow card to remove.
+2. Select **Delete** on the card.
+3. Confirm the deletion in the dialog.
+
+Once deleted, the workflow is no longer available for matching or editing.
+
+</Step>
+
+</Steps>
+
+## Workflow editors: list vs visual
+
+When you create or edit a workflow, you can design its steps in either a list-based builder or a visual builder. Both ultimately produce the same underlying workflow; the difference is how you interact with it.
+
+<Tabs>
+
+<Tab title="List builder" icon="list">
+
+The list-based **WorkflowBuilder** displays your workflow as an ordered list of steps.
+
+Use the list builder when:
+
+- You want a compact, text-first view of steps.
+- You prefer editing step details in a form-like layout.
+- You are making small, precise changes to existing steps.
+
+Typical actions in the list builder:
+
+- Add, remove, or reorder steps.
+- Configure conditions and actions per step.
+- Quickly scan the workflow from top to bottom as text.
+
+</Tab>
+
+<Tab title="Visual builder" icon="layout-dashboard">
+
+The **VisualWorkflowBuilder** displays your workflow as a visual flow, making branching and routing easier to understand.
+
+Use the visual builder when:
+
+- You need to reason about branching paths and complex flows.
+- You want to show the workflow to stakeholders who prefer diagrams.
+- You are designing a new workflow from scratch and want to see how steps connect.
+
+Typical actions in the visual builder:
+
+- Add nodes that represent steps and connect them.
+- See how different conditions route emails along different paths.
+- Identify gaps or dead ends in the workflow visually.
+
+</Tab>
+
+</Tabs>
+
+Switch between the tabs at any time while editing. Changes you make in one editor are reflected in the other.
+
+## Workflow cards and metadata
+
+The workflow list shows each workflow as a card with a concise summary of its behavior and status.
+
+Each card displays:
+
+- **Name** — the workflow name you configured.
+- **Description** — a truncated description that hints at the workflow purpose.
+- **Active badge** — indicates whether the workflow is currently active.
+- **Goal badge** — highlights the primary outcome for this workflow (for example, escalating, auto-responding, or triaging).
+- **Step count** — shows how many steps are in the workflow.
+- **Priority** — indicates how the workflow is ordered relative to other workflows.
+
+From each card you can:
+
+- Toggle **Active** on or off.
+- Open the workflow to **Edit** it.
+- **Delete** the workflow when you no longer need it.
+
+Use priority and active state together to control which workflows take precedence when multiple workflows could match an incoming email.
+
+## Context Library
+
+The Context Library stores shared key/value pairs that workflows can reference when deciding how to handle emails. This allows you to keep reusable configuration or business rules in one place.
+
+Typical examples include:
+
+- Business hours for different regions.
+- VIP client lists or segments.
+- Product or team identifiers used in routing logic.
+
+Within the Context Library section you can:
+
+- Add new key/value context entries.
+- Edit existing entries to update values as your policies change.
+- Remove values that are no longer used.
+
+Updates to the Context Library apply across all workflows that reference those keys.
+
+## Test Matching tool
+
+Use the Test Matching tool to verify how your current workflows will handle specific emails before those emails reach production users.
+
+<Steps>
+
+<Step title="Test how an email is matched" icon="play-circle">
+
+1. Scroll to the **Test Matching** section on the Email Workflows page.
+2. Enter a sample **Subject** and **Body** representing an incoming email.
+3. Run the test to simulate matching against all active workflows.
+4. Review the matched workflow and the explanation of why it matched.
+
+If no workflow matches or the wrong workflow is selected, adjust your workflow steps, priorities, or active states, then test again.
+
+</Step>
+
+</Steps>
+
+The test output shows which workflow would run and why, giving you confidence that your configuration behaves as expected before enabling it broadly.
+
+## Email Config section
+
+The Email Config section controls how emails reach your workflows and how automated replies behave.
+
+Key elements include:
+
+- **Incoming address** — the email address where inbound messages are received for this tenant.
+- **Verification status** — indicates whether the incoming address is verified and ready for use.
+- **Auto-respond toggles** — switches that control whether workflows are allowed to send automated responses.
+
+Use this section to:
+
+- Confirm the address you should publish to customers.
+- Check that verification is complete before going live.
+- Turn automated responses on or off depending on your compliance and customer experience needs.
+
+Changes in the Email Config section affect all workflows that rely on the configured address and response behavior.
+
+## Feature access and tenancy
+
+Email workflows respect both feature flags and plan-based access:
+
+- `emailWorkflowsEnabled` controls whether the Email Workflows page and related features are available.
+- Email plan access determines whether email handling is permitted for the tenant.
+
+The page always operates within the current tenant context, and all API calls are authenticated with tenant-scoped headers. When testing or editing workflows, you only affect data and behavior for the active tenant.
+
+## Related pages
+
+Use these pages alongside Email Workflows to manage conversations and AI assistants end to end.
+
+<Columns cols={3}>
+
+<Card
+  title="Conversations"
+  href="/pages/conversations/conversations"
+  icon="message-circle"
+  cta="Monitor live conversations"
+>
+
+View and manage ongoing conversations created from emails, SMS, and other channels.
+
+</Card>
+
+<Card
+  title="SMS Workflows"
+  href="/pages/conversations/sms-workflows"
+  icon="message-circle"
+  cta="Configure SMS automation"
+/>
+
+<Card
+  title="Assistants"
+  href="/pages/ai-config/assistants"
+  icon="zap"
+  cta="Manage AI assistants"
+>
+
+Configure the assistants assigned to handle email workflows and other channels.
+
+</Card>
+
+</Columns>

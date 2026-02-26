@@ -1,0 +1,421 @@
+---
+title: Use the conversation detail view
+description: Work from a single conversation view to read transcripts, respond, update status and assignee, link to CRM clients, and review AI insights.
+---
+
+## Overview
+
+Use the conversation detail view at `/conversations/:conversationId` to manage a single conversation end to end: read the transcript, respond when the channel allows, update ownership and status, link the conversation to a client, and review AI and widget insights.
+
+The same layout adapts across chat/SMS, email, and voice conversations while keeping controls and workflows consistent.
+
+<Callout kind="info">
+
+The exact controls you see depend on the channel and your permissions. If something described here is missing, contact your tenant admin.
+
+</Callout>
+
+## Layout and main sections
+
+The conversation detail view is structured into three main areas:
+
+- **Header bar** — navigation, participant info, and high-level controls.
+- **Transcript and activity** — messages, calls, or emails in chronological order, plus notes and history.
+- **Right-hand side panels** — AI summary and insights, client linking, and widget tracking.
+
+### Header: navigation, channel, and ownership
+
+The header keeps essential context and controls in one place:
+
+- **Back control** — return to your previous list (inbox, search, or filtered view).
+- **Channel icon** — shows whether this is chat, SMS, email, or voice.
+- **Contact information** — primary participant details, such as name, email address, or phone number.
+- **Ownership and workflow controls**:
+  - Conversation **status** (for example, open vs closed type states).
+  - **Assignee** field to track who owns the follow-up.
+  - **Tags** to categorize and search across conversations.
+
+Changes you make here update the conversation state for everyone in real time.
+
+### Transcript and activity stream
+
+The center of the page shows the full history for the conversation:
+
+- **Messages** appear as a threaded transcript, including:
+  - Human messages from your team.
+  - Messages from the contact.
+  - AI messages where applicable.
+- **Notes and history** may appear inline or as separate activity entries, depending on your configuration.
+- For **email** conversations, you see the email thread, including prior messages.
+- For **voice** conversations, you see call details and the recording player when available.
+
+If there are no messages yet, the main area shows an empty state explaining that the conversation has no transcript yet.
+
+### Right-hand panels: AI and context
+
+The right-hand side aggregates insights and related data so you do not have to leave the page:
+
+- **AI summary panel**:
+  - High-level summary of the conversation so far.
+  - Key extractions such as entities, sentiment, urgency, and qualification signals.
+  - Freeform AI notes to guide next steps.
+- **Client linking panel**:
+  - Suggestions for possible matching clients or CRM records.
+  - Controls to link the conversation to a specific client.
+  - Options to dismiss individual suggestions.
+  - Controls to sync with the linked client record.
+- **Widget tracking events**:
+  - Timeline of events from your widget or embeddable if the conversation is eligible.
+  - Helps you see how the user interacted before and during the conversation.
+
+If none of these apply, the panel may show an empty or collapsed state instead of AI and widget data.
+
+## Channel-specific behaviors
+
+The conversation detail view supports multiple channels with a consistent mental model but channel-specific behavior for replying, attachments, and media.
+
+<Tabs>
+
+<Tab title="Chat and SMS" icon="message-circle">
+
+Chat and SMS conversations focus on fast, short-form exchanges in a single thread.
+
+- **Transcript**:
+  - Messages from the contact and your agents appear in order.
+  - AI messages can appear inline for suggested replies or automated responses.
+- **Sending messages**:
+  - Use the composer at the bottom to type and send replies.
+  - Insert **canned responses** from a picker to respond faster and stay on-brand.
+- **Typing and delivery**:
+  - Messages send in real time and appear immediately in the transcript.
+  - Delivery indicators depend on the downstream channel (for example, SMS provider).
+
+This is the primary channel where the `api.sendMessage(conversationId, text)` behavior is visible in the UI.
+
+</Tab>
+
+<Tab title="Email" icon="mail">
+
+Email conversations show the entire thread and respect email-specific conventions.
+
+- **Thread view**:
+  - Messages group by subject and participants.
+  - You see incoming and outgoing emails with their original timestamps.
+- **Replying**:
+  - The composer aligns with your email workflow (for example, reply, reply-all, forward patterns).
+  - The conversation view mirrors how users see the thread in their email client.
+- **Attachments and formatting**:
+  - The UI preserves email formatting.
+  - Attachment handling follows your existing email integration capabilities.
+
+The goal is to make the web experience feel like managing an email thread, not a generic chat.
+
+</Tab>
+
+<Tab title="Voice" icon="phone">
+
+Voice conversations represent calls, often originating from a telephony or dialer integration.
+
+- **Call recording**:
+  - When available, a player in the main area lets you listen to the recording.
+  - Playback controls help with QA, coaching, and follow-up preparation.
+- **Transcript or notes**:
+  - If you capture transcripts, they appear similar to a message stream for easy review.
+  - Agents may also add call notes as separate entries.
+- **Follow-up actions**:
+  - You cannot send a voice reply from the same view, but you can:
+    - Send follow-up messages on another channel (if configured).
+    - Update tags, status, and assignee.
+    - Link and sync the call with a client record.
+
+Voice calls often rely more heavily on AI summaries and notes since they may be longer and less structured than text.
+
+</Tab>
+
+</Tabs>
+
+<Callout kind="alert">
+
+Channel-specific controls (such as reply-all for email or recording playback for voice) depend on your configured integrations. If something you expect to see is missing, confirm the integration is enabled and healthy.
+
+</Callout>
+
+## Common workflows
+
+This section covers the core actions you will perform from the conversation detail view: respond, update status and ownership, and link to a client.
+
+### Respond to a conversation
+
+Use this flow when you want to send a new message from an active chat or SMS conversation, or reply within an email thread when the UI supports it.
+
+<Steps>
+
+<Step title="Open the conversation" icon="arrow-right">
+
+- Navigate to your inbox or search list.
+- Select the conversation to open the detail view at the `/conversations/:conversationId` route.
+- Confirm the channel icon and contact information match what you expect before replying.
+
+</Step>
+
+<Step title="Review the transcript and AI summary" icon="book-open">
+
+- Scan the transcript to understand the history and most recent messages.
+- Check the AI summary panel for key points, sentiment, urgency, and qualification signals.
+- Use AI notes to quickly understand context if you were not the original assignee.
+
+</Step>
+
+<Step title="Compose your reply" icon="edit">
+
+- Place your cursor in the composer at the bottom of the transcript.
+- Type your response using the tone and detail level appropriate for the channel.
+- Insert a canned response from the picker to answer common questions consistently.
+
+</Step>
+
+<Step title="Send and confirm delivery" icon="check-circle">
+
+- Send the message using the primary send control in the composer.
+- The new message appears immediately as the latest entry in the transcript.
+- If the conversation is still open, keep the tab active to see follow-up messages in real time.
+
+</Step>
+
+</Steps>
+
+<Callout kind="info">
+
+Sending messages is only supported for channels that accept outbound messages from the app (for example, chat and SMS, and email when configured). Voice conversations do not support sending voice replies from the detail view.
+
+</Callout>
+
+### Update status, tags, and assignee
+
+Keeping status and ownership current helps your team coordinate work and maintain accurate reporting.
+
+<Steps>
+
+<Step title="Locate status and assignee controls in the header" icon="settings">
+
+- With the conversation open, look at the header bar above the transcript.
+- Identify the current **status**, **assignee**, and any **tags** applied.
+- Confirm your permissions allow editing these fields.
+
+</Step>
+
+<Step title="Update the status" icon="edit">
+
+- Use the status control to change the conversation state based on your workflow.
+- For example, move from an active type state to a resolved type state after sending a final reply.
+- Status changes apply immediately and are visible in any inbox or reporting views that use status.
+
+</Step>
+
+<Step title="Assign or reassign the conversation" icon="users">
+
+- Open the assignee control and select yourself or another teammate.
+- Use this when handing off to a subject-matter expert or escalation team.
+- The assignee field updates in real time for all viewers of the conversation.
+
+</Step>
+
+<Step title="Add or adjust tags" icon="tag">
+
+- Use the tags control to apply relevant categories such as product area, priority, or topic.
+- Remove tags that no longer apply to keep reporting accurate.
+- Changes to tags apply immediately and affect filters and analytics that depend on them.
+
+</Step>
+
+</Steps>
+
+### Link the conversation to a client
+
+Linking conversations to clients or CRM records makes it easier to see history in one place and drive automations.
+
+<Steps>
+
+<Step title="Review client suggestions" icon="info">
+
+- Open the right-hand client panel while viewing the conversation.
+- Look for **suggested clients** based on contact details and conversation content.
+- Skim the suggestions for the best match; you may see multiple candidates.
+
+</Step>
+
+<Step title="Link to an existing client" icon="check-circle">
+
+- Select the suggested client that matches the participant or account.
+- Confirm the linking action when prompted.
+- The conversation becomes associated with that client record for future context and reporting.
+
+</Step>
+
+<Step title="Dismiss incorrect suggestions" icon="x-circle">
+
+- If a suggestion is not relevant, dismiss it from the panel.
+- Dismissing noisy suggestions helps keep the panel focused on likely matches for you and other agents.
+
+</Step>
+
+<Step title="Sync with the linked client" icon="refresh-ccw">
+
+- After linking, use sync controls (when available) to push or pull data between the conversation and the client record.
+- Check the client in your CRM or internal system to confirm the conversation now appears in their history.
+
+</Step>
+
+</Steps>
+
+<Callout kind="alert">
+
+If you link a conversation to the wrong client, correct it as soon as you notice. Downstream systems may rely on this association for reporting, automations, and follow-ups.
+
+</Callout>
+
+## AI summary and insights
+
+The AI summary panel condenses long or complex conversations into a quick snapshot so you can decide what to do next without rereading every message.
+
+Key elements typically include:
+
+- **Conversation summary** — short narrative of what has happened so far.
+- **Extractions** — structured items such as topics, entities, or requested products.
+- **Sentiment and urgency** — how the contact feels and how quickly you should respond.
+- **Qualification and intent** — whether the conversation aligns with your target use case or pipeline stage.
+- **AI notes** — optional freeform commentary for agent guidance and handoffs.
+
+Use these insights to:
+
+- Prioritize work across multiple conversations.
+- Decide when to escalate or involve other teams.
+- Capture structured data without manual note-taking.
+
+## Widget tracking events
+
+For conversations that originate from or interact with a widget (for example, a website chat widget), the conversation detail view can show related tracking events.
+
+Typical uses:
+
+- **Session context** — see which pages the visitor viewed before starting the conversation.
+- **Interaction history** — review clicks, flows, or forms completed in the widget.
+- **Drop-off points** — identify where users struggled before reaching out to support or sales.
+
+The events appear in a timeline, usually in the side panel, and are scoped to the current conversation.
+
+<Callout kind="info">
+
+Widget tracking events only appear when the conversation is eligible. If you expect to see them but do not, confirm that your widget integration sends events for that channel.
+
+</Callout>
+
+## Realtime updates
+
+The conversation detail view updates automatically whenever key events occur, keeping everyone in sync without manual refresh.
+
+Realtime behavior includes:
+
+- **New messages**:
+  - When a new message arrives (`message:new` event), it appears at the end of the transcript.
+  - This applies to inbound messages from the contact, outbound messages from other agents, and AI messages.
+- **Conversation updates**:
+  - When status, tags, or assignee change (`conversation:updated` event), the header and any relevant indicators update for all viewers.
+  - This prevents conflicting edits and ensures everyone sees the latest workflow state.
+
+If you keep a conversation open while another agent is working on it, expect to see these updates as they happen.
+
+## Empty and error states
+
+The conversation detail view handles several special states so you understand what is happening and what to do next.
+
+### Loading state
+
+When you open a conversation, the page first shows a **loading skeleton** while data is fetched via `api.getConversationWithMessages(conversationId)`.
+
+You can use this time to confirm the URL and conversation ID, but you cannot take actions until the content loads.
+
+### Conversation not found
+
+If the conversation ID is invalid or the conversation is no longer available, you see a **not found** state instead of the transcript.
+
+Common causes include:
+
+- The link is broken or truncated.
+- The conversation was deleted or you no longer have access.
+- The ID was copied from a different environment.
+
+Use the back control to return to your list and search for the conversation again or contact an admin to confirm its status.
+
+<Callout kind="alert">
+
+If many users see not-found errors for conversations they recently worked on, investigate permission changes or synchronization issues between systems.
+
+</Callout>
+
+### No messages yet
+
+Some conversations exist before any messages are exchanged, for example when they are created by an automation or imported from another system.
+
+In this case:
+
+- The header and side panels still work (status, assignee, tags, client linking, AI).
+- The transcript area shows a **no messages yet** message.
+- For channels that support outbound messages, you can often send the first message directly from this state.
+
+Use this to prepare a conversation (assign, tag, link to a client) before the first interaction.
+
+## Technical hooks and APIs (for admins)
+
+Tenant admins and technical users can integrate deeper by calling the same APIs and hooks that power the conversation detail view:
+
+- **Fetch conversation and messages** — `api.getConversationWithMessages(conversationId)` to load the full transcript and metadata.
+- **Send a message** — `api.sendMessage(conversationId, text)` for supported channels (chat/SMS and configured email flows).
+- **Canned responses** — `api.getCannedResponses()` to manage templates used by agents in the composer.
+- **Client suggestions** — `api.getClientSuggestions()` to populate the linking panel.
+- **Link and dismiss**:
+  - `linkClient(conversationId, clientId)` to associate a conversation with a client.
+  - `dismissSuggestion(conversationId, suggestionId)` to hide irrelevant matches.
+- **Widget tracking events** — `api.getConversationWidgetTrackingEvents(conversationId)` to show widget interactions for eligible conversations.
+- **Realtime events** — subscribe to `message:new` and `conversation:updated` from your `realtimeClient` to mirror updates in custom dashboards.
+
+Use these APIs to build custom sidebars, QA tooling, or analytics that complement the built-in conversation detail view.
+
+## Related topics
+
+<Columns cols={3}>
+
+<Card
+  title="Features overview"
+  href="/features"
+  icon="puzzle"
+  cta="Explore core features"
+>
+
+See how conversations, AI, and integrations fit into the broader feature set.
+
+</Card>
+
+<Card
+  title="Integrations"
+  href="/integrations"
+  icon="plug"
+  cta="Connect your tools"
+>
+
+Understand which email, voice, and CRM integrations feed data into conversation details.
+
+</Card>
+
+<Card
+  title="Quickstart"
+  href="/quickstart"
+  icon="rocket"
+  cta="Set up your workspace"
+>
+
+Get your workspace configured and start receiving your first conversations.
+
+</Card>
+
+</Columns>

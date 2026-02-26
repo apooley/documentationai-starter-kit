@@ -1,0 +1,318 @@
+---
+title: Manage conversations
+description: Use the Conversations page as a unified inbox across channels to search, filter, bulk update, export, and monitor conversations in real time.
+---
+
+## Conversations overview
+
+The Conversations page at `/conversations` is your unified inbox for all customer conversations across chat, voice, email, and other connected channels.
+
+Each row represents a single conversation, with key context like channel, contact, preview, tags, assignee, AI sentiment and urgency, lifecycle status, and qualification so you can prioritize work at a glance.
+
+<Callout kind="info">
+
+Conversations are always isolated per tenant. You only see conversations that belong to your tenant workspace and that your role allows you to access.
+
+</Callout>
+
+## Layout and key areas
+
+The Conversations page is organized into four main areas:
+
+- Global search bar
+- Advanced filters
+- Conversations table
+- Bulk actions and pagination
+
+### Search bar
+
+Use the search bar at the top of the page to quickly find conversations by keywords.
+
+Typical uses include:
+
+- Searching by **contact name** or email address
+- Searching by **message content** (for example, product names, error codes)
+- Narrowing down **recent interactions** with a specific topic
+
+The search uses debounced input, so you can type normally without triggering a request on every keystroke. Results refresh automatically once you pause typing.
+
+### Advanced filters
+
+Advanced filters let you narrow the list to the conversations that matter for your current task.
+
+Available filters typically include:
+
+- **Channel** – Restrict to a specific channel such as chat, voice, or email.
+- **Lifecycle status** – Focus on conversations in a particular state (for example, new, active, closed).
+- **Date range** – Show conversations that occurred within a specific time window.
+- **Qualified** – Filter based on whether the conversation is qualified by your internal logic.
+- **Workspace** – Limit results to a particular workspace within your tenant.
+- **Tags** – Include only conversations that match one or more tags.
+- **Assignee / My conversations** – See conversations assigned to a specific teammate or to you.
+
+<Callout kind="info">
+
+Filters combine with each other and with the search bar. If you see fewer results than expected, check both your search query and all active filters.
+
+</Callout>
+
+### Conversations table
+
+The main table shows conversations in a paginated or infinite-scrolling list, with each row summarizing the most important details.
+
+Common columns include:
+
+- **Selection checkbox** – Select one or more rows for bulk actions.
+- **Channel** – The source channel for the conversation.
+- **Contact and preview** – The primary contact, a short message preview, unread indicator, and any applied tags.
+- **Assignee** – The teammate currently responsible for the conversation (if any).
+- **AI context** – Sentiment and urgency scores to help prioritize.
+- **Status** – The current lifecycle status of the conversation.
+- **Qualification** – Whether the conversation meets your qualification criteria.
+- **Row actions** – Quick actions such as view, assign, update status, or delete.
+
+Select any row or use the view action to open the full conversation detail (for example, on a dedicated conversation detail page).
+
+### Bulk actions toolbar
+
+When you select one or more conversations, the bulk actions toolbar becomes active. From here you can:
+
+- **Assign** conversations to a teammate.
+- **Update status** for all selected conversations in one step.
+- **Export selected** conversations for analysis or backup.
+- **Delete selected** conversations if you no longer need them.
+
+Bulk actions apply to the currently selected rows only, not to all conversations that match your filters.
+
+### Pagination and infinite loading
+
+The list uses paginated or infinite loading behavior with a **Load more** control at the bottom.
+
+- When more conversations exist than fit on the first page, you see a **Load more** button.
+- Clicking **Load more** fetches the next batch and appends it to the list.
+- Your current search and filter settings stay applied across pages.
+
+If you scroll to the bottom and do not see **Load more**, either all results have been loaded or no results match your current filters.
+
+## Common workflows
+
+Use these workflows to handle the most frequent tasks on the Conversations page.
+
+<Steps>
+
+<Step title="Find a specific conversation" icon="search">
+
+1. Go to `/conversations` from your main navigation.
+2. In the **search bar**, type a keyword such as a contact name, email, or phrase from the conversation.
+3. Adjust **filters** (channel, status, date range, tags, assignee, workspace) to narrow down results if needed.
+4. Locate the matching row in the table and select it or click the view action to open the conversation.
+
+When the search and filters match, the conversation appears in the list within a few seconds of you stopping typing.
+
+</Step>
+
+<Step title="Bulk assign conversations to a teammate" icon="users">
+
+1. Use search and filters to focus on the conversations you want to reassign.
+2. In the table, use the **checkbox** column to select the relevant conversations.
+3. In the **bulk actions toolbar**, choose **Assign**.
+4. Pick the target **assignee** from the list.
+5. Confirm the assignment.
+
+The assignee column for all selected conversations updates to show the new owner.
+
+</Step>
+
+<Step title="Change lifecycle status for multiple conversations" icon="settings">
+
+1. Filter by **lifecycle status**, **assignee**, or **date range** to find the group you want to update.
+2. Select conversations using the **checkboxes** in the leftmost column.
+3. Click **Update status** in the bulk actions toolbar.
+4. Choose the new **lifecycle status** you want to apply.
+5. Confirm the change.
+
+After the update, the **status** column for those rows reflects the new lifecycle state.
+
+</Step>
+
+<Step title="Export a set of conversations" icon="download">
+
+1. Apply **search and filters** to capture the conversations you want to export (for example, last month, qualified, specific tag).
+2. Select all relevant conversations using the **checkboxes**.
+3. Click **Export selected** in the bulk actions toolbar.
+4. Choose the export destination or format if prompted.
+5. Wait for the export to complete or check your notifications/downloads area as instructed.
+
+The exported file or destination contains only the conversations you selected when you triggered the export.
+
+</Step>
+
+<Step title="Delete conversations in bulk" icon="trash">
+
+1. Narrow the list carefully using **filters** (for example, closed conversations older than a certain date).
+2. Select the conversations you want to delete via the **checkbox** column.
+3. Click **Delete selected** in the bulk actions toolbar.
+4. Confirm the deletion when prompted.
+
+The deleted conversations disappear from the table and no longer appear in new searches or filters.
+
+<Callout kind="alert">
+
+Deletion is often irreversible or difficult to undo. Double-check that your filters and selections are correct before you confirm bulk deletion.
+
+</Callout>
+
+</Step>
+
+</Steps>
+
+## Realtime updates
+
+The Conversations page subscribes to realtime events so the list stays in sync without manual refresh.
+
+When any of the following occurs:
+
+- A **new conversation** is created
+- An existing conversation is **updated** (for example, new message, status, or assignee)
+- A conversation becomes **qualified**
+
+The list updates to reflect the change if the conversation matches your current search and filter criteria.
+
+<Callout kind="info">
+
+Realtime updates respect your active filters. If a conversation changes in a way that no longer matches your filters (for example, status changes from active to closed), it may disappear from your current view.
+
+</Callout>
+
+If realtime connectivity is temporarily unavailable, you can still manually refresh the page to fetch the latest state.
+
+## Permissions and tenant isolation
+
+Access to the Conversations page and specific actions depends on your tenant configuration and user role.
+
+Key rules:
+
+- **Tenant isolation** – Conversations are scoped to the current tenant; data is never shared across tenants.
+- **Workspace scoping** – If your tenant uses workspaces, the **workspace filter** limits visibility to conversations in that workspace.
+- **Role-based actions** – Some actions (such as bulk delete or export) may be restricted to admins or specific roles, even if you can see the conversations.
+
+<Callout kind="info">
+
+If you believe you should have access to a conversation or action but do not see it, contact your tenant admin to review your role and permissions.
+
+</Callout>
+
+## Empty states and error states
+
+The Conversations page distinguishes between several empty and error conditions to guide you.
+
+### Loading state
+
+When the page first loads or you change filters, you see a **loading skeleton** in the table area.
+
+- Once data arrives, the skeleton is replaced by the conversation rows.
+- If loading takes longer than expected, check your network connection.
+
+### No conversations yet
+
+If your tenant has no conversations at all, the page shows a **true empty state** with setup guidance.
+
+Typical next steps include:
+
+- Connecting channels (chat, voice, email, or integrations)
+- Testing an initial conversation from a demo or staging environment
+
+Success looks like seeing the first conversation row appear after you complete setup and send a test message.
+
+### No matches for current filters
+
+If conversations exist but none match your current search/query, the page shows a **no matches** message.
+
+To recover:
+
+- Clear one or more **filters**.
+- Reset the **search bar** to an empty value.
+- Confirm that the **date range** is not too narrow.
+
+Once you relax the filters, matching conversations reappear in the table.
+
+### Error state
+
+If the conversations service cannot load, you see an **error boundary** with options to:
+
+- **Refresh** the page.
+- Navigate back to the **dashboard** to continue working elsewhere.
+
+If the error persists across refreshes, contact your admin or support with any visible error details.
+
+## Troubleshooting
+
+Use this section to quickly diagnose common issues with the Conversations page.
+
+### I see no results, but I know we have conversations
+
+Check whether you are in a filtered no-results state rather than a true empty state.
+
+- Verify that the **search bar** is clear.
+- Review all active **filters**, especially:
+  - Date range
+  - Channel
+  - Lifecycle status
+  - Tags
+  - Assignee / My conversations
+  - Workspace
+- Confirm that the **no results** message is not the setup guide for a tenant with zero conversations.
+
+If you still do not see conversations, try a full page refresh. If the issue continues, your permissions or workspace selection may be restricting visibility.
+
+### New conversations are not appearing in real time
+
+If realtime updates appear to be stuck:
+
+- Confirm that you have a **stable network connection**.
+- Check whether the new or updated conversations actually match your current **filters** and **search**.
+- Refresh the page once to re-establish the realtime connection.
+
+If conversations only appear after a manual refresh, report the issue to your admin or support so they can investigate realtime connectivity for your tenant.
+
+### I cannot perform bulk actions
+
+If assign, update status, export, or delete are disabled:
+
+- Make sure you have **selected at least one** conversation checkbox.
+- Confirm that your **role** allows the action (for example, delete and export may be admin-only).
+- Check that you are not in the middle of another **pending action** on the same selection.
+
+If the action remains unavailable, contact your tenant admin to review your permissions.
+
+## Related pages
+
+Use these pages to go deeper into individual conversations and overall performance.
+
+<Columns cols={2}>
+
+<Card
+  title="Conversation detail"
+  href="/conversations/detail"
+  icon="message-circle"
+  cta="Open detail view"
+  horizontal="true"
+>
+
+See the full message history, AI insights, tags, and actions for a single conversation.
+
+</Card>
+
+<Card
+  title="Dashboard"
+  href="/dashboard"
+  icon="bar-chart"
+  cta="View performance"
+  horizontal="true"
+>
+
+Monitor aggregate metrics and trends across all conversations in your tenant.
+
+</Card>
+
+</Columns>

@@ -1,0 +1,595 @@
+---
+title: Manage assistants
+description: Configure and manage AI assistants for chat, email, SMS, and voice, including creation flows, testing, channel adaptation, QA, and scenario evaluation.
+---
+
+## What assistants are
+
+Assistants are reusable AI configurations that power your tenant's chat, email, SMS, and voice experiences. Each assistant bundles a model, provider, behavior, and channel-specific settings so you can reuse consistent behavior across multiple channels.
+
+Use assistants to:
+
+- Standardize how AI responds in different workspaces or brands.
+- Isolate experimentation by creating variants and promoting a default.
+- Connect to different AI providers or models per use case.
+
+You access and manage assistants on the `/assistants` page.
+
+## Page layout and navigation
+
+The Assistants page shows all assistants you have access to, along with controls to create, search, filter, and manage them.
+
+### Search and workspace filter
+
+At the top of the page you find:
+
+- **Search box** — Filter assistants by name, internal name, or description.
+- **Workspace filter** — Limit the grid to assistants belonging to a specific workspace.
+
+Use search when you know what you are looking for, and the workspace filter when you want to audit or manage assistants for a specific part of your tenant.
+
+### Assistants grid and cards
+
+Below the filters, assistants appear as a grid of cards. Each card surfaces key information so you can quickly identify the right assistant.
+
+Typical card elements include:
+
+- **Name** — The display name used throughout the app.
+- **Internal name** — An internal identifier helpful for debugging and cross-referencing.
+- **Description** — A short summary of what the assistant does.
+- **Workspace** — The workspace or business unit the assistant belongs to.
+- **Provider** — The AI provider backing the assistant (for example, OpenAI, Azure OpenAI).
+- **Model** — The specific model configured for this assistant.
+- **Badges** — Visual indicators such as:
+  - **Default** — The default assistant for its workspace or channel.
+  - **Starred / Favorite** — Assistants you have pinned for quick access.
+  - **Channel indicators** — When relevant, badges that show if the assistant is used in chat, email, SMS, or voice flows.
+
+Card actions are available as buttons or menu items directly on the card so you can manage an assistant without leaving the grid.
+
+### Loading and empty states
+
+When data is loading, the page shows placeholder skeletons in place of assistant cards. Once loading completes, the grid updates to the current list.
+
+If no assistants exist yet for your tenant, or if filters return no results, the empty state appears with guidance and a primary **Create assistant** call-to-action. Use this entry point to start your first assistant.
+
+<Callout kind="info">
+
+If you expect assistants but see an empty state, clear search and workspace filters first before escalating to support.
+
+</Callout>
+
+## Core assistant actions on cards
+
+From each assistant card, you typically have quick access to the following actions:
+
+- **Edit / update** — Open the assistant configuration to adjust model, behavior, and channel settings.
+- **Star / unstar** — Toggle a personal favorite marker for easier discovery.
+- **Set default** — Promote this assistant as the default for its workspace or channel.
+- **Test / simulate** — Open test experiences for chat, email, SMS, or voice to validate behavior.
+- **QA checks** — Run targeted QA workflows against the assistant's current configuration.
+- **Adapt channels** — Apply channel-specific tuning (for example, adapting chat behavior to email or SMS).
+- **Scenario evaluation** — Evaluate how the assistant performs across predefined scenarios.
+- **Delete** — Permanently remove the assistant when it is no longer needed.
+
+Use edit for configuration changes, test and QA flows to validate behavior, and default/star actions to control which assistants appear in production and which you access most often.
+
+## Create a new assistant
+
+Create assistants from the `/assistants` page using the primary **Create assistant** control. Depending on feature flags, you may see multiple creation paths.
+
+<Callout kind="info">
+
+Assistant creation options depend on tenant-level feature flags. If you do not see the wizard or templates described below, contact your platform administrator to confirm which features are enabled.
+
+</Callout>
+
+### Creation paths
+
+Use tabs to choose the creation approach that matches your workflow.
+
+<Tabs>
+
+<Tab title="Wizard" icon="zap">
+
+The wizard guides you through a structured flow to configure a new assistant end to end, including model selection, behavior, channels, and optional testing.
+
+Use the wizard when you:
+
+- Want guardrails and best-practice defaults.
+- Are creating your first assistants in a new tenant.
+- Need to configure multiple channels consistently (chat, email, SMS, voice).
+
+</Tab>
+
+<Tab title="Templates" icon="folder">
+
+Template-based creation starts from a preconfigured pattern (for example, support bot, sales follow-up, triage assistant) and lets you customize details before saving.
+
+Use templates when you:
+
+- Want to move quickly from known patterns.
+- Need consistency across workspaces for similar use cases.
+- Are cloning a proven approach into a new workspace with light adjustments.
+
+</Tab>
+
+<Tab title="Manual" icon="settings">
+
+Manual creation opens a more direct editor where you define all assistant properties yourself.
+
+Use manual creation when you:
+
+- Know exactly which provider, model, and behaviors you want.
+- Are experimenting with advanced or non-standard configurations.
+- Need to mirror an existing configuration from another system.
+
+</Tab>
+
+</Tabs>
+
+### Step-by-step: create an assistant
+
+<Steps>
+
+<Step title="Open the Assistants page" icon="home">
+
+- Navigate to the `/assistants` route from the main navigation.
+- Confirm you are in the correct workspace filter for where this assistant should live.
+
+Your screen should show an empty state with a **Create assistant** button if you have no assistants yet, or a grid of existing assistant cards.
+
+</Step>
+
+<Step title="Start the creation flow" icon="plus">
+
+- Click **Create assistant**.
+- Choose the creation path:
+  - **Wizard** for guided setup.
+  - **Template** if you want to start from a prebuilt pattern.
+  - **Manual** for full control.
+
+The app opens the corresponding creation view or modal.
+
+</Step>
+
+<Step title="Configure core details" icon="settings">
+
+- Enter the **name** and, if available, an **internal name** for reference.
+- Add a clear **description** that explains what the assistant should do.
+- Select the **workspace** where this assistant will be used.
+
+Confirm the workspace matches where downstream channels (chat, email, SMS, voice) are configured to avoid confusion later.
+
+</Step>
+
+<Step title="Select provider and model" icon="code">
+
+- Choose an AI **provider** from the available list.
+- Select the **model** appropriate for your use case.
+
+If your tenant uses multiple providers or custom models, align your choice with existing policies for data governance and cost.
+
+</Step>
+
+<Step title="Configure behavior and channels" icon="terminal">
+
+- Define any high-level behavior settings available in the flow (for example, tone, capabilities, or instructions).
+- When the wizard or template flow includes channel steps, configure how the assistant should behave in:
+  - **Chat**
+  - **Email**
+  - **SMS**
+  - **Voice** (when enabled)
+
+Use the channel adaptation prompts to ensure outputs match each channel's format and constraints.
+
+</Step>
+
+<Step title="Review, test, and save" icon="check-circle">
+
+- Review a summary of the assistant configuration.
+- Optionally run a quick **test** or **simulation** from within the creation flow to validate basic behavior.
+- Click **Save** or **Create**.
+
+After saving, you return to the Assistants page, where a new card appears for the assistant you just created.
+
+</Step>
+
+</Steps>
+
+<Callout kind="info">
+
+If the assistant wizard or channel steps do not appear, your tenant may have the assistant wizard or chat wizard extensions features disabled.
+
+</Callout>
+
+## Edit and update an assistant
+
+Use editing when you need to adjust behavior, swap models, or change workspace alignment.
+
+<Steps>
+
+<Step title="Open the assistant" icon="edit">
+
+- From `/assistants`, locate the assistant card.
+- Click **Edit** on the card (or open the details view if the action is nested in a menu).
+
+The assistant editor opens with current settings pre-filled.
+
+</Step>
+
+<Step title="Adjust configuration" icon="settings">
+
+- Update the **name**, **description**, or **workspace** when necessary.
+- Change the **provider** or **model** if you are moving to a different stack or tier.
+- Edit channel-specific behavior, prompts, or settings exposed in the editor.
+
+Make changes in small increments and retest after each change to understand impact.
+
+</Step>
+
+<Step title="Save and validate" icon="check-circle">
+
+- Click **Save** or **Update** to persist your changes.
+- Run a quick **test** or **simulation** from the card actions or from within the editor.
+
+Your updates are active as soon as the save completes.
+
+</Step>
+
+</Steps>
+
+## Set default and star assistants
+
+Defaults and stars help you control which assistants are promoted for production use and which are easy to find.
+
+### Set an assistant as default
+
+Use the **Set default** action on a card to promote that assistant to the default role for its workspace or for relevant channels.
+
+<Steps>
+
+<Step title="Choose the assistant to promote" icon="star">
+
+- On `/assistants`, identify the assistant that should become the new default.
+- Confirm its configuration and test behavior before changing the default.
+
+</Step>
+
+<Step title="Set as default" icon="check">
+
+- Click the **Set default** action on the card.
+- Confirm any prompts that explain the impact on existing flows.
+
+The card updates to show a **Default** badge. Other assistants in the same workspace or channel lose their default status.
+
+</Step>
+
+</Steps>
+
+### Star or favorite an assistant
+
+Starring does not change behavior in production; it helps you find assistants you use frequently.
+
+<Steps>
+
+<Step title="Toggle star on the card" icon="bookmark">
+
+- Find the assistant card.
+- Click the **star** or **favorite** icon to mark it.
+- Click again to unstar if you no longer need it pinned.
+
+Starred assistants appear with a visible badge or icon and may surface more prominently in lists and filters.
+
+</Step>
+
+</Steps>
+
+## Test send and simulate channels
+
+Testing lets you validate how an assistant behaves in different channels before you expose it to end users.
+
+### Test email and SMS
+
+Use test send actions to verify real-world formatting, content, and deliverability for email and SMS.
+
+<Steps>
+
+<Step title="Open test send actions" icon="terminal">
+
+- On the assistant card, open the actions menu.
+- Choose **Test send email** or **Test send SMS**.
+
+The app opens a test modal or panel targeted at the chosen channel.
+
+</Step>
+
+<Step title="Configure test parameters" icon="settings">
+
+- For **email tests**, provide realistic values such as:
+  - Recipient email addresses.
+  - Subject or context (if requested).
+- For **SMS tests**, provide:
+  - Recipient phone numbers.
+  - Any required metadata for the scenario.
+
+Keep test content realistic so you can evaluate tone and formatting accurately.
+
+</Step>
+
+<Step title="Send and review results" icon="check-circle">
+
+- Click **Send test**.
+- Confirm the message is delivered to the expected channel.
+- Review formatting, length, and behavior against expectations.
+
+If behavior is off, adjust the assistant configuration and resend tests as needed.
+
+</Step>
+
+</Steps>
+
+### Simulate chat or voice behavior
+
+Simulation focuses on how the assistant responds, without necessarily sending a live email or SMS.
+
+<Steps>
+
+<Step title="Open simulation tools" icon="play-circle">
+
+- From the assistant card, choose **Simulate** or open the testing view associated with chat or voice.
+
+You should see an interface to send inputs and view the assistant's responses.
+
+</Step>
+
+<Step title="Run test conversations" icon="terminal">
+
+- Provide representative prompts or user inputs.
+- Observe how the assistant responds in the simulation environment.
+
+Try a mix of straightforward and edge-case prompts to understand guardrails and limitations.
+
+</Step>
+
+<Step title="Capture findings and iterate" icon="edit">
+
+- Note responses that are misaligned with your expectations.
+- Adjust the assistant configuration (prompts, settings, or model).
+- Re-run simulations to confirm improvements.
+
+Repeat this loop until the assistant consistently meets your requirements.
+
+</Step>
+
+</Steps>
+
+<Callout kind="info">
+
+APIs such as `api.channels.testSendEmail` and `api.channels.testSendSms` back these flows. Use the UI for most testing, and escalate to API integrations only when you need automation.
+
+</Callout>
+
+## QA checks, channel adaptation, and scenario evaluation
+
+Beyond ad-hoc tests, the Assistants page provides workflows for structured quality control.
+
+### Run QA checks
+
+QA checks help you validate that the assistant meets predefined quality criteria.
+
+<Steps>
+
+<Step title="Open QA tools" icon="shield">
+
+- From the assistant card actions, select **QA checks** (or the equivalent QA option).
+
+The app opens a QA view focused on the selected assistant.
+
+</Step>
+
+<Step title="Run checks" icon="play-circle">
+
+- Choose the QA checks you want to run (for example, content safety, policy adherence, or consistency against benchmarks).
+- Execute the checks.
+
+You see results that highlight passes, warnings, and failures as applicable.
+
+</Step>
+
+<Step title="Review and remediate" icon="edit">
+
+- Review any failed or borderline checks.
+- Update the assistant configuration to address the issues.
+- Rerun QA checks until you reach an acceptable quality level.
+
+</Step>
+
+</Steps>
+
+### Adapt to channels
+
+Channel adaptation lets you take a base assistant and tune its behavior for specific channels like email, SMS, chat, or voice.
+
+<Steps>
+
+<Step title="Start channel adaptation" icon="terminal">
+
+- Select **Adapt channels** from the assistant card actions.
+
+Channel adaptation tools open for the chosen assistant.
+
+</Step>
+
+<Step title="Configure per-channel behavior" icon="settings">
+
+- For each enabled channel (chat, email, SMS, voice):
+  - Apply channel-specific instructions or formatting rules.
+  - Set constraints such as length, tone, or structure.
+
+Focus on differences that are necessary for each channel rather than duplicating global settings.
+
+</Step>
+
+<Step title="Validate adapted behavior" icon="check-circle">
+
+- Use the testing tools for each channel to verify behavior after adaptation.
+- Iterate until messages look correct for real users in that channel.
+
+</Step>
+
+</Steps>
+
+<Callout kind="info">
+
+Channel adaptation relies on `api.assistants.adaptChannels` behind the scenes. UI-first configuration is recommended for tenant admins and advanced users.
+
+</Callout>
+
+### Evaluate scenarios
+
+Scenario evaluation checks how an assistant performs across a set of realistic use cases.
+
+<Steps>
+
+<Step title="Launch scenario evaluation" icon="bar-chart">
+
+- From the assistant card actions, click **Scenario evaluation** (or the equivalent evaluation entry point).
+
+The scenario eval view opens with the current assistant selected.
+
+</Step>
+
+<Step title="Select or define scenarios" icon="folder">
+
+- Choose from existing scenario sets relevant to your workspace.
+- Optionally define new scenarios that mirror real interactions you care about.
+
+Scenarios might include typical customer questions, edge-case requests, or compliance-critical interactions.
+
+</Step>
+
+<Step title="Run evaluation and review results" icon="check-circle">
+
+- Execute scenario evaluation for the assistant.
+- Inspect per-scenario outcomes and any scores or qualitative feedback.
+
+Use these findings to prioritize configuration changes and to compare assistants before promoting a new default.
+
+</Step>
+
+</Steps>
+
+## Feature flags and access
+
+Several capabilities on the Assistants page depend on tenant-level feature flags. Tenant admins typically control these but platform admins may enforce global defaults.
+
+<Callout kind="info">
+
+This section describes tenant-facing flags only. Platform-admin-only controls may exist but are out of scope here.
+
+</Callout>
+
+### Assistant wizard
+
+When the **assistant wizard** feature is enabled, you see a guided wizard option for creating assistants. If it is disabled, you may only see manual or template-based creation.
+
+Enable and use the wizard when you want a structured, step-by-step setup experience that encodes best practices.
+
+### Chat wizard extensions
+
+The **chat wizard extensions** feature adds extended capabilities to chat-related configuration and testing flows. With it enabled, you may see richer options when configuring or simulating chat assistants.
+
+Disable this feature only if you manage chat configuration entirely through APIs or external tooling.
+
+### Bring your own AI (BYOK AI)
+
+The **BYOK AI** feature controls whether your tenant can connect its own AI provider accounts or keys rather than relying solely on shared infrastructure.
+
+<Callout kind="info">
+
+If BYOK AI is disabled, provider and model options may be limited to those provisioned centrally by your organization. Work with your admin if you need additional providers or models.
+
+</Callout>
+
+### Voice add-on
+
+The **voice add-on** flag controls whether voice assistants and voice-specific testing or adaptation are available.
+
+When enabled, you see voice options in:
+
+- Assistant creation and editing flows.
+- Testing and simulation tools.
+- Channel adaptation steps.
+
+If you do not see voice options, your tenant may not have the voice add-on enabled.
+
+## Delete an assistant
+
+Deleting removes an assistant from the grid and from any UI workflows that reference it. Use this only when you are sure the assistant is no longer needed.
+
+<Steps>
+
+<Step title="Confirm dependencies" icon="alert-triangle">
+
+- Check which chat, email, SMS, or voice flows rely on the assistant.
+- Verify that a fallback or replacement assistant exists, especially if this assistant is a default.
+
+Deleting a default assistant without a replacement can cause gaps in your flows.
+
+</Step>
+
+<Step title="Execute delete" icon="trash">
+
+- On the assistant card, choose **Delete** from the actions menu.
+- Confirm the deletion in the dialog.
+
+The assistant disappears from the grid and becomes unavailable via UI and APIs.
+
+</Step>
+
+</Steps>
+
+## Loading and empty state behavior
+
+The Assistants page provides clear visual feedback during load and when no assistants match the current filters.
+
+- **Loading** — While `api.assistants.list` is in progress, skeleton cards appear to indicate that content is loading.
+- **Empty (no data)** — If the API returns no assistants and filters are clear, an empty state appears with:
+  - A short explanation that no assistants exist yet.
+  - A primary **Create assistant** call-to-action.
+- **Empty (filtered)** — If search or workspace filters remove all matches, the empty state reflects that no assistants match the current filter, while still offering a way to clear filters or create a new assistant.
+
+Use the empty state as a starting point for initial setup or as an indication that you may need to adjust filters.
+
+## Related configuration pages
+
+Assistants work best when they are connected to the right context and channels. After configuring assistants, review related areas to complete your setup.
+
+<Columns cols={2}>
+
+<Card
+  title="Training context"
+  href="/features"
+  icon="database"
+  cta="Configure knowledge and documents"
+  horizontal="true"
+>
+
+Use training data and knowledge sources to give assistants access to the information they need to answer user questions accurately.
+
+</Card>
+
+<Card
+  title="Conversations and channels"
+  href="/integrations"
+  icon="terminal"
+  cta="Connect chat, email, SMS, and voice"
+  horizontal="true"
+>
+
+Connect assistants to your external channels so they can handle live user conversations end to end.
+
+</Card>
+
+</Columns>

@@ -1,0 +1,354 @@
+---
+title: Manage CRM clients
+description: Use the Clients page to search, filter, tag, import, export, and manage client records across your CRM workspace.
+---
+
+## Clients directory overview
+
+Use the Clients page at `/clients` as your CRM directory for all people and companies you work with. From this page you search, filter, tag, and bulk-manage client records across your tenant.
+
+Each row represents a client with basic contact and account context so you can quickly jump into details or related conversations.
+
+## Page layout and key elements
+
+The Clients page combines search, tag filters, a data table, and pagination to handle both small lists and large CRMs.
+
+### Search and filtering
+
+Search and filtering sit above the table so you can narrow results before taking actions.
+
+- **Search bar** — Filter clients by name, email, company, or other indexed fields. Use this to quickly find a specific person or a small group.
+- **Tag filter** — Limit the list to clients with one or more tags (for example, `vip`, `trial`, `churn-risk`). Combine search and tag filters to build precise slices of your client base.
+
+When you apply a search term or tag filter, the list updates immediately and all subsequent bulk actions apply only to the filtered set.
+
+### Bulk actions toolbar
+
+The bulk actions toolbar appears when you select one or more clients in the table.
+
+Typical actions include:
+
+- **Export** — Download selected clients (or the current filtered set) as a CSV for reporting, audits, or offline analysis.
+- **Delete** — Remove selected clients from your CRM.
+- **Tags** — Apply, remove, or replace tags in bulk across the selected clients.
+
+<Callout kind="alert">
+
+Bulk actions affect every selected client. Confirm the number of selected rows and any active filters before exporting, tagging, or deleting to avoid unintended changes.
+
+</Callout>
+
+### Clients table
+
+The main table lists client records with quick access to the most important fields.
+
+Common columns include:
+
+- **Select** — A checkbox for row selection and bulk actions.
+- **Name** — The primary client name. Click this to open the client detail page.
+- **Email** — The main contact email used in conversations and outreach.
+- **Phone** — A direct phone number for call and SMS workflows.
+- **Company** — The organization associated with the client, if applicable.
+- **Tags** — Labels you assign for segmentation, lifecycle, or routing.
+- **Created** — The date the client was first created in your tenant.
+- **Actions** — Row-level actions such as Edit and Delete.
+
+### Pagination
+
+Pagination controls appear below the table when you have more clients than can fit on a single page.
+
+- Move forward and back through pages while preserving your current search, tag filters, and sort.
+- Page changes request a new slice of data from the backend, so you always work against the latest records.
+
+If you have access to API-level tooling, all pagination, search, and tag filters map to underlying API calls that return a consistent, paginated list of clients for your tenant.
+
+## Create, edit, and delete clients
+
+Use these workflows to maintain accurate client records from the list view.
+
+<Steps>
+
+<Step title="Create a new client" icon="plus">
+
+1. Open `/clients` from the main navigation.
+2. Click **New client** (or the equivalent create button above the table).
+3. Enter at least the client's **name** and one contact method such as **email** or **phone**.
+4. Optionally add **company** and any initial **tags**.
+5. Save the client.
+
+Your new client appears at the top of the list or according to your current sort order, and is immediately available for conversations and automations.
+
+</Step>
+
+<Step title="Edit an existing client" icon="edit">
+
+1. Locate the client using search or tag filters.
+2. Either:
+   - Click the **Name** to open the client detail page and edit from there, or
+   - Use the **Edit** action in the row's Actions menu.
+3. Update fields such as **name**, **email**, **phone**, **company**, or **tags**.
+4. Save your changes.
+
+The list refreshes with the updated values. Any workflows that depend on these fields (for example, email sending or routing rules based on tags) use the new data immediately.
+
+</Step>
+
+<Step title="Delete a client" icon="trash">
+
+1. Search or filter to find the client you want to remove.
+2. In the client's row, open the **Actions** menu and choose **Delete**.
+3. Confirm the deletion in the dialog.
+
+<Callout kind="alert">
+
+Deleting a client usually removes them from your active CRM directory and may affect related workflows, such as email lists or routing rules. Confirm you are deleting the correct record before you proceed.
+
+</Callout>
+
+After deletion, the client disappears from the list and can no longer be targeted from the Clients page.
+
+</Step>
+
+</Steps>
+
+## Bulk export and bulk delete
+
+When working with many records, use bulk actions from the Clients page instead of editing one by one.
+
+<Steps>
+
+<Step title="Select clients for bulk actions" icon="check-circle">
+
+1. Use search and tag filters to narrow the list to the clients you want to change.
+2. Select individual rows using the checkboxes, or select the header checkbox to choose all visible rows on the current page.
+3. Confirm the selection count in the bulk actions toolbar.
+
+All bulk actions on this page affect only the selected rows.
+
+</Step>
+
+<Step title="Export selected clients to CSV" icon="download">
+
+1. After selecting the desired clients, click **Export** in the bulk actions toolbar.
+2. Choose whether to export:
+   - Only the selected rows, or
+   - All clients that match your current filters (if available in your tenant).
+3. Confirm the export.
+
+The system generates a CSV file with key client fields, such as name, email, phone, company, created date, and tags. Use this file for reporting, backups, or importing into other tools.
+
+</Step>
+
+<Step title="Bulk delete clients" icon="trash">
+
+1. Select the clients you need to remove.
+2. Click **Delete** in the bulk actions toolbar.
+3. Review the number of clients that will be deleted and confirm.
+
+<Callout kind="alert">
+
+Bulk delete permanently removes multiple clients at once. This may break downstream processes that reference these clients. Always verify filters and selection counts before confirming a bulk delete.
+
+</Callout>
+
+Deleted clients disappear from the current list and no longer appear in subsequent searches from the Clients page.
+
+</Step>
+
+</Steps>
+
+## Bulk tag management
+
+Tags help you segment clients for campaigns, routing, and reporting. From the Clients page you manage tags across many records at once.
+
+<Steps>
+
+<Step title="Apply tags to many clients" icon="plus">
+
+1. Filter the list to the group you want to tag (for example, all `trial` clients).
+2. Select the relevant clients using row checkboxes.
+3. Click the **Tags** bulk action and choose **Add tags**.
+4. Pick one or more tags, or create a new tag if your tenant allows it.
+5. Confirm the change.
+
+The selected tags are added to every selected client, preserving any tags they already had.
+
+</Step>
+
+<Step title="Remove tags in bulk" icon="minus">
+
+1. Search or filter to the group of clients that share the tag you want to remove.
+2. Select all relevant clients.
+3. Open the **Tags** bulk action and choose **Remove tags**.
+4. Select the tag or tags you want to remove, then confirm.
+
+The specified tags are removed from each selected client, while other tags remain unchanged.
+
+</Step>
+
+<Step title="Replace tags across a segment" icon="settings">
+
+1. Build a filtered list that represents the segment you want to retag.
+2. Select all clients in that segment.
+3. Use the **Tags** bulk action and choose **Replace tags** (if available).
+4. Choose:
+   - Tags to remove (for example, `trial`), and
+   - Tags to add (for example, `customer`).
+5. Confirm the replacement.
+
+Every selected client loses the removed tags and gains the new tags in a single operation, allowing you to shift entire cohorts between lifecycle stages.
+
+</Step>
+
+</Steps>
+
+At the API level, these bulk tag changes run as grouped operations against the underlying client records, which keeps your CRM consistent even when you update thousands of clients at once.
+
+## Import clients from CSV
+
+Use CSV import to upload clients at scale from another system or spreadsheet.
+
+<Steps>
+
+<Step title="Prepare your CSV file" icon="database">
+
+1. Create or export a CSV file from your existing system.
+2. Include at least:
+   - A **name** column
+   - Either **email** or **phone** for contact
+3. Optionally add columns for **company** and **tags** (for example, a comma-separated list of tags per row).
+
+Keep headers clear and consistent so the import mapping step is straightforward.
+
+</Step>
+
+<Step title="Upload and map columns" icon="upload">
+
+1. Go to `/clients`.
+2. In the header or empty state, choose **Import CSV**.
+3. Select your CSV file from your computer.
+4. Map each CSV column to a client field such as **name**, **email**, **phone**, **company**, or **tags**.
+5. Review the sample preview of a few rows, then confirm to start the import.
+
+The system uses these mappings to create or update client records through the underlying import APIs, without requiring you to call those APIs directly.
+
+</Step>
+
+<Step title="Review import results and handle issues" icon="info">
+
+After the import runs, review the status:
+
+- Confirm the total number of imported clients matches your expectation.
+- Check for any reported errors, such as missing required fields or invalid emails.
+- Use the **search** and **created date** columns on `/clients` to spot newly added data.
+
+If some rows fail, adjust your CSV and run a follow-up import for just those records.
+
+</Step>
+
+</Steps>
+
+## Review duplicates and merge clients
+
+The system can group potential duplicate clients based on shared identifiers such as email or phone. From the Clients area you review these groups and merge records to keep your CRM clean.
+
+<Steps>
+
+<Step title="Open potential duplicate groups" icon="alert-triangle">
+
+1. Navigate to `/clients`.
+2. Use the duplicate review entry point (for example, a **Review duplicates** link or banner when duplicates are detected).
+3. View the list of duplicate groups, each showing clients that likely represent the same person or account.
+
+These groups come from a backend process that periodically scans your clients for conflicts and similarities.
+
+</Step>
+
+<Step title="Compare and choose a primary record" icon="monitor">
+
+1. Open a duplicate group to see all client records in that group.
+2. Compare key fields such as **name**, **email**, **phone**, **company**, and **tags**.
+3. Decide which record should be the **primary** client to keep.
+4. Mark other records in the group as duplicates to merge into the primary.
+
+Aim to keep the record with the most complete and up-to-date information.
+
+</Step>
+
+<Step title="Merge duplicates" icon="merge">
+
+1. Confirm the primary client in the group.
+2. Confirm which duplicate records will be merged into it.
+3. Start the merge.
+
+<Callout kind="alert">
+
+Merging clients combines data into the primary record and usually removes the duplicate records from your active list. This can affect historical reporting and linked conversations. Review each merge carefully to avoid combining unrelated clients.
+
+</Callout>
+
+After a successful merge, the Clients list shows only the primary client for that group. Behind the scenes, the merge operation updates related data to reference the primary record.
+
+</Step>
+
+</Steps>
+
+## Empty state: starting with no clients
+
+When your tenant has no clients yet, the Clients page shows an empty state instead of a table.
+
+In this state you typically see two primary actions:
+
+- **Create your first client** — Open the new client form to add a single record.
+- **Import from CSV** — Start a bulk import to bring in existing clients from other systems.
+
+Once you add your first client or complete an import, the standard list view appears with search, filters, and pagination.
+
+## Troubleshooting the Clients page
+
+Use these checks when something on `/clients` does not look right.
+
+### Clients are missing or the list is empty
+
+- **Confirm filters** — Clear the search bar and remove all tag filters to see if clients reappear.
+- **Check date assumptions** — Use the **Created** column to verify whether clients exist for the period you expect.
+- **Check tenant context** — Ensure you are in the correct workspace or tenant if your account has access to multiple environments.
+
+If clients remain missing after these checks, contact your admin or support with the approximate created dates and any known emails for the missing clients so they can investigate underlying API calls or imports.
+
+### Bulk actions are disabled
+
+- **Selection** — Confirm you selected at least one client; bulk actions only appear when rows are selected.
+- **Permissions** — Some tenants restrict bulk delete or export to admins. If the action never appears, ask a tenant admin to review your role.
+
+### Import or merge takes longer than expected
+
+- Large imports and merges run as background jobs against the API.
+
+If an operation is taking longer than expected:
+
+- Refresh the Clients page to see if the status updated.
+- Check whether some rows or groups completed while others are still processing.
+- For very large imports or merges, allow additional time for the backend to finish, then retry viewing the page.
+
+## Related pages
+
+Use these pages alongside the Clients list to work at the right level of detail.
+
+<Columns cols={2}>
+
+<Card
+  title="Client detail"
+  href="/crm/client-detail"
+  icon="user"
+  cta="View what you can see and edit on a single client"
+/>
+
+<Card
+  title="Conversations"
+  href="/crm/conversations"
+  icon="message-circle"
+  cta="See how client records connect to messages and threads"
+/>
+
+</Columns>

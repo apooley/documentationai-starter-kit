@@ -1,0 +1,325 @@
+---
+title: Manage playbook experiments
+description: Configure, validate, and operate A/B experiments for playbooks, including variants, lifecycle actions, preflight checks, and health monitoring.
+---
+
+## Experiments page overview
+
+Use the Experiments page to configure and run A/B tests for playbooks so you can compare variants and roll out changes safely.
+
+The page includes:
+
+- **Experiment list** with filters by workspace and status
+- **Experiment detail** with configuration and lifecycle actions
+- **Variants table** describing which playbooks participate and how traffic is split
+- **Preflight report** that validates your setup before activation
+- **Audit timeline** of key changes and decisions
+- **Health snapshot** for the last 30 days of experiment behavior
+
+<Callout kind="info">
+
+Experiments route real traffic between playbook variants. Treat them as production changes: validate carefully before activation and monitor health throughout the run.
+
+</Callout>
+
+### Statuses and filters
+
+Experiments move through standard statuses and can be filtered in the list view:
+
+- **Draft** – Configured but not yet activated or scheduled.
+- **Active** – Currently routing traffic between variants.
+- **Paused** – Temporarily stopped; configuration is preserved.
+- **Completed** – Finished with a decided outcome.
+- **Archived** – Historical record; no further changes.
+
+The filter bar lets you:
+
+- Filter by **Workspace**.
+- Filter by **Status**: All, Draft, Active, Paused, Completed, Archived.
+- Toggle **include archived** to show or hide archived experiments.
+
+## When to use experiments
+
+Use experiments when you want to:
+
+- Compare two or more playbooks for the **same workflow** (for example, a support triage playbook with different prompts).
+- Gradually roll out a new playbook while keeping a **control** version in place.
+- Measure the impact of changes before you update your default playbook configuration.
+
+Avoid experiments when:
+
+- You are testing completely different workflows that do not share the same target population.
+- You need one-off manual tests; use staging or ad-hoc conversations instead.
+
+## Key concepts
+
+### Experiments
+
+An experiment defines the scope, variants, and lifecycle of an A/B test.
+
+<ParamField body="name" param-type="string" required="true" show-location="false">
+Human-readable name for the experiment, used in the list and detail views.
+</ParamField>
+
+<ParamField body="workspace" param-type="string" required="true" show-location="false">
+Workspace where the experiment runs. Filters which playbooks and conversations are eligible.
+</ParamField>
+
+<ParamField body="status" param-type="string" required="true" show-location="false">
+Current lifecycle state of the experiment, such as Draft, Active, Paused, Completed, or Archived.
+</ParamField>
+
+<ParamField body="description" param-type="string" show-location="false">
+Optional context about the hypothesis, target metrics, or rollout strategy.
+</ParamField>
+
+<ParamField body="startTime" param-type="datetime" show-location="false">
+Planned or actual start time. Set when scheduling or activating.
+</ParamField>
+
+<ParamField body="endTime" param-type="datetime" show-location="false">
+Planned or actual end time. Typically set when completing the experiment.
+</ParamField>
+
+### Variants
+
+Variants define which playbooks participate in the experiment and what share of traffic each one receives.
+
+<Callout kind="info">
+
+Variants must satisfy three validation rules before activation:
+
+- At least 2 variants
+- Exactly 1 control variant
+- All weights are non-negative integers
+
+</Callout>
+
+<ParamField body="name" param-type="string" required="true" show-location="false">
+Display name of the variant, for example "Prompt v1 control" or "Prompt v2 short".
+</ParamField>
+
+<ParamField body="playbookId" param-type="string" required="true" show-location="false">
+Identifier of the playbook that this variant runs. Use the ID from the Playbooks page.
+</ParamField>
+
+<ParamField body="weight" param-type="integer" required="true" show-location="false">
+Traffic allocation weight for this variant. Weights are non-negative integers; relative values determine the final split.
+</ParamField>
+
+<ParamField body="control" param-type="boolean" required="true" show-location="false">
+Marks whether this variant is the control. Exactly one variant must be marked as control.
+</ParamField>
+
+A simple two-variant setup might look like:
+
+```json
+[
+  {
+    "name": "Control",
+    "playbookId": "pbk_support_triage_v1",
+    "weight": 50,
+    "control": true
+  },
+  {
+    "name": "Short prompt",
+    "playbookId": "pbk_support_triage_v2",
+    "weight": 50,
+    "control": false
+  }
+]
+```
+
+## Experiment lifecycle workflow
+
+Use the following lifecycle to safely run an experiment from draft to completion.
+
+<Steps>
+
+<Step title="Create and configure an experiment" icon="plus">
+
+Start from the Experiments page and create a new experiment. Give it a clear name and select the **Workspace** you want to test in.
+
+Add a short **description** that captures your hypothesis, for example "Shorter triage prompt should reduce handoff time without lowering resolution rate."
+
+Configure your **variants** using the Variants table:
+
+- Add at least two rows.
+- Select a **Playbook ID** for each row.
+- Assign non-negative integer **weights** based on your desired traffic split.
+- Mark exactly one variant as **control**.
+
+</Step>
+
+<Step title="Review variants and validation rules" icon="settings">
+
+Confirm that the Variants table passes the basic rules:
+
+- You see **2 or more** variants.
+- One row is marked as **control = true**.
+- All **weights** are integers and not negative.
+
+If you intentionally want to send most traffic to the control, keep a larger weight on the control and smaller weights on alternatives.
+
+</Step>
+
+<Step title="Run preflight validation" icon="info">
+
+Trigger the **preflight report** from the experiment detail view. Preflight checks configuration and shows:
+
+- **Eligible / blocked** breakdown for traffic.
+- **Errors** that prevent activation.
+- **Warnings** that you should review but that do not block activation.
+
+Common **preflight failures** include:
+
+- Missing control variant.
+- Only one variant configured.
+- One or more weights are negative or not integers.
+
+Resolve all blocking errors until the preflight report shows the experiment as eligible to activate.
+
+</Step>
+
+<Step title="Activate or schedule the experiment" icon="play-circle">
+
+Use lifecycle actions to start routing traffic:
+
+- **Activate** – Start the experiment immediately.
+- **Schedule** – Set a future start time; the experiment will move from Draft to Active at that time.
+- **Activate/Schedule** – Combined entry point in the UI that lets you either start now or define a schedule.
+
+After activation, the experiment status becomes **Active**, and the Health snapshot begins to accumulate data.
+
+</Step>
+
+<Step title="Operate the experiment: pause, stop, or complete" icon="terminal">
+
+Manage the experiment while it runs:
+
+- **Pause** – Temporarily stop routing new traffic while keeping all configuration. Use this if you need to investigate anomalies.
+- **Stop** – Halt the experiment without marking it as a formally completed test. Use this when the test is invalidated.
+- **Complete** – End the experiment and mark it as decided. Use this once you have enough evidence to select a winning variant.
+
+Each lifecycle action adds an entry to the **audit timeline** so you can trace who changed what and when.
+
+</Step>
+
+<Step title="Archive the experiment for history" icon="archive">
+
+Once you no longer need to actively operate or modify the experiment, **Archive** it.
+
+Archiving:
+
+- Keeps the experiment available for historical reference and reporting.
+- Moves the status to **Archived** and hides it from default list views unless **include archived** is enabled.
+
+Use archiving to keep your active experiment list focused on current or upcoming work.
+
+</Step>
+
+</Steps>
+
+## Preflight report
+
+The preflight report validates that an experiment is safe to activate.
+
+It summarizes:
+
+- **Eligibility** – Whether the configuration passes all hard validation rules.
+- **Blocked reasons** – Errors that must be fixed before activation.
+- **Warnings** – Soft issues that may affect quality but do not block activation.
+
+Common blocking issues:
+
+- **Missing control variant** – No row in the Variants table is marked as control.
+- **Only one variant** – The experiment has a single variant configured, which is not a valid A/B test.
+- **Invalid weights** – Any weight is negative, not an integer, or otherwise invalid for routing logic.
+
+<Callout kind="info">
+
+Run preflight every time you change variants, weights, or lifecycle timing. This reduces the risk of activating an invalid configuration in production.
+
+</Callout>
+
+## Lifecycle actions reference
+
+Use lifecycle actions from the experiment detail panel to control how and when traffic flows.
+
+<ParamField body="Preflight" param-type="action" required="true" show-location="false">
+Validate the experiment configuration, check variant rules, and generate a preflight report.
+</ParamField>
+
+<ParamField body="Activate/Schedule" param-type="action" required="true" show-location="false">
+Entry point that lets you either activate immediately or schedule a future start time from Draft.
+</ParamField>
+
+<ParamField body="Activate" param-type="action" show-location="false">
+Start routing traffic now. Moves the experiment to Active status.
+</ParamField>
+
+<ParamField body="Schedule" param-type="action" show-location="false">
+Define a future start time. The experiment moves to Active automatically at that time.
+</ParamField>
+
+<ParamField body="Pause" param-type="action" show-location="false">
+Temporarily stop routing new traffic while preserving configuration and status history.
+</ParamField>
+
+<ParamField body="Complete" param-type="action" show-location="false">
+End the experiment with a decided outcome. Typically used when a winner is selected and you no longer want to split traffic.
+</ParamField>
+
+<ParamField body="Stop" param-type="action" show-location="false">
+Terminate the experiment without declaring completion. Use this when the test is invalid or conditions have changed.
+</ParamField>
+
+<ParamField body="Archive" param-type="action" show-location="false">
+Move the experiment to Archived status for long-term record keeping. Archived experiments are hidden unless you enable the include archived filter.
+</ParamField>
+
+## Audit timeline and health snapshot
+
+The **audit timeline** records key experiment events so you can trace changes and decisions over time.
+
+Typical entries include:
+
+- Creation, updates to variants, and description changes.
+- Preflight runs and their outcomes.
+- Lifecycle actions such as Activate, Pause, Complete, Stop, and Archive.
+
+The **health snapshot** summarizes the last 30 days of experiment behavior.
+
+Use it to quickly spot:
+
+- Sudden drops or spikes in key metrics.
+- Long-running experiments that may need a decision.
+- Variants that are not receiving traffic because of configuration issues.
+
+## Related pages
+
+<Columns cols={2}>
+
+<Card
+  title="Playbooks"
+  href="/pages/ai-config/playbooks"
+  icon="book-open"
+  cta="Configure and manage playbooks"
+>
+
+Use playbooks to define the workflows that your experiment variants will run.
+
+</Card>
+
+<Card
+  title="Assistants"
+  href="/pages/ai-config/assistants"
+  icon="zap"
+  cta="Connect assistants to playbooks"
+>
+
+Connect assistants to playbooks so that experiment variants can serve real conversations.
+
+</Card>
+
+</Columns>

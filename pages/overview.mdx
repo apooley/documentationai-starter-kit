@@ -1,0 +1,219 @@
+---
+title: Pages overview
+description: Understand how the Autoch.at app is structured, how routing and access work, and how the Pages docs map to the in‑app sidebar navigation.
+---
+
+## Scope and audience
+
+Autoch.at organizes the tenant experience into a consistent shell with sidebar navigation, header tools, and guarded routes for logged-in users. This overview explains how that structure works and how these Pages docs align with what you see in the app.
+
+<Callout kind="info">
+
+These docs focus on **tenant workspaces and tenant admins**. Platform-level `/admin/*` pages for platform administrators are out of scope here.
+
+</Callout>
+
+## How routing works
+
+Routing in the Autoch.at web app uses **React Router v6** with explicit route mappings, not file-based routing. Each user-facing page is registered in `Router.tsx` with a route like `path="/conversations"` and an associated React component.
+
+Most tenant routes are wrapped in higher-order route components that enforce session and role rules:
+
+- Standard tenant pages are wrapped by `PrivateRoute`.
+- Platform-level admin pages under `/admin/*` are wrapped by `AdminRoute` and are not covered in this Pages section.
+
+From a user perspective, this means that:
+
+- Public routes (such as `/login` and `/verify-email`) are always reachable.
+- Tenant routes (AI Config, Conversations, CRM, Social, Insights, Settings, and related pages) only load when you have an active authenticated session.
+- Admin-only URLs are hidden from normal tenant navigation and require elevated roles.
+
+The docs in this Pages section mirror those **tenant routes** and the sections you see in the sidebar, without documenting the underlying React Router configuration itself.
+
+## Authentication and access
+
+Authentication and access control are enforced at the routing layer through `PrivateRoute` and `AdminRoute`, using the current session from `useAuth()`.
+
+### Private tenant routes
+
+`PrivateRoute` protects most tenant pages (for example, conversations, CRM, and other workspace tools). It checks two things:
+
+- **Session**: if you are not authenticated, `PrivateRoute` redirects you to `/login`.
+- **Email verification**: if you are logged in but your email is not verified, `PrivateRoute` redirects you to `/verify-email`.
+
+In practice:
+
+- Any URL that matches the main sidebar sections will require you to log in before you see content.
+- Newly invited users will land on the verification flow before accessing tenant pages.
+
+### Platform admins vs tenant users
+
+`AdminRoute` wraps URLs under `/admin/*` and checks for the `platform_admin` role. These routes power platform-level controls and are intentionally **excluded** from the Pages documentation.
+
+Tenant-focused pages covered by this section assume:
+
+- You belong to at least one tenant workspace.
+- You interact with the main sidebar areas (AI Config, Conversations, CRM, Social, Insights, Settings).
+- You may have elevated permissions within a tenant (for example, tenant admin), but you are not configuring the entire platform.
+
+## Common layout conventions
+
+All tenant pages share a common layout defined in `Layout.tsx`. Understanding this shell helps you predict where to find things as you move between sections.
+
+### Sidebar sections
+
+The left sidebar anchors the main navigation and maps directly to the structure of this Pages section:
+
+- **AI Config** – Manage how your AI agents behave, connect to data sources, and control automation behavior.
+- **Conversations** – View and manage live and historical chat, voice, and email conversations with customers.
+- **CRM** – Work with contacts, organizations, and related records that power your conversations and outreach.
+- **Social** – Connect and manage social channels that feed conversations into Autoch.at.
+- **Insights** – Review analytics, performance metrics, and conversation outcomes across your tenant.
+- **Settings** – Configure workspace-wide settings such as members, channels, and preferences.
+
+Each Pages doc you see in this section describes one of these navigation areas from a **user workflow** perspective.
+
+### Header and global controls
+
+The top header bar provides shared tools across all tenant pages:
+
+- **Theme toggle** – Switch between light and dark modes without leaving your current screen.
+- **Global search and shortcuts** – Jump quickly to conversations, contacts, or pages regardless of where you are.
+- **Onboarding widgets** – See guidance and progress indicators when your tenant is still being set up.
+- **Realtime badges and counters** – Get live feedback, such as active conversations, new messages, or pending items.
+
+These elements behave consistently across sections so you can rely on the same search and shortcuts whether you are in Conversations, CRM, or Insights.
+
+## How to use this Pages section
+
+Use this section as a **map between the in-app sidebar and the documentation**. Each page corresponds to what you see as a main navigation item.
+
+<Steps>
+
+<Step title="Start with the overall navigation" icon="book-open">
+
+Begin with this Pages overview to understand how routing, authentication, and the shared layout work. Confirm you know where AI Config, Conversations, CRM, Social, Insights, and Settings appear in your sidebar.
+
+</Step>
+
+<Step title="Deep-dive into operational pages" icon="terminal">
+
+Next, read the docs for the pages your team uses most day to day, typically Conversations and CRM. Map each documented workflow to the corresponding screen in the app.
+
+</Step>
+
+<Step title="Configure and measure" icon="settings">
+
+Once core workflows are clear, move on to AI Config, Settings, and Insights. Use those pages to refine how your AI behaves, control tenant-wide options, and track outcomes.
+
+</Step>
+
+</Steps>
+
+### Main page-level docs
+
+The cards below link to the primary page docs that mirror the sidebar structure. Use them to jump directly to the area you care about.
+
+<Columns cols={3}>
+
+<Card
+  title="AI Config pages"
+  href="/pages/ai-config"
+  icon="zap"
+  cta="Configure AI behavior"
+>
+
+Learn how AI configuration pages are organized, including models, prompts, and data connections that shape your agents.
+
+</Card>
+
+<Card
+  title="Conversations pages"
+  href="/pages/conversations"
+  icon="message-circle"
+  cta="Manage conversations"
+>
+
+Understand the inbox, filtering, conversation details, and how chat, voice, and email threads appear in the UI.
+
+</Card>
+
+<Card
+  title="CRM pages"
+  href="/pages/crm"
+  icon="users"
+  cta="Work with records"
+>
+
+See how contacts, companies, and related CRM objects are presented and linked to conversations.
+
+</Card>
+
+</Columns>
+
+<Columns cols={3}>
+
+<Card
+  title="Social pages"
+  href="/pages/social"
+  icon="cloud"
+  cta="Connect channels"
+>
+
+Review how connected social accounts are displayed and how messages flow into conversations.
+
+</Card>
+
+<Card
+  title="Insights pages"
+  href="/pages/insights"
+  icon="bar-chart"
+  cta="View analytics"
+>
+
+Explore reporting dashboards, key metrics, and how to interpret insights from your tenant activity.
+
+</Card>
+
+<Card
+  title="Settings pages"
+  href="/pages/settings"
+  icon="settings"
+  cta="Control workspace"
+>
+
+Learn where to adjust tenant-wide configuration, member access, and other workspace-level options.
+
+</Card>
+
+</Columns>
+
+### What to read next
+
+If you are new to Autoch.at as a tenant admin or power user:
+
+<Columns cols={2}>
+
+<Card
+  title="Quickstart"
+  href="/quickstart"
+  icon="play-circle"
+  cta="Get set up fast"
+>
+
+Walk through your first basic setup and confirm you can navigate to the main sidebar sections described here.
+
+</Card>
+
+<Card
+  title="Features"
+  href="/features"
+  icon="puzzle"
+  cta="Explore capabilities"
+>
+
+Scan the core feature areas before diving into their corresponding page docs in this section.
+
+</Card>
+
+</Columns>

@@ -1,0 +1,200 @@
+---
+title: Configure AI safety
+description: Configure blocked and serious mode keywords to keep AI responses safe and aligned with your business policies, layered on top of system safety.
+---
+
+## AI safety overview
+
+AI safety settings control which keywords your AI should never say and which phrases should trigger serious handling of a conversation.
+
+Use these controls to encode your own business policies on top of system-level safety so that responses stay safe, compliant, and appropriate for your customers.
+
+<Callout kind="info">
+
+**Hybrid safety system:** system safety always runs first, and you can layer custom keywords on top. When system and custom rules overlap, the stricter rule wins. If the system would block or escalate something, it stays blocked or escalated even if you do not list that keyword yourself.
+
+</Callout>
+
+## Blocked keywords
+
+Blocked keywords define a **never say** list. When a blocked keyword appears in a potential AI response, the system prevents that text from being sent and applies your routing or fallback behavior instead.
+
+Blocked keywords are:
+
+- Entered as **one keyword or phrase per line**
+- Enforced **in addition to** system-level boundaries
+- Combined into an **effective list** that merges system and custom entries
+
+<Tabs>
+
+<Tab title="Blocked keywords" icon="lock">
+
+### Fields
+
+Use these fields in the AI Safety panel to manage your blocked list.
+
+<ParamField body="blockedKeywords" param-type="textarea" required="false" show-location="false">
+
+Custom **blocked keywords** that your AI should never say. Enter one keyword or short phrase per line. The system checks candidate AI responses against this list and prevents any response that would contain one of these entries.
+
+</ParamField>
+
+<ParamField body="systemBlockedKeywords" param-type="readonly-list" required="false" show-location="false">
+
+**System blocked keywords** that always apply for safety and compliance. This list is read-only and maintained by the platform. Use it as a reference to understand baseline safety coverage.
+
+</ParamField>
+
+<ParamField body="effectiveBlockedKeywords" param-type="computed-list" required="false" show-location="false">
+
+The **effective blocked keywords** list that actually enforces behavior in production. This combines system boundaries with your custom blocked keywords. If a keyword appears in either list, it is treated as blocked.
+
+</ParamField>
+
+### Input format example
+
+Enter one keyword or phrase per line:
+
+```text
+lawsuit
+credit card number
+social security number
+cancel my account
+explicit content
+```
+
+After saving, the effective list includes both your custom lines and all system blocked keywords.
+
+<Callout kind="info">
+
+Blocked keywords work on the AI response text, not on what the customer types. If you need to route or escalate based on what the customer says, use routing rules or playbooks triggered on **customer** messages instead of blocked keywords.
+
+</Callout>
+
+</Tab>
+
+<Tab title="Serious mode keywords" icon="alert-triangle">
+
+### Serious mode overview
+
+Serious mode keywords do not completely block responses. Instead, they **trigger serious handling** so the AI responds with extra care, or escalates according to your routing and playbook setup.
+
+Serious mode has two confidence levels:
+
+- **High confidence keywords:** immediately trigger serious mode whenever they appear.
+- **Medium confidence keywords:** trigger a lighter check that requires AI verification before entering serious mode.
+
+### Fields
+
+<ParamField body="seriousHighConfidenceKeywords" param-type="textarea" required="false" show-location="false">
+
+Custom **high confidence serious mode keywords**. Enter one keyword or phrase per line. When any of these appear, the conversation enters serious mode immediately (for example, sending a calmer tone, adding disclaimers, or triggering an escalation path).
+
+</ParamField>
+
+<ParamField body="systemSeriousHighConfidenceKeywords" param-type="readonly-list" required="false" show-location="false">
+
+**System high confidence serious mode keywords**. This read-only list represents built-in phrases that always trigger serious handling with high confidence, even if you do not configure your own.
+
+</ParamField>
+
+<ParamField body="effectiveSeriousHighConfidenceKeywords" param-type="computed-list" required="false" show-location="false">
+
+The **effective high confidence serious mode list**, combining system and custom high confidence keywords that immediately trigger serious mode when matched.
+
+</ParamField>
+
+<ParamField body="seriousMediumConfidenceKeywords" param-type="textarea" required="false" show-location="false">
+
+Custom **medium confidence serious mode keywords**. Enter one keyword or phrase per line. These phrases are softer signals of risk (for example, customers expressing distress or dissatisfaction) and require AI verification before switching into serious mode.
+
+</ParamField>
+
+<ParamField body="systemSeriousMediumConfidenceKeywords" param-type="readonly-list" required="false" show-location="false">
+
+**System medium confidence serious mode keywords**. This read-only list contains built-in phrases that often indicate risk or sensitive contexts and contribute to medium confidence serious mode detection.
+
+</ParamField>
+
+<ParamField body="effectiveSeriousMediumConfidenceKeywords" param-type="computed-list" required="false" show-location="false">
+
+The **effective medium confidence serious mode list**, combining system and custom entries that feed into the AI verification step for serious mode.
+
+</ParamField>
+
+### High confidence example
+
+```text
+lawsuit
+harassment complaint
+regulatory violation
+fraud investigation
+data breach
+```
+
+Any AI response that would include one of these phrases immediately triggers serious mode handling.
+
+### Medium confidence example
+
+```text
+very upset
+thinking about leaving
+feeling unsafe
+really disappointed
+need to complain
+```
+
+These phrases signal potential risk but still go through AI verification before escalating fully into serious mode.
+
+<Callout kind="info">
+
+Serious mode changes **how** the AI responds; it does not automatically block messages. Combine serious mode with routing rules and playbooks so high-risk conversations go to the right queues, humans, or workflows.
+
+</Callout>
+
+</Tab>
+
+</Tabs>
+
+## Rollout and monitoring
+
+Treat AI safety configuration as a living policy that you tune over time.
+
+- **Start with a focused list.** Add obvious blocked and serious mode keywords first (for example, legal, regulatory, or high-risk support topics).
+- **Roll out in stages.** Apply new keywords to a subset of assistants or channels if possible, and validate that they behave as expected.
+- **Monitor escalations.** Use conversation analytics and conversation detail views to review cases where serious mode or blocking triggered. Adjust your keywords if you see over-blocking or missed risk signals.
+- **Coordinate with legal and compliance.** When you add business-specific safety keywords, align them with your internal policies and review processes.
+
+<Callout kind="info">
+
+If you dramatically expand blocked or serious mode keywords, watch for unexpected routing volume changes. Large jumps in serious mode triggers can increase handoffs to human agents and impact service levels.
+
+</Callout>
+
+## Related pages
+
+<Columns cols={2}>
+
+<Card
+  title="Routing and handoffs"
+  href="/pages/ai-config/routing-handoffs"
+  icon="code"
+  cta="Configure routing rules"
+>
+
+Define how conversations should route or escalate when safety rules or serious mode triggers fire.
+
+</Card>
+
+<Card
+  title="Playbooks"
+  href="/pages/ai-config/playbooks"
+  icon="book-open"
+  cta="Automate follow-up actions"
+>
+
+Automate structured responses, escalations, and workflows that run when safety events or serious mode conditions are detected.
+
+</Card>
+
+</Columns>

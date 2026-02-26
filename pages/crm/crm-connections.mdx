@@ -1,0 +1,133 @@
+---
+title: Configure CRM connections
+description: Connect Salesforce, HubSpot, Microsoft Dynamics, and AutoChat CRM to sync contacts and conversation data from the CRM Connections page.
+---
+
+## Overview
+
+Use the CRM Connections page to connect your external CRM so the system can sync contact information and conversation data in both directions.
+
+The CRM Connections page lives at the `/crm-connection` route in the app and is intended for admins and operators who manage integrations and data flows.
+
+<Callout kind="info">
+
+Access to CRM Connections depends on feature flags such as `crmConnectionsEnabled` and per-CRM flags like `salesforceEnabled`, `hubspotEnabled`, and `dynamicsEnabled`. If you do not see the page or a specific CRM, contact your account administrator.
+
+</Callout>
+
+## Available CRM integrations
+
+The CRM Connections page supports the following CRM providers:
+
+<Columns cols={4}>
+
+<Card title="Salesforce" href="/integrations" icon="cloud" cta="View integration">
+
+Sync leads, contacts, and conversation context with your Salesforce org using OAuth-based authentication and scheduled syncs.
+
+</Card>
+
+<Card title="HubSpot" href="/integrations" icon="cloud" cta="View integration">
+
+Connect to HubSpot to keep contact records and engagement history aligned with conversations in your workspace.
+
+</Card>
+
+<Card title="Microsoft Dynamics" href="/integrations" icon="cloud" cta="View integration">
+
+Integrate with Microsoft Dynamics to enrich contacts and push conversation outcomes back into your Dynamics environment.
+
+</Card>
+
+<Card title="AutoChat CRM" href="/integrations" icon="cloud" cta="View integration">
+
+Use the built-in AutoChat CRM to store and sync contacts and conversation data without relying on an external system.
+
+</Card>
+
+</Columns>
+
+<Callout kind="tip">
+
+More CRM integrations are planned. If you rely on a specific CRM that is not listed here, share it with your account team so they can prioritize support.
+
+</Callout>
+
+## Common actions on the CRM Connections page
+
+On `/crm-connection`, each supported CRM appears as a tile or row with its current status and available actions.
+
+Typical actions include:
+
+- **Connect**: Start the connection flow, usually via OAuth or an API key, depending on the CRM.
+- **Test connection**: Verify that credentials are valid and the CRM endpoint is reachable.
+- **Sync now**: Trigger an immediate sync of contacts and conversation data, outside the scheduled interval.
+- **Disconnect**: Remove the connection and stop any further syncs from that CRM.
+
+When you enable sync, you may also see options for what to sync (for example, contacts and notes) and how often to run automatic syncs.
+
+## Connect and verify a CRM connection
+
+Use this workflow to connect any supported CRM and confirm that it is working.
+
+<Steps>
+
+<Step title="Open the CRM Connections page" icon="folder">
+
+- Sign in as an admin or operator with integration permissions.
+- Navigate to the `/crm-connection` route using the main navigation or by entering it directly in the browser.
+- Confirm that the CRM you want to connect appears in the list and is not already connected.
+
+</Step>
+
+<Step title="Start the connection flow" icon="play-circle">
+
+- Locate the CRM tile, such as Salesforce, HubSpot, Microsoft Dynamics, or AutoChat CRM.
+- Click **Connect** to open the authentication or configuration modal.
+- If the CRM uses OAuth, follow the prompts to sign in and authorize access.
+- If the CRM uses an API key or similar credential, enter the required values and save.
+
+</Step>
+
+<Step title="Enable and configure sync" icon="settings">
+
+- After a successful connection, enable sync if it is not already turned on.
+- Choose what to sync, such as contacts and conversation notes, based on your data needs.
+- Set the sync interval that fits your workflows, then save your settings.
+
+</Step>
+
+<Step title="Test and trigger a sync" icon="check-circle">
+
+- Click **Test connection** to confirm that the integration is healthy.
+- If the test passes, click **Sync now** to run an immediate sync and validate data flow.
+- Check that new or updated contacts and conversation data appear correctly in both systems.
+
+</Step>
+
+<Step title="Manage or disconnect later" icon="trash">
+
+- Return to `/crm-connection` any time to adjust sync options or run a manual sync.
+- Use **Disconnect** if you need to remove access to a CRM and stop all syncing.
+
+</Step>
+
+</Steps>
+
+## Related pages
+
+<Columns cols={2}>
+
+<Card title="Clients" href="/pages/crm/clients" icon="users" cta="Manage clients">
+
+View and manage client records that receive synced data from your connected CRMs.
+
+</Card>
+
+<Card title="Integrations overview" href="/integrations" icon="plug" cta="Explore integrations">
+
+See other integrations that complement CRM Connections, such as channels and analytics.
+
+</Card>
+
+</Columns>

@@ -27,13 +27,12 @@
                 "title": "Quickstart",
                 "path": "quickstart",
                 "icon": "play"
-              }
-            ]
-          },
-          {
-            "group": "Core Concepts",
-            "icon": "layers",
-            "pages": [
+              },
+              {
+                "title": "Dashboard",
+                "path": "pages/overview/dashboard",
+                "icon": "layout-dashboard"
+              },
               {
                 "title": "Features",
                 "path": "features",
@@ -43,6 +42,141 @@
                 "title": "Integrations",
                 "path": "integrations",
                 "icon": "plug"
+              },
+              {
+                "title": "Pages overview",
+                "path": "pages/overview",
+                "icon": "book-open"
+              }
+            ]
+          },
+          {
+            "group": "AI Config",
+            "icon": "zap",
+            "pages": [
+              {
+                "title": "Assistants",
+                "path": "pages/ai-config/assistants",
+                "icon": "zap"
+              },
+              {
+                "title": "Playbooks",
+                "path": "pages/ai-config/playbooks",
+                "icon": "book-open"
+              },
+              {
+                "title": "Training context",
+                "path": "pages/ai-config/training-context",
+                "icon": "database"
+              },
+              {
+                "title": "Routing & Handoffs",
+                "path": "pages/ai-config/routing-handoffs",
+                "icon": "arrow-left-right"
+              },
+              {
+                "title": "Experiments",
+                "path": "pages/ai-config/experiments",
+                "icon": "flask-conical"
+              },
+              {
+                "title": "AI Safety",
+                "path": "pages/ai-config/ai-safety",
+                "icon": "shield"
+              }
+            ]
+          },
+          {
+            "group": "Conversations",
+            "icon": "message-circle",
+            "pages": [
+              {
+                "title": "Conversations",
+                "path": "pages/conversations/conversations",
+                "icon": "message-circle"
+              },
+              {
+                "title": "Conversation detail",
+                "path": "pages/conversations/conversation-detail",
+                "icon": "message-circle"
+              },
+              {
+                "title": "Email Workflows",
+                "path": "pages/conversations/email-workflows",
+                "icon": "mail"
+              },
+              {
+                "title": "SMS Workflows",
+                "path": "pages/conversations/sms-workflows",
+                "icon": "smartphone"
+              }
+            ]
+          },
+          {
+            "group": "CRM",
+            "icon": "users",
+            "pages": [
+              {
+                "title": "Clients",
+                "path": "pages/crm/clients",
+                "icon": "users"
+              },
+              {
+                "title": "CRM Connections",
+                "path": "pages/crm/crm-connections",
+                "icon": "link"
+              }
+            ]
+          },
+          {
+            "group": "Insights",
+            "icon": "chart-bar",
+            "pages": [
+              {
+                "title": "Analytics",
+                "path": "pages/insights/analytics",
+                "icon": "chart-bar"
+              }
+            ]
+          },
+          {
+            "group": "Settings",
+            "icon": "settings",
+            "pages": [
+              {
+                "title": "Users",
+                "path": "pages/settings/users",
+                "icon": "users"
+              },
+              {
+                "title": "Profile",
+                "path": "pages/settings/profile",
+                "icon": "circle-user"
+              },
+              {
+                "title": "Branding",
+                "path": "pages/settings/branding",
+                "icon": "palette"
+              },
+              {
+                "title": "Chat Widget",
+                "path": "pages/settings/chat-widget",
+                "icon": "message-square-code"
+              },
+              {
+                "title": "Email",
+                "path": "pages/settings/email",
+                "icon": "mail"
+              },
+              {
+                "title": "PII & Privacy",
+                "path": "pages/settings/pii-privacy",
+                "icon": "file-lock"
+              },
+              {
+                "title": "Billing",
+                "path": "pages/settings/billing",
+                "icon": "credit-card"
               }
             ]
           }

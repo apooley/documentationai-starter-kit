@@ -1,0 +1,298 @@
+---
+title: Use the tenant dashboard
+description: Understand the `/dashboard` overview page, how data is calculated and refreshed, and how to use it to monitor conversations, leads, calls, and system status.
+---
+
+## Dashboard overview
+
+The dashboard at `/dashboard` gives you a live snapshot of conversations, qualified leads, channel activity, and system health for your tenant. Use it to understand how your AI assistants are performing over different time periods and to jump directly into follow-up work.
+
+The page combines analytics from your tenant data, assistants, conversations, and CRM connections, and updates automatically when new conversations and qualified leads arrive.
+
+<Callout kind="info">
+
+Access to some dashboard sections depends on your permissions and plan. Voice-related cards and metrics only appear if your tenant has voice access, and CRM-related widgets only appear if you have connected a CRM account.
+
+</Callout>
+
+## Time period and data freshness
+
+The dashboard always shows data for a specific time range and the most recent analytics fetch.
+
+### Time period selector
+
+Use the time period selector at the top of the page to change the window for all analytics widgets:
+
+- **Last 24 hours**
+- **Last 7 days**
+- **Last 30 days**
+- **Last 90 days**
+
+Every time you change the period, the dashboard calls `api.getAnalyticsOverview(tenantId, since, until)` and `api.getConversationCounts` with the corresponding `since` and `until` timestamps. All metrics, charts, and recent counts re-calculate for the selected window.
+
+When the selector finishes loading, you should see updated values across the stats grid and AI insights that match the chosen time period.
+
+### Last updated and manual refresh
+
+Next to the greeting, the dashboard shows:
+
+- **Last updated timestamp** — when analytics were last successfully fetched.
+- **Refresh button** — to force an immediate re-fetch of analytics.
+
+Use the refresh button when you expect a spike in activity (for example, after a campaign launch) and want to see updated totals and insights without waiting for the standard refresh cadence.
+
+If the refresh completes successfully, the last updated timestamp changes and stats reflect the latest data for the selected period.
+
+## Stats grid and key metrics
+
+The stats grid summarizes the most important numbers for your tenant. Metrics are calculated from analytics overview and conversation count APIs and often include trends versus the previous comparable period.
+
+Typical tiles include:
+
+- **Total conversations** — Count of all conversations during the selected period, plus a trend indicator compared to the previous period. This uses `api.getAnalyticsOverview` and `api.getConversationCounts` to compute totals and deltas.
+- **Qualified leads and conversion** — Number of conversations marked as qualified leads, and the conversion rate from total conversations to qualified leads.
+- **Voice calls** — Count of voice conversations during the period. This tile only appears when `usePlanAccess("voice")` reports that the tenant has voice enabled.
+- **Active channels** — Number of channels (voice, chat, email, other integrations) that received at least one conversation in the period, based on `crm.getConnections` and conversation counts.
+
+Hovering or tapping on metrics shows the exact value and, when available, the trend percentage (for example, `+18% vs previous 7 days`). Use these tiles to quickly see whether engagement and lead quality are moving up or down.
+
+## AI intelligence widgets and insights
+
+Below or alongside the stats grid, AI intelligence widgets summarize patterns in your data. These widgets are powered by `api.getAnalyticsOverview` and may include:
+
+- Highlights about spikes in conversations or leads.
+- Notable changes in channel mix (for example, more voice calls vs chat).
+- Suggestions based on recent assistant performance or gaps in training.
+
+Insights always respect the currently selected time period. When you switch from 7 days to 30 days, the narrative and detected trends adjust to reflect the larger window.
+
+Use these widgets to identify which assistants, channels, or training areas to focus on without needing to run separate reports.
+
+## Recent activity
+
+The recent activity section shows what is happening right now in your tenant, so you can dive into specific conversations.
+
+Behind the scenes, the dashboard uses `api.getConversations({ limit: 5 })` to fetch the most recent conversations. Items typically include:
+
+- **Channel** — such as voice, chat, or email.
+- **Assistant** — which assistant handled the conversation.
+- **Timestamp** — when the conversation started or was last updated.
+- **Status or outcome** — such as qualified, resolved, or escalated.
+
+Click a conversation row to open the full conversation view in the conversations area of the app.
+
+### Realtime updates
+
+The dashboard subscribes to `realtimeClient` events for new and qualified conversations. When a new conversation arrives or an existing one becomes a qualified lead:
+
+- The recent activity list updates to include the new conversation (up to the `limit: 5` most recent).
+- Relevant counters in the stats grid (for example, total conversations, qualified leads) increment without needing a page refresh.
+
+You still have the option to force a full refresh to recalculate all period-based metrics, but basic counts and recent activity respond to changes in near real time.
+
+## Quick actions
+
+Quick action cards on the dashboard surface the most common follow-up tasks. These cards link you directly into the right part of the app, based on assistants, channels, and training data.
+
+Typical quick action cards include:
+
+- **View conversations by channel** — Jump to filtered conversation lists for specific channels (for example, only voice or only chat).
+- **Manage assistants** — Open the assistants list from `api.assistants.list` so you can review configuration, routing, and performance for each assistant.
+- **Review or add training** — Navigate to training or knowledge configuration to improve assistant responses.
+
+Use these cards when you notice a trend on the dashboard (for example, an underperforming channel or assistant) and want to take immediate action without hunting through navigation.
+
+## System status and readiness
+
+The system status area shows whether the key services your tenant depends on are configured and ready, so you can confirm that your assistants are reachable and your data is syncing correctly.
+
+Depending on your plan and integrations, this area can include:
+
+- **Phone number and voice readiness** — When `usePlanAccess("voice")` grants access and a phone number is configured, the dashboard shows that voice calling is ready. If voice is not available or not configured, you may see prompts to upgrade or add a number.
+- **Channel connections** — High-level status for chat, email, or other external channels that rely on `crm.getConnections` or similar integrations.
+- **Service readiness** — A general indicator that backend services are operating normally for your tenant.
+
+Use this section before launching campaigns or routing production traffic to verify that voice, channels, and integrations are active.
+
+<Callout kind="info">
+
+If you are a tenant admin, check the system status section regularly when onboarding new channels or migrating to production. It surfaces configuration gaps before they affect live conversations.
+
+</Callout>
+
+## How plan access and CRM connections affect the dashboard
+
+Some parts of the dashboard are conditional based on your subscription and integrations.
+
+### Voice plan access
+
+The dashboard uses `usePlanAccess("voice")` to decide whether to show voice-related tiles and status:
+
+- If your plan **includes voice**:
+  - The **voice calls** tile appears in the stats grid.
+  - System status shows **phone number** and **voice readiness** when configured.
+  - Voice-specific quick actions may appear (for example, view voice conversations).
+
+- If your plan **does not include voice**:
+  - Voice tiles and status indicators are hidden.
+  - You may see upgrade prompts in other parts of the app, but they do not appear as active metrics on the dashboard.
+
+If you expect to see voice metrics but do not, confirm your tenant plan or contact an admin to check subscription details.
+
+### CRM connections
+
+CRM-related widgets depend on `crm.getConnections`:
+
+- When a CRM connection is **present and healthy**:
+  - The dashboard can show active channels and CRM-linked activity.
+  - Quick actions may link you to CRM-mapped conversations or lead workflows.
+
+- When no CRM connection is **configured**:
+  - CRM-dependent widgets hide or show prompts to connect a CRM in other parts of the product.
+  - Active channels may only reflect internal channels (voice, chat, email) without CRM-enriched data.
+
+If you recently connected a CRM and do not see its impact on the dashboard yet, use the refresh button and confirm that the connection appears as active in your integrations settings.
+
+## Common workflows on the dashboard
+
+Use these standard workflows to get the most value from the dashboard each day.
+
+<Steps>
+
+<Step title="Review performance for a time period" icon="bar-chart">
+
+- Choose a time range from the selector (start with **Last 7 days** for a weekly view).
+- Wait for the last updated timestamp to refresh, then scan the stats grid for changes in total conversations, qualified leads, and voice calls (if applicable).
+- Read the AI intelligence widgets to understand what changed and why, focusing on spikes or drops in specific channels or assistants.
+- Use the refresh button after major events or campaigns to confirm that your latest activity is reflected in the numbers.
+
+</Step>
+
+<Step title="Jump from metrics to conversations" icon="arrow-right">
+
+- Identify a metric you want to investigate (for example, a rise in qualified leads or a surge in voice calls).
+- Look at the recent activity list to see which conversations contributed to the change.
+- Click a recent conversation to open it in the conversation view for deeper context.
+- Use quick action cards to open filtered conversation lists by channel or assistant when you need more than the latest 5 conversations.
+
+</Step>
+
+<Step title="Start onboarding or configuration from the dashboard" icon="settings">
+
+- Check the system status area to confirm which services and channels are ready, and note any missing phone numbers or integration statuses.
+- If voice or channels show as not configured, follow quick action cards or links from system status to your configuration pages.
+- Review AI intelligence widgets for suggestions about training gaps, then use quick actions to open your assistants or training configuration and make updates.
+- Return to the dashboard and use the time selector plus refresh to watch how newly configured channels and training begin to change your metrics.
+
+</Step>
+
+</Steps>
+
+## Empty states, loading, and errors
+
+The dashboard includes different states to guide you when data is not yet available or fails to load.
+
+### Loading state
+
+When you first open `/dashboard` or change the time range:
+
+- The dashboard shows **loading skeletons** in place of metrics and widgets.
+- Once `api.getAnalyticsOverview`, `api.getConversationCounts`, and `api.getConversations` complete, skeletons disappear and real values appear.
+
+If the loading state persists for an unusually long time, check your network connection and try the refresh button.
+
+### Error state
+
+If an error occurs while fetching analytics or recent activity:
+
+- An **error banner** appears at the top of the dashboard.
+- The banner includes a **retry** action to run the fetch again.
+
+After you click retry, watch the last updated timestamp and stats grid to confirm that data loads successfully. If errors persist, share any error details with your support team.
+
+### No data state
+
+When your tenant has little or no activity in the selected period, the dashboard shows dedicated empty states instead of blank tiles:
+
+- Stats tiles may show zero values without trends.
+- Recent activity can indicate that there are no conversations yet.
+- The dashboard offers **CTAs to create an assistant or add training**, guiding you through initial setup.
+
+Use these prompts to complete basic onboarding steps. As soon as your first conversations occur, the next refresh or realtime update will replace empty states with live metrics.
+
+## Troubleshooting missing or unexpected data
+
+Use this checklist when the dashboard shows empty or incorrect metrics.
+
+<Callout kind="info">
+
+Confirm the selected time period before debugging missing data. Many apparent gaps are due to viewing a period before your tenant started receiving conversations.
+
+</Callout>
+
+### Metrics show zero, but you know there was activity
+
+- Verify that the **time period** includes the dates when activity occurred.
+- Click **refresh** to trigger a fresh call to `api.getAnalyticsOverview` and `api.getConversationCounts`.
+- Confirm that the **recent activity list** shows the conversations you expect. If recent activity is also empty, activity may be happening in a different tenant or environment.
+
+### Voice metrics or status not visible
+
+- Confirm that your tenant has **voice plan access**; if `usePlanAccess("voice")` does not grant access, voice tiles and status are hidden by design.
+- If your plan includes voice but no phone number appears in system status, complete your **phone number setup** in the main app and then return to the dashboard.
+- Use refresh once configuration is complete to ensure the dashboard picks up the new voice setup.
+
+### CRM and channel data missing
+
+- Check your **CRM connection** configuration and ensure `crm.getConnections` reports an active connection for your tenant.
+- If you recently connected a CRM, wait a short period for initial sync, then use the dashboard **refresh button**.
+- Verify whether non-CRM channels (like chat or email) still show as active in the stats grid; if they do, the gap is limited to CRM-linked data.
+
+### Realtime updates not appearing
+
+- Confirm that **recent activity** updates when you manually refresh. If it does, analytics APIs are working and the issue may be with `realtimeClient` connectivity.
+- Reload the dashboard page to re-establish the realtime connection.
+- If counts still fail to update after new conversations, share logs or timestamps with your support contact so they can inspect tenant-level realtime subscriptions.
+
+If you continue to see discrepancies after these checks, capture screenshots of the stats grid, time selector, and system status, along with approximate conversation timestamps, and escalate to your admin or support.
+
+## Related pages
+
+Use these resources to go deeper into configuration and integrations that affect your dashboard.
+
+<Columns cols={3}>
+
+<Card
+  title="Quickstart"
+  href="/quickstart"
+  icon="rocket"
+  cta="Set up your first assistant"
+>
+
+Learn how to create assistants and start generating conversations so your dashboard has real data to work with.
+
+</Card>
+
+<Card
+  title="Features"
+  href="/features"
+  icon="puzzle"
+  cta="Explore core capabilities"
+>
+
+Review the main product capabilities, including assistants, channels, and analytics that feed into the dashboard.
+
+</Card>
+
+<Card
+  title="Integrations"
+  href="/integrations"
+  icon="plug"
+  cta="Connect CRM and channels"
+>
+
+Connect CRM systems and external channels to enrich dashboard metrics and system status.
+
+</Card>
+
+</Columns>

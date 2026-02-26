@@ -1,0 +1,289 @@
+---
+title: Configure AI Playbooks
+description: Define reusable AI behavior playbooks, manage versions, and control channels and tools from the AI Playbooks page in the Autoch.at app.
+---
+
+## What AI Playbooks are
+
+AI Playbooks define structured behavior for your assistants across channels. Each playbook packages a persona, tone, goals, constraints, safety rules, channel settings, and model configuration into a reusable configuration you can apply consistently.
+
+Use playbooks when you need repeatable behavior patterns, for example dedicated flows for lead qualification, customer support, or a general assistant.
+
+<Callout kind="info">
+
+AI Playbooks live on an authenticated tenant page. Access depends on a `playbooksEnabled` feature flag and a `canAccessPlaybooks` permission check, with admins bypassing the flag. If you do not see AI Playbooks in the sidebar, ask an admin to enable the feature.
+
+</Callout>
+
+## URL and navigation
+
+The AI Playbooks page is a dedicated screen under AI configuration.
+
+- **Route:** `/playbooks`
+- **Sidebar:** Listed in the main app sidebar under the **AI Config** section as **AI Playbooks**.
+- **Access:** Requires you to be signed in to a tenant and to pass the `canAccessPlaybooks` check.
+
+When you open `/playbooks`, you see the playbooks list on the left and the playbook editor on the right.
+
+## Playbooks list and lifecycle
+
+The left-hand panel shows your playbooks in two states: active and archived. Each entry displays:
+
+- **Name** of the playbook
+- **Status** (for example active vs archived)
+- **Version** label
+- **Last updated** timestamp
+
+From the list, you can:
+
+- **Select** a playbook to open it in the editor
+- **Duplicate** a playbook to create a starting point based on an existing configuration
+- **Archive** a playbook to remove it from active use without deleting its history
+
+The main editor panel uses a skeleton loader while data is loading, and shows errors and toast messages if operations fail or succeed.
+
+## Main workflows
+
+Configure and manage playbooks through a few repeatable workflows.
+
+<Steps>
+
+<Step title="Create a new playbook" icon="plus">
+
+Open the AI Playbooks page at `/playbooks` and use the **New playbook** action.
+
+- Enter a clear **name** for the new playbook so you can recognize it later in the list.
+- Choose a **template**: General Assistant, Lead Qualification, or Customer Support.
+
+The template seeds the Identity, Goals, Tone, and other sections with sensible defaults targeted to that use case. The new playbook appears in the list and opens in the editor as an editable draft.
+
+</Step>
+
+<Step title="Edit a playbook and save as draft" icon="edit">
+
+With a playbook selected, adjust its behavior in the editor tabs on the right.
+
+- Work through Identity, Tone, Goals, Constraints, Safety, Channels, Tools, Model, and Context as needed.
+- Use the **Save Draft** action to persist your changes without affecting the active behavior of that playbook.
+
+After saving, the editor keeps your changes as the current working draft. Success toasts confirm that the draft saved correctly.
+
+</Step>
+
+<Step title="Publish a new version" icon="rocket">
+
+When your draft is ready for use, publish it as a new version.
+
+- Click **Publish New Version**.
+- Enter a short **changelog** description so other admins understand what changed in this version.
+- Confirm the publish action.
+
+Publishing creates a new version entry for this playbook. The newly published version becomes available in the Versions tab for activation and comparison.
+
+</Step>
+
+<Step title="Activate a version" icon="check-circle">
+
+Use the Versions tab in the editor to control which version is currently active.
+
+- In **Versions**, select a version from the list to view a diff against the currently active version.
+- Review changes across the configuration sections in the diff viewer.
+- Use **Load** to bring that version into the main editor if you want to inspect or adjust it further.
+- Use **Activate** to make that version the live configuration used by your assistants.
+
+The active version is clearly labeled so you always know which configuration is in effect.
+
+</Step>
+
+<Step title="Archive or duplicate a playbook" icon="folder">
+
+From the playbooks list:
+
+- Use **Archive** to retire a playbook from active use while keeping its history and versions for reference.
+- Use **Duplicate** to copy an existing playbook, including its settings, into a new draft you can adjust independently.
+
+Archiving and duplication both trigger toast notifications with success or error states so you can verify the action completed.
+
+</Step>
+
+<Step title="Try changes in the playground" icon="play-circle">
+
+Use the **Open Playground** action from the editor to test how the current configuration behaves.
+
+- Open Playground while viewing a playbook draft or version.
+- Interact with the assistant using the configured Identity, Tone, Goals, Constraints, and other settings.
+- Adjust the configuration and reopen Playground as needed until responses meet your expectations.
+
+Use the playground before publishing a new version to reduce surprises once the configuration goes live.
+
+</Step>
+
+</Steps>
+
+## Editor sections
+
+The right-hand editor is organized into tabs so you can reason about different parts of behavior separately while still managing a single playbook.
+
+<Tabs>
+
+<Tab title="Identity" icon="users">
+
+Use **Identity** to define the base persona and prompt that shape how the assistant sees itself.
+
+- Describe who the assistant is, who it helps, and how it should introduce itself.
+- Capture any persistent role instructions, such as acting as a sales rep, support agent, or onboarding guide.
+
+Identity is the foundation for downstream behavior; adjust this first when you build a new playbook.
+
+</Tab>
+
+<Tab title="Tone" icon="zap">
+
+The **Tone** tab controls how responses sound.
+
+- Choose overall tone settings, such as formal vs conversational.
+- Add **custom tone rules**, like avoiding jargon or using short paragraphs.
+- Use tone overrides for specific types of content where needed.
+
+Tone works alongside Identity to make responses feel consistent with your brand.
+
+</Tab>
+
+<Tab title="Goals" icon="target">
+
+In **Goals**, define what success looks like for this playbook.
+
+- Set a **primary goal**, for example qualifying a lead, resolving a support ticket, or booking a demo.
+- Add **secondary goals** or **success criteria**, such as capturing contact details or confirming next steps.
+
+Clear goals help the model prioritize actions and structure conversations toward outcomes rather than just answering questions.
+
+</Tab>
+
+<Tab title="Constraints" icon="lock">
+
+Use **Constraints** to limit behavior and output.
+
+- Add **never rules** that specify actions or content the assistant must avoid.
+- Configure **maximum response length** to keep messages concise, especially on constrained channels like SMS.
+
+Constraints are useful for regulatory requirements, brand safety, and keeping responses on-task.
+
+</Tab>
+
+<Tab title="Safety" icon="shield">
+
+The **Safety** tab defines how the assistant escalates and handles risky situations.
+
+- Configure **escalation triggers**, such as mentions of self-harm, harassment, or sensitive topics.
+- Define **handling policies**, describing when to involve a human, what to say, and what information to collect.
+
+Safety policies keep responses aligned with your risk tolerance and compliance needs.
+
+</Tab>
+
+<Tab title="Channels" icon="message-circle">
+
+The **Channels** tab lets you adapt behavior per communication channel, such as email, SMS, chat, and voice.
+
+- Toggle each **channel** on or off for this playbook.
+- Add channel-specific **prompt additions** or instructions.
+- Override **tone** per channel if, for example, email should be more formal than chat.
+- Set **maximum length** per channel so SMS stays within character limits while email responses can be more detailed.
+
+Channel settings help you reuse the same core playbook while still respecting medium-specific constraints.
+
+</Tab>
+
+<Tab title="Tools" icon="code">
+
+In **Tools**, control which tools the assistant can use.
+
+- Maintain lists of **allowed** tools for this playbook.
+- Mark tools as **denied** to block use in certain playbooks.
+- Require **approval** for specific tools, so high-impact actions do not occur without explicit confirmation.
+
+Tool controls let you align capabilities with each playbook’s purpose and risk profile.
+
+</Tab>
+
+<Tab title="Model" icon="database">
+
+The **Model** tab configures the underlying LLM behavior.
+
+- View the **provider** configured for the tenant; this appears disabled in the UI for this page.
+- Select the **model** to use if multiple options are available for your provider.
+- Adjust **temperature** to control creativity vs determinism.
+- Set **maximum tokens** to cap the size of responses and manage costs.
+
+Model settings fine-tune how strictly the assistant follows instructions and how verbose it is.
+
+</Tab>
+
+<Tab title="Context" icon="book-open">
+
+Use **Context** to connect the playbook to tenant data and reference material.
+
+- Toggle inclusion of **products** and **website** content.
+- Attach specific **document IDs** so the assistant can reference targeted documents.
+- Add **custom instructions** that provide extra background or constraints tied to your content.
+
+Context makes the playbook grounded in your real data instead of only generic knowledge.
+
+</Tab>
+
+<Tab title="Versions" icon="history">
+
+The **Versions** tab manages historical and active versions of the playbook.
+
+- Browse a **version list**, each with metadata such as label or timestamp.
+- Use the **diff viewer** to compare any version with the active version across Identity, Tone, Goals, and other sections.
+- **Load** a version into the editor to inspect or tweak it.
+- **Activate** a version to make it the current live configuration for this playbook.
+
+Version control lets you iterate safely, roll back quickly, and keep a clear audit trail of changes.
+
+</Tab>
+
+</Tabs>
+
+## Best practices for admins and advanced users
+
+When you configure AI Playbooks for a tenant, start with templates to move quickly, then refine.
+
+- Map each playbook to a clear use case, such as a specific team or funnel stage.
+- Keep Identity and Goals tightly aligned; adjust Constraints and Safety before rolling out widely.
+- Use the Playground to validate behavior after any meaningful change, then publish a new version with a descriptive changelog.
+- Prefer duplicating an existing playbook over editing a heavily used one if you are experimenting with major changes.
+
+## Related pages
+
+Use these pages together with AI Playbooks to control end-to-end AI behavior.
+
+<Columns cols={2}>
+
+<Card
+  title="Configure Assistants"
+  href="/pages/ai-config/assistants"
+  icon="zap"
+  cta="Assign playbooks to assistants"
+  horizontal="true"
+>
+
+Manage assistants that serve end users and connect them with the right AI Playbooks for each channel or integration.
+
+</Card>
+
+<Card
+  title="Manage training context"
+  href="/pages/ai-config/training-context"
+  icon="database"
+  cta="Control AI knowledge sources"
+  horizontal="true"
+>
+
+Define which documents, products, and website content are available so playbooks respond using accurate, tenant-specific information.
+
+</Card>
+
+</Columns>
