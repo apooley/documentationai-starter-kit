@@ -1,121 +1,174 @@
 ---
-title: Introduction to Autoch.at
-description: Discover Autoch.at, a unified SaaS platform that consolidates email, SMS, chat, and calls into one shared timeline with AI-powered drafting, routing, and follow-ups for efficient customer communication.
+title: Getting started with Autoch.at
+description: >-
+  Learn how Autoch.at unifies conversations, how the dashboard is organized, and
+  the key steps to reach your first successful setup.
 ---
+## Meet <a href="http://Autoch.at" target="_blank" rel="noopener noreferrer">Autoch.at</a>
 
-<Callout kind="info" title="Starter Kit Template">
-  This documentation was generated as a starter kit template based on your brand. Please review and customize the content to accurately reflect your product's features, APIs, and capabilities.
+## Tour the dashboard
+
+The Autoch.at dashboard is your control center for conversations, AI behavior, and workspace settings.
+
+Use the navigation sidebar to move between:
+
+- The live inbox and conversation list
+
+- AI configuration for assistants, playbooks, and routing
+
+- Settings for channels, branding, privacy, and billing
+
+For a visual overview of each area and how they connect, see the [Dashboard](/pages/overview/dashboard) page.
+
+<Callout kind="info" collapsed="false">
+  You need an Autoch.at account and the right workspace permissions to access some pages in this guide, such as Settings and AI Config.
 </Callout>
 
-## Overview
+## First-time setup steps
 
-Autoch.at unifies your customer conversations across email, SMS, website chat, and calls into a single shared timeline. You gain enterprise-grade communication tools with Quiet AI that drafts responses, routes messages, and handles follow-ups while maintaining clear controls.
-
-This eliminates fragmentation, ensuring you remember every interaction regardless of the channel. Customers receive consistent service without repeating themselves, and your team benefits from clean handoffs, ownership tracking, and reduced context switching.
-
-<Image
-  src="https://cdn.autoch.at/q:i/r:0/wp:1/w:400/u:https://autoch.at/wp-content/uploads/2025/12/autochat-light-mode-logo-full.png"
-  alt="Autoch.at logo in light mode"
-  width="400"
-  height="200"
-/>
-
-## Key Features
-
-Autoch.at delivers powerful capabilities to streamline your support and sales workflows.
-
-<Columns cols={3}>
-  <Card title="Multi-Channel Inbox" icon="inbox" href="#multi-channel">
-    Combine email, SMS, chat, and voice into one record. Track every conversation in a unified view.
-  </Card>
-  <Card title="AI Assistants" icon="bot" href="#ai-assistants">
-    Use guarded AI for drafting, summarizing, routing, and escalating messages with your business rules.
-  </Card>
-  <Card title="Routing & Handoffs" icon="git-branch" href="#routing">
-    Route by channel, keyword, or intent. Enable seamless team handoffs with clear states.
-  </Card>
-</Columns>
-
-<Columns cols={2}>
-  <Card title="Playbooks & Analytics" icon="book-open" href="#playbooks">
-    Create versioned playbooks you can audit and roll back. Track outcomes to refine your processes.
-  </Card>
-  <Card title="Training Context" icon="graduation-cap" href="#training">
-    Teach AI your business knowledge. Avoid generic responses with tailored training data.
-  </Card>
-</Columns>
-
-## Benefits of Unified Conversations
-
-Fragmentation scatters context across tools, leading to inconsistent answers and missed follow-ups. Autoch.at solves this by providing:
-
-- One shared history for complete visibility
-- Fewer "repeat that?" moments
-- Clear ownership and next steps
-- Reduced tool switching for higher productivity
-
-Teams report faster resolutions and happier customers once they consolidate channels.
-
-<Callout kind="success">
-  Enterprises choose Autoch.at for its practical automation that keeps humans in control.
-</Callout>
-
-## Quick Start
-
-Get up and running in minutes.
+Follow these steps in order to reach your first real conversation on the unified timeline.
 
 <Steps>
-  <Step title="Sign Up" icon="user-plus">
-    Create your account at `https://dashboard.autoch.at` and verify your email.
+  <Step title="Create your workspace and sign in" icon="user" title-type="p">
+    Sign up or accept your invite, then sign in to `https://dashboard.autoch.at`. Confirm that you can see the main dashboard and navigation sidebar.
   </Step>
-  <Step title="Connect Channels" icon="link">
-    Add your email, SMS provider, chat widget, and phone numbers via the setup wizard.
+
+  <Step title="Connect your communication channels" icon="link" title-type="p">
+    Set up your primary email domain and any SMS or chat channels you plan to use. This ensures new messages flow into Autoch.at instead of separate tools.
   </Step>
-  <Step title="Configure AI" icon="settings">
-    Set up your first playbook and train the AI with sample conversations.
+
+  <Step title="Explore the dashboard basics" icon="layout-dashboard" title-type="p">
+    Open the [Dashboard](/pages/overview/dashboard) docs in a new tab and skim the key areas: navigation, search, and conversation detail. This helps you know where everything lives before you go live.
   </Step>
-  <Step title="Test Timeline" icon="play">
-    Send test messages across channels and review the unified timeline.
+
+  <Step title="Configure your first AI assistant" icon="zap" title-type="p">
+    Go to [Assistants](/pages/ai-config/assistants) to set up how AI participates in your workflows. Start with conservative settings, then expand to drafting, summarization, and suggested replies.
+  </Step>
+
+  <Step title="Add routing, playbooks, and training context" icon="settings" title-type="p">
+    Build out your first [Playbooks](/pages/ai-config/playbooks), connect them to [Routing & Handoffs](/pages/ai-config/routing-handoffs), and add key documents to [Training context](/pages/ai-config/training-context) so AI aligns with your policies.
+  </Step>
+
+  <Step title="Test an end-to-end conversation" icon="play-circle" title-type="p">
+    Send a test email or chat, respond with AI assistance, and confirm the full interaction appears on a single timeline in [Conversations](/pages/conversations/conversations).
   </Step>
 </Steps>
 
-## Security and Compliance
+<Callout kind="info" collapsed="false">
+  For a more detailed, hands-on walkthrough including screenshots and example configurations, continue with the [Quickstart](/quickstart).
+</Callout>
 
-Autoch.at prioritizes your data with:
+## Configure AI and workflows
 
-- PII-aware redaction before AI processing
-- Multi-factor authentication and enterprise security
-- Strict data isolation, encryption in transit and at rest
-- Canadian-hosted production data
+Once you are comfortable with the basics, refine how AI behaves and how work moves through your team.
 
-<Expandable title="Advanced Security Details" default-open="false">
-
-All data remains on Canadian soil, complying with strict sovereignty requirements. You control access with role-based permissions and audit logs.
-
-</Expandable>
-
-## Next Steps
-
-<Image
-  src="https://cdn.autoch.at/q:i/r:0/wp:1/w:400/u:https://autoch.at/wp-content/uploads/2026/01/hero-one-place-conversation.jpg"
-  alt="Hero image showing unified conversation timeline"
-  width="800"
-  height="400"
-  style="margin: 0 auto;"
-/>
-
-<Columns cols={3}>
-  <Card title="Quickstart Guide" icon="zap" href="/quickstart">
-    Follow the full setup process.
+<Columns cols="3">
+  <Card title="Assistants" href="/pages/ai-config/assistants" icon="zap" horizontal="false">
+    Define how AI assists agents across channels, from drafting and summarizing to routing and suggestions.
   </Card>
-  <Card title="Authentication" icon="shield" href="/authentication">
-    Secure your API access.
+
+  <Card title="Playbooks" href="/pages/ai-config/playbooks" icon="book-open" horizontal="false">
+    Model repeatable workflows for support and sales, and control when AI acts vs. when humans decide.
   </Card>
-  <Card title="API Reference" icon="code" href="/api-reference">
-    Integrate programmatically.
+
+  <Card title="Training context" href="/pages/ai-config/training-context" icon="database" horizontal="false">
+    Provide product docs, policies, and internal knowledge so AI responses match your organization.
   </Card>
 </Columns>
 
-<Callout kind="tip">
-  Book a demo at `https://autoch.at/#` to see Autoch.at in action tailored to your channels.
-</Callout>
+<Columns cols="3">
+  <Card title="Routing & Handoffs" href="/pages/ai-config/routing-handoffs" icon="arrow-right" horizontal="false">
+    Route conversations based on channel, content, or intent and orchestrate clean handoffs between teams.
+  </Card>
+
+  <Card title="AI Safety" href="/pages/ai-config/ai-safety" icon="shield" horizontal="false">
+    Control guardrails, redaction, and other safety settings to manage how AI engages with customer data.
+  </Card>
+
+  <Card title="Experiments" href="/pages/ai-config/experiments" icon="flask-conical" horizontal="false">
+    Test variations of prompts and workflows to see what improves resolution time and quality.
+  </Card>
+</Columns>
+
+## Brand and launch your channels
+
+Set up how Autoch.at appears to your customers and how messages flow in.
+
+<Columns cols="3">
+  <Card title="Branding" href="/pages/settings/branding" icon="palette" horizontal="false">
+    Configure logos, colors, and brand voice so emails and chat feel native to your organization.
+  </Card>
+
+  <Card title="Chat Widget" href="/pages/settings/chat-widget" icon="message-square-code" horizontal="false">
+    Install and configure the website chat widget, including launch rules and initial greetings.
+  </Card>
+
+  <Card title="Email" href="/pages/settings/email" icon="mail" horizontal="false">
+    Connect sending domains, configure reply-to behavior, and manage email-specific options.
+  </Card>
+</Columns>
+
+<Columns cols="3">
+  <Card title="PII & Privacy" href="/pages/settings/pii-privacy" icon="file-lock" horizontal="false">
+    Control how Autoch.at handles sensitive data, including redaction and retention policies.
+  </Card>
+
+  <Card title="Users" href="/pages/settings/users" icon="users" horizontal="false">
+    Invite teammates, assign roles, and manage who can configure AI, settings, and billing.
+  </Card>
+
+  <Card title="Billing" href="/pages/settings/billing" icon="credit-card" horizontal="false">
+    Review your plan, usage, and invoices and manage payment details for your workspace.
+  </Card>
+</Columns>
+
+## Work in the inbox and measure impact
+
+After channels and AI are configured, spend most of your time in live conversations and analytics.
+
+<Columns cols="3">
+  <Card title="Conversations" href="/pages/conversations/conversations" icon="message-circle" horizontal="false">
+    Monitor and respond to live conversations across channels from a single shared timeline.
+  </Card>
+
+  <Card title="Conversation detail" href="/pages/conversations/conversation-detail" icon="book-open" horizontal="false">
+    Inspect individual threads, see AI suggestions, and review history at the contact level.
+  </Card>
+
+  <Card title="Email Workflows" href="/pages/conversations/email-workflows" icon="mail" horizontal="false">
+    Design email workflows, sequences, and follow-ups tailored to your support and sales motions.
+  </Card>
+</Columns>
+
+<Columns cols="3">
+  <Card title="SMS Workflows" href="/pages/conversations/sms-workflows" icon="smartphone" horizontal="false">
+    Configure SMS-specific workflows, compliance settings, and engagement patterns.
+  </Card>
+
+  <Card title="CRM Connections" href="/pages/crm/crm-connections" icon="link" horizontal="false">
+    Connect your CRM so contacts and activity stay in sync between Autoch.at and your source of record.
+  </Card>
+
+  <Card title="Analytics" href="/pages/insights/analytics" icon="bar-chart" horizontal="false">
+    Track volume, response times, AI contribution, and outcomes to refine your configuration.
+  </Card>
+</Columns>
+
+## Where to go next
+
+Use these as your primary next stops:
+
+<Columns cols="3">
+  <Card title="Quickstart" href="/quickstart" icon="zap" horizontal="false">
+    Walk through a complete setup from zero to first production conversation.
+  </Card>
+
+  <Card title="Dashboard" href="/pages/overview/dashboard" icon="layout-dashboard" horizontal="false">
+    Learn how each dashboard section fits into your daily workflows.
+  </Card>
+
+  <Card title="API Reference" href="/api-reference" icon="code" horizontal="false">
+    Explore HTTP endpoints if you plan to automate or integrate Autoch.at programmatically.
+  </Card>
+</Columns>
+

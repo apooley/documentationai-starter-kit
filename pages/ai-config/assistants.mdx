@@ -5,15 +5,61 @@ description: Configure and manage AI assistants for chat, email, SMS, and voice,
 
 ## What assistants are
 
-Assistants are reusable AI configurations that power your tenant's chat, email, SMS, and voice experiences. Each assistant bundles a model, provider, behavior, and channel-specific settings so you can reuse consistent behavior across multiple channels.
+Assistants are the deployable AI configurations that channels call at runtime. Each assistant represents a channel-facing unit that wires together a provider, model, and runtime settings so chat, email, SMS, and voice flows know exactly what to execute when they handle a request.
 
 Use assistants to:
 
-- Standardize how AI responds in different workspaces or brands.
-- Isolate experimentation by creating variants and promoting a default.
-- Connect to different AI providers or models per use case.
+- Connect channels and workflows to a concrete runtime configuration.
+- Standardize how AI responds across workspaces or brands in production.
+- Isolate experimentation by creating variants and promoting a default per workspace or channel.
 
-You access and manage assistants on the `/assistants` page.
+You access and manage assistants on the `/assistants` page. Playbooks, when enabled, provide the underlying behavior definitions that assistants can execute.
+
+## Assistants vs Playbooks
+
+Assistants and Playbooks work together but solve different problems: Playbooks define behavior, while assistants expose that behavior to channels at runtime.
+
+### What Playbooks are
+
+Playbooks are reusable behavior definitions that capture how an AI agent should act. A single playbook can describe:
+
+- **Identity** — Who the assistant is representing.
+- **Tone** — How responses should sound.
+- **Goals** — What outcomes the assistant should optimize for.
+- **Constraints** — What the assistant must avoid or limit.
+- **Safety** — Guardrails and policies the assistant must follow.
+- **Channels** — Channel-aware guidance across chat, email, SMS, and voice.
+- **Tools** — Which tools or APIs the assistant can call.
+- **Model** — The model or model class the behavior targets.
+- **Context** — Background knowledge or additional instructions.
+
+You author and version Playbooks on the `/playbooks` page.
+
+### What Assistants are
+
+Assistants are the channel-facing entities that your journeys, automations, and conversations call at runtime. An assistant focuses on:
+
+- **Provider and model wiring** for live traffic.
+- **Channel connections** to chat, email, SMS, and voice flows.
+- **Runtime configuration**, including defaults, fallbacks, and environment-specific settings.
+- **Testing, QA, and scenario evaluation** to validate how the configuration behaves before and after changes.
+
+When Playbooks are enabled, an assistant can reference a playbook through an internal `playbook_id`. That association controls which behavior definition the assistant will execute at runtime, while the assistant itself remains the object channels call.
+
+### How they relate and where to manage them
+
+In product:
+
+- **Assistants** live on `/assistants` and are what channels and APIs invoke at runtime.
+- **Playbooks** live on `/playbooks` and are where you define and version the behavior an assistant can run.
+
+Behind the scenes, an assistant may store a `playbook_id` to link to a specific playbook. When a playbook is archived, the system clears that reference so existing assistants no longer point at an archived behavior.
+
+<Callout kind="info">
+
+Playbooks and the assistant–playbook association are feature-gated. Some tenants may only see assistants on `/assistants` and not have access to Playbooks on `/playbooks`.
+
+</Callout>
 
 ## Page layout and navigation
 
@@ -72,7 +118,7 @@ From each assistant card, you typically have quick access to the following actio
 - **Scenario evaluation** — Evaluate how the assistant performs across predefined scenarios.
 - **Delete** — Permanently remove the assistant when it is no longer needed.
 
-Use edit for configuration changes, test and QA flows to validate behavior, and default/star actions to control which assistants appear in production and which you access most often.
+Use edit for configuration changes, test and QA flows to validate behavior, and default/star actions to control which assistants appear in production and which you access most often. Any changes you make here affect what runs at runtime when channels call that assistant; when Playbooks are enabled, manage longer-lived, versioned behavior definitions on `/playbooks` and connect them to assistants as needed.
 
 ## Create a new assistant
 
@@ -205,7 +251,7 @@ If the assistant wizard or channel steps do not appear, your tenant may have the
 
 ## Edit and update an assistant
 
-Use editing when you need to adjust behavior, swap models, or change workspace alignment.
+Use editing when you need to adjust behavior, swap models, or change workspace alignment. Updates you make here change what the assistant executes at runtime for any channel that calls it, so treat edits as production-impacting changes.
 
 <Steps>
 
@@ -224,7 +270,7 @@ The assistant editor opens with current settings pre-filled.
 - Change the **provider** or **model** if you are moving to a different stack or tier.
 - Edit channel-specific behavior, prompts, or settings exposed in the editor.
 
-Make changes in small increments and retest after each change to understand impact.
+Make changes in small increments and retest after each change to understand impact. When Playbooks are available, manage the core behavior definition and versions on `/playbooks`, then rely on assistants to control how and where that behavior runs.
 
 </Step>
 
@@ -566,7 +612,19 @@ Use the empty state as a starting point for initial setup or as an indication th
 
 Assistants work best when they are connected to the right context and channels. After configuring assistants, review related areas to complete your setup.
 
-<Columns cols={2}>
+<Columns cols={3}>
+
+<Card
+  title="Playbooks"
+  href="/pages/ai-config/playbooks"
+  icon="book-open"
+  cta="Define behavior, tone, and constraints"
+  horizontal="true"
+>
+
+Manage Playbooks on `/playbooks` to define identity, tone, goals, constraints, safety, channels, tools, model, and context that assistants can execute at runtime.
+
+</Card>
 
 <Card
   title="Training context"

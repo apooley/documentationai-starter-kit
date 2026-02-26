@@ -34,7 +34,7 @@ Typical uses include:
 - Searching by **message content** (for example, product names, error codes)
 - Narrowing down **recent interactions** with a specific topic
 
-The search uses debounced input, so you can type normally without triggering a request on every keystroke. Results refresh automatically once you pause typing.
+As you type and pause briefly, the results update automatically so you can refine your query without reloading the page.
 
 ### Advanced filters
 
@@ -56,6 +56,30 @@ Filters combine with each other and with the search bar. If you see fewer result
 
 </Callout>
 
+#### Recommended triage views
+
+Use a few repeatable filter combinations to stay on top of your queue:
+
+- **New and unassigned**
+  - Status: new or open
+  - Assignee: unassigned or not set
+  - Channel: all
+  - Use this view for daily triage to make sure every new conversation has an owner.
+
+- **High urgency conversations**
+  - Urgency: high (from the AI context column)
+  - Status: new or active
+  - Assignee: all
+  - Use this view when you need to focus on time-sensitive or at-risk conversations.
+
+- **By channel or team**
+  - Channel: chat, voice, or email, depending on the team
+  - Assignee: a specific teammate or group
+  - Date range: today or this week
+  - Use this view for channel-specific queues or to review a single teammate's workload.
+
+Save or reuse these patterns to create a consistent triage routine for your team.
+
 ### Conversations table
 
 The main table shows conversations in a paginated or infinite-scrolling list, with each row summarizing the most important details.
@@ -71,7 +95,7 @@ Common columns include:
 - **Qualification** – Whether the conversation meets your qualification criteria.
 - **Row actions** – Quick actions such as view, assign, update status, or delete.
 
-Select any row or use the view action to open the full conversation detail (for example, on a dedicated conversation detail page).
+Select any row or use the view action to open the full conversation detail, usually on a dedicated conversation detail page.
 
 ### Bulk actions toolbar
 
@@ -82,7 +106,7 @@ When you select one or more conversations, the bulk actions toolbar becomes acti
 - **Export selected** conversations for analysis or backup.
 - **Delete selected** conversations if you no longer need them.
 
-Bulk actions apply to the currently selected rows only, not to all conversations that match your filters.
+Bulk actions apply **only** to the conversations you have selected with the checkboxes, not to all conversations that match your filters. If you want to affect a larger set, adjust your filters, select all visible rows in that view, and then trigger the bulk action.
 
 ### Pagination and infinite loading
 
@@ -102,10 +126,10 @@ Use these workflows to handle the most frequent tasks on the Conversations page.
 
 <Step title="Find a specific conversation" icon="search">
 
-1. Go to `/conversations` from your main navigation.
-2. In the **search bar**, type a keyword such as a contact name, email, or phrase from the conversation.
-3. Adjust **filters** (channel, status, date range, tags, assignee, workspace) to narrow down results if needed.
-4. Locate the matching row in the table and select it or click the view action to open the conversation.
+- Go to `/conversations` from your main navigation.
+- In the **search bar**, type a keyword such as a contact name, email, or phrase from the conversation.
+- Adjust **filters** (channel, status, date range, tags, assignee, workspace) to narrow down results if needed.
+- Locate the matching row in the table and select it or click the view action to open the conversation.
 
 When the search and filters match, the conversation appears in the list within a few seconds of you stopping typing.
 
@@ -113,52 +137,58 @@ When the search and filters match, the conversation appears in the list within a
 
 <Step title="Bulk assign conversations to a teammate" icon="users">
 
-1. Use search and filters to focus on the conversations you want to reassign.
-2. In the table, use the **checkbox** column to select the relevant conversations.
-3. In the **bulk actions toolbar**, choose **Assign**.
-4. Pick the target **assignee** from the list.
-5. Confirm the assignment.
+- Use search and filters to focus on the conversations you want to reassign.
+- In the table, use the **checkbox** column to select the relevant conversations.
+- In the **bulk actions toolbar**, choose **Assign**.
+- Pick the target **assignee** from the list.
+- Confirm the assignment.
 
-The assignee column for all selected conversations updates to show the new owner.
+The assignee column for all selected conversations updates to show the new owner. If you miss a conversation, it will not be affected, even if it matches the same filters.
 
 </Step>
 
 <Step title="Change lifecycle status for multiple conversations" icon="settings">
 
-1. Filter by **lifecycle status**, **assignee**, or **date range** to find the group you want to update.
-2. Select conversations using the **checkboxes** in the leftmost column.
-3. Click **Update status** in the bulk actions toolbar.
-4. Choose the new **lifecycle status** you want to apply.
-5. Confirm the change.
+- Filter by **lifecycle status**, **assignee**, or **date range** to find the group you want to update.
+- Select conversations using the **checkboxes** in the leftmost column.
+- Click **Update status** in the bulk actions toolbar.
+- Choose the new **lifecycle status** you want to apply.
+- Confirm the change.
 
-After the update, the **status** column for those rows reflects the new lifecycle state.
+After the update, the **status** column for those rows reflects the new lifecycle state, while unselected conversations keep their previous status.
 
 </Step>
 
 <Step title="Export a set of conversations" icon="download">
 
-1. Apply **search and filters** to capture the conversations you want to export (for example, last month, qualified, specific tag).
-2. Select all relevant conversations using the **checkboxes**.
-3. Click **Export selected** in the bulk actions toolbar.
-4. Choose the export destination or format if prompted.
-5. Wait for the export to complete or check your notifications/downloads area as instructed.
+- Apply **search and filters** to capture the conversations you want to export (for example, last month, qualified, specific tag).
+- Select all relevant conversations using the **checkboxes**.
+- Click **Export selected** in the bulk actions toolbar.
+- Choose the export destination or format if prompted.
+- Wait for the export to complete or check your notifications or downloads area as instructed.
 
-The exported file or destination contains only the conversations you selected when you triggered the export.
+The export includes only the conversations you selected at the moment you started the export, and typically contains key fields such as contact details, timestamps, tags, status, and basic AI insights.
+
+<Callout kind="info">
+
+Exports may include sensitive information such as customer identifiers, message previews, and internal tags. Share exported files only with trusted recipients, and follow your organization's data retention and privacy policies when storing or deleting them.
+
+</Callout>
 
 </Step>
 
 <Step title="Delete conversations in bulk" icon="trash">
 
-1. Narrow the list carefully using **filters** (for example, closed conversations older than a certain date).
-2. Select the conversations you want to delete via the **checkbox** column.
-3. Click **Delete selected** in the bulk actions toolbar.
-4. Confirm the deletion when prompted.
+- Narrow the list carefully using **filters** (for example, closed conversations older than a certain date).
+- Select the conversations you want to delete via the **checkbox** column.
+- Click **Delete selected** in the bulk actions toolbar.
+- Confirm the deletion when prompted.
 
 The deleted conversations disappear from the table and no longer appear in new searches or filters.
 
 <Callout kind="alert">
 
-Deletion is often irreversible or difficult to undo. Double-check that your filters and selections are correct before you confirm bulk deletion.
+Deletion is often irreversible or difficult to undo. Double-check that your filters and selections are correct before you confirm bulk deletion, and avoid deleting conversations that your team may need for compliance, audits, or future analysis.
 
 </Callout>
 
@@ -226,7 +256,7 @@ Success looks like seeing the first conversation row appear after you complete s
 
 ### No matches for current filters
 
-If conversations exist but none match your current search/query, the page shows a **no matches** message.
+If conversations exist but none match your current search or filters, the page shows a **no matches** message.
 
 To recover:
 
@@ -238,7 +268,7 @@ Once you relax the filters, matching conversations reappear in the table.
 
 ### Error state
 
-If the conversations service cannot load, you see an **error boundary** with options to:
+If the conversations view cannot load, you see an error message with options to:
 
 - **Refresh** the page.
 - Navigate back to the **dashboard** to continue working elsewhere.
@@ -259,7 +289,7 @@ Check whether you are in a filtered no-results state rather than a true empty st
   - Channel
   - Lifecycle status
   - Tags
-  - Assignee / My conversations
+  - Assignee or My conversations
   - Workspace
 - Confirm that the **no results** message is not the setup guide for a tenant with zero conversations.
 
@@ -293,7 +323,7 @@ Use these pages to go deeper into individual conversations and overall performan
 
 <Card
   title="Conversation detail"
-  href="/conversations/detail"
+  href="/pages/conversations/conversation-detail"
   icon="message-circle"
   cta="Open detail view"
   horizontal="true"
@@ -305,7 +335,7 @@ See the full message history, AI insights, tags, and actions for a single conver
 
 <Card
   title="Dashboard"
-  href="/dashboard"
+  href="/pages/overview/dashboard"
   icon="bar-chart"
   cta="View performance"
   horizontal="true"

@@ -25,11 +25,11 @@ Access to Training Context depends on your tenant permissions. Tenant admins see
 
 ## Page layout and navigation
 
-The Training Context page is organized into a common header area and a set of content tabs.
+The Training Context page is organized into a common header area and a set of content sections.
 
 ### Workspace selector
 
-Use the workspace selector at the top of the page to switch between workspaces. All filters, tabs, and items are scoped to the currently selected workspace.
+Use the workspace selector at the top of the page to switch between workspaces. All filters, sections, and items are scoped to the currently selected workspace.
 
 When you change the workspace, the usage overview, filters, and item lists update to reflect that workspace.
 
@@ -47,7 +47,7 @@ Use this section to quickly see whether you are approaching limits and where mos
 
 ### Global filters and search
 
-Global filters appear above the tab content and apply within the active tab:
+Global filters appear above the active section and apply within that section:
 
 - **Search**: Find items by name, title, or other indexed metadata.
 - **Type**: Narrow down by subtype when relevant (for example, file type or content category).
@@ -65,32 +65,32 @@ When you select one or more items in a list or card view, a bulk selection bar a
 - Assign selected items to assistants.
 - Regenerate summaries for selected items.
 
-Bulk actions apply to the active tab only and respect any filters you have applied.
+Bulk actions apply to the active section only and respect any filters you have applied.
 
-## Training Context tabs
+## Training Context sections
 
-Each major content type has its own tab. All tabs share common behaviors: list or card views, folder management, upload or import actions, and assignment to assistants.
+Each major content type has its own collapsible section. All sections share common behaviors: list or card views, folder management, upload or import actions, and assignment to assistants.
 
-<Tabs>
+<ExpandableGroup>
 
-<Tab title="Overview" icon="bar-chart">
+<Expandable title="Overview">
 
-The **Overview** tab gives you a cross-cutting view of all training context for the workspace.
+The **Overview** section gives you a cross-cutting view of all training context for the workspace.
 
 Typical elements:
 
 - Aggregate usage metrics across all content types.
 - Key counts, such as total documents, products, websites, UI screens, instructions, and FAQs.
 - Recent activity, such as latest uploads or imports.
-- Quick links into specific tabs or folders that may need attention.
+- Quick links into specific sections or folders that may need attention.
 
-Use the Overview tab to understand coverage and spot gaps in your training data before you drill into a specific content type.
+Use the Overview section to understand coverage and spot gaps in your training data before you drill into a specific content type.
 
-</Tab>
+</Expandable>
 
-<Tab title="Products" icon="package">
+<Expandable title="Products">
 
-The **Products** tab manages structured product data used by assistants for pricing, availability, and catalog questions.
+The **Products** section manages structured product data used by assistants for pricing, availability, and catalog questions.
 
 Key capabilities:
 
@@ -99,13 +99,13 @@ Key capabilities:
 - Review and filter products by category, status, or source.
 - Assign product sets or folders to specific assistants.
 
-Use this tab when you want assistants to answer detailed product questions based on your catalog instead of unstructured documents.
+Use this section when you want assistants to answer detailed product questions based on your catalog instead of unstructured documents.
 
-</Tab>
+</Expandable>
 
-<Tab title="Documents" icon="file-text">
+<Expandable title="Documents">
 
-The **Documents** tab stores unstructured or semi-structured files such as PDFs, Word documents, and text files.
+The **Documents** section stores unstructured or semi-structured files such as PDFs, Word documents, and text files.
 
 Key capabilities:
 
@@ -114,13 +114,13 @@ Key capabilities:
 - Filter by file type, status, or folder.
 - Assign document folders or individual documents to assistants.
 
-Use this tab for policies, how-to guides, support playbooks, and other reference material assistants should rely on.
+Use this section for policies, how-to guides, support playbooks, and other reference material assistants should rely on.
 
-</Tab>
+</Expandable>
 
-<Tab title="UI Screens" icon="monitor">
+<Expandable title="UI Screens">
 
-The **UI Screens** tab manages screenshots and UI captures that help assistants reason about your application interface.
+The **UI Screens** section manages screenshots and UI captures that help assistants reason about your application interface.
 
 Key capabilities:
 
@@ -129,13 +129,13 @@ Key capabilities:
 - Filter by folder or feature area.
 - Assign specific UI flows to assistants that need context about your product interface.
 
-Use this tab to enable assistants to reference and describe your UI accurately.
+Use this section to enable assistants to reference and describe your UI accurately.
 
-</Tab>
+</Expandable>
 
-<Tab title="Website" icon="cloud">
+<Expandable title="Website">
 
-The **Website** tab connects to your public or internal websites and keeps page content in sync.
+The **Website** section connects to your public or internal websites and keeps page content in sync.
 
 Key capabilities:
 
@@ -144,13 +144,13 @@ Key capabilities:
 - Filter content by domain, path, or status (for example, pending, processed, failed).
 - Assign website sections or domains to assistants.
 
-Use this tab when you want assistants to answer questions based on knowledge that already exists on your website.
+Use this section when you want assistants to answer questions based on knowledge that already exists on your website.
 
-</Tab>
+</Expandable>
 
-<Tab title="Instructions" icon="book-open">
+<Expandable title="Instructions">
 
-The **Instructions** tab manages system- or assistant-level instruction blocks that guide behavior and tone.
+The **Instructions** section manages system- or assistant-level instruction blocks that guide behavior and tone.
 
 Key capabilities:
 
@@ -159,13 +159,13 @@ Key capabilities:
 - Filter by folder or usage (for example, shared vs. assistant-specific).
 - Assign instruction sets to one or more assistants.
 
-Use this tab to centralize the rules and guidelines that shape how assistants respond.
+Use this section to centralize the rules and guidelines that shape how assistants respond.
 
-</Tab>
+</Expandable>
 
-<Tab title="FAQs" icon="help-circle">
+<Expandable title="FAQs">
 
-The **FAQs** tab stores question-and-answer pairs that assistants can use for high-precision responses.
+The **FAQs** section stores question-and-answer pairs that assistants can use for high-precision responses.
 
 Key capabilities:
 
@@ -174,15 +174,15 @@ Key capabilities:
 - Filter by folder, category, or status.
 - Assign FAQ sets to assistants for targeted Q&A behavior.
 
-Use this tab when you want tight control over how specific questions are answered.
+Use this section when you want tight control over how specific questions are answered.
 
-</Tab>
+</Expandable>
 
-</Tabs>
+</ExpandableGroup>
 
 ## Core workflows
 
-This section covers the main workflows you perform in Training Context. Each workflow applies to one or more tabs; follow the same pattern in each relevant tab.
+This section covers the main workflows you perform in Training Context. Each workflow applies to one or more sections; follow the same pattern in each relevant section.
 
 ### Upload or bulk upload context items
 
@@ -190,18 +190,18 @@ Use this workflow to bring new documents, UI screens, instructions, or FAQs into
 
 <Steps>
 
-<Step title="Choose workspace and tab" icon="home">
+<Step title="Choose workspace and section" icon="home">
 
 - Select the workspace from the workspace selector at the top of the page.
-- Open the tab that matches the content you want to upload, such as **Documents**, **UI Screens**, **Instructions**, or **FAQs**.
+- Open the section that matches the content you want to upload, such as **Documents**, **UI Screens**, **Instructions**, or **FAQs**.
 
-Success signal: The list in the tab updates to show items for the selected workspace and content type.
+Success signal: The list in the section updates to show items for the selected workspace and content type.
 
 </Step>
 
 <Step title="Start an upload" icon="upload">
 
-- Click the **Upload** or **Add** button in the tab header or empty state.
+- Click the **Upload** or **Add** button in the section header or empty state.
 - For bulk uploads, choose the bulk upload option if presented (for example, **Bulk upload** or **Upload multiple files**).
 
 Success signal: An upload dialog or file picker opens.
@@ -234,7 +234,7 @@ Folders help you keep growing training data manageable and assign groups of item
 
 <Step title="Create a folder" icon="folder">
 
-- In the relevant tab, locate the folder controls (for example, **New folder** in the header or sidebar).
+- In the relevant section, locate the folder controls (for example, **New folder** in the header or sidebar).
 - Click **New folder** and enter a folder name that reflects its content or use case.
 - Confirm to create the folder.
 
@@ -272,7 +272,7 @@ Assignment controls which assistants see and use each piece of training data.
 
 <Step title="Select items to assign" icon="users">
 
-- Navigate to the tab that contains the items you want to assign.
+- Navigate to the section that contains the items you want to assign.
 - Apply filters to narrow down to the relevant folder or category if needed.
 - Select the items using the checkboxes.
 
@@ -294,14 +294,14 @@ Success signal: Items show updated assistant associations, and the assistants st
 
 ### Import products
 
-Use the Products tab to bring in structured catalog data via file upload or a feed.
+Use the Products section to bring in structured catalog data via file upload or a feed.
 
 <Steps>
 
-<Step title="Open the Products tab" icon="package">
+<Step title="Open the Products section" icon="package">
 
 - Choose the target workspace.
-- Navigate to the **Products** tab.
+- Navigate to the **Products** section.
 
 Success signal: The product list, filters, and usage overview for products load.
 
@@ -339,7 +339,7 @@ Website crawls keep your assistant aligned with your live site.
 
 <Step title="Configure a new crawl" icon="cloud">
 
-- Open the **Website** tab for the workspace.
+- Open the **Website** section for the workspace.
 - Click **Add site** or **New crawl**.
 - Enter the base URL or sitemap URL for the site you want to sync.
 
@@ -358,7 +358,7 @@ Success signal: The site status moves through running and then to completed, wit
 
 <Step title="Refresh existing website content" icon="refresh-ccw">
 
-- In the **Website** tab, locate an existing site configuration.
+- In the **Website** section, locate an existing site configuration.
 - Use the refresh or resync action to trigger a new crawl.
 - Monitor the status until it returns to completed.
 
@@ -433,19 +433,19 @@ Training Context includes clear loading and empty states to guide users.
 
 ### Loading states
 
-When data is loading or a tab is fetching items:
+When data is loading or a section is fetching items:
 
 - A skeleton or shimmer layout stands in for lists and cards.
 - Filters and controls may appear disabled until data finishes loading.
-- Workspace switches and tab changes trigger short loading states as content refreshes.
+- Workspace switches and section changes trigger short loading states as content refreshes.
 
 Once loading completes, the skeleton disappears and the real items appear with their latest statuses.
 
 ### Empty states
 
-Each tab has dedicated empty states to encourage first-time setup:
+Each section has dedicated empty states to encourage first-time setup:
 
-- **No items yet**: Shows when a tab has no content. The page displays guidance and a primary CTA such as **Upload**, **Import**, or **Add** based on the tab.
+- **No items yet**: Shows when a section has no content. The page displays guidance and a primary CTA such as **Upload**, **Import**, or **Add** based on the section.
 - **Filter-empty states**: When filters or search return no results, the page suggests clearing filters or adjusting the search term.
 - **Feature-gated empty states**: When uploads are disabled, the empty state focuses on view-only behavior and may include a link or message about enabling uploads.
 

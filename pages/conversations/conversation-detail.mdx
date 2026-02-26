@@ -51,6 +51,12 @@ The center of the page shows the full history for the conversation:
 
 If there are no messages yet, the main area shows an empty state explaining that the conversation has no transcript yet.
 
+<Callout kind="info">
+
+Some conversations are read-only because the underlying channel does not support replies from this view or because you do not have permission to respond. In those cases, use the header controls (status, assignee, tags) and side panels (AI summary, client linking) to document and route the conversation instead of replying.
+
+</Callout>
+
 ### Right-hand panels: AI and context
 
 The right-hand side aggregates insights and related data so you do not have to leave the page:
@@ -90,7 +96,7 @@ Chat and SMS conversations focus on fast, short-form exchanges in a single threa
   - Messages send in real time and appear immediately in the transcript.
   - Delivery indicators depend on the downstream channel (for example, SMS provider).
 
-This is the primary channel where the `api.sendMessage(conversationId, text)` behavior is visible in the UI.
+Use this channel when you expect quick back-and-forth and short messages.
 
 </Tab>
 
@@ -108,7 +114,7 @@ Email conversations show the entire thread and respect email-specific convention
   - The UI preserves email formatting.
   - Attachment handling follows your existing email integration capabilities.
 
-The goal is to make the web experience feel like managing an email thread, not a generic chat.
+Use the email view when you need longer-form responses, rich formatting, or when the customer prefers email.
 
 </Tab>
 
@@ -128,7 +134,7 @@ Voice conversations represent calls, often originating from a telephony or diale
     - Update tags, status, and assignee.
     - Link and sync the call with a client record.
 
-Voice calls often rely more heavily on AI summaries and notes since they may be longer and less structured than text.
+Treat voice conversations as read-only for the call itself and focus on documenting outcomes, linking to the right client, and scheduling or sending follow-ups on appropriate channels.
 
 </Tab>
 
@@ -244,6 +250,14 @@ Linking conversations to clients or CRM records makes it easier to see history i
 
 </Step>
 
+<Step title="Check signals before linking" icon="search">
+
+- Compare the suggested client name with how the contact introduces themselves in the conversation.
+- Confirm that key identifiers (such as email domain, phone number, company name, or account ID mentioned in the transcript) match the client record.
+- Watch for small differences, such as similar names at different companies, that could indicate the suggestion is not correct.
+
+</Step>
+
 <Step title="Link to an existing client" icon="check-circle">
 
 - Select the suggested client that matches the participant or account.
@@ -256,13 +270,15 @@ Linking conversations to clients or CRM records makes it easier to see history i
 
 - If a suggestion is not relevant, dismiss it from the panel.
 - Dismissing noisy suggestions helps keep the panel focused on likely matches for you and other agents.
+- If none of the suggestions are correct, search for and select the right client manually when that option is available.
 
 </Step>
 
-<Step title="Sync with the linked client" icon="refresh-ccw">
+<Step title="Review the linked client record" icon="refresh-ccw">
 
 - After linking, use sync controls (when available) to push or pull data between the conversation and the client record.
-- Check the client in your CRM or internal system to confirm the conversation now appears in their history.
+- Open the client in your CRM or internal system and confirm the conversation now appears in their history.
+- Use this view during handoffs so the next owner sees both the conversation and the full client context in one place.
 
 </Step>
 
@@ -274,7 +290,7 @@ If you link a conversation to the wrong client, correct it as soon as you notice
 
 </Callout>
 
-## AI summary and insights
+## Use AI summary and insights
 
 The AI summary panel condenses long or complex conversations into a quick snapshot so you can decide what to do next without rereading every message.
 
@@ -291,6 +307,18 @@ Use these insights to:
 - Prioritize work across multiple conversations.
 - Decide when to escalate or involve other teams.
 - Capture structured data without manual note-taking.
+
+For handoffs:
+
+- When you reassign a conversation, ask the new owner to read the AI summary and notes first to understand context before replying.
+- If the AI misses something important, add a brief manual note summarizing key details so future agents do not have to scan the entire transcript.
+- For long-running accounts, use the extractions and sentiment trend to decide whether to involve account managers, sales, or support leadership.
+
+<Callout kind="info">
+
+Treat the AI summary as a starting point, not a single source of truth. When a situation is sensitive or high-stakes, skim the most recent messages and adjust your reply to match nuance that AI may not fully capture.
+
+</Callout>
 
 ## Widget tracking events
 
@@ -317,10 +345,10 @@ The conversation detail view updates automatically whenever key events occur, ke
 Realtime behavior includes:
 
 - **New messages**:
-  - When a new message arrives (`message:new` event), it appears at the end of the transcript.
+  - When a new message arrives, it appears at the end of the transcript.
   - This applies to inbound messages from the contact, outbound messages from other agents, and AI messages.
 - **Conversation updates**:
-  - When status, tags, or assignee change (`conversation:updated` event), the header and any relevant indicators update for all viewers.
+  - When status, tags, or assignee change, the header and any relevant indicators update for all viewers.
   - This prevents conflicting edits and ensures everyone sees the latest workflow state.
 
 If you keep a conversation open while another agent is working on it, expect to see these updates as they happen.
@@ -331,7 +359,7 @@ The conversation detail view handles several special states so you understand wh
 
 ### Loading state
 
-When you open a conversation, the page first shows a **loading skeleton** while data is fetched via `api.getConversationWithMessages(conversationId)`.
+When you open a conversation, the page first shows a **loading skeleton** while data is fetched.
 
 You can use this time to confirm the URL and conversation ID, but you cannot take actions until the content loads.
 
@@ -365,56 +393,86 @@ In this case:
 
 Use this to prepare a conversation (assign, tag, link to a client) before the first interaction.
 
-## Technical hooks and APIs (for admins)
+## Troubleshooting common issues
 
-Tenant admins and technical users can integrate deeper by calling the same APIs and hooks that power the conversation detail view:
+Use this section when something in the conversation detail view does not behave as expected.
 
-- **Fetch conversation and messages** — `api.getConversationWithMessages(conversationId)` to load the full transcript and metadata.
-- **Send a message** — `api.sendMessage(conversationId, text)` for supported channels (chat/SMS and configured email flows).
-- **Canned responses** — `api.getCannedResponses()` to manage templates used by agents in the composer.
-- **Client suggestions** — `api.getClientSuggestions()` to populate the linking panel.
-- **Link and dismiss**:
-  - `linkClient(conversationId, clientId)` to associate a conversation with a client.
-  - `dismissSuggestion(conversationId, suggestionId)` to hide irrelevant matches.
-- **Widget tracking events** — `api.getConversationWidgetTrackingEvents(conversationId)` to show widget interactions for eligible conversations.
-- **Realtime events** — subscribe to `message:new` and `conversation:updated` from your `realtimeClient` to mirror updates in custom dashboards.
+### You cannot reply to a conversation
 
-Use these APIs to build custom sidebars, QA tooling, or analytics that complement the built-in conversation detail view.
+If the composer is missing or disabled:
+
+- Check the **channel icon** to confirm which channel the conversation uses. Voice and some system-created conversations are read-only.
+- Look for a banner or note near the composer area explaining why replying is disabled.
+- Confirm you are allowed to reply to this conversation type based on your role and team practices.
+- If other teammates can reply and you cannot, ask an admin to review your permissions.
+
+### Call recording is missing
+
+If you expect a recording for a voice conversation but do not see a player:
+
+- Confirm you are viewing a **voice** conversation and not a related chat or email follow-up.
+- Check with your telephony or voice integration owner to verify that recording is enabled for this type of call.
+- Make sure you have permission to access recordings; some organizations restrict these to specific roles.
+- If recordings used to appear and no longer do, report the issue to your admin with example conversation links.
+
+### Conversation shows as not found
+
+If opening a conversation link leads to a not-found state:
+
+- Double-check that the full URL is present; links copied from emails or chats can be truncated.
+- Try accessing the conversation from the **Conversations** list instead of the direct link.
+- Ask the teammate who shared the link whether the conversation was archived or deleted.
+- If this happens for multiple conversations, escalate to your admin to check for environment or permission changes.
+
+### Some fields or panels are missing
+
+If status, assignee, AI summary, client panel, or widget events are missing:
+
+- Confirm you are signed in with the correct account and workspace.
+- Check with your admin whether these features are enabled for your tenant.
+- For AI and widget data, verify that the conversation channel is eligible and that the relevant integrations are configured.
+- If other teammates see panels that you do not, your role may have more limited access; ask an admin to adjust if needed.
+
+<Callout kind="info">
+
+When in doubt, capture the conversation URL and a screenshot of what you see before reaching out to your admin or support. This gives them enough context to diagnose configuration or permission issues quickly.
+
+</Callout>
 
 ## Related topics
 
 <Columns cols={3}>
 
 <Card
-  title="Features overview"
-  href="/features"
-  icon="puzzle"
-  cta="Explore core features"
+  title="Conversations list"
+  href="/pages/conversations/conversations"
+  icon="message-circle"
+  cta="Browse and filter conversations"
 >
 
-See how conversations, AI, and integrations fit into the broader feature set.
+Learn how conversations are created, listed, and filtered before you open the detail view.
 
 </Card>
 
 <Card
-  title="Integrations"
-  href="/integrations"
-  icon="plug"
-  cta="Connect your tools"
+  title="Clients"
+  href="/pages/crm/clients"
+  icon="users"
+  cta="Work with client records"
 >
 
-Understand which email, voice, and CRM integrations feed data into conversation details.
+See how linked clients are managed, searched, and used across your workspace.
 
 </Card>
 
 <Card
-  title="Quickstart"
-  href="/quickstart"
-  icon="rocket"
-  cta="Set up your workspace"
+  title="Analytics"
+  href="/pages/insights/analytics"
+  icon="bar-chart"
+  cta="Measure conversation performance"
 >
 
-Get your workspace configured and start receiving your first conversations.
+Understand how conversation status, tags, and assignments feed into reporting.
 
 </Card>
 
