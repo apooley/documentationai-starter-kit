@@ -1,0 +1,190 @@
+---
+title: Integrations and Connections
+description: Integrate Autoch.at with third-party services, set up webhooks, and connect additional channels to enhance your customer communication ecosystem.
+---
+
+## Overview
+
+Autoch.at supports seamless integrations with popular third-party services, webhooks for real-time event notifications, and advanced channel connections. You can extend your multi-channel inbox by connecting tools like CRMs, messaging apps, and telephony providers. This guide covers supported integrations, webhook setup, channel connections, custom API usage, and data syncing practices.
+
+<Callout kind="info">
+Review your Autoch.at dashboard permissions before configuring integrations. Ensure you have admin access for webhook and API keys.
+</Callout>
+
+## Supported Integrations
+
+Autoch.at integrates natively with key services to unify your conversations. Use the dashboard to enable these connections.
+
+<Columns cols={3}>
+  <Card title="Zapier" icon="zap" href="https://zapier.com/apps/autoch-at/integrations">
+    Automate workflows across 5000+ apps. Trigger actions on new messages or handoffs.
+  </Card>
+  <Card title="Slack" icon="message-circle" href="https://api.autoch.at/docs/slack">
+    Notify your team in Slack channels for urgent conversations or escalations.
+  </Card>
+  <Card title="Twilio" icon="phone" href="https://api.autoch.at/docs/twilio">
+    Add SMS and voice channels with programmable messaging.
+  </Card>
+</Columns>
+
+<Columns cols={2}>
+  <Card title="HubSpot" icon="users" href="https://api.autoch.at/docs/hubspot">
+    Sync contacts and conversations to your CRM automatically.
+  </Card>
+  <Card title="Intercom" icon="message-square" href="https://api.autoch.at/docs/intercom">
+    Import historical chat data and route between platforms.
+  </Card>
+</Columns>
+
+## Webhook Configuration
+
+Set up webhooks to receive real-time events like new messages, status changes, or AI escalations. Follow these steps in your Autoch.at dashboard.
+
+<Steps>
+  <Step title="Create Webhook" icon="plus">
+    Navigate to Settings > Webhooks > New Webhook. Enter your endpoint URL, such as `https://your-webhook-url.com/autoch.at`.
+  </Step>
+  <Step title="Select Events" icon="list">
+    Choose events: `message.received`, `conversation.assigned`, `ai.escalated`.
+  </Step>
+  <Step title="Verify and Save" icon="check-circle">
+    Autoch.at sends a verification ping. Respond with HTTP 200 to activate.
+  </Step>
+</Steps>
+
+Verify payloads with this example:
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+  // Example webhook handler
+  app.post('/autoch.at', (req, res) => {
+    const event = req.body.event; // e.g., "message.received"
+    const conversationId = req.body.data.conversation_id;
+    console.log(`New ${event}: ${conversationId}`);
+    res.status(200).send('OK');
+  });
+  ```
+  ```python
+  # Example webhook handler
+  from flask import Flask, request
+
+  app = Flask(__name__)
+
+  @app.route('/autoch.at', methods=['POST'])
+  def webhook():
+      event = request.json['event']  # e.g., "message.received"
+      conversation_id = request.json['data']['conversation_id']
+      print(f"New {event}: {conversation_id}")
+      return 'OK', 200
+  ```
+</CodeGroup>
+
+## Advanced Channel Connections
+
+Connect specialized channels using API keys or OAuth.
+
+<Tabs>
+  <Tab title="Voice (Twilio)" icon="phone">
+    <Steps>
+      <Step title="Get Twilio SID">
+        Log in to Twilio Console and copy your Account SID and Auth Token.
+      </Step>
+      <Step title="Configure in Dashboard">
+        Go to Channels > Voice > Add Twilio. Paste credentials.
+      </Step>
+    </Steps>
+
+    <ParamField header="X-Twilio-SID" param-type="string" required="true">
+      Your Twilio Account SID.
+    </ParamField>
+  </Tab>
+  <Tab title="Custom Chat" icon="message-circle">
+    Use webhooks for custom widget integration.
+
+    ```javascript
+    // Embed script in your site
+    (function() {
+      const script = document.createElement('script');
+      script.src = 'https://widget.autoch.at/js/v1.js';
+      script.setAttribute('data-key', 'YOUR_WIDGET_KEY');
+      document.head.appendChild(script);
+    })();
+    ```
+  </Tab>
+</Tabs>
+
+## API Endpoints for Custom Integrations
+
+Build custom flows with Autoch.at REST API at `https://api.autoch.at/v1`.
+
+<Request tabs="cURL,JavaScript" show-lines="true">
+  ```bash
+  curl -X POST https://api.autoch.at/v1/conversations \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -H "Content-Type: application/json" \
+    -d '{
+      "channel": "email",
+      "customer_id": "cust_123",
+      "message": "Hello from integration!"
+    }'
+  ```
+  ```javascript
+  const response = await fetch('https://api.autoch.at/v1/conversations', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      channel: 'email',
+      customer_id: 'cust_123',
+      message: 'Hello from integration!'
+    })
+  });
+  ```
+</Request>
+
+<Response tabs="200,400">
+  ```json
+  {
+    "success": true,
+    "conversation_id": "conv_abc123",
+    "timeline": [
+      {
+        "id": "msg_1",
+        "type": "outbound",
+        "content": "Hello from integration!",
+        "timestamp": "2024-01-15T10:30:00Z"
+      }
+    ]
+  }
+  ```
+  ```json
+  {
+    "error": "Invalid API key",
+    "code": 401
+  }
+  ```
+</Response>
+
+## Data Syncing Best Practices
+
+Follow these practices to ensure reliable data flow.
+
+<Expandable title="Sync Frequency and Conflict Resolution" default-open="true">
+Set sync intervals to 5-15 minutes for most integrations. Use idempotent operations with `conversation_id` as the key to avoid duplicates.
+
+For conflicts, Autoch.at prioritizes the latest timestamp. Enable webhook retries (up to 3 attempts) in settings.
+</Expandable>
+
+<Callout kind="tip">
+Test integrations in sandbox mode first. Monitor the Audit Log for sync errors and use `https://dashboard.autoch.at/logs` for details.
+</Callout>
+
+<ExpandableGroup>
+  <Expandable title="Troubleshooting Common Issues">
+    - **Webhook timeouts**: Increase your endpoint timeout to `>30s`.
+    - **Rate limits**: API allows 1000 req/min; implement exponential backoff.
+    - **Data drift**: Run daily full syncs via `/v1/sync` endpoint.
+  </Expandable>
+</ExpandableGroup>

@@ -1,0 +1,140 @@
+---
+title: Changelog
+description: Review the version history of Autoch.at, including recent updates, new features, and improvements to keep your implementation current.
+---
+
+## Recent Updates
+
+Stay current with Autoch.at enhancements. Review the latest releases below to understand new capabilities, such as advanced AI routing and multi-channel support, along with any required upgrades.
+
+<Columns cols={3}>
+  <Card title="v1.2.0" icon="zap" href="#v1-2-0">
+    Enhanced AI assistants and performance boosts.
+  </Card>
+  <Card title="v1.1.0" icon="settings" href="#v1-1-0">
+    New routing features and bug fixes.
+  </Card>
+  <Card title="v1.0.0" icon="rocket" href="#v1-0-0">
+    Initial stable release with core inbox.
+  </Card>
+</Columns>
+
+<Update label="2024-12-15" description="v1.2.0" tags={["feature", "improvement"]} id="v1-2-0">
+
+## New Features
+
+- Added Quiet AI escalation rules for complex conversations
+- Introduced PII redaction in real-time during AI processing
+- New analytics dashboard for conversation outcomes
+
+## Improvements
+
+- Optimized timeline loading for high-volume inboxes (`<50ms` average)
+- Enhanced handoff notifications with teammate mentions
+
+## Bug Fixes
+
+- Fixed SMS delivery status syncing issues
+- Resolved voice call transcription overlaps
+
+</Update>
+
+<Update label="2024-11-20" description="v1.1.0" tags={["feature", "bugfix"]} id="v1-1-0">
+
+## New Features
+
+- Multi-channel routing by keyword or intent
+- Playbooks for versioned response templates
+- Integration with external webhooks for custom automations
+
+## Bug Fixes
+
+- Corrected email threading display errors
+- Patched chat widget reconnection logic
+
+## Breaking Changes
+
+- Updated webhook payload format; migrate using the guide below
+
+</Update>
+
+<Update label="2024-10-10" description="v1.0.0" tags={["feature", "breaking"]} id="v1-0-0">
+
+## New Features
+
+- Unified inbox for email, SMS, chat, and voice
+- Basic AI drafting and summarization
+- Team ownership and state tracking
+
+## Breaking Changes
+
+- Initial API version; review authentication changes
+
+</Update>
+
+## Upgrade Instructions
+
+Follow these steps to upgrade your Autoch.at integration safely.
+
+<Callout kind="alert">
+Before upgrading, back up your configuration and test in staging. Review breaking changes in each release.
+</Callout>
+
+<Steps>
+  <Step title="Check Compatibility" icon="check-circle">
+
+Review your current version against the table below.
+
+| Current Version | Minimum Node.js | Upgrade Path |
+|-----------------|-----------------|--------------|
+| `<1.0.0`       | `18+`          | Full reinstall |
+| `1.0.x`        | `18+`          | `npm update` |
+| `1.1.x`        | `20+`          | Patch migration |
+
+  </Step>
+  <Step title="Update SDK" icon="download">
+    <Tabs>
+      <Tab title="npm" icon="package">
+````bash
+npm install @autoch.at/sdk@latest
+````
+      </Tab>
+      <Tab title="yarn" icon="package">
+````bash
+yarn add @autoch.at/sdk@latest
+````
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Migrate Config" icon="settings">
+
+Update your `{API_KEY}` and webhook endpoints.
+
+````javascript
+// Old config
+const config = {
+  apiKey: 'YOUR_API_KEY',
+  webhook: 'https://your-webhook-url.com/old'
+};
+
+// New config (v1.2.0+)
+const config = {
+  apiKey: 'YOUR_API_KEY',
+  webhook: 'https://your-webhook-url.com/webhook',
+  piiRedact: true
+};
+````
+
+  </Step>
+  <Step title="Test & Deploy" icon="rocket">
+    Run integration tests against `https://api.example.com/v1/conversations`.
+  </Step>
+</Steps>
+
+## Staying Current
+
+Subscribe to release notifications via the dashboard at `https://dashboard.example.com/notifications`. For custom upgrade scripts, contact support.
+
+<Callout kind="tip">
+Upgrade to v1.2.0 today for the latest AI capabilities and security enhancements.
+</Callout>

@@ -1,0 +1,137 @@
+---
+title: Getting Started with Autoch.at
+description: Quickly set up your Autoch.at account, connect your communication channels, and handle your first conversation to begin unifying customer interactions.
+---
+
+## Prerequisites
+
+<Callout kind="info" title="Before You Begin">
+Prepare these items to complete setup quickly:
+- A business email address for registration
+- Credentials for your email provider (e.g., Gmail, Outlook)
+- A Twilio account with a phone number for SMS
+- Your website domain for chat widget installation
+</Callout>
+
+## Step 1: Create and Log In to Your Account
+
+Follow these steps to get your Autoch.at dashboard ready.
+
+<Steps>
+  <Step title="Sign Up" icon="user-plus">
+    Visit `https://autoch.at` and click **Sign Up**.
+
+    Fill in your business email, name, and password. Verify your email via the confirmation link sent to your inbox.
+  </Step>
+
+  <Step title="Log In" icon="log-in">
+    Return to `https://autoch.at/login` and enter your credentials.
+
+    Enable two-factor authentication (2FA) from your account settings for security.
+  </Step>
+</Steps>
+
+## Step 2: Tour the Dashboard
+
+Your dashboard unifies all conversations in a shared timeline.
+
+<Columns cols={3}>
+  <Card title="Conversations" icon="messages-square" href="#">
+    View all channels in one inbox with AI-drafted responses.
+  </Card>
+  <Card title="Channels" icon="smartphone-charging" href="#">
+    Manage email, SMS, chat, and calls from here.
+  </Card>
+  <Card title="Analytics" icon="bar-chart-3" href="#">
+    Track response times and conversation outcomes.
+  </Card>
+</Columns>
+
+## Step 3: Connect Communication Channels
+
+Connect your channels one by one. Use the tabs below for specific instructions.
+
+<Tabs>
+  <Tab title="Email" icon="mail">
+    <Steps>
+      <Step title="Add Provider">
+        In the dashboard, go to **Channels > Email** and select your provider.
+      </Step>
+      <Step title="Enter Credentials">
+        Provide your IMAP/SMTP details:
+````json
+{
+  "host": "imap.gmail.com",
+  "port": 993,
+  "username": "your-email@business.com",
+  "password": "YOUR_APP_PASSWORD"
+}
+````
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="SMS" icon="phone">
+    <Steps>
+      <Step title="Connect Twilio">
+        Navigate to **Channels > SMS** and choose Twilio.
+      </Step>
+      <Step title="Add Account SID">
+        Enter your Twilio credentials:
+````javascript
+const twilioConfig = {
+  accountSid: 'YOUR_ACCOUNT_SID',
+  authToken: 'YOUR_AUTH_TOKEN',
+  phoneNumber: '+1234567890'
+};
+````
+      </Step>
+    </Steps>
+  </Tab>
+
+  <Tab title="Website Chat" icon="globe">
+    <Steps>
+      <Step title="Generate Snippet">
+        Go to **Channels > Chat** and customize your widget.
+      </Step>
+      <Step title="Install Code">
+        Copy and paste this snippet before the closing `</body>` tag on your site:
+```html
+<script src="https://widget.autoch.at/YOUR_WIDGET_ID.js"></script>
+```
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">
+Test each channel by sending a message to yourself. Check the unified timeline for arrival.
+</Callout>
+
+## Step 4: Handle Your First Conversation
+
+Send or receive a test message:
+
+1. From your connected email or phone, message your business contact.
+2. Watch it appear in the dashboard timeline.
+3. Use Quiet AI to draft a reply: Click **Draft Response** and review before sending.
+4. Assign ownership and set next steps.
+
+## Next Steps
+
+<Columns cols={2}>
+  <Card title="Authentication" icon="shield" href="/authentication">
+    Secure your API access and webhooks.
+  </Card>
+  <Card title="AI Configuration" icon="bot" href="/configuration">
+    Train assistants with your playbooks.
+  </Card>
+  <Card title="Advanced Channels" icon="settings" href="#">
+    Add voice calls and custom routing.
+  </Card>
+  <Card title="Analytics" icon="trending-up" href="/introduction">
+    Dive into performance metrics.
+  </Card>
+</Columns>
+
+Congratulations! You now have a unified inbox. Explore the dashboard to route conversations and automate follow-ups.
