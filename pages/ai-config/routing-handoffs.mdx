@@ -1,277 +1,450 @@
 ---
 title: Routing and handoffs
-description: Configure routing rules and handoff settings so conversations move between assistants and human agents with controlled, guardrailed transfers.
+description: Use the Routing & Handoffs page to move conversations between assistants and humans safely, with tested rules, guardrails, and business hours.
 ---
 
-## How routing rules and handoff settings work
+## What you use this page for
 
-Routing Rules define **when** conversations are automatically transferred to specialized assistants based on keywords, intent, channel, and priority. Handoff Settings define **how** those transfers execute, including the message the customer sees and guardrails that prevent excessive or looping handoffs.
+Use the **Routing & Handoffs** page to control when conversations move between assistants and humans, how those handoffs are announced, and when they are allowed to happen.
 
-Together, they create a complete handoff system:
+The page has two tabs:
 
-- Routing Rules match conversations that should be routed.
-- Handoff Settings apply guardrails and templates.
-- Approved handoffs send a structured message and transfer ownership.
+- **Routing Rules** — define when to transfer a conversation based on keywords, intent, channel, and priority.
+- **Handoff Settings** — define how transfers behave: message style, templates, guardrails, and business hours.
+
+Together they answer three questions for every conversation:
+
+1. **Should** this move somewhere else now? (Routing Rules)
+2. **Is it allowed** to move right now? (Guardrails and business hours)
+3. **How do we tell** the customer and the next agent what is happening? (Message template and response time)
 
 <Callout kind="info">
 
-You need tenant admin or equivalent configuration permissions to edit routing rules and handoff settings. Coordinate with support and operations leads before changing production behavior.
+You need tenant admin or equivalent configuration permissions to edit Routing Rules and Handoff Settings. Coordinate with support, sales, and operations leads before changing production behavior.
 
 </Callout>
 
-## End-to-end handoff flow
+## Recommended end-to-end setup workflow
 
-The routing and handoff engine evaluates every transfer request in a fixed order:
-
-1. A Routing Rule matches the conversation based on triggers.
-2. Handoff guardrails in Handoff Settings run checks.
-3. If all checks pass, the system sends the handoff message and transfers the conversation to the target assistant or human queue.
-
-If a guardrail blocks the transfer, the current assistant or human remains in control and can choose another action.
-
-## Configure routing and handoffs
-
-Use this workflow to configure routing rules and handoff settings safely before they affect live traffic.
+Follow this workflow when you first set up Routing & Handoffs or when you make major changes.
 
 <Steps>
 
-<Step title="Map your routing and handoff goals" icon="settings">
+<Step title="Decide your routing strategy" icon="settings">
 
-Start by defining how you want conversations to move between assistants and humans.
+Start by deciding how conversations should move between assistants and humans across channels.
 
-- List your primary channels (SMS, chat, voice, email) and where each should land first.
-- Identify specialized topics or intents (for example, Sales, Support, Billing, Technical) that need dedicated assistants.
-- Decide when AI must escalate to humans by policy and when humans can hand work back to AI.
-- Capture at least one default route and one escalation path for each major channel.
+- List your **channels** (SMS, chat, voice, email) and where each should start (for example, general support assistant).
+- Identify **specialized intents** that deserve their own assistant or queue: Sales, Support, Billing, Technical, General.
+- Define when **AI escalates to humans** (for example, refunds over a certain amount) and when humans can hand a conversation back to AI.
+- Sketch at least:
+  - One **default route** per channel (where new conversations land).
+  - One or two **escalation paths** (for example, Billing → Human billing queue).
 
-You should end this step with a clear sketch of which assistants and teams handle which intents, channels, and segments.
+You should end this step with a diagram or list of which assistants and teams own which intents and channels.
 
 </Step>
 
 <Step title="Prepare target assistants and queues" icon="zap">
 
-Create or refine the destinations that routing rules will use.
+Before you create routing rules, make sure the destinations are ready.
 
-- Use **Assistants** to define configurations for general support, sales, billing, technical help, and other roles.
-- Create variants when you want to experiment on a subset of traffic.
-- Align each assistant with the channels it should support and any playbooks it will run.
+- In **Assistants**, configure:
+  - A general assistant for broad questions.
+  - Specialized assistants (for example, Billing, Technical, Sales) with focused training context and playbooks.
+- Align each assistant to its **supported channels** (SMS, chat, voice, email) so you do not route traffic to an unsupported channel.
+- Confirm each assistant behaves as expected using test conversations before sending routed traffic.
 
-Confirm that each target assistant behaves as expected in its own tests before you send routed traffic to it.
-
-</Step>
-
-<Step title="Configure routing rules in the UI" icon="code">
-
-Open the **Routing Rules** tab and define when conversations should be transferred.
-
-- Add a rule for each common combination of trigger and destination (for example, Billing intent → Billing assistant on chat and email).
-- Set priorities so more specific rules override broader ones.
-- Use statuses to control whether a rule is live or parked for later.
-
-Use internal test conversations to verify which rule fires for representative examples before enabling them for production.
+A rule is only as good as the assistant or queue it sends traffic to.
 
 </Step>
 
-<Step title="Configure handoff settings and guardrails" icon="shield">
+<Step title="Create your first routing rules" icon="code">
 
-Switch to the **Handoff Settings** tab to control how handoffs behave.
+Open the **Routing Rules** tab and create a small set of high-value rules before you attempt full coverage.
 
-- Enable agent handoff and choose a message style that fits your brand.
-- Edit the handoff template so it gives humans the right context and sets customer expectations.
-- Set guardrails such as maximum handoffs per conversation, cooldowns, and loop prevention.
+Focus on routes that have clear patterns and high impact:
 
-Start with conservative limits (for example, 3 handoffs per conversation) and only relax them once you see stable behavior.
+- Billing phrases such as `invoice`, `refund`, `overcharged` on chat or email.
+- Sales intent on voice calls for a sales-focused assistant.
+- Technical intent on SMS for a concise troubleshooting assistant.
+
+Create the rules in this order:
+
+1. **High-priority exceptions** (for example, VIP billing customers).
+2. **Main escalation rules** (for example, Billing intent → Billing assistant).
+3. **Fallback default rule** (for example, everything else stays with the general assistant).
+
+Keep them inactive until you have tested them in the next step.
 
 </Step>
 
-<Step title="Test flows and roll out gradually" icon="play-circle">
+<Step title="Configure handoff behavior and guardrails" icon="shield">
 
-Validate routing and handoffs before sending all traffic through them.
+Switch to the **Handoff Settings** tab to decide how transfers behave and how often they are allowed.
 
-- Use test numbers, email aliases, or staging channels to exercise each rule and guardrail.
-- Confirm that the correct rule matches, guardrails behave as expected, and the right assistant or human receives the conversation.
-- Roll out in stages (by channel, segment, or percentage) and monitor escalation rates and operator feedback.
+Work through these in order:
 
-Adjust rules, templates, and guardrails as needed, then expand coverage once results are predictable.
+- Turn on **agent handoff** when you are ready for live transfers.
+- Pick a **message style preset** that matches your brand and channel tone.
+- Edit the **handoff message template** to:
+  - Introduce the new agent or assistant.
+  - Summarize why the handoff is happening.
+  - Set expectations using `{agent_name}`, `{customer_intent}`, and `{task_description}` placeholders.
+- Set **guardrails**:
+  - Start with **max 3–5 handoffs per conversation**.
+  - Add a **cooldown by messages** (for example, 3–5 messages) and/or **minutes** (for example, 5–10 minutes).
+  - Enable **loop prevention** to avoid back‑and‑forth like Billing → Support → Billing.
+
+Start strict, then relax limits once you see stable behavior.
+
+</Step>
+
+<Step title="Set business hours and after-hours behavior" icon="clock">
+
+Still in **Handoff Settings**, configure when human queues should accept routed conversations.
+
+- Choose the correct **timezone** for your primary operations team.
+- For each weekday:
+  - Enable the day.
+  - Set **start** and **end** times for business hours.
+- Decide **after-hours behavior**, for example:
+  - Keep AI in control and show a message like `Our team is offline, but I can still help with...`.
+  - Allow handoffs only to specific 24/7 queues.
+- Add **holiday overrides** for days your team is closed or operating on special hours.
+
+This ensures the system does not route to humans when no one is available, and that customers get clear expectations.
+
+</Step>
+
+<Step title="Test rules and handoffs safely" icon="play-circle">
+
+Test before turning rules live on production traffic.
+
+- Use **internal test numbers, email aliases, or staging channels** to trigger each routing rule.
+- For each test:
+  - Confirm the **expected rule matches** (intent or keywords).
+  - Verify **guardrails** behave as expected (no rapid ping‑pong, loops blocked).
+  - Check that the **handoff message** fills in `{agent_name}`, `{customer_intent}`, and `{task_description}` correctly.
+- Ask a few agents to review the incoming handoff messages and confirm they have enough context to act quickly.
+
+Only activate rules for production channels after they pass this test checklist.
+
+</Step>
+
+<Step title="Roll out gradually and monitor" icon="bar-chart">
+
+Turn routing into an operational control surface, not a one‑time project.
+
+- Activate a small set of rules first (for example, only Billing on chat and email).
+- Monitor:
+  - **Handoff volume** by rule and channel.
+  - **Blocked handoffs** due to guardrails.
+  - **Resolution rates** and agent feedback.
+- Adjust:
+  - Rule **keywords and intent** if they are too broad or too narrow.
+  - **Priorities** when multiple rules match the same conversations.
+  - **Guardrail limits** if agents see too much noise or too many escalations are blocked.
+
+Expand coverage to more intents and channels once results are predictable.
 
 </Step>
 
 </Steps>
 
-## Routing rules vs handoff settings
+## How the Routing & Handoffs tabs map to your work
 
-Use the tabs below to mirror how the Routing & Handoffs UI is organized.
+Use the tabs in the UI as two lenses on the same flow: **when** to move, and **how/when it is allowed** to move.
 
 <Tabs>
 
 <Tab title="Routing Rules" icon="code">
 
-Routing Rules define when the system should automatically transfer a conversation to a different assistant based on message content, intent, and channel.
+Routing Rules decide **when** a conversation should transfer to a different assistant based on:
 
-### Routing rule fields
+- **Trigger keywords** — comma‑separated phrases in conversation content.
+- **Trigger intent** — a dropdown (Sales, Support, Billing, Technical, General, None).
+- **Target assistant** — which assistant or queue should own the conversation.
+- **Channels** — SMS, Chat, Voice, Email.
+- **Priority** — which rule wins when multiple rules match.
+- **Active/inactive** — whether the rule is live.
 
-Use these fields when creating or editing a routing rule.
-
-<ParamField body="ruleName" param-type="string" required="true" show-location="false">
-
-**Rule Name** shown in the Routing Rules list. Choose a descriptive name like `Billing chat handoffs` or `Technical email escalations` so operators can quickly understand what the rule does.
-
-</ParamField>
-
-<ParamField body="triggers.keywords" param-type="string (comma-separated)" required="false" show-location="false">
-
-**Triggers · Keywords** that appear in the conversation content and should activate the rule. Enter a comma‑separated list such as `invoice, refund, overcharged`. Matching is typically case‑insensitive; use specific phrases to avoid accidental matches.
-
-</ParamField>
-
-<ParamField body="triggers.intent" param-type="enum" required="false" show-location="false">
-
-**Triggers · Intent** selected from a dropdown of high‑level intents. Options include `None`, `Sales`, `Support`, `Billing`, `Technical`, and `General`. Choose an intent when you want the rule to activate based on classified intent instead of or in addition to raw keywords.
-
-</ParamField>
-
-<ParamField body="targetAssistant" param-type="assistant reference" required="true" show-location="false">
-
-**Target Assistant** that should receive the conversation when the rule fires. Select from your configured assistants (for example, Billing assistant, Technical assistant, Sales assistant). The transfer will route the conversation to this assistant if guardrails allow it.
-
-</ParamField>
-
-<ParamField body="channels" param-type="multi-select enum" required="true" show-location="false">
-
-**Channels** where this rule applies. Choose one or more of `SMS`, `Chat`, `Voice`, and `Email`. The rule only evaluates traffic from the selected channels, so you can use separate rules per channel when needed.
-
-</ParamField>
-
-<ParamField body="priority" param-type="integer" required="true" show-location="false">
-
-**Priority** that controls which rule runs first when multiple rules match. Higher‑priority rules are evaluated before lower‑priority ones. Use this to ensure specific rules (for example, Enterprise billing) override broader ones (for example, General billing).
-
-</ParamField>
-
-<ParamField body="status" param-type="enum" required="true" show-location="false">
-
-**Status** of the rule: `Active` or `Inactive`. Active rules participate in routing. Inactive rules are saved for later and do not affect traffic, which is useful for staging or temporarily disabling a path without deleting it.
-
-</ParamField>
-
-### Common routing rule patterns
-
-- Route **Billing** intent on Chat and Email to a dedicated billing assistant with tighter guardrails.
-- Route **Sales** intent on Voice to a sales assistant that focuses on call handling.
-- Route **Technical** intent on SMS to a concise troubleshooting assistant optimized for short messages.
-- Use different priorities to ensure high‑value customer segments are routed before general traffic rules.
+Think of this tab as your **routing map**: which signals (keywords, intent, channel) send conversations to which destinations, and in what order.
 
 </Tab>
 
 <Tab title="Handoff Settings" icon="users">
 
-Handoff Settings control whether agent handoffs are enabled, how the system announces the transfer, and which guardrails apply before any conversation is moved.
+Handoff Settings decide **how handoffs behave** and **when they are allowed**:
 
-### Core handoff settings
+- **Enabled toggle** — global on/off switch for automatic handoffs.
+- **Message style preset** — tone and length of the customer‑facing message.
+- **Message template** — the exact text customers see, with placeholders like `{agent_name}`, `{customer_intent}`, and `{task_description}`.
+- **Human response time** — sets expectations like `a few minutes` or `within 15 minutes`.
+- **Guardrails** — max handoffs per conversation, cooldown by messages/minutes, prevent loops, optional hourly limits.
+- **Business hours** — timezone, weekly schedule, after‑hours behavior, and holiday overrides.
 
-These settings apply to all routing‑driven transfers.
-
-<ParamField body="enableAgentHandoff" param-type="boolean" required="true" show-location="false">
-
-**Enable Agent Handoff** toggle that turns automatic handoffs on or off. When disabled, routing rules can still match but the system will not transfer conversations to human agents or other assistants through the handoff engine.
-
-</ParamField>
-
-<ParamField body="messageStylePreset" param-type="enum" required="true" show-location="false">
-
-**Message Style preset** that controls tone and length of the handoff message. Available presets include `Default`, `Professional`, `Casual`, `Brief`, and `Detailed`. Use `Professional` for support queues, `Casual` for community or low‑stakes channels, and `Brief` for SMS or tight UIs.
-
-</ParamField>
-
-<ParamField body="handoffMessageTemplate" param-type="string (template)" required="true" show-location="false">
-
-**Handoff Message Template** shown to the customer when a handoff occurs. The template supports placeholders in curly braces:
-
-- `agent_name` – the human or assistant taking over.
-- `task_description` – a short summary of what needs to be done.
-- `customer_intent` – the detected intent such as Billing or Support.
-
-For example: `I am connecting you with {agent_name} from our {customer_intent} team to help with {task_description}.`
-
-</ParamField>
-
-<ParamField body="humanResponseTime" param-type="string or numeric estimate" required="false" show-location="false">
-
-**Human Response Time** expectation shown to the customer, such as `a few minutes` or `within 15 minutes`. Set this to match your actual SLAs so customers know how long to wait after a handoff.
-
-</ParamField>
-
-### Handoff guardrails
-
-Guardrails define the safety limits that every potential handoff must pass before the system executes it.
-
-<ParamField body="maxHandoffsPerConversation" param-type="integer (1–10)" required="true" show-location="false">
-
-**Maximum Handoffs Per Conversation** sets a hard cap on how many times a single conversation can be transferred. Valid values range from `1` to `10`; a practical starting point is **3–5**. After the limit is reached, additional handoff attempts are blocked.
-
-</ParamField>
-
-<ParamField body="cooldownMinimumMessages" param-type="integer" required="false" show-location="false">
-
-**Cooldown Minimum Messages** defines how many new messages must occur between handoffs in the same conversation. Use this to ensure the assistant or agent has a chance to make progress before another transfer is allowed.
-
-</ParamField>
-
-<ParamField body="cooldownMinimumMinutes" param-type="integer (minutes)" required="false" show-location="false">
-
-**Cooldown Minimum Minutes** defines the minimum time that must pass between handoffs. Combine this with message‑based cooldowns when you want to limit both rapid back‑and‑forth and long‑running ping‑pong behavior.
-
-</ParamField>
-
-<ParamField body="preventHandoffLoops" param-type="boolean" required="true" show-location="false">
-
-**Prevent Handoff Loops** option that blocks repetitive cycles such as `A → B → A`. When enabled, the system tracks recent transfers in a conversation and refuses to execute a handoff that would send ownership back to a recently involved assistant in a loop.
-
-</ParamField>
-
-<ParamField body="maxHandoffsPerHour" param-type="integer" required="false" show-location="false">
-
-**Maximum Handoffs Per Hour** sets an optional rate limit on handoffs across your tenant or per conversation, depending on implementation. Use this to protect human queues from sudden spikes in automated escalation.
-
-</ParamField>
-
-<Callout kind="info">
-
-Start with stricter guardrails than you think you need, monitor behavior for a few days, then relax limits if you see stable, high‑quality handoffs and low operator frustration.
-
-</Callout>
+Think of this tab as your **safety and expectations layer**: it protects humans from overload and customers from confusing, repeated transfers.
 
 </Tab>
 
 </Tabs>
 
-## Flow: from rule match to transfer
+## Create and manage routing rules
 
-Every potential handoff follows the same high‑level flow:
+Use a consistent pattern when you create or edit rules so they stay understandable over time.
 
-1. **Routing rule matches**  
-   The system evaluates active Routing Rules for the current channel and conversation. When a rule matches its triggers (keywords and/or intent), it proposes a transfer to the rule's target assistant.
+<Steps>
 
-2. **Guardrails check in Handoff Settings**  
-   Before moving the conversation, the handoff engine checks all configured guardrails: maximum handoffs per conversation, cooldown messages and minutes, loop prevention, and hourly limits. If any guardrail fails, the handoff is blocked.
+<Step title="Name and scope the rule" icon="edit">
 
-3. **Message and transfer**  
-   If all guardrails pass and agent handoff is enabled, the system renders the handoff message template using placeholders like `agent_name`, `task_description`, and `customer_intent`, sends it to the customer, and transfers ownership to the target assistant or human queue.
+On the **Routing Rules** tab, add a rule and start with:
 
-A well‑tuned configuration keeps most conversations on the best‑suited assistant while ensuring humans see only the escalations that matter and never receive repeated or looping transfers.
+- A **descriptive name** like `Billing chat escalations` or `Sales voice warm transfers`.
+- The **channels** this rule should affect (for example, Chat and Email, but not Voice).
+- A **priority** that reflects importance:
+  - Lower number or higher value, depending on UI, for more specific or sensitive rules.
+  - Ensure exception rules run before broad defaults.
 
-## Operate and iterate safely
+Ask yourself: *If two rules matched, which one should win?* Set the priority accordingly.
 
-Once routing rules and handoff settings are live, treat them as an operational control surface, not a one‑time setup.
+</Step>
 
-- **Review metrics by rule and intent**: Track which rules fire most often, how many handoffs guardrails block, and how many escalations resolve successfully.
-- **Adjust priorities and triggers**: Tighten or loosen keyword lists and intents when rules match too broadly or too rarely.
-- **Review guardrail impacts**: If agents see too many low‑value escalations, make guardrails stricter; if legitimate escalations are blocked, relax limits slightly.
-- **Coordinate with training and playbooks**: Update assistants, playbooks, and training context when you introduce new routing paths or escalation policies.
+<Step title="Define triggers (keywords and/or intent)" icon="terminal">
+
+Use triggers to match the right conversations without catching everything.
+
+- For **keywords**, enter a comma‑separated list of phrases customers actually use:
+  - Good: `refund, wrong charge, invoice issue`
+  - Risky: `billing` alone (may be too broad with unrelated mentions)
+- For **intent**, choose from the dropdown:
+  - Use `Billing`, `Sales`, `Support`, `Technical`, or `General` when the classifier is accurate for that category.
+  - Use `None` if you want the rule to rely only on keywords.
+
+Combine intent and keywords for high‑risk paths. For example:
+
+- Intent: `Billing`
+- Keywords: `refund, dispute, chargeback`
+- Destination: **Billing assistant** on chat and email
+
+This catches serious billing cases without over‑routing generic questions.
+
+</Step>
+
+<Step title="Select the target assistant" icon="arrow-right">
+
+Choose the **target assistant** that should take over if the rule matches and guardrails allow.
+
+- Send **Billing** conversations to a billing assistant tuned for invoices and payments.
+- Send **Sales** conversations on voice to a sales assistant or human sales queue.
+- Keep low‑stakes or general questions with your **general support assistant**.
+
+Verify the target assistant supports the rule's channels; do not route SMS to an email‑only assistant, for example.
+
+</Step>
+
+<Step title="Activate and review overlap" icon="check-circle">
+
+When you activate a rule:
+
+- Review **other rules** for the same channels and intents.
+- Ensure **priorities** reflect your intent:
+  - `Enterprise billing` rule should outrank `General billing`.
+  - `After-hours billing` rule (if implemented separately) should outrank general billing during that time window when applicable.
+- Run a few **manual tests** to confirm:
+  - The right rule fires.
+  - No unexpected rules match the same conversation.
+
+Keep a short internal list of “golden test cases” (sample messages) that you reuse when you tweak rules.
+
+</Step>
+
+</Steps>
+
+## Tune handoff guardrails and business hours
+
+Guardrails and business hours determine whether a proposed transfer is actually allowed.
+
+### Guardrail patterns that work well
+
+Use these starting patterns, then adjust based on data.
+
+- **Standard support queue**
+  - Max handoffs per conversation: **3**
+  - Cooldown: **3 messages or 5 minutes**
+  - Loop prevention: **enabled**
+  - Max handoffs per hour: set only if your team is small and sensitive to spikes.
+
+- **High-touch billing escalations**
+  - Max handoffs per conversation: **2** (AI → Billing assistant → Human billing)
+  - Cooldown: **5 messages or 10 minutes**
+  - Loop prevention: **enabled**
+  - Max handoffs per hour: tune based on your billing team size.
+
+- **Technical troubleshooting**
+  - Max handoffs per conversation: **4–5** (AI hands to specialized technical assistant, then possibly to human)
+  - Cooldown: **2–3 messages** to allow quick experiments.
+  - Loop prevention: **enabled**, to avoid bouncing between tiers.
+
+<Callout kind="tip">
+
+If agents complain about “ping‑pong” between assistants or teams, increase cooldowns and make sure **loop prevention** is enabled in Handoff Settings.
+
+</Callout>
+
+### Configure business hours without surprises
+
+Business hours prevent handoffs from sending customers to empty queues.
+
+<Steps>
+
+<Step title="Set timezone and core hours" icon="clock">
+
+In **Handoff Settings**, first:
+
+- Choose the **timezone** for the primary team handling routed conversations.
+- For each active day (for example, Monday–Friday), enable the day and set:
+  - **Start time** when humans begin accepting routed conversations.
+  - **End time** when handoffs to humans should stop.
+
+If you have multiple regions, pick one timezone as the “source of truth” and document how other regions map to it.
+
+</Step>
+
+<Step title="Define after-hours behavior" icon="moon">
+
+Decide what should happen when a routing rule matches outside business hours.
+
+Common patterns:
+
+- **AI-only after hours**  
+  Keep AI in control and show a message like `Our team is offline right now, but I can still help with common questions and log issues for follow-up.`
+
+- **Limited after-hours queue**  
+  Route only critical intents (for example, Billing for outages) to a 24/7 queue; keep everything else with AI.
+
+Align this behavior with your SLAs so customers are never promised a human response you cannot deliver.
+
+</Step>
+
+<Step title="Add holidays and special days" icon="calendar">
+
+Use **holiday overrides** for days when your regular schedule does not apply:
+
+- Company-wide holidays.
+- Partial days (for example, closing at 3pm for an all‑hands meeting).
+- Regional holidays if they affect key teams.
+
+For each override, specify:
+
+- The **date**.
+- Whether you are **closed** or operating on special hours.
+- What should happen to handoffs (often same as after-hours behavior).
+
+</Step>
+
+</Steps>
+
+<Callout kind="alert">
+
+Common pitfall: forgetting to update business hours and holiday overrides when your support schedule changes. When in doubt, check Handoff Settings before assuming routing is broken.
+
+</Callout>
+
+## Settings you will touch most
+
+You do not need to memorize every field. These are the controls admins use most often when tuning routing and handoffs.
+
+<ParamField body="routing.ruleName" param-type="string" show-location="false">
+
+Descriptive name for a routing rule, such as `Billing chat escalations` or `Technical SMS triage`. Make names specific enough that operators can guess what the rule does from the list view.
+
+</ParamField>
+
+<ParamField body="routing.triggers" param-type="keywords + intent" show-location="false">
+
+Combination of comma‑separated **keywords** and a high‑level **intent** (Sales, Support, Billing, Technical, General, None) that activates the rule. Use both for high‑risk or high‑value paths.
+
+</ParamField>
+
+<ParamField body="routing.priority" param-type="integer" show-location="false">
+
+Priority that decides which rule wins when multiple rules match. Use higher priority (or lower number, depending on the UI) for more specific or sensitive rules so they override broad defaults.
+
+</ParamField>
+
+<ParamField body="handoff.enabled" param-type="boolean" show-location="false">
+
+Global toggle to enable or disable automatic handoffs. Use this as an emergency stop if guardrails misbehave or if you need to pause routing during an incident.
+
+</ParamField>
+
+<ParamField body="handoff.messageTemplate" param-type="template string" show-location="false">
+
+Template for the message customers see when a handoff occurs. Include placeholders like `agent_name`, `customer_intent`, and `task_description` to give both the customer and the next agent clear context.
+
+</ParamField>
+
+<ParamField body="handoff.guardrails" param-type="limits" show-location="false">
+
+Group of settings that cap how many and how often handoffs occur: maximum per conversation, cooldown by messages/minutes, loop prevention, and optional hourly limits. These protect humans from overload and prevent confusing back‑and‑forth.
+
+</ParamField>
+
+<ParamField body="handoff.businessHours" param-type="schedule" show-location="false">
+
+Timezone, weekly schedule, after-hours behavior, and holiday overrides that control when handoffs to humans are allowed. Always review these when you change support coverage.
+
+</ParamField>
+
+## Troubleshooting routing and handoffs
+
+Use these checks when behavior does not match expectations.
+
+### Symptom: conversations are not routing at all
+
+- Confirm the relevant **Routing Rules are active** and scoped to the correct **channels**.
+- Check that **keywords and intent** actually match real customer messages.
+- Verify that **agent handoff is enabled** in Handoff Settings.
+- Look at **business hours**:
+  - If you are outside business hours and after-hours behavior keeps AI in control, no handoff will occur.
+
+### Symptom: too many or noisy handoffs
+
+- Review **trigger keywords** and remove overly broad terms.
+- Tighten **intent selection** (for example, only Billing instead of General).
+- Decrease **max handoffs per conversation** and increase **cooldown**.
+- Confirm **loop prevention** is enabled to avoid ping‑pong between assistants.
+
+### Symptom: customers see confusing or empty handoff messages
+
+- Open Handoff Settings and review the **message template**:
+  - Check that placeholders like `{agent_name}`, `{customer_intent}`, and `{task_description}` are spelled correctly.
+  - Add a short, plain‑language explanation of why the handoff is happening and what will happen next.
+- Make sure **human response time** matches your real SLA so expectations are accurate.
+
+### Symptom: handoffs during closed hours or holidays
+
+- Double‑check the **timezone** and **weekly schedule** in business hours.
+- Review **holiday overrides** for the current date.
+- Confirm **after-hours behavior** is set as expected (AI-only vs limited queues).
+
+## Operate and iterate over time
+
+Treat Routing & Handoffs as an ongoing control panel, not a one‑time configuration.
+
+- **Review metrics and agent feedback** weekly for the most active rules.
+- **Archive or deactivate stale rules** that no longer match your products or teams.
+- **Align with assistants and playbooks**:
+  - When you add a new assistant or playbook, revisit routing rules that should send it traffic.
+- **Document changes** in your internal runbooks so on‑call leads understand:
+  - When handoffs occur.
+  - How to override AI if needed.
+  - Where to report misrouted conversations.
 
 <Callout kind="info">
 
-When you change routing or handoff behavior, update internal runbooks so support and operations teams understand when handoffs will occur, how to override AI if needed, and where to report misrouted conversations.
+When you make meaningful routing or handoff changes, communicate them to operations and support leads with example conversations. This reduces surprise and speeds up feedback on whether the new configuration works.
 
 </Callout>
 

@@ -1,0 +1,345 @@
+---
+title: Configure email domains
+description: Configure custom sending domains, add required DNS records, verify status, and generate SMTP credentials for outgoing email.
+---
+
+## Email domain settings overview
+
+Configure custom sending domains so Emailit can send email from addresses on your own domain (for example, `support@acme.co`) instead of a shared default domain.
+
+The Email page in Settings is organized into two main areas:
+
+<Tabs>
+
+<Tab title="Domains & DNS verification" icon="globe-2">
+
+Use this tab to add new sending domains, view required DNS records, and track verification status.
+
+</Tab>
+
+<Tab title="SMTP credentials" icon="lock">
+
+Use this tab to generate SMTP credentials for verified domains so external systems can send mail through Emailit.
+
+</Tab>
+
+</Tabs>
+
+## Prerequisites
+
+<Callout kind="info">
+
+To configure a custom email domain, you need:
+
+- Access to the Email settings page as a tenant admin or equivalent role.
+- Admin access to your domain registrar or DNS provider (for example, Cloudflare, Route 53, GoDaddy).
+- Permission to add or edit DNS records (TXT and CNAME) for your domain.
+
+</Callout>
+
+<Callout kind="info">
+
+DNS changes can take time to propagate. Verification may complete in as little as 15 minutes, but it can take up to 48 hours depending on your DNS provider.
+
+</Callout>
+
+## Domains and DNS verification
+
+The **Email Domain Settings** section lets you register domains, view DNS instructions, and monitor verification.
+
+### Key fields and controls
+
+<ParamField body="domain" param-type="string" required="true" show-location="false">
+
+The sending domain you want to configure, for example `acme.co`. Enter the bare domain without protocol or path.
+
+</ParamField>
+
+<ParamField body="dnsRecords" param-type="array" show-location="false">
+
+List of DNS records that you must add at your DNS provider to verify the domain. Each record includes type (`TXT` or `CNAME`), name/host, value, and (for some TXT records) priority.
+
+</ParamField>
+
+<ParamField body="status" param-type="string" show-location="false">
+
+The current verification status for the domain. Values: `Pending`, `Verified`, or `Failed`.
+
+</ParamField>
+
+<ParamField body="checkStatus" param-type="action" show-location="false">
+
+Button that triggers an immediate re-check of DNS records for the domain.
+
+</ParamField>
+
+<ParamField body="autoRefresh" param-type="boolean" show-location="false">
+
+Toggle that automatically refreshes verification status for pending domains approximately every 5 minutes.
+
+</ParamField>
+
+<ParamField body="deleteDomain" param-type="action" show-location="false">
+
+Action that removes the domain and its verification data after a confirmation step.
+
+</ParamField>
+
+<Callout kind="alert">
+
+When you delete a verified domain, Emailit stops sending email using that domain. Update any workflows or SMTP integrations before removing domains that are in active use.
+
+</Callout>
+
+### Domain status values
+
+Domain cards show a status badge:
+
+- **Pending** — You added the domain, but required DNS records are not fully detected yet. This is the expected state right after adding records at your DNS provider.
+- **Verified** — All required DNS records are present and valid. Emailit can send from this domain and expose SMTP credentials.
+- **Failed** — DNS records are missing, incorrect, or conflicting. You need to fix DNS at your provider and then run **Check status** again.
+
+If a domain keeps bouncing between `Pending` and `Failed`, review the DNS records carefully for typos, extra spaces, or conflicting entries.
+
+## Add and verify a sending domain
+
+Use these steps to register a new domain and complete DNS verification.
+
+<Steps>
+
+<Step title="Open Email settings" icon="settings">
+
+Go to **Settings → Email** in the sidebar, then look in the **Email Domain Settings** section.
+
+You should see an input labeled for adding a new domain and an **Add** button.
+
+</Step>
+
+<Step title="Add your domain" icon="plus">
+
+Enter the domain you want to use for sending, such as `acme.co`.
+
+Avoid including subdomains like `mail.acme.co` unless you specifically intend to configure a subdomain as the sending domain.
+
+Click **Add**.
+
+A new domain card appears with a `Pending` status and a list of required DNS records.
+
+</Step>
+
+<Step title="Review required DNS records" icon="book-open">
+
+On the new domain card:
+
+- Review each DNS record in the **DNS records** section.
+- Note the **Type** (`TXT` or `CNAME`), **Name/Host**, **Value**, and any **Priority**.
+- Use the copy buttons next to Name and Value fields to avoid typos when configuring DNS.
+
+Typical records help prove ownership of your domain and authorize Emailit as a sender (for example, SPF and DKIM-related records).
+
+</Step>
+
+<Step title="Add records at your DNS provider" icon="terminal">
+
+In a separate tab, open your DNS provider or domain registrar and add the records from the domain card:
+
+- Create **TXT records** with the exact Name and Value shown.
+- Create **CNAME records** matching the Name and Value, leaving other defaults as suggested by your provider.
+- If your provider automatically appends the domain, enter only the host part shown in the Name field (for example, `email` instead of `email.acme.co`).
+
+After saving all records, return to the Email settings page.
+
+</Step>
+
+<Step title="Wait for DNS propagation" icon="clock">
+
+Keep the domain card open and watch the status:
+
+- Leave **Auto-refresh** enabled so Emailit re-checks DNS every few minutes.
+- If you prefer manual control, disable auto-refresh and use **Check status** when you are ready.
+
+DNS propagation often completes within 15–30 minutes, but it can take up to 48 hours.
+
+</Step>
+
+<Step title="Confirm domain is verified" icon="check-circle">
+
+Once all records are visible and valid:
+
+- The domain status badge changes to `Verified`.
+- The DNS records section shows each record as successful.
+- The SMTP credentials section for this domain becomes available.
+
+At this point, Emailit can send email using this domain through configured workflows and integrations.
+
+</Step>
+
+</Steps>
+
+## Manage SMTP credentials
+
+After verification, use SMTP credentials to send email through Emailit from external systems such as CRMs, ticketing tools, or custom applications.
+
+<Tabs>
+
+<Tab title="View and create credentials" icon="lock">
+
+### SMTP credentials for a verified domain
+
+For each **Verified** domain, the domain card shows an **SMTP Credentials** section listing existing credentials and a **Create** button.
+
+<ParamField body="smtpUsername" param-type="string" show-location="false">
+
+Identifier used when authenticating over SMTP. Each credential has a unique username.
+
+</ParamField>
+
+<ParamField body="createdAt" param-type="string" show-location="false">
+
+Timestamp when the SMTP credential was created, displayed for auditing.
+
+</ParamField>
+
+<ParamField body="active" param-type="boolean" show-location="false">
+
+Indicator that the credential is currently active and can be used for sending.
+
+</ParamField>
+
+</Tab>
+
+<Tab title="Generate new credentials" icon="plus">
+
+### Create SMTP credentials
+
+Use these steps when you need a new SMTP login for a verified domain.
+
+<Steps>
+
+<Step title="Open the verified domain" icon="chevron-right">
+
+Go to **Settings → Email** and locate the domain card with a `Verified` status.
+
+Scroll to the **SMTP Credentials** section on that card.
+
+You should see a list of existing credentials (if any) and a **Create** button.
+
+</Step>
+
+<Step title="Create a new credential" icon="plus">
+
+Click **Create** in the **SMTP Credentials** section.
+
+Wait for the interface to generate a new SMTP credential entry.
+
+A new row appears with a generated username, creation date, and an active status indicator.
+
+</Step>
+
+<Step title="Use credentials in your SMTP client" icon="terminal">
+
+Configure your SMTP client or integration using:
+
+- The SMTP hostname and port documented for Emailit in your integration or environment settings.
+- The generated **username** from the credentials list.
+- The corresponding password or secret presented when the credential is created (store this securely according to your security policies).
+
+Send a test email from your client using a `From` address on the verified domain to confirm everything is working.
+
+</Step>
+
+</Steps>
+
+</Tab>
+
+</Tabs>
+
+## Delete a domain
+
+Only remove a domain when you are sure it is no longer used for sending.
+
+<Steps>
+
+<Step title="Confirm impact" icon="alert-triangle">
+
+Before deleting:
+
+- Check workflows, automations, or SMTP integrations that send from this domain.
+- If needed, migrate them to another verified domain first.
+
+Once deleted, Emailit cannot send email using that domain until you add and verify it again.
+
+</Step>
+
+<Step title="Delete the domain" icon="trash">
+
+Go to **Settings → Email** and find the domain card you want to remove.
+
+Click the **Delete** action on that card, then confirm the deletion in the dialog.
+
+The domain and its DNS verification data are removed from Email settings.
+
+</Step>
+
+</Steps>
+
+## Troubleshooting domain verification
+
+Use this section if your domain stays `Pending` or becomes `Failed`.
+
+<ExpandableGroup>
+
+<Expandable title="Domain stuck in Pending for a long time" default-open="true">
+
+If the domain has been `Pending` for more than a few hours:
+
+- Use **Check status** to trigger a fresh DNS lookup.
+- Verify that the DNS records exist at your provider and have fully propagated.
+- Check whether your provider uses separate fields for host vs. domain; some providers automatically append the domain name.
+
+If the domain remains `Pending` after 48 hours, compare DNS values carefully against the Email settings page and fix any mismatches.
+
+</Expandable>
+
+<Expandable title="Status Failed after adding DNS records">
+
+A `Failed` status usually indicates:
+
+- A required record is missing.
+- The Name or Value is slightly different from what Emailit expects.
+- There are conflicting SPF or DKIM-related records for the same host.
+
+To fix this:
+
+- Remove or correct any records that do not match the values shown on the domain card.
+- Avoid merging SPF or DKIM values unless you know how to construct combined records correctly.
+- After changes, wait a few minutes and click **Check status** again.
+
+</Expandable>
+
+<Expandable title="SPF and DKIM considerations">
+
+DNS records for email often include:
+
+- **SPF (TXT)** records that authorize specific senders for your domain.
+- **DKIM (CNAME or TXT)** records that let Emailit cryptographically sign outgoing messages.
+
+If your domain already has SPF or DKIM records:
+
+- Avoid adding duplicate SPF records for the same host.
+- Ensure Emailit-related DKIM hostnames and values match exactly what is shown in the DNS records list.
+- When unsure how to safely combine records, coordinate with your email or DNS administrator.
+
+</Expandable>
+
+<Expandable title="Still cannot verify?">
+
+If verification still fails after double-checking DNS:
+
+- Capture screenshots or text exports of the DNS records you added.
+- Note the exact domain, DNS provider, and how long ago you changed the records.
+- Contact your internal support team or Emailit support with these details so they can review DNS resolution from their side.
+
+</Expandable>
+
+</ExpandableGroup>

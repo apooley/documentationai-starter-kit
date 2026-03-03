@@ -32,21 +32,6 @@
                 "title": "Dashboard",
                 "path": "pages/overview/dashboard",
                 "icon": "layout-dashboard"
-              },
-              {
-                "title": "Features",
-                "path": "features",
-                "icon": "puzzle"
-              },
-              {
-                "title": "Integrations",
-                "path": "integrations",
-                "icon": "plug"
-              },
-              {
-                "title": "Pages overview",
-                "path": "pages/overview",
-                "icon": "book-open"
               }
             ]
           },
