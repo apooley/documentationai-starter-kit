@@ -1,54 +1,63 @@
 ---
 title: Messaging Directives
-description: Create global rules and instructions that apply to all your AI assistants across every channel.
+description: Set persistent behavioral rules that apply across all your AI assistants — controlling tone, formatting, response length, and more.
 ---
 
-## What are Messaging Directives?
+## What are messaging directives?
 
-While Playbooks define specific goals and Personas define an individual assistant's tone, **Messaging Directives** are global rules that apply to *all* your AI assistants, regardless of their specific role or the channel they are operating on.
+**Messaging Directives** (at **AI Assistant > Messaging Directives**) are workspace-wide behavioral rules that apply to every AI assistant in your workspace, regardless of their individual persona or playbook.
 
-Think of Directives as your company's universal communication guidelines. They ensure consistency and compliance across every automated interaction.
+Think of them as standing orders that sit above everything else. While a persona tells an individual assistant how to behave, a messaging directive tells *all* your assistants how to behave.
 
-You can manage these global rules by navigating to **AI Assistant > Messaging Directives**.
+## Directives vs. personas
 
-## Why Use Directives?
+It's worth understanding the difference:
 
-Directives are perfect for enforcing rules that should never be broken, such as:
+| | Persona | Messaging Directive |
+|---|---|---|
+| **Scope** | One assistant | All assistants in the workspace |
+| **Purpose** | Defines the assistant's role and character | Sets universal communication rules |
+| **Example** | "You are a friendly sales rep named Alex" | "Never use bullet points in responses" |
 
-- **Brand Voice**: "Always refer to our company as 'Autoch.at', never 'Auto Chat'."
-- **Formatting**: "Always use bullet points when listing more than two items."
-- **Compliance**: "Never guarantee a specific delivery date; always say 'estimated delivery'."
-- **Safety**: "If a user asks for medical advice, state clearly that we are a software company and cannot provide medical information."
+Use messaging directives for rules you want to enforce consistently across your entire operation — things that should never vary between assistants.
 
-By setting these rules globally, you don't have to remember to add them to every single assistant's persona or every individual playbook.
+## Common uses
 
-## Creating a Directive
+### Response formatting
 
-To create a new global rule:
+If you want all your assistants to communicate in a specific way, directives are the right place to set that:
 
-1. Navigate to **AI Assistant > Messaging Directives**.
-2. Click **Create Directive**.
-3. Give the directive a clear, descriptive name (e.g., "Formatting: Bullet Points").
-4. Write the specific instruction in the **Directive Content** field. Be as clear and unambiguous as possible.
-5. Save the directive.
+- "Keep all responses under 3 sentences."
+- "Never use bullet points or numbered lists. Always write in full paragraphs."
+- "Always end your response with a question to keep the conversation going."
 
-It will immediately take effect for all active assistants.
+### Tone and language
 
-## Directives vs. Training Context
+- "Always use formal, professional language. Never use contractions."
+- "Respond in the same language the customer uses."
+- "Avoid jargon and technical terms. Use plain language."
 
-It's important to understand the difference between a Directive and Training Context (like an FAQ or a Document).
+### Compliance and legal
 
-- **Training Context** provides *information* (e.g., "Our office hours are 9 AM to 5 PM EST."). The AI uses this information to answer questions.
-- **Messaging Directives** provide *instructions on behavior* (e.g., "Always end your response by asking if there's anything else you can help with."). The AI follows these instructions when formulating its response.
+- "Never make specific claims about pricing. Always direct pricing questions to a human agent."
+- "Do not provide medical, legal, or financial advice."
+- "Always include this disclaimer at the end of any response about our services: [disclaimer text]."
+
+## Creating a directive
+
+1. Go to **AI Assistant > Messaging Directives**.
+2. Click **Add Directive**.
+3. Write the directive as a clear, specific instruction.
+4. Click **Save**.
+
+The directive takes effect immediately for all new conversations. Existing active conversations will pick it up on the next AI response.
 
 <Callout kind="tip">
-**Keep Directives concise.** If you have a 5-page document on your brand voice, don't paste the whole thing into a Directive. Instead, extract the 3-5 most critical rules (e.g., "Never use emojis," "Always use title case for product names") and create individual Directives for them. Upload the full document to Training Context.
+Write directives as direct instructions, not preferences. "Keep responses under 3 sentences" is more effective than "Try to keep responses fairly short." The more specific you are, the more reliably the AI will follow the rule.
 </Callout>
 
-## Managing Directives
+## Managing your directives
 
-As your business policies change, you can easily update or disable Directives.
+Keep your directive list focused. A long list of conflicting or overlapping directives can confuse the AI and produce inconsistent results. Review your directives periodically and remove any that are no longer needed or that contradict each other.
 
-- **Edit**: Modify the content of a directive to refine the AI's behavior.
-- **Toggle On/Off**: Temporarily disable a directive without deleting it. This is useful for testing how a rule affects conversation quality or for seasonal guidelines (e.g., "During December, always wish the customer Happy Holidays").
-- **Delete**: Permanently remove a directive that is no longer relevant.
+If a directive is causing unexpected behavior in a specific assistant, check whether it conflicts with that assistant's persona. Persona instructions and directives can sometimes pull in opposite directions.

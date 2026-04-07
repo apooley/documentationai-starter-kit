@@ -1,91 +1,75 @@
 ---
 title: SMS Workflows
-description: Configure SMS-specific workflows, compliance settings, and engagement patterns.
+description: Automate SMS responses and follow-up messages — triggered by inbound texts, conversation events, or time-based delays.
 ---
 
-## What are SMS Workflows?
+## What SMS workflows do
 
-While Email Workflows handle asynchronous communication, **SMS Workflows** (located at **Conversations > SMS Workflows**) are designed for the immediate, high-engagement nature of text messaging.
+**SMS Workflows** (at **Conversations > SMS Workflows**) work the same way as Email Workflows, but for your SMS channel. They let you automate responses and actions based on what happens in your text message conversations.
 
-SMS workflows allow you to automate sequences of text messages, manage opt-ins and opt-outs, and handle routing based on the content of an incoming text or the status of a lead.
+Common uses include:
 
-## Key Concepts
+- Sending an instant acknowledgment when a new text arrives
+- Following up with a customer who hasn't responded in 24 hours
+- Routing texts that contain specific keywords to the right team
+- Sending appointment reminders or confirmation messages
 
-To effectively use SMS Workflows, you need to understand a few core concepts:
+## How SMS workflows are structured
+
+Like email workflows, every SMS workflow has three parts:
+
+1. **Trigger** — The event that starts the workflow
+2. **Conditions** (optional) — Filters that narrow down when it should run
+3. **Actions** — What happens when the trigger fires
 
 ### Triggers
 
-A workflow is initiated by a **Trigger**. This is the event that causes the workflow to start.
-
-Common triggers include:
-- **New SMS Received**: A text message arrives at a specific provisioned phone number.
-- **Keyword Received**: A user texts a specific word (e.g., "JOIN", "STOP", "HELP").
-- **Tag Added**: A specific tag is applied to a conversation (e.g., "SMS Lead").
-- **Lead Status Changed**: A contact's status in your CRM changes (e.g., from "New" to "Qualified").
+| Trigger | When it fires |
+|---|---|
+| **New SMS received** | An inbound text message arrives |
+| **Conversation resolved** | An SMS conversation is marked as resolved |
+| **Tag applied** | A specific tag is added to the conversation |
+| **No response after X hours** | The conversation has been open without a reply for a set time |
+| **Keyword detected** | The customer's message contains a specific word or phrase |
 
 ### Conditions
 
-Once a workflow is triggered, it evaluates **Conditions** to determine if it should proceed.
-
-Conditions act as filters:
-- **Phone Number**: Only run the workflow if the text comes from a specific area code or country.
-- **Message Contains**: Only run if the message includes certain keywords (e.g., "Appointment", "Confirm").
-- **Business Hours**: Only run the workflow during (or outside of) your defined business hours.
+Conditions let you target specific scenarios. For example, only run the workflow if the message arrives after business hours, or only if the customer is tagged as a "VIP."
 
 ### Actions
 
-If the conditions are met, the workflow executes one or more **Actions**.
+| Action | What it does |
+|---|---|
+| **Send SMS** | Send a text message to the customer |
+| **Apply tag** | Add a label to the conversation |
+| **Assign conversation** | Route to a specific agent or team |
+| **Add internal note** | Leave a private note on the conversation |
+| **Wait** | Pause before the next action |
 
-Actions are the steps the workflow takes:
-- **Send SMS**: Send a pre-written text message template or an AI-generated response.
-- **Add Tag**: Apply a tag to the conversation for organization.
-- **Assign to Team/Agent**: Route the text to a specific human or group.
-- **Update CRM**: Change a field in the customer's CRM record.
-- **Wait**: Pause the workflow for a specified duration before executing the next action.
+## SMS-specific considerations
 
-## Creating an SMS Workflow
+### Message length
 
-1. Navigate to **Conversations > SMS Workflows**.
+SMS messages have a 160-character limit per segment. Longer messages are automatically split into multiple segments, which increases cost. Keep your automated messages concise.
+
+### Opt-out handling
+
+Autoch.at automatically handles STOP/UNSTOP commands from customers. If a customer replies STOP, they will be opted out of all outbound SMS from your workspace and no further automated messages will be sent to them. This is a legal requirement in most jurisdictions.
+
+### Timing
+
+Be mindful of when your automated SMS messages are sent. Sending texts in the middle of the night is not only annoying — it may violate regulations in some regions. Use the **Wait** action combined with a business hours condition to ensure messages only go out at appropriate times.
+
+<Callout kind="warning">
+Always comply with local SMS regulations, including obtaining proper consent before sending marketing messages. Autoch.at handles opt-out mechanics automatically, but obtaining initial consent is your responsibility.
+</Callout>
+
+## Creating an SMS workflow
+
+1. Go to **Conversations > SMS Workflows**.
 2. Click **Create Workflow**.
-3. Give your workflow a descriptive name (e.g., "Appointment Reminder" or "Opt-in Confirmation").
-4. Define the **Trigger** that will start the workflow.
-5. Add any necessary **Conditions** to filter when the workflow runs.
-6. Add the **Actions** you want the workflow to perform.
-7. Save and activate the workflow.
+3. Name it clearly (e.g., "After-Hours Auto-Reply").
+4. Set your trigger, conditions, and actions.
+5. Toggle it to **Active** and save.
 
-## Common Use Cases
-
-### 1. The Opt-in Confirmation
-
-This workflow ensures compliance by confirming a user's intent to receive text messages.
-
-- **Trigger**: Keyword Received ("JOIN").
-- **Action 1**: Send SMS (Template: "Welcome to Autoch.at alerts! Reply STOP to cancel at any time.").
-- **Action 2**: Update CRM (Set "SMS Opt-in" to True).
-
-### 2. The Appointment Reminder
-
-This workflow automates reminders for scheduled events.
-
-- **Trigger**: Tag Added ("Appointment Scheduled").
-- **Action 1**: Wait (24 hours before appointment).
-- **Action 2**: Send SMS (Template: "Reminder: You have an appointment tomorrow at [Time]. Reply CONFIRM or CANCEL.").
-- **Condition**: Has the user replied? (If Yes, exit workflow).
-- **Action 3**: Wait (2 hours before appointment).
-- **Action 4**: Send SMS (Template: "Your appointment is in 2 hours. See you soon!").
-
-### 3. The Keyword Auto-Responder
-
-This workflow provides immediate answers to common questions via text.
-
-- **Trigger**: Keyword Received ("HOURS").
-- **Action 1**: Send SMS (Template: "Our business hours are Monday-Friday, 9 AM to 5 PM EST.").
-
-## Managing Workflows
-
-As your processes evolve, you can easily update your workflows.
-
-- **Edit**: Modify the triggers, conditions, or actions of an existing workflow.
-- **Pause/Activate**: Temporarily disable a workflow without deleting it.
-- **Duplicate**: Create a copy of a workflow to use as a starting point for a new one.
-- **Delete**: Permanently remove a workflow that is no longer needed.
+The workflow will run automatically from that point forward for all matching SMS conversations.

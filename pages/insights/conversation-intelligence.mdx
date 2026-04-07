@@ -1,62 +1,50 @@
 ---
 title: Conversation Intelligence
-description: Analyze response speed, missed follow-ups, and objections across your conversations to improve AI and agent performance.
+description: Automatically surface insights from your conversations — sentiment trends, common topics, escalation patterns, and more.
 ---
 
-## What is Conversation Intelligence?
+## Let your conversations teach you
 
-**Conversation Intelligence** (located at **Insights > Conversation Intelligence**) is an analytical tool that goes beyond simple volume metrics. It uses AI to retrospectively analyze the content and quality of your conversations, surfacing patterns, problems, and opportunities that would be impossible to find by reading individual threads.
+**Conversation Intelligence** (at **Insights > Conversation Intelligence**) automatically analyzes your conversation data to surface patterns and insights you'd never find by reading individual threads.
 
-Think of it as an automated quality assurance (QA) reviewer that reads every conversation and reports back on what's working, what's not, and what needs attention.
+Instead of manually reviewing hundreds of conversations to understand what customers are asking about or why they're escalating, Conversation Intelligence does that work for you and presents the findings in a clear, actionable dashboard.
 
-## Running an Analysis
+## What it analyzes
 
-Conversation Intelligence does not run continuously in real-time. Instead, you trigger an analysis on demand.
+### Topic clustering
 
-1. Navigate to **Insights > Conversation Intelligence**.
-2. Use the **filter controls** at the top of the page to define the scope of your analysis:
-   - **Time Range**: Analyze conversations from the last 7 days, 30 days, or 90 days.
-   - **Channel**: Focus on a specific channel (Chat, SMS, Email, Voice) or analyze all channels together.
-   - **Playbook**: Narrow the analysis to conversations that used a specific playbook.
-   - **Version**: If you are running Playbook Experiments, you can compare the intelligence results across different playbook versions.
-3. Click **Run Analysis**.
+Autoch.at groups conversations by topic automatically — without you having to define the topics in advance. The result is a map of what your customers are actually talking about, ranked by volume.
 
-The system will process the conversations matching your filters. For large datasets, this may take a few minutes. The page will display the **Latest Run** timestamp and the **Status** (e.g., "completed") once it's ready.
+This is useful for:
+- Identifying the most common support issues so you can address them proactively
+- Spotting new topics that are suddenly spiking in volume
+- Finding gaps in your training context (topics the AI is struggling with)
 
-## What the Analysis Reports
+### Sentiment analysis
 
-The Conversation Intelligence dashboard presents its findings in three key sections.
+Every conversation is scored for overall sentiment — positive, neutral, or negative. The dashboard shows you sentiment trends over time and lets you filter by channel, assignee, or topic.
 
-### Response Time vs. Qualification
+A sudden drop in positive sentiment or a spike in negative sentiment is often an early warning sign of a product issue, a service problem, or a gap in your AI's handling.
 
-This section analyzes the relationship between how quickly a response is sent and whether the conversation results in a qualified lead.
+### Escalation patterns
 
-The goal is to answer the question: **Does responding faster lead to more qualified leads?**
+Conversation Intelligence tracks when and why conversations are escalated from AI to human. Common escalation triggers are surfaced automatically, so you can see exactly what's causing your AI to hand off.
 
-If the data shows a strong correlation, it's a signal to prioritize reducing your first response time—either by improving AI automation or ensuring human agents are staffed during peak hours.
+If a particular topic is causing frequent escalations, that's a signal to improve your training context or playbook for that topic.
 
-### Missed Follow-ups
+### Resolution analysis
 
-This section identifies conversations where a follow-up was expected but never happened.
+See which types of conversations are resolved quickly and which ones drag on. Long resolution times often indicate that your AI or your team needs better resources to handle a particular issue type.
 
-Common scenarios include:
-- A customer asked a question that the AI couldn't answer, but no human agent followed up.
-- A customer said they would "think about it" and come back, but there was no proactive outreach.
-- A conversation was left open for an extended period without any new messages.
+## Using the insights
 
-Reviewing missed follow-ups helps you identify gaps in your routing rules or agent workflows, and can directly improve your conversion rates.
+The goal of Conversation Intelligence isn't just to show you data — it's to help you take action. Each insight card includes a **What to do** suggestion that points you to the right place in Autoch.at to address the finding.
 
-### Objections
+For example:
+- A high-volume topic with a low FAQ hit rate → Add it to your Training Context
+- A frequent escalation trigger → Update your Playbook to handle it
+- A sentiment drop on a specific channel → Investigate recent conversations on that channel
 
-This section identifies the most common objections or concerns raised by customers across all analyzed conversations.
+## Filters and date ranges
 
-For example, if many customers are saying things like "your price is too high" or "I'm not sure if this integrates with our tool," the Objections section will surface these patterns.
-
-This data is invaluable for:
-- **Training Context**: Add FAQs or documents that directly address the most common objections.
-- **Playbook Refinement**: Update your playbooks to proactively address objections before the customer raises them.
-- **Product Feedback**: Share objection data with your product team to inform the roadmap.
-
-<Callout kind="tip">
-**Run Conversation Intelligence regularly.** As your AI assistants handle more conversations, the quality of the analysis improves. We recommend running it weekly or after any significant change to your assistants, playbooks, or training context.
-</Callout>
+Use the filters at the top of the page to focus on specific channels, date ranges, or assignees. Narrowing the scope often reveals insights that are hidden in the aggregate data.

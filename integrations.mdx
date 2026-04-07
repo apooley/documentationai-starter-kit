@@ -1,90 +1,72 @@
 ---
 title: Integrations
-description: Connect Autoch.at with your existing tools, CRMs, and communication channels.
+description: Connect Autoch.at to the tools you already use — CRMs, calendars, email providers, and more.
 ---
 
-## Connecting Your Tech Stack
+## Connect your stack
 
-Autoch.at is designed to be the central hub for your customer communications, but it doesn't operate in a vacuum. By integrating Autoch.at with the tools you already use, you can ensure data flows seamlessly across your organization, eliminating manual data entry and providing your AI assistants with the context they need to be effective.
+Autoch.at integrates with the tools your business already relies on. Connections are managed in **Settings** and in the **CRM** section of the platform.
 
-Integrations in Autoch.at fall into three main categories: Communication Channels, Customer Relationship Management (CRM) systems, and Custom API connections.
+## Communication channels
 
-## Communication Channels
+These are the channels your AI assistant and team can use to communicate with customers:
 
-To unify your inbox, you must first connect the channels where your customers are trying to reach you. Autoch.at supports a wide array of native channel integrations.
+| Channel | How to connect |
+|---|---|
+| **Website Chat Widget** | Install the JavaScript snippet from **Settings > Chat Widget** |
+| **Email** | Configure your domain in **Settings > Email** with SPF/DKIM authentication |
+| **SMS** | Provision a phone number in **Settings > Phone Numbers** |
+| **Voice (Phone)** | Provision a phone number in **Settings > Phone Numbers** and configure your AI assistant for voice |
+| **Facebook Messenger** | Connect your Facebook Page in **Social Media > Profiles** |
+| **Instagram DMs** | Connect your Instagram Business account in **Social Media > Profiles** |
+| **LinkedIn DMs** | Connect your LinkedIn Company Page in **Social Media > Profiles** |
+| **X (Twitter) DMs** | Connect your X Business account in **Social Media > Profiles** |
 
-### Web Chat
+## CRM integrations
 
-The Autoch.at Chat Widget is the most direct way to deploy an AI assistant. It can be installed on virtually any website by embedding a small JavaScript snippet.
+Sync your client records and conversation data with your CRM:
 
-We provide specific installation guides for popular platforms:
-- **WordPress**: Install via a custom HTML block or a header/footer plugin.
-- **Shopify**: Add the snippet to your `theme.liquid` file.
-- **Webflow**: Embed the code in your project's custom code settings.
+| CRM | What syncs |
+|---|---|
+| **HubSpot** | Contacts, companies, deals, notes |
+| **Salesforce** | Contacts, leads, accounts, activities |
+| **Pipedrive** | Contacts, deals, notes |
+| **Zoho CRM** | Contacts, leads, activities |
 
-### Email
+Connect your CRM at **CRM > CRM Connections**.
 
-You can connect your existing support email addresses (e.g., `support@yourcompany.com`) to Autoch.at. This allows your AI assistants to draft replies or handle entire email threads automatically.
+## Calendar integrations
 
-- **Custom Domains**: Verify your domain's DNS records (SPF, DKIM) within Autoch.at to send emails directly from the platform.
-- **Forwarding**: Set up forwarding rules in your current provider (Google Workspace, Microsoft 365) to route incoming messages to your Autoch.at inbox.
+Allow your AI assistant to check availability and book meetings:
 
-### SMS and Voice
+| Calendar | Notes |
+|---|---|
+| **Google Calendar** | Full read/write access for availability checking and booking |
+| **Microsoft Outlook / Office 365** | Full read/write access for availability checking and booking |
+| **Calendly** | Connect your Calendly account to let the AI share your booking link |
 
-Autoch.at allows you to provision phone numbers directly within the platform to handle text messages and AI voice calls.
+Connect your calendar at **Settings > Calendar Integration**.
 
-- **Local Numbers**: Provision numbers in your specific area code.
-- **Toll-Free Numbers**: Set up 800 numbers for national reach.
-- **Bring Your Own Carrier (BYOC)**: For enterprise customers, Autoch.at can integrate with your existing SIP trunking provider (e.g., Twilio, Telnyx) to handle voice traffic.
+## AI model providers
 
-### Social Media
+By default, Autoch.at uses its own managed AI infrastructure. If you want to use your own API keys for cost control, compliance, or to use specific model versions, you can bring your own keys:
 
-Connect your brand's social media profiles to manage direct messages and comments from the unified inbox.
+| Provider | Notes |
+|---|---|
+| **OpenAI** | Use your own GPT-4 or GPT-4o API key |
+| **Anthropic** | Use your own Claude API key |
 
-- **Facebook Messenger**: Handle DMs sent to your Facebook Business Page.
-- **Instagram Direct**: Manage messages sent to your professional Instagram account.
-- **X (Twitter) Direct Messages**: Respond to DMs sent to your X profile.
+Configure BYOK at **Settings > Bring Your Own Key**.
 
-## CRM Integrations
+## Webhooks and API
 
-Connecting your CRM is crucial for keeping your customer records accurate and providing your AI assistants with personalized context.
+For integrations not listed above, Autoch.at provides:
 
-Autoch.at offers native, two-way synchronization with several major CRM platforms. When connected, Autoch.at will automatically log conversations, update contact details, and pull relevant account information to inform the AI's responses.
+- **Webhooks** — Send real-time event notifications to any URL when conversations are created, updated, or resolved; when leads are qualified; or when other events occur.
+- **REST API** — Programmatically access and manage conversations, clients, and other data.
 
-### Supported Native CRMs
+Webhook configuration is available in **Settings**. API documentation is available at [api.autoch.at/docs](https://api.autoch.at/docs).
 
-- **Salesforce**: Sync leads, contacts, and log conversation activities directly to Salesforce records.
-- **HubSpot**: Keep your HubSpot contacts up-to-date and trigger HubSpot workflows based on Autoch.at interactions.
-- **Pipedrive**: Automatically create deals and log activities when an AI assistant qualifies a lead.
-- **Zoho CRM**: Sync contact data and conversation history to your Zoho account.
+## Zapier and Make
 
-If you use a CRM that is not natively supported, you can often connect it using our API or a third-party automation platform.
-
-## Custom Integrations and API
-
-For advanced use cases, Autoch.at provides tools to build custom integrations with your proprietary software or specialized third-party tools.
-
-### Webhooks
-
-You can configure Autoch.at to send real-time HTTP POST requests (webhooks) to your servers whenever specific events occur.
-
-Common webhook events include:
-- A new conversation is started.
-- A conversation is handed off to a human agent.
-- An AI assistant successfully qualifies a lead.
-- A conversation is marked as resolved.
-
-### REST API
-
-The Autoch.at REST API allows developers to programmatically interact with the platform. You can use the API to:
-- Export conversation transcripts for external analysis.
-- Update a client's custom fields based on actions taken in your own app.
-- Trigger outbound SMS or email messages.
-- Manage your Training Context programmatically.
-
-### Automation Platforms
-
-If you don't have developer resources, you can use third-party automation platforms to connect Autoch.at to thousands of other apps.
-
-- **Zapier**: Create "Zaps" to connect Autoch.at with tools like Slack, Google Sheets, or Mailchimp.
-- **Make (formerly Integromat)**: Build complex, multi-step workflows integrating Autoch.at with your broader tech stack.
+Autoch.at connects to Zapier and Make (formerly Integromat), giving you access to thousands of additional integrations without writing any code. Search for "Autoch.at" in the Zapier or Make app directories to find available triggers and actions.

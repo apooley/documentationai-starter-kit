@@ -1,57 +1,100 @@
 ---
 title: Help Center
-description: Find answers to common questions, troubleshoot issues, and read detailed guides on using Autoch.at.
+description: Find answers to common questions, troubleshooting guides, and tips for getting the most out of Autoch.at.
 ---
 
-## Welcome to the Help Center
+## Getting help
 
-The Autoch.at Help Center is your resource for resolving issues, understanding best practices, and getting the most out of your AI assistants. Whether you're setting up your first playbook or troubleshooting a complex routing rule, you'll find the information you need here.
+If you can't find what you're looking for in this documentation, here are your options:
 
-If you cannot find the answer to your question in these articles, please reach out to our support team via the chat widget in your Autoch.at dashboard.
+- **Search the docs** — Use the search bar at the top of the page to find specific topics.
+- **Contact support** — Reach the support team via the chat widget in the bottom-right corner of this page, or email [support@autoch.at](mailto:support@autoch.at).
+- **Community** — Join the Autoch.at community forum to ask questions and share tips with other users.
 
-## Frequently Asked Questions (FAQs)
+---
 
-Our FAQs cover the most common questions new users have when getting started with the platform.
+## Frequently asked questions
 
-### Getting Started
+### Getting started
 
-- **How do I connect my email domain?** Learn the steps to verify your domain and configure forwarding so your support emails appear in the unified inbox.
-- **What is the difference between an Assistant and a Playbook?** Understand how personas (Assistants) and goals (Playbooks) work together to create effective AI agents.
-- **How do I add the chat widget to my website?** Find the installation code and instructions for embedding the widget on your site.
+**How long does it take to set up Autoch.at?**
+Most teams have their AI assistant live within 30 minutes. The [Quickstart guide](/quickstart) walks you through the process step by step.
 
-### Billing and Accounts
+**Do I need technical knowledge to set up Autoch.at?**
+No. The core setup requires no coding. The chat widget installation is a simple copy-paste of a JavaScript snippet.
 
-- **How do I upgrade my plan?** Instructions for workspace Owners on how to change subscription tiers and manage payment methods.
-- **How do I invite a new team member?** Learn how to add users and assign them the appropriate roles (Admin, Manager, Agent).
+**Can I try Autoch.at before committing?**
+Yes. You can test your AI assistant in the [Widget Playground](/pages/conversations/widget-playground) before installing it on your website.
+
+---
+
+### AI Assistant
+
+**Why is my AI giving incorrect answers?**
+The most common cause is gaps in your Training Context. Go to **AI Assistant > Training Context** and add more information about the topic the AI is getting wrong. FAQs are particularly effective for ensuring precise answers to specific questions.
+
+**How do I stop the AI from talking about certain topics?**
+Use **AI Safety** to add blocked keywords or topic restrictions. You can also use **Messaging Directives** to set workspace-wide behavioral rules.
+
+**Can the AI handle multiple languages?**
+Yes. Your AI assistant can communicate in the language the customer uses. You can also set a default language in the assistant's persona settings.
+
+**What's the difference between a Playbook and Training Context?**
+Training Context is your AI's knowledge base — the facts it knows about your business. Playbooks are conversation flows — the structured steps the AI follows to achieve a specific goal like qualifying a lead or booking a meeting.
+
+---
+
+### Conversations
+
+**Why aren't conversations showing up in my inbox?**
+Check that your channels are correctly configured in Settings. For chat, make sure the widget is installed on your website. For email, verify your SPF/DKIM records. For SMS and voice, confirm your phone number is provisioned and assigned.
+
+**How do I take over a conversation from the AI?**
+In the conversation detail view, click **Take Over** in the top bar. The AI will stop responding and you'll be in control. You can hand back to the AI at any time by clicking **Return to AI**.
+
+**Can I see what the AI was going to say before it sends?**
+Yes. In the conversation composer, the AI's suggested response appears in the reply box before it's sent. You can edit it, discard it, or approve it.
+
+---
+
+### Billing and account
+
+**How is usage calculated?**
+Usage is calculated based on the number of AI-handled conversations per month, plus any per-message or per-minute charges for SMS and voice. See **Settings > Usage & Billing** for your current usage and plan details.
+
+**Can I change my plan?**
+Yes. Go to **Settings > Usage & Billing** and click **Change Plan** to upgrade or downgrade.
+
+**What happens if I exceed my plan limits?**
+You'll receive a notification when you're approaching your limits. If you exceed them, overage charges apply at the rates shown in your plan details.
+
+---
 
 ## Troubleshooting
 
-If something isn't working as expected, our troubleshooting guides can help you identify and resolve the issue.
+### Chat widget not appearing
 
-### AI Behavior
+1. Confirm the widget script is installed before the closing `</body>` tag on your website.
+2. Check that the widget isn't being blocked by a Content Security Policy (CSP) on your site.
+3. Verify that the widget isn't set to hidden in **Settings > Chat Widget** (check the launch rules).
+4. Clear your browser cache and try again.
 
-- **Why is my AI assistant giving the wrong answer?** Learn how to diagnose issues with your Training Context and ensure the AI is prioritizing the correct information.
-- **Why didn't the conversation hand off to a human?** Troubleshoot your Routing Rules and Handoff Settings to ensure guardrails aren't blocking necessary escalations.
-- **Why is the AI ignoring my Playbook instructions?** Discover common reasons why an assistant might deviate from its assigned goals and how to fix them.
+### Email not receiving messages
 
-### Channels and Integrations
+1. Verify your MX records are pointing to Autoch.at's inbound email servers (check **Settings > Email** for the required records).
+2. Confirm your SPF and DKIM records are published correctly.
+3. Check your spam folder — the first few emails may be filtered until your domain builds a sending reputation.
 
-- **Why aren't my emails showing up in the inbox?** Steps to verify your email forwarding rules and domain authentication (SPF/DKIM).
-- **Why isn't the chat widget appearing on my site?** Check your installation code, allowed domains, and proactive launch rules.
-- **Why isn't my CRM syncing?** Troubleshoot connection issues, field mappings, and sync settings for Salesforce, HubSpot, and other CRMs.
+### AI assistant not responding
 
-## Detailed Guides
+1. Check that the assistant is set to **Active** in **AI Assistant > Assistants**.
+2. Verify the assistant is assigned to the correct channel.
+3. Check **AI Safety** settings — if a blocked keyword was triggered, the AI may have been silenced.
+4. Review the conversation in your inbox — the AI's response (or reason for not responding) will be visible in the timeline.
 
-For more complex setups, our detailed guides provide step-by-step instructions and best practices.
+### Social account connection failing
 
-### Configuration
-
-- **Building an Effective Training Context**: Learn how to structure your documents, FAQs, and website links for optimal AI retrieval.
-- **Designing a Lead Qualification Playbook**: A comprehensive guide to creating a playbook that asks the right questions and accurately scores leads.
-- **Setting up Advanced Routing Rules**: How to use intent detection, keywords, and business hours to route conversations to the right team.
-
-### Operations
-
-- **Managing the Unified Inbox**: Best practices for human agents on how to monitor, take over, and resolve conversations efficiently.
-- **Using Conversation Intelligence**: How to analyze trends, identify missed follow-ups, and improve your AI's performance using the Analytics dashboard.
-- **Configuring AI Safety and Serious Mode**: A guide to protecting your brand and ensuring sensitive inquiries are handled appropriately.
+1. Confirm you're logging in with an account that has admin access to the page or profile.
+2. Check that you've granted all the requested permissions during the authorization flow.
+3. Try disconnecting and reconnecting the account.
+4. If the issue persists, contact support with the error message you're seeing.

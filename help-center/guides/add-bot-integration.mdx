@@ -1,21 +1,78 @@
 ---
-title: Adding a Bot Integration
-description: Connect a custom bot to Autoch.at Docs.
+title: Connecting Your First Channel
+description: A step-by-step guide to connecting a new communication channel to your Autoch.at workspace.
 ---
 
-## Connect Your Bot
+## Overview
+
+Autoch.at supports multiple channels — website chat, SMS, email, voice, and social media DMs. This guide walks you through connecting a new channel so conversations from that channel start flowing into your inbox.
+
+## Connecting the website chat widget
+
+The chat widget is the fastest channel to set up.
 
 <Steps>
-  <Step title="Open Integrations">
-    Go to the 'Integrations' tab in your project menu.
+  <Step title="Go to Chat Widget settings">
+    Navigate to **Settings > Chat Widget**.
   </Step>
-  <Step title="Select Bot Platform">
-    Choose your bot platform (e.g., Slack, Discord).
+  <Step title="Configure the widget">
+    Set the widget's display name, greeting message, and color to match your brand. You can preview changes in real time.
   </Step>
-  <Step title="Fill Bot Details">
-    Enter Bot Token and callback URL as required.
+  <Step title="Copy the installation snippet">
+    Click **Copy Code** to copy the JavaScript snippet.
   </Step>
-  <Step title="Save & Test">
-    Click 'Save' and then 'Test Connection' to ensure it's active.
+  <Step title="Install on your website">
+    Paste the snippet into your website's HTML just before the closing `</body>` tag. If you're using WordPress, use a plugin like **Insert Headers and Footers** or add it directly in your theme's footer template.
+  </Step>
+  <Step title="Test it">
+    Visit your website and start a test conversation to confirm the widget is working.
+  </Step>
+</Steps>
+
+## Connecting email
+
+<Steps>
+  <Step title="Go to Email settings">
+    Navigate to **Settings > Email**.
+  </Step>
+  <Step title="Add your domain">
+    Enter the domain you want to receive emails on (e.g., `support@yourcompany.com`).
+  </Step>
+  <Step title="Publish DNS records">
+    Autoch.at will provide SPF, DKIM, and MX records to add to your domain's DNS. Add these records in your domain registrar or DNS provider.
+  </Step>
+  <Step title="Verify the connection">
+    Click **Verify** after publishing the DNS records. Verification may take a few minutes while DNS propagates.
+  </Step>
+  <Step title="Set up forwarding (if needed)">
+    If you already have an email address receiving messages, set up forwarding from that address to your Autoch.at inbound address.
+  </Step>
+</Steps>
+
+## Connecting SMS
+
+<Steps>
+  <Step title="Provision a phone number">
+    Go to **Settings > Phone Numbers** and click **Get a Number**. Choose a local or toll-free number.
+  </Step>
+  <Step title="Assign it to SMS">
+    Go to **Settings > SMS** and select the number you just provisioned as your SMS number.
+  </Step>
+  <Step title="Test it">
+    Send a text message to the number and confirm it appears in your Conversations inbox.
+  </Step>
+</Steps>
+
+## Connecting social media
+
+<Steps>
+  <Step title="Go to Social Profiles">
+    Navigate to **Social Media > Profiles**.
+  </Step>
+  <Step title="Connect your account">
+    Click **Connect Account**, select your platform (Facebook, Instagram, LinkedIn, or X), and follow the authorization flow.
+  </Step>
+  <Step title="Confirm the connection">
+    Once authorized, the account will appear as connected. New DMs from that platform will now flow into your inbox.
   </Step>
 </Steps>

@@ -1,70 +1,95 @@
 ---
 title: Quickstart
-description: >-
-  Quickly set up your Autoch.at account, connect your communication channels,
-  and handle your first conversation to begin unifying customer interactions.
+description: Get Autoch.at up and running in under 30 minutes — from first login to your first live AI conversation.
 ---
 
-## Where to start
+## What you'll accomplish
 
-Autoch.at is designed to be powerful yet easy to set up. To get your first AI assistant running and handling conversations, follow these core steps:
+By the end of this guide, you'll have:
 
-<Columns cols="2">
-  <Card title="Assistants" href="/pages/ai-config/assistants" icon="bot" horizontal="false" target="_self">
-    Set up assistants - the basic building blocks of Autoch.at. Define their roles, channels, and base behaviors.
-  </Card>
-  <Card title="Playbooks" href="/pages/ai-config/playbooks" icon="book-open" horizontal="false" target="_self">
-    Playbooks are a versioned, replicable behavior layer on top of assistants. Define specific goals and conversational flows.
-  </Card>
-  <Card title="Training Context" href="/pages/ai-config/training-context" icon="database" horizontal="false" target="_self">
-    Give your assistants the right knowledge for the job by uploading documents, syncing products, or crawling your website.
-  </Card>
-  <Card title="Conversations" href="/pages/conversations/conversations" icon="message-circle" horizontal="false" target="_self">
-    Review the conversations your assistants have across all channels in a single, unified inbox.
-  </Card>
-</Columns>
+- An AI assistant configured with your business knowledge
+- A chat widget installed on your website (or tested in the Widget Playground)
+- Your first real AI conversation handled
 
-## Step-by-Step Setup
+Let's get started.
 
-### 1. Create an Assistant
+---
 
-Your first step is to create an AI Assistant. Navigate to **AI Assistant > Assistants** in the sidebar and click **Create Assistant**.
+## Step 1 — Set up your workspace
 
-Give your assistant a name (e.g., "Support Bot"), select the channels it should operate on (like Chat or Email), and define its core persona.
+When you first log in, you'll land on the **Dashboard**. Before doing anything else, take a few minutes to set up the basics:
 
-### 2. Add Training Context
+1. Go to **Settings > Branding** and add your company name, logo, and brand colors. This ensures the chat widget looks like your brand from day one.
+2. Go to **Settings > Users** and invite any team members who need access.
 
-An assistant is only as good as the knowledge it has access to. Go to **AI Assistant > Training Context** to add your business information.
+---
 
-You can:
-- Upload PDF or Word documents containing your policies
-- Add links to your website for the AI to crawl
-- Create specific Instructions or FAQs for common questions
+## Step 2 — Build your Training Context
 
-### 3. Create a Playbook
+Your AI assistant is only as good as the knowledge you give it. **Training Context** is where you teach it about your business.
 
-Playbooks tell your assistant *what* to achieve in a conversation. Navigate to **AI Assistant > AI Playbooks** and create a new playbook.
+1. Go to **AI Assistant > Training Context**.
+2. Start with the **Website** tab — enter your website URL and Autoch.at will crawl it and extract your content automatically. This is the fastest way to give your AI a solid foundation.
+3. Add any **FAQs** your customers ask most often. These are the highest-value additions — the AI will use them to answer common questions precisely.
+4. Upload any **Documents** (PDFs, Word docs) that contain useful information — product guides, pricing sheets, policies.
 
-Define the goal (e.g., "Qualify the lead and collect their email address") and attach it to the assistant you created in Step 1.
+<Callout kind="tip">
+Don't try to add everything at once. Start with your website and your top 10-20 FAQs. You can always add more later as you see what questions the AI is struggling with.
+</Callout>
 
-### 4. Configure Routing & Handoffs
+---
 
-You'll want to ensure that complex issues are escalated to human agents. Go to **AI Assistant > Routing & Handoffs**.
+## Step 3 — Create your first AI Assistant
 
-Set up a routing rule that triggers when a user asks to speak to a human, or when the AI detects a high-priority intent like "billing issue" or "cancel subscription".
+1. Go to **AI Assistant > Assistants** and click **Create Assistant**.
+2. Give it a name (this is internal — your customers won't see it).
+3. Write a **Persona** — a short description of who this assistant is and how it should behave. For example: *"You are Alex, a friendly and helpful customer support assistant for Acme Corp. You help customers with product questions, account issues, and general inquiries. You're knowledgeable, concise, and always professional."*
+4. Select the **Channels** this assistant should handle (start with Chat).
+5. Leave the other settings at their defaults for now and click **Save**.
 
-### 5. Test in the Widget Playground
+---
 
-Before going live, test your setup. Navigate to **Conversations > Messaging > Widget Playground**.
+## Step 4 — Set up a basic Playbook (optional but recommended)
 
-Here you can interact with your assistant exactly as a customer would on your website. Test different scenarios to ensure the assistant uses the training context correctly and follows the playbook instructions.
+Playbooks tell your AI how to handle specific scenarios. For your first playbook, try a simple lead qualification flow:
 
-### 6. Go Live
+1. Go to **AI Assistant > Playbooks** and click **Create Playbook**.
+2. Name it "Lead Qualification" and write a brief description of the goal.
+3. In the playbook steps, add the questions you want the AI to ask (name, company, what they're looking for, budget range).
+4. Set the completion action to notify your team when a lead is qualified.
+5. Save and assign it to your assistant.
 
-Once you're satisfied with the assistant's performance, you can deploy it to your live channels.
+---
 
-- For **Chat**, go to **Settings > Chat Widget** to get the installation code for your website.
-- For **Email**, go to **Settings > Email** to connect your sending domain and configure forwarding.
-- For **SMS/Voice**, go to **Settings > Phone Numbers** to provision a number.
+## Step 5 — Test in the Widget Playground
 
-Now you're ready to start unifying your customer interactions with Autoch.at!
+Before going live, test your assistant:
+
+1. Go to **Conversations > Messaging > Widget Playground**.
+2. Start a conversation and ask the kinds of questions your customers typically ask.
+3. Try to break it — ask something it shouldn't know, try to go off-topic, test the escalation path.
+4. Go back and refine your Training Context and Persona based on what you find.
+
+---
+
+## Step 6 — Install the chat widget on your website
+
+When you're happy with how the assistant is performing:
+
+1. Go to **Settings > Chat Widget**.
+2. Copy the installation code snippet.
+3. Paste it into your website's HTML, just before the closing `</body>` tag.
+4. Visit your website and start a test conversation to confirm everything is working.
+
+That's it — your AI assistant is live!
+
+---
+
+## What's next?
+
+Now that you're up and running, here are some good next steps:
+
+- **Connect more channels** — Add SMS, email, or social media to your inbox
+- **Set up routing rules** — Configure how conversations are routed between AI and human agents
+- **Review your Analytics** — After a few days, check what questions are coming in and refine your Training Context
+- **Explore Experiments** — A/B test different playbook approaches to optimize your results

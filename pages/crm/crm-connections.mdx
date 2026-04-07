@@ -1,79 +1,56 @@
 ---
 title: CRM Connections
-description: Connect your CRM so contacts and activity stay in sync between Autoch.at and your source of record.
+description: Sync your Autoch.at client records with Salesforce, HubSpot, or other CRMs — keeping your contact data consistent across tools.
 ---
 
-## What are CRM Connections?
+## Keep your CRM in sync
 
-While Autoch.at has a built-in [Clients](/pages/crm/clients) database, many businesses already use a dedicated Customer Relationship Management (CRM) system like Salesforce, HubSpot, or Pipedrive as their central source of truth.
+**CRM Connections** (at **CRM > CRM Connections**) lets you connect Autoch.at to your existing CRM so that client records, conversation data, and lead qualification results flow between the two systems automatically.
 
-**CRM Connections** (located at **CRM > CRM Connections**) allow you to link Autoch.at to your existing CRM. This ensures that data flows seamlessly between the two platforms, keeping your records accurate and your team informed.
-
-## Why Connect Your CRM?
-
-Connecting your CRM provides several key benefits:
-
-1. **Unified Data**: When a new lead interacts with an Autoch.at assistant, their contact information is automatically pushed to your CRM.
-2. **Contextual Conversations**: Autoch.at can pull data from your CRM (e.g., account status, recent purchases) to provide the AI assistant with more context, enabling highly personalized responses.
-3. **Activity Logging**: Every conversation a customer has with an AI assistant or human agent in Autoch.at is logged as an activity on their CRM record.
-4. **Workflow Automation**: You can trigger Autoch.at workflows based on changes in your CRM (e.g., send an SMS when a lead's status changes to "Qualified").
+When a customer chats with your AI assistant and gets qualified as a lead, that information can be pushed directly to your CRM — no manual data entry required.
 
 ## Supported CRMs
 
-Autoch.at currently supports direct integrations with several major CRM platforms.
+- **HubSpot** — Contacts, companies, deals, and notes
+- **Salesforce** — Contacts, leads, accounts, and activities
+- **Pipedrive** — Contacts, deals, and notes
+- **Zoho CRM** — Contacts, leads, and activities
 
-- **Salesforce**
-- **HubSpot**
-- **Pipedrive**
-- **Zoho CRM**
+Don't see your CRM? You can also connect any CRM that supports webhooks using Autoch.at's webhook integration. See [Integrations](/integrations) for details.
 
-If your CRM is not listed, you may be able to connect it using our API or a third-party automation tool like Zapier or Make.
+## Connecting your CRM
 
-## Setting Up a Connection
+1. Go to **CRM > CRM Connections**.
+2. Click **Connect CRM**.
+3. Select your CRM provider.
+4. You'll be redirected to your CRM's authorization page — log in and grant Autoch.at permission to access your data.
+5. Once authorized, you'll be returned to Autoch.at to configure the sync settings.
 
-To connect your CRM to Autoch.at:
+## Configuring the sync
 
-1. Navigate to **CRM > CRM Connections**.
-2. Locate your CRM provider in the list of available integrations.
-3. Click **Connect**.
-4. You will be redirected to your CRM provider's login page to authorize the connection.
-5. Once authorized, you will be returned to Autoch.at to configure the integration settings.
+After connecting, you'll configure what data gets synced and in which direction:
 
-## Configuring the Integration
+### Contact sync
 
-After connecting your CRM, you need to define how data should flow between the two systems.
+Choose whether Autoch.at should:
+- **Push contacts to CRM** — New clients created in Autoch.at are automatically created in your CRM.
+- **Pull contacts from CRM** — Contacts in your CRM are imported into Autoch.at as clients.
+- **Bidirectional sync** — Changes in either system are reflected in the other.
 
-### Field Mapping
+### Field mapping
 
-Field mapping tells Autoch.at which fields in its database correspond to which fields in your CRM.
+Map the fields in Autoch.at to the corresponding fields in your CRM. For example, you might map Autoch.at's "Company" field to HubSpot's "Company Name" field.
 
-For example, you might map:
-- Autoch.at `Email` -> CRM `Email Address`
-- Autoch.at `Phone` -> CRM `Mobile Phone`
-- Autoch.at `Company` -> CRM `Account Name`
+Custom fields you've created in Autoch.at can also be mapped to custom fields in your CRM.
 
-You can also map custom fields you've created in Autoch.at to custom fields in your CRM.
+### Conversation sync
 
-### Sync Settings
+Choose whether to sync conversation summaries and notes to your CRM. When enabled, a note is added to the contact's record in your CRM each time a conversation is resolved, summarizing what was discussed.
 
-You can control the direction and frequency of the data sync:
+## Monitoring the connection
 
-- **Two-Way Sync**: Changes made in Autoch.at update the CRM, and changes made in the CRM update Autoch.at. (Recommended)
-- **One-Way Sync (Autoch.at to CRM)**: Autoch.at pushes data to the CRM, but does not pull updates back.
-- **One-Way Sync (CRM to Autoch.at)**: Autoch.at pulls data from the CRM, but does not push updates back.
+The CRM Connections page shows the status of your connection and a log of recent sync activity. If a sync fails (for example, because a required field is missing), the error will appear here with details about what went wrong.
 
-### Activity Logging
-
-You can choose which types of Autoch.at activities should be logged in your CRM:
-
-- **All Conversations**: Log every interaction, regardless of channel or outcome.
-- **Only Handoffs**: Only log conversations that were escalated to a human agent.
-- **Only Qualified Leads**: Only log conversations where the AI assistant successfully qualified the user based on a playbook.
-
-## Managing Connections
-
-You can manage your active CRM connections from the **CRM Connections** page.
-
-- **Edit Settings**: Update your field mappings or sync preferences.
-- **Pause Sync**: Temporarily stop data from flowing between the systems.
-- **Disconnect**: Permanently remove the integration. (This will not delete any data that has already been synced).
+<Callout kind="info">
+If your CRM connection shows an error, the most common cause is an expired authorization token. Click **Reconnect** to re-authorize and restore the connection.
+</Callout>

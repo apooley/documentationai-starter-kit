@@ -1,70 +1,75 @@
 ---
 title: Training Context
-description: Learn how to provide your AI assistants with the knowledge they need to answer questions accurately and consistently.
+description: Give your AI assistants the knowledge they need to answer questions accurately — by uploading documents, crawling your website, writing FAQs, or adding custom text.
 ---
 
-## What is Training Context?
+## Why training context matters
 
-**Training Context** is the knowledge base that powers your AI assistants. It's the collection of documents, website links, FAQs, and specific instructions that the AI uses to understand your business, products, and policies.
+Your assistant's persona tells it how to behave. Training context tells it what to say.
 
-Without training context, an assistant relies solely on its general knowledge (which may be outdated or incorrect for your specific business). With comprehensive training context, your assistant becomes a specialized expert on your company.
+Without training context, your assistant can only rely on general knowledge from its underlying AI model — which means it won't know anything specific about your products, policies, pricing, or processes. Adding training context is what transforms a generic AI into an assistant that actually knows your business.
 
-## Types of Training Context
+Go to **AI Assistant > Training Context** to manage your knowledge base.
 
-Autoch.at supports several types of training context, allowing you to import knowledge from various sources. Navigate to **AI Assistant > Training Context** to manage your knowledge base.
+## The four types of training context
 
-### 1. Documents
+### Website links
 
-You can upload files directly to Autoch.at. The AI will extract the text and use it to answer customer questions.
+Provide a URL and Autoch.at will crawl the page and pull in its content. This is the fastest way to get your existing documentation, help center, or product pages into the system.
 
-- **Supported formats**: PDF, DOCX, TXT, CSV, Markdown.
-- **Best for**: Employee handbooks, product manuals, technical specifications, and policy documents.
+You can add individual pages or a root URL to crawl an entire site. After the initial crawl, you can re-crawl a link at any time to pick up changes.
 
 <Callout kind="tip">
-**Keep documents focused:** A 10-page document about a specific product is better than a 500-page document covering everything. Break large manuals into smaller, topic-specific files for better AI retrieval.
+If your website has a sitemap, use the sitemap URL for a more complete crawl. This ensures the system finds all your pages, not just the ones linked from the homepage.
 </Callout>
 
-### 2. Website Crawling (Links)
+### Documents
 
-You can provide Autoch.at with URLs to crawl and index. The AI will read the text on those pages and use it as context.
+Upload PDF or Word files containing your policies, product documentation, onboarding guides, or any other reference material. Autoch.at will extract the text and make it available to your assistant.
 
-- **Best for**: Public-facing knowledge bases, blog posts, pricing pages, and "About Us" sections.
-- **Syncing**: You can configure Autoch.at to periodically re-crawl these links to ensure the AI's knowledge stays up-to-date with your website.
+Supported formats include PDF, DOCX, and plain text files.
 
-### 3. FAQs (Frequently Asked Questions)
+### FAQs
 
-FAQs are direct question-and-answer pairs. They are the most precise form of training context because you explicitly define the exact answer the AI should give for a specific question.
+FAQs are the most targeted type of training context. Each FAQ is a specific question-and-answer pair that you write directly in Autoch.at.
 
-- **Best for**: Common customer inquiries (e.g., "What are your business hours?", "Do you offer refunds?").
-- **Overrides**: If an FAQ contradicts information found in a document or website link, the AI will prioritize the FAQ answer.
+Use FAQs for:
+- Questions that come up constantly and need a precise, consistent answer
+- Topics where your documents are too long or too general
+- Edge cases that your website doesn't cover
 
-### 4. Specific Instructions (Snippets)
+FAQs take priority over other context types when the customer's question closely matches the FAQ question.
 
-Instructions are short, targeted pieces of text that guide the AI's behavior or provide specific facts that don't fit neatly into a document or FAQ.
+### Custom text
 
-- **Best for**: Temporary promotions, specific phrasing requirements (e.g., "Always refer to our product as 'The Platform', never 'The App'"), or handling edge cases.
+Custom text is a free-form field where you can paste in any content that doesn't fit the other formats — internal notes, product descriptions, pricing tables, or anything else. It's the most flexible option and works well for short, structured information.
 
-## Managing Your Knowledge Base
+## Managing your knowledge base
 
-As your business evolves, your training context needs to evolve with it.
+### Keeping context up to date
 
-### Organizing Context
-
-You can organize your training context using **Tags** or **Folders** (depending on your plan). This allows you to group related documents and links together, making it easier to manage and update them.
-
-### Reviewing AI Usage
-
-You can see which pieces of training context the AI is using most frequently in the **Insights > Analytics** dashboard. If a document is rarely used, it might be outdated or irrelevant. If an FAQ is used constantly, you might want to expand on that topic in your main documentation.
-
-### Updating and Deleting
-
-When a policy changes or a product is updated, you must update the corresponding training context.
+Stale training context leads to wrong answers. Make it a habit to review your knowledge base after major product releases, policy changes, or pricing updates.
 
 1. Go to **AI Assistant > Training Context**.
-2. Locate the outdated document, link, or FAQ.
-3. Edit the FAQ, re-crawl the link, or upload a new version of the document.
-4. Delete any context that is no longer accurate.
+2. Find the outdated item (document, link, FAQ, or custom text).
+3. Edit or re-crawl it to reflect the current information.
+4. Delete anything that's no longer accurate.
 
 <Callout kind="warning">
-**Stale context leads to bad answers.** Make it a habit to review your training context regularly, especially after major product releases or policy changes.
+If a customer asks a question and gets a wrong answer, the first place to check is your training context. Outdated or conflicting information is the most common cause of AI errors.
 </Callout>
+
+### Checking what's being used
+
+You can see which pieces of training context your AI is using most frequently in **Insights > Analytics** under FAQ Analytics. If a document is rarely referenced, it might be outdated or too general. If a particular FAQ is being used constantly, consider expanding on that topic in your main documentation.
+
+## Training context vs. messaging directives
+
+These two features are easy to confuse, but they serve different purposes:
+
+| Feature | What it does |
+|---|---|
+| **Training Context** | Provides *information* — facts, policies, product details — that the AI uses to answer questions |
+| **Messaging Directives** | Provides *behavioral instructions* — rules about how the AI should communicate, regardless of topic |
+
+If you want your AI to know your return policy, add it to Training Context. If you want your AI to always end every response with a follow-up question, use a [Messaging Directive](/pages/ai-config/messaging-directives).

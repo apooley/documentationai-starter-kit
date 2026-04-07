@@ -1,68 +1,76 @@
 ---
 title: Clients
-description: Manage client records, tags, import/export, and duplicate merges.
+description: View and manage all your customer records — contact details, conversation history, tags, and custom fields — in one place.
 ---
 
-## What is the Clients Page?
+## Your customer database
 
-The **Clients** page (located at **CRM > Clients**) is your central hub for managing all the individuals and organizations that interact with your Autoch.at assistants and human agents.
+The **Clients** page (at **CRM > Clients**) is where every person who has ever contacted your business through Autoch.at lives. When a new customer sends their first message, Autoch.at automatically creates a client record for them. Over time, that record builds up a complete picture of who they are and every interaction they've had with your team.
 
-It acts as a lightweight, built-in CRM (Customer Relationship Management) system, allowing you to view contact details, conversation history, and custom data for every person who has reached out via chat, SMS, email, voice, or social media.
+Think of it as a lightweight CRM that's always in sync with your conversations — no manual data entry required.
 
-## Navigating the Clients List
+## Finding clients
 
-When you open the Clients page, you'll see a list of all your contacts.
+The Clients page shows a searchable, filterable list of all your contacts.
 
-### The Client Table
+- **Search** — Find anyone by name, email, phone number, or company name.
+- **Tag filter** — Click a tag (like "VIP" or "Lead") to show only clients with that label.
+- **Sort** — Order by name, last active date, or creation date.
 
-The main table displays key information for each client:
-- **Name**: The client's full name (if known).
-- **Email**: Their primary email address.
-- **Phone**: Their primary phone number.
-- **Company**: The organization they belong to.
-- **Tags**: Any labels applied to their profile (e.g., "VIP", "Lead", "Support").
-- **Last Active**: The date and time of their most recent interaction.
+## The client record
 
-### Searching and Filtering
+Click on any client to open their full profile. Here's what you'll find:
 
-You can quickly find specific clients using the tools at the top of the page:
-- **Search Bar**: Search by name, email, phone number, or company name.
-- **Tag Filter**: Click a tag (e.g., "All", "VIP") to view only clients with that specific label.
+### Contact details
 
-## Managing Client Records
+The basics: name, email address, phone number, and company. You can edit any of these fields directly — changes are saved immediately and reflected in all linked conversations.
 
-Autoch.at provides several tools for keeping your client database organized and up-to-date.
+### Custom fields
 
-### Creating a Client Manually
+If your business needs to track information beyond the standard fields, you can add custom fields (like "Account Tier", "CRM ID", or "Subscription Plan") and populate them here. Custom fields can also be filled in automatically by your AI assistants during qualification conversations.
 
-While Autoch.at automatically creates a client record when someone new sends a message, you can also add clients manually:
-1. Click the **Create Client** button.
-2. Fill in their details (Name, Email, Phone, Company).
-3. Add any relevant tags.
+### Conversation history
+
+A complete log of every conversation this client has had with your team across all channels — chat, SMS, email, voice, and social. Click any conversation to jump straight to it in the inbox.
+
+### Tags
+
+Labels applied to the client's profile. Tags help you segment your client list and filter conversations. For example, tagging a client as "VIP" lets you quickly find all VIP clients and filter their conversations in the inbox.
+
+## Managing your client list
+
+### Creating a client manually
+
+Autoch.at creates client records automatically, but you can also add them manually:
+
+1. Click **Create Client**.
+2. Fill in their contact details.
+3. Add any relevant tags or custom field values.
 4. Click **Save**.
 
-### Importing and Exporting
+### Importing clients
 
-If you have an existing list of contacts, you can bring them into Autoch.at:
-- **Import**: Click the **Import** button to upload a CSV file containing your client data. Autoch.at will guide you through mapping the columns in your file to the correct fields in the system.
-- **Export All**: Click the **Export all** button to download your entire client list as a CSV file for use in other tools or for backup purposes.
+If you have an existing contact list, you can bring it into Autoch.at:
 
-### Reviewing Duplicates
+1. Click **Import**.
+2. Upload a CSV file with your contact data.
+3. Map the columns in your file to the fields in Autoch.at.
+4. Confirm the import.
 
-Over time, a single person might contact you from different email addresses or phone numbers, resulting in duplicate records.
+### Exporting clients
 
-1. Click the **Review duplicates** button.
-2. Autoch.at will scan your database and present potential matches based on similar names, emails, or phone numbers.
-3. You can review these suggestions and choose to **Merge** the records, combining their conversation histories and contact details into a single, unified profile.
+Click **Export all** to download your entire client list as a CSV file. This is useful for backups or for importing into other tools.
 
-## The Client Detail View
+### Merging duplicates
 
-Clicking on a client's name in the list opens their full profile.
+Over time, the same person might contact you from different email addresses or phone numbers, creating duplicate records. Autoch.at helps you find and fix these:
 
-This view provides a comprehensive look at the individual:
-- **Contact Information**: Edit their name, email, phone, and company.
-- **Custom Fields**: View and update any custom data points you've defined for your business (e.g., "Account ID", "Subscription Tier").
-- **Conversation History**: A complete log of every interaction this client has had with your AI assistants and human agents across all channels.
-- **Notes**: Add internal notes about the client that are visible only to your team.
+1. Click **Review duplicates**.
+2. Autoch.at will show you potential matches based on similar names, emails, or phone numbers.
+3. Review each suggestion and click **Merge** to combine the records.
 
-By keeping your client records accurate and utilizing tags, you empower both your human agents and your AI assistants to provide more personalized and effective support.
+When you merge two records, their conversation histories are combined into a single, unified profile. This is permanent, so review carefully before confirming.
+
+## Connecting to an external CRM
+
+If you use Salesforce, HubSpot, or another CRM, you can sync your Autoch.at client records with it. See [CRM Connections](/pages/crm/crm-connections) for setup instructions.

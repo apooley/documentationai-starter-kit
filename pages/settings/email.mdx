@@ -1,63 +1,57 @@
 ---
 title: Email Settings
-description: Connect sending domains, configure reply-to behavior, and manage email-specific options.
+description: Connect your email domain, configure inbound routing, and set up DKIM/SPF authentication so your emails land in inboxes, not spam folders.
 ---
 
-## What are Email Settings?
+## Connecting your email channel
 
-The **Email Settings** page (located at **Settings > Email**) is where you configure how Autoch.at handles incoming and outgoing email communications.
+The **Email** settings page (at **Settings > Email**) is where you configure how Autoch.at sends and receives emails on your behalf.
 
-By default, Autoch.at can send and receive emails using a generic `@autoch.at` address. However, to maintain brand professionalism and ensure high deliverability, you should connect your own custom domain (e.g., `support@yourcompany.com`).
+There are two sides to email in Autoch.at:
 
-## Connecting a Custom Domain
+- **Inbound** — Emails sent by customers that arrive in your Conversations inbox
+- **Outbound** — Emails sent from Autoch.at to customers, using your domain as the sender
 
-To send and receive emails from your own domain, you need to verify ownership and configure your DNS records.
+Both need to be configured before your email channel is fully functional.
 
-1. Navigate to **Settings > Email**.
-2. In the **Sending Domains** section, click **Add Domain**.
-3. Enter the domain you want to use (e.g., `yourcompany.com`).
-4. Autoch.at will generate a set of DNS records (TXT and CNAME records) that you need to add to your domain registrar (e.g., GoDaddy, Cloudflare, Namecheap).
-5. Log in to your registrar, add the records, and return to Autoch.at to click **Verify**.
+## Setting up inbound email
+
+To receive customer emails in Autoch.at, you need to forward emails from your support address to Autoch.at's inbound address.
+
+1. Go to **Settings > Email**.
+2. Copy the **Inbound Email Address** shown on the page (it will look something like `workspace-id@inbound.autoch.at`).
+3. In your email provider (Gmail, Outlook, your domain host, etc.), set up a forwarding rule to send all emails from your support address (e.g., `support@yourcompany.com`) to the Autoch.at inbound address.
+
+Once forwarding is set up, new emails will appear in your Conversations inbox within a few seconds of arrival.
+
+## Setting up outbound email (domain authentication)
+
+When Autoch.at sends emails on your behalf, it needs to be authorized to use your domain. Without this, your emails may be flagged as spam or rejected by recipients' mail servers.
+
+This is done by adding **SPF** and **DKIM** records to your domain's DNS settings.
+
+### Step 1 — Add your sending domain
+
+1. In **Settings > Email**, click **Add Domain**.
+2. Enter your domain (e.g., `yourcompany.com`).
+3. Autoch.at will generate the DNS records you need to add.
+
+### Step 2 — Add the DNS records
+
+Copy the SPF and DKIM records shown and add them to your domain's DNS settings. The exact process depends on your DNS provider (Cloudflare, GoDaddy, Route 53, etc.) — refer to your provider's documentation for how to add TXT records.
+
+### Step 3 — Verify
+
+Once the records are added, click **Verify** in Autoch.at. DNS changes can take up to 48 hours to propagate, but usually happen within a few minutes.
 
 <Callout kind="info">
-**DNS Propagation:** It can take anywhere from a few minutes to 48 hours for DNS changes to propagate across the internet. If verification fails immediately, wait a while and try again.
+You'll see a green checkmark next to each record once it's verified. Don't start sending emails until both SPF and DKIM are verified — unverified emails are likely to be marked as spam.
 </Callout>
 
-### DKIM, SPF, and DMARC
+## Configuring your sending address
 
-The DNS records provided by Autoch.at configure DKIM (DomainKeys Identified Mail) and SPF (Sender Policy Framework) for your domain. These are essential email authentication protocols that prove to receiving servers (like Gmail or Outlook) that Autoch.at is authorized to send emails on your behalf.
+Once your domain is verified, you can set the specific email address that outbound messages will come from (e.g., `support@yourcompany.com` or `hello@yourcompany.com`). You can also set a display name that appears alongside the address in the recipient's inbox.
 
-Properly configuring these records is critical for ensuring your emails land in your customers' inboxes, not their spam folders.
+## Email signature
 
-## Configuring Inbound Email (Forwarding)
-
-Once your domain is verified for sending, you need to route incoming emails to Autoch.at so they appear in your [Conversations Inbox](/pages/conversations/conversations).
-
-You do this by setting up email forwarding in your current email provider (e.g., Google Workspace, Microsoft 365).
-
-1. In Autoch.at (**Settings > Email**), locate your unique **Inbound Email Address** (it will look something like `inbound-12345@autoch.at`).
-2. Log in to your email provider's admin console.
-3. Set up a forwarding rule that sends all emails received at your support address (e.g., `support@yourcompany.com`) to the Autoch.at inbound address.
-4. Send a test email to your support address to verify it appears in the Autoch.at inbox.
-
-## Reply-To Behavior
-
-When an AI assistant or human agent replies to an email from Autoch.at, you can configure how the "From" and "Reply-To" headers appear to the customer.
-
-- **Default Sender Name**: The name that appears in the customer's inbox (e.g., "Autoch.at Support" or "John from Autoch.at").
-- **Default Reply-To Address**: The email address the customer will reply to (e.g., `support@yourcompany.com`).
-
-You can customize these settings globally, or override them on a per-assistant basis in the [Assistant Configuration](/pages/ai-config/assistants).
-
-## Email Signatures
-
-You can configure a standard email signature that will be appended to all outgoing emails sent by human agents.
-
-1. Navigate to **Settings > Email**.
-2. Locate the **Email Signature** section.
-3. Use the rich text editor to create your signature (including your name, title, company logo, and contact information).
-4. Click **Save**.
-
-<Callout kind="tip">
-**AI Signatures:** AI assistants do not use the global human signature. You should define how the AI signs off in its Persona instructions (e.g., "Always sign off as 'Support Bot, Autoch.at'").
-</Callout>
+Add a standard signature that will be appended to all outbound emails sent from Autoch.at. This typically includes your company name, website, and any required legal disclaimers.

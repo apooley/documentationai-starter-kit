@@ -1,68 +1,69 @@
 ---
 title: Routing & Handoffs
-description: Configure how conversations move between AI assistants and human agents using rules and guardrails.
+description: Control when and how conversations move between AI assistants and your human team — using rules, messaging, and safety guardrails.
 ---
 
-## How Routing & Handoffs Work Together
+## How routing and handoffs work together
 
-The **Routing & Handoffs** page (located at **AI Assistant > Routing & Handoffs**) is where you control the flow of conversations. It consists of two main tabs that work together to ensure customers reach the right destination safely:
+The **Routing & Handoffs** page (at **AI Assistant > Routing & Handoffs**) is where you control the flow of conversations. It has two tabs that work together:
 
-1. **Routing Rules (first tab):** Define *when* a conversation should be transferred (e.g., "If the user says 'speak to a human', route to the Support Team").
-2. **Handoff Settings (second tab):** Define *how* that transfer happens, including the messages sent to the user and the guardrails that prevent abuse (e.g., "Don't allow more than 3 handoffs per hour").
+1. **Routing Rules** — Define *when* a conversation should be transferred (for example, "if the customer says 'speak to a human', route to the Support Team").
+2. **Handoff Settings** — Define *how* that transfer happens, including the messages sent to the customer and the guardrails that prevent abuse.
 
-**The Flow:**
-When a message comes in, Autoch.at checks the **Routing Rules**. If a rule matches, it then checks the **Handoff Settings**. If the guardrails allow it, the handoff executes, sending the configured message and transferring the conversation.
+When a message comes in, Autoch.at checks your Routing Rules. If a rule matches, it checks the Handoff Settings. If the guardrails allow it, the handoff executes.
 
 ---
 
-## Tab 1: Routing Rules
+## Routing Rules
 
-Routing rules act as the traffic cops for your conversations. They evaluate incoming messages and decide if the conversation needs to be moved to a different assistant or escalated to a human team.
+Routing rules are the traffic directors for your conversations. They evaluate incoming messages and decide whether to move a conversation to a different assistant or escalate it to a human team.
 
-### Creating a Routing Rule
+### Creating a routing rule
 
-1. Navigate to **AI Assistant > Routing & Handoffs**.
+1. Go to **AI Assistant > Routing & Handoffs**.
 2. On the **Routing Rules** tab, click **Create Rule**.
-3. Configure the rule's conditions and actions.
+3. Set your conditions and actions.
 
-### Rule Conditions
+### Conditions
 
-You can trigger a routing rule based on several factors:
+A rule fires when one or more conditions are met. You can trigger rules based on:
 
-- **Keywords**: Trigger if the user's message contains specific words (e.g., "human", "agent", "representative", "cancel", "refund").
-- **Intent (AI-detected)**: Trigger if the AI determines the user's underlying goal matches a predefined intent (e.g., `billing_issue`, `technical_support`, `sales_inquiry`).
-- **Channel**: Apply the rule only to specific channels (e.g., only route SMS messages, keep web chat with the AI).
-- **Time of Day**: Route differently during business hours vs. after hours.
+| Condition type | Example |
+|---|---|
+| **Keywords** | Message contains "refund", "cancel", or "speak to a human" |
+| **AI-detected intent** | The AI determines the user's goal matches `billing_issue` or `technical_support` |
+| **Channel** | Only apply the rule to SMS messages, not web chat |
+| **Time of day** | Route differently during business hours vs. after hours |
 
-### Rule Actions
+### Actions
 
 When a condition is met, the rule executes an action:
 
-- **Route to Human Team**: Escalate the conversation to a specific inbox or group of human agents (e.g., "Tier 2 Support").
-- **Route to Another Assistant**: Transfer the conversation to a specialized AI assistant (e.g., move from the "General Greeter" to the "Technical Troubleshooter").
+- **Route to a human team** — Escalate to a specific inbox or group of agents.
+- **Route to another assistant** — Transfer to a more specialized AI (for example, move from a general greeter to a technical troubleshooter).
 
 ---
 
-## Tab 2: Handoff Settings
+## Handoff Settings
 
 While Routing Rules determine the destination, Handoff Settings control the experience and safety of the transfer.
 
-### Handoff Messaging
+### Handoff messages
 
-When a handoff occurs, you usually want to inform the customer. You can configure different messages based on the destination and the time of day.
+When a handoff happens, you'll usually want to let the customer know. You can configure different messages for different scenarios:
 
-- **Business Hours Message**: "I'm transferring you to a human agent now. They usually reply within 5 minutes."
-- **After Hours Message**: "Our human agents are currently offline. I've created a ticket, and someone will email you tomorrow morning."
-- **Assistant-to-Assistant Message**: "Let me get our technical specialist to help you with that."
+- **Business hours** — "I'm connecting you with a team member now. They typically reply within 5 minutes."
+- **After hours** — "Our team is offline right now. I've noted your issue and someone will follow up first thing in the morning."
+- **Assistant to assistant** — "Let me get our technical specialist to help you with that."
 
-### Guardrails (Safety Limits)
+### Guardrails
 
-Guardrails are crucial for preventing abuse, spam, or endless loops. Even if a Routing Rule matches, a guardrail can block the handoff.
+Guardrails prevent abuse and routing loops. Even if a Routing Rule matches, a guardrail can block the handoff from happening.
 
-- **Max Handoffs per Conversation**: Prevent a user from constantly requesting transfers back and forth. (e.g., Limit to 2 handoffs per conversation).
-- **Cooldown Period**: Prevent a user from triggering a handoff immediately after one just occurred. (e.g., Require a 10-minute wait between handoff requests).
-- **Loop Prevention**: Detect if two AI assistants are endlessly transferring a conversation back and forth to each other, and force an escalation to a human or end the conversation.
+- **Max handoffs per conversation** — Prevent a customer from repeatedly triggering transfers back and forth. For example, limit to 2 handoffs per conversation.
+- **Cooldown period** — Require a minimum wait between handoff requests (for example, 10 minutes between requests).
+- **Loop prevention** — If two AI assistants are endlessly transferring a conversation to each other, Autoch.at detects the loop and forces an escalation to a human.
 
 <Callout kind="warning">
-**Guardrails override rules.** If a user triggers a routing rule but has exceeded their max handoffs, the handoff will be blocked, and the AI will send a fallback message (e.g., "I cannot transfer you again at this time. Please wait for an agent to review your case.").
+Guardrails override rules. If a customer triggers a routing rule but has exceeded their handoff limit, the handoff will be blocked and the AI will send a fallback message instead.
 </Callout>

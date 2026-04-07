@@ -1,55 +1,64 @@
 ---
-title: Playbook Experiments
-description: Run A/B tests on your playbooks to optimize AI performance and improve conversion rates.
+title: Experiments
+description: Run A/B tests on your playbooks to find out which version drives better outcomes — and make decisions based on real data, not guesswork.
 ---
 
-## What are Playbook Experiments?
+## Test your playbooks before you commit
 
-In Autoch.at, **Experiments** allow you to test different versions of a playbook against each other to see which one performs better. This is essentially A/B testing for your AI assistants.
+**Experiments** (at **AI Assistant > Experiments**) let you compare two versions of a playbook side by side to see which one performs better in real conversations.
 
-By running experiments, you can scientifically determine the best way to structure a conversation, ask for information, or handle objections, rather than relying on guesswork.
+Instead of guessing whether a change to your playbook will help or hurt, you can run a controlled test, measure the results, and make a data-driven decision.
 
-You can manage your experiments by navigating to **AI Assistant > Experiments**.
+## When to run an experiment
 
-## Why Run Experiments?
+Experiments are most useful when you're considering a change that could meaningfully affect outcomes. Good candidates include:
 
-Experiments are crucial for optimizing your AI's performance. You might want to test:
+- Changing the opening message in a lead qualification playbook
+- Testing a more direct vs. a more conversational approach
+- Trying a different sequence of questions to improve completion rates
+- Testing whether offering a demo early vs. late in the conversation affects conversion
 
-- **Tone and Phrasing**: Does a casual, friendly greeting result in more engagement than a formal, professional one?
-- **Order of Questions**: When qualifying a lead, is it better to ask for their email address first, or their company size first?
-- **Length of Responses**: Do users prefer short, concise answers, or detailed, comprehensive explanations?
-- **Call to Action (CTA)**: Which phrasing leads to more booked meetings: "Would you like to schedule a demo?" or "Let's get you set up with a product expert."
+If you're making a small, low-risk change (like fixing a typo), you don't need an experiment — just publish the update.
 
-## Setting Up an Experiment
+## Setting up an experiment
 
-To run an experiment, you need two different versions of a playbook.
+1. Go to **AI Assistant > Experiments** and click **Create Experiment**.
+2. Give the experiment a name (e.g., "Lead Qual - Direct vs. Conversational").
+3. Select the **Playbook** you want to test.
+4. Define your two variants:
+   - **Variant A** — Usually the current version (your control).
+   - **Variant B** — The version with your proposed change.
+5. Set the **Traffic Split** — how much of the incoming traffic each variant receives. A 50/50 split is standard, but you can weight it differently if you want to limit exposure to an untested version.
+6. Define your **Success Metric** — what you're measuring. Options typically include:
+   - Playbook completion rate
+   - Handoff rate (lower is usually better)
+   - Lead qualification rate
+   - Conversation resolution rate
+7. Click **Start Experiment**.
 
-1. **Create your variants**: Go to **AI Assistant > AI Playbooks** and create two versions of the playbook you want to test (e.g., "Lead Qual V1 - Email First" and "Lead Qual V2 - Company Size First").
-2. **Navigate to Experiments**: Go to **AI Assistant > Experiments** and click **Create Experiment**.
-3. **Select the Playbooks**: Choose the two playbook versions you want to compare.
-4. **Define the Goal**: What metric are you trying to improve? (e.g., "Increase the percentage of users who provide their email address").
-5. **Set the Traffic Split**: Decide how much traffic each variant should receive. A 50/50 split is standard for A/B testing.
-6. **Start the Experiment**: Once configured, launch the experiment. Autoch.at will automatically route incoming conversations to the different playbook variants based on your traffic split.
+## Reading the results
 
-## Analyzing Results
+As conversations flow through the experiment, Autoch.at tracks the performance of each variant. You can check the results at any time on the Experiments page.
 
-While an experiment is running, you can monitor its progress in the **Experiments** dashboard.
+The results show:
 
-Autoch.at tracks key metrics for each variant, such as:
-- **Completion Rate**: How often did the assistant successfully reach the playbook's goal?
-- **Drop-off Rate**: At what step in the playbook did users abandon the conversation?
-- **Resolution Time**: How long did it take to complete the playbook?
-- **Handoff Rate**: How often did the conversation need to be escalated to a human agent?
+| Metric | What it tells you |
+|---|---|
+| **Conversations** | How many conversations each variant has handled |
+| **Completion rate** | What percentage of conversations reached the playbook's goal |
+| **Handoff rate** | How often each variant escalated to a human |
+| **Win probability** | A statistical estimate of which variant is performing better |
 
-### Declaring a Winner
-
-Once you have collected enough data to reach statistical significance, you can declare a winner.
-
-1. Review the metrics for both variants.
-2. Identify the variant that performed best against your defined goal.
-3. Click **End Experiment**.
-4. **Publish the Winner**: Make the winning playbook version the active playbook for your assistant, ensuring all future conversations benefit from the optimized flow.
-
-<Callout kind="tip">
-**Test one thing at a time.** If you change the tone, the order of questions, and the CTA all in one variant, you won't know which change caused the improvement (or decline) in performance. Isolate your variables for the most accurate results.
+<Callout kind="info">
+Give your experiment enough time to collect statistically meaningful data before drawing conclusions. A sample size of at least 100 conversations per variant is a good starting point for most use cases.
 </Callout>
+
+## Applying the winning variant
+
+Once you're confident in the results:
+
+1. Click **Declare Winner** on the variant you want to keep.
+2. Autoch.at will publish that variant as the active version of the playbook and stop the experiment.
+3. The losing variant is archived but not deleted — you can reference it later.
+
+If the experiment is inconclusive (no clear winner), you can extend it to collect more data, or try a more significant change in a new experiment.

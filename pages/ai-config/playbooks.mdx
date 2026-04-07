@@ -1,66 +1,66 @@
 ---
 title: AI Playbooks
-description: Learn how to create, version, and manage playbooks to guide your AI assistants through specific conversational goals.
+description: Build structured, goal-oriented conversation flows that guide your AI assistants through specific tasks — from lead qualification to appointment booking.
 ---
 
-## What is a Playbook?
+## What playbooks do
 
-While an Assistant's persona defines *how* it speaks (its tone and personality), a **Playbook** defines *what* it should achieve in a conversation.
+While your assistant's persona defines *how* it speaks, a **Playbook** defines *what* it's trying to accomplish. Playbooks are step-by-step instructions that guide your assistant through a specific goal — a repeatable workflow that the AI follows every time it's relevant.
 
-Playbooks are structured, goal-oriented instructions that guide an AI assistant through a specific process. They are ideal for repeatable workflows like:
-- Qualifying a sales lead (BANT: Budget, Authority, Need, Timeline)
-- Troubleshooting a technical issue step-by-step
+Common uses include:
+
+- Qualifying a sales lead (collecting budget, authority, need, and timeline)
+- Troubleshooting a technical issue step by step
 - Collecting information for a support ticket
-- Booking an appointment or scheduling a demo
+- Booking a meeting or demo
 
-## Creating a Playbook
+Playbooks make your AI consistent. Without them, the assistant improvises. With them, it follows a proven process every time.
 
-To create a new playbook, navigate to **AI Assistant > AI Playbooks** and click **Create Playbook**.
+## Creating a playbook
 
-### Playbook Structure
+Go to **AI Assistant > AI Playbooks** and click **Create Playbook**.
 
-A playbook consists of several key components:
+### Name and description
 
-1. **Name**: A descriptive title (e.g., "SaaS Lead Qualification").
-2. **Description**: A brief summary of the playbook's purpose.
-3. **Goal**: The ultimate objective the assistant is trying to achieve (e.g., "Determine if the user is a qualified buyer and collect their email address").
-4. **Instructions (The Flow)**: The step-by-step guide the assistant must follow to reach the goal.
+Give your playbook a clear name that describes its purpose — something like "Lead Qualification" or "Password Reset Troubleshooting." The description is for your team's reference.
 
-### Writing Effective Instructions
+### Goal
 
-The instructions are the core of your playbook. They should be clear, sequential, and account for different user responses.
+The goal is a single sentence that describes what the assistant is trying to achieve. For example: "Determine if the user is a qualified buyer and collect their name, company, and email address."
 
-**Best Practices for Playbook Instructions:**
-- **Use numbered steps**: Clearly define the order of operations (e.g., "1. Ask for their name. 2. Ask for their company size.").
-- **Be specific about data collection**: If you need an email address, explicitly tell the assistant to ask for it and validate it.
-- **Define exit conditions**: Tell the assistant what to do when the goal is met (e.g., "Once you have the email and company size, thank them and say a representative will be in touch.").
-- **Handle edge cases**: Instruct the assistant on how to respond if the user refuses to answer or asks an unrelated question (e.g., "If the user asks about pricing before providing their email, give a brief overview but steer the conversation back to collecting their contact info.").
+The AI uses this goal to stay on track. If the conversation drifts, it will steer back towards the goal.
 
-## Versioning Playbooks
+### Instructions
 
-Playbooks in Autoch.at are version-controlled. This means you can safely make changes to a playbook without immediately affecting live conversations.
+The instructions are the heart of your playbook. They tell the assistant exactly what to do, step by step.
 
-When you edit a playbook, you create a new **Draft** version. Once you are satisfied with the changes, you can **Publish** the new version, making it the active playbook for any attached assistants.
+**Tips for writing effective instructions:**
 
-You can always view the history of a playbook and revert to a previous version if a new change doesn't perform as expected.
+- **Number your steps** — Clear sequencing helps the AI follow the flow in order.
+- **Be specific about what to collect** — If you need an email address, say so explicitly. Don't assume the AI will ask for it.
+- **Define what "done" looks like** — Tell the assistant what to do when the goal is met (e.g., "Once you have their email and company size, thank them and let them know a team member will be in touch within one business day.").
+- **Handle common detours** — If a user asks about pricing before giving their email, tell the assistant how to respond (e.g., "Give a brief overview but steer the conversation back to collecting their contact info.").
 
-## Attaching Playbooks to Assistants
+## Versioning
 
-A playbook does nothing on its own; it must be attached to an Assistant.
+Playbooks are version-controlled, which means you can safely make changes without disrupting live conversations. When you edit a playbook, you create a new **Draft** version. Once you're happy with the changes, publish it to make it the active version.
 
-1. Go to **AI Assistant > Assistants**.
-2. Select the assistant you want to use the playbook.
-3. In the assistant's configuration, find the **Playbooks** section.
-4. Select the playbook(s) you want to attach.
+You can always view the version history and roll back to a previous version if a change doesn't perform as expected.
+
+## Attaching playbooks to assistants
+
+A playbook does nothing on its own — it needs to be attached to an assistant.
+
+1. Go to **AI Assistant > Assistants** and open the assistant you want to update.
+2. Find the **Playbooks** section in the assistant's configuration.
+3. Select the playbook you want to attach.
+
+An assistant can have multiple playbooks attached. The AI determines which one applies based on the customer's intent at the start of the conversation.
 
 <Callout kind="info">
-An assistant can have multiple playbooks attached. The AI will determine which playbook is most relevant based on the user's initial message and intent.
+If you have multiple playbooks attached to the same assistant, make sure each one has a distinct goal. Overlapping goals can confuse the AI about which playbook to follow.
 </Callout>
 
-## Playbook Experiments
+## A/B testing your playbooks
 
-Autoch.at allows you to run A/B tests on your playbooks to see which version performs better.
-
-Navigate to **AI Assistant > Experiments** to set up a test. You can compare two different versions of a playbook (e.g., one that asks for an email first vs. one that asks for company size first) and measure which one results in a higher qualification rate.
-
-See the [Experiments](/pages/ai-config/experiments) documentation for more details on setting up and analyzing A/B tests.
+Not sure which version of a playbook performs better? Use [Experiments](/pages/ai-config/experiments) to run an A/B test. You can compare two versions of a playbook side by side and measure which one results in better outcomes — higher completion rates, fewer handoffs, faster resolution.

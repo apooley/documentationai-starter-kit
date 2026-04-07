@@ -1,86 +1,97 @@
 ---
-title: Manage AI Assistants
-description: Learn how to create, configure, and deploy AI assistants across your communication channels.
+title: AI Assistants
+description: Create and configure the AI agents that handle your customer conversations across chat, SMS, email, voice, and social.
 ---
 
-## What is an AI Assistant?
+## Your AI team members
 
-In Autoch.at, an **Assistant** is the core AI agent that interacts with your customers. You can think of an assistant as a digital employee with a specific role, personality, and set of responsibilities.
+An **Assistant** is the AI that talks to your customers. Think of it as a team member with a specific role — a support agent, a sales rep, a receptionist — that's always available and never needs a break.
 
-You can create multiple assistants for different purposes. For example:
-- A **Support Assistant** that answers technical questions and troubleshoots issues.
-- A **Sales Assistant** that qualifies leads and books meetings.
-- A **Receptionist Assistant** that handles general inquiries and routes conversations to the right department.
+You can create as many assistants as you need. A common setup is one assistant per purpose:
 
-## Creating an Assistant
+- A **Support Assistant** that answers product questions and troubleshoots issues.
+- A **Sales Assistant** that qualifies leads and books demos.
+- A **General Assistant** that handles everything else and routes to the right place.
 
-To create a new assistant, navigate to **AI Assistant > Assistants** in the sidebar and click the **Create Assistant** button.
+Each assistant has its own persona, channel assignments, and attached playbooks. They operate independently, so you can tune each one for its specific job without affecting the others.
 
-### Basic Configuration
+## Creating an assistant
 
-When creating or editing an assistant, you'll need to configure the following basic settings:
+Go to **AI Assistant > Assistants** and click **Create Assistant** to get started.
 
-- **Name**: A descriptive name for internal use (e.g., "Technical Support Bot").
-- **Description**: A brief summary of the assistant's purpose.
-- **Persona / System Prompt**: This is the core instruction set that defines how the assistant behaves. It should include the assistant's role, tone of voice, and general guidelines for interacting with customers.
+### Name and description
+
+Give your assistant a name that makes sense internally — your team will see this in the inbox and in reports. The description is optional but helpful if you have multiple assistants and want to remember what each one does.
+
+### The persona (system prompt)
+
+The persona is the most important part of your assistant's configuration. It's the instruction set that tells the AI who it is, how to behave, and what it's responsible for.
+
+A good persona is specific. Instead of "Be helpful and professional," try something like:
+
+> "You are a friendly and concise support agent for Acme Co. Your job is to help customers troubleshoot issues with our software products. Always ask one clarifying question before suggesting a solution. If you can't resolve an issue within two exchanges, offer to connect the customer with a human agent."
+
+The more specific you are about tone, responsibilities, and edge cases, the more consistently your assistant will behave.
 
 <Callout kind="tip">
-**Writing a good persona:** Be specific about the tone. Instead of "Be helpful," try "You are a friendly, concise, and highly technical support engineer. Always ask clarifying questions before providing a solution."
+Keep your persona focused on behavior, not information. Use [Training Context](/pages/ai-config/training-context) to give your assistant facts about your products and policies. Use the persona to tell it how to act.
 </Callout>
 
-### Channel Assignment
+### Channel assignment
 
-You must assign your assistant to specific communication channels. An assistant will only respond to messages on the channels it is assigned to.
+You need to assign your assistant to at least one channel before it can respond to customers. Available channels include:
 
-Available channels include:
-- **Web Chat**: The chat widget on your website.
-- **SMS**: Text messages sent to your provisioned phone numbers.
-- **Email**: Emails sent to your connected domains.
-- **Voice**: Phone calls made to your provisioned phone numbers.
-- **Social**: Messages from connected social media accounts.
+| Channel | Where messages come from |
+|---|---|
+| **Web Chat** | The chat widget on your website |
+| **SMS** | Text messages to your provisioned phone numbers |
+| **Email** | Emails to your connected domains |
+| **Voice** | Phone calls to your provisioned numbers |
+| **Social** | Direct messages from connected social accounts |
 
-<Callout kind="warning">
-If multiple assistants are assigned to the same channel, you must configure **Routing Rules** to determine which assistant should handle a given conversation.
-</Callout>
+If you assign multiple assistants to the same channel, use [Routing Rules](/pages/ai-config/routing-handoffs) to control which one handles a given conversation.
 
-## Advanced Configuration
+## Advanced settings
 
-Once the basics are set up, you can fine-tune your assistant's behavior using advanced settings.
+Once the basics are in place, you can fine-tune how your assistant behaves.
 
-### Model Selection
+### Model selection
 
-Autoch.at allows you to choose the underlying AI model that powers your assistant. Different models offer varying levels of speed, reasoning capability, and cost.
+Autoch.at lets you choose the underlying AI model that powers your assistant. The right choice depends on what your assistant needs to do:
 
-- **Standard Models**: Good for general inquiries and simple routing.
-- **Advanced Models**: Better for complex reasoning, multi-step playbooks, and nuanced technical support.
+- **Standard models** are faster and more cost-effective. They work well for straightforward Q&A, simple routing, and first-response handling.
+- **Advanced models** handle more complex reasoning, multi-step playbooks, and nuanced conversations better. Use these when accuracy and depth matter more than speed.
 
-### Temperature and Creativity
+### Temperature
 
-The **Temperature** setting controls how creative or deterministic the assistant's responses are.
-- **Low Temperature (e.g., 0.1 - 0.3)**: The assistant will be highly deterministic, sticking closely to the facts and providing consistent answers. Best for support and compliance.
-- **High Temperature (e.g., 0.7 - 0.9)**: The assistant will be more creative and conversational. Best for marketing or brainstorming.
+Temperature controls how creative or predictable the assistant's responses are.
 
-### Playbook Attachment
+A **low temperature** (closer to 0) makes responses more consistent and factual — good for support and compliance scenarios where you want the AI to stick closely to what it knows. A **high temperature** (closer to 1) makes responses more varied and conversational — better for sales or marketing contexts where a bit of personality helps.
 
-While the persona defines *how* the assistant acts, **Playbooks** define *what* the assistant should achieve. You can attach one or more playbooks to an assistant to guide it through specific conversational flows (e.g., lead qualification, troubleshooting steps).
+Most support assistants work best somewhere in the middle.
 
-See the [Playbooks](/pages/ai-config/playbooks) documentation for more details.
+### Playbook attachment
 
-## Testing Your Assistant
+Playbooks define what your assistant is trying to achieve in a conversation. You can attach one or more playbooks to an assistant, and the AI will determine which one applies based on the customer's intent.
 
-Before deploying your assistant to live channels, you should test its behavior.
+See [Playbooks](/pages/ai-config/playbooks) for how to create and structure them.
 
-1. Navigate to **Conversations > Messaging > Widget Playground**.
-2. Select the assistant you want to test.
-3. Interact with the assistant as a customer would.
-4. Verify that it follows its persona, uses the correct training context, and executes its assigned playbooks properly.
+## Testing your assistant
 
-## Monitoring Performance
+Before sending your assistant live, test it in the **Widget Playground** at **Conversations > Messaging > Widget Playground**. Select the assistant you want to test and interact with it exactly as a customer would.
 
-Once your assistant is live, you can monitor its performance in the **Insights > Analytics** dashboard. Look for metrics like:
-- Total conversations handled
-- Resolution rate
-- Handoff rate (how often it transfers to a human)
-- Customer satisfaction (CSAT) scores
+Check that it:
+- Follows the persona you wrote
+- Uses the right training context to answer questions
+- Executes its assigned playbooks correctly
+- Triggers routing rules when it should
 
-If an assistant is struggling, consider updating its persona, adding more training context, or refining its playbooks.
+## Monitoring performance
+
+Once your assistant is live, keep an eye on how it's doing in **Insights > Analytics**. The metrics to watch are:
+
+- **Total conversations handled** — Is it taking load off your team?
+- **Handoff rate** — How often is it escalating to humans? A very high rate might mean the persona or training context needs work.
+- **Resolution rate** — How often does it fully resolve a conversation without human help?
+
+If something isn't working, the most common fixes are updating the persona, adding more training context, or refining the playbook instructions.

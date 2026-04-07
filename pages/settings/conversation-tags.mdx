@@ -1,56 +1,43 @@
 ---
 title: Conversation Tags
-description: Create and manage labels for categorizing conversations and enabling smarter reporting.
+description: Create and manage tags to categorize conversations, filter your inbox, and track trends across your support volume.
 ---
 
-## What are Conversation Tags?
+## Organize with tags
 
-**Conversation Tags** (located at **Settings > Conversation Tags**) are labels that can be applied to individual conversations to categorize and organize them.
+**Conversation Tags** (at **Settings > Conversation Tags**) are labels you can apply to conversations to categorize them. Tags make it easy to filter your inbox, identify patterns in your support volume, and report on specific issue types.
 
-Tags make it easy to filter the Conversations Inbox, generate targeted reports, and trigger specific workflows based on the nature of an interaction.
+For example, you might tag conversations as "Billing Issue", "Feature Request", "Bug Report", or "VIP Customer" — then use those tags to filter your inbox or pull reports.
 
-## Why Use Tags?
+## Creating a tag
 
-Tags are a simple but powerful organizational tool. Here are some common ways teams use them:
-
-- **Issue Categorization**: Label conversations by the type of issue (e.g., "Billing Issue", "Technical Bug", "Feature Request", "Account Question").
-- **Priority Levels**: Mark urgent conversations (e.g., "High Priority", "VIP Customer", "Escalated").
-- **Sales Stage**: Track where a lead is in the pipeline (e.g., "New Lead", "Demo Scheduled", "Proposal Sent", "Closed Won").
-- **Channel Source**: Identify where a customer originally came from (e.g., "From Website", "From Social Ad", "Referral").
-
-## Creating a Tag
-
-To create a new conversation tag:
-
-1. Navigate to **Settings > Conversation Tags**.
+1. Go to **Settings > Conversation Tags**.
 2. Click **Create Tag**.
-3. Enter a **Tag Name** (e.g., "Billing Issue").
-4. Select a **Color** for the tag. Colors help agents quickly identify tags in the conversation list.
-5. Optionally, add a **Description** to clarify when the tag should be used.
-6. Click **Save**.
+3. Enter a name for the tag.
+4. Choose a color (this helps visually distinguish tags in the inbox).
+5. Click **Save**.
 
-## Applying Tags to Conversations
+## Applying tags to conversations
 
-Tags can be applied to conversations in several ways:
+Tags can be applied to conversations in two ways:
 
-1. **Manually by an Agent**: In the Conversation Detail view, agents can click the **Tags** area in the header and select the appropriate tags from a dropdown list.
-2. **Automatically by AI**: You can configure your AI assistants to automatically apply specific tags based on the content of a conversation (e.g., if the user mentions "refund", automatically apply the "Billing Issue" tag).
-3. **Via Routing Rules**: When a Routing Rule fires, it can apply a tag as part of its action (e.g., when a conversation is escalated to the Tier 2 team, automatically tag it as "Escalated").
+- **Manually** — In the conversation detail view, click the **Tags** field in the right panel and select the tags you want to apply.
+- **Automatically** — Via workflows. For example, you can create an email workflow that automatically applies the "Billing Issue" tag when a customer's email contains the word "invoice."
 
-## Using Tags for Filtering and Reporting
+## Using tags to filter conversations
 
-Once tags are applied to conversations, they become a powerful filtering tool.
+In the Conversations inbox, use the **Tags** filter in the left sidebar to show only conversations with a specific tag. This is useful for:
 
-- **In the Inbox**: Use the tag filter in the Conversations Inbox to view only conversations with a specific label (e.g., "Show me all open 'Billing Issue' conversations").
-- **In Analytics**: The Analytics dashboard allows you to filter reports by tag, so you can see metrics like resolution time or handoff rate for a specific category of issue.
+- Reviewing all open billing issues at the end of the day
+- Checking on all conversations tagged as "Escalated"
+- Pulling a list of conversations for a specific campaign or event
 
-## Managing Tags
+## Tags vs. client tags
 
-As your categorization needs evolve, you can update your tag library.
+Note that **Conversation Tags** are different from tags on a client's profile. Conversation tags categorize a specific conversation; client tags categorize the person. Both are available as filters in their respective views.
 
-- **Edit**: Change the name or color of an existing tag. The update will be reflected on all conversations that already have the tag applied.
-- **Delete**: Permanently remove a tag. It will be removed from all conversations it was previously applied to.
+## Managing your tag library
 
-<Callout kind="warning">
-**Deleting a tag is irreversible.** All historical data associated with that tag will be lost. If you want to retire a tag without losing the data, consider renaming it to something like "DEPRECATED - Billing Issue" instead of deleting it.
-</Callout>
+Keep your tag list focused and consistent. Too many tags — or tags with overlapping meanings — make filtering less useful. Periodically review your tags and merge or delete any that are redundant.
+
+Only users with the **Admin** or **Owner** role can create, edit, or delete tags.

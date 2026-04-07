@@ -1,141 +1,106 @@
 ---
-title: Pages overview
-description: Understand how the Autoch.at app is structured, how routing and access work, and how the Pages docs map to the in‑app sidebar navigation.
+title: How the app is organized
+description: Understand how Autoch.at is structured, how navigation works, and how these docs map to what you see in the app.
 ---
 
-## Scope and audience
+## The big picture
 
-Autoch.at organizes your workspace into a consistent shell with sidebar navigation, a shared header, and pages that reflect the main areas of your tenant. This overview explains what those areas are, how access works at a user level, and how the Pages docs line up with what you see in the app.
+Autoch.at organizes everything into a consistent layout with a sidebar on the left, a shared header at the top, and a main content area for each page. Once you know the layout, you can move between sections quickly and find what you need without guessing.
 
-<Callout kind="info">
-
-These docs focus on **tenant workspaces and tenant admins**. Platform-level admin screens for managing multiple tenants are out of scope here.
-
-</Callout>
-
-## Tenants, workspaces, and access
-
-A **tenant** is your organization in Autoch.at. Within a tenant, you may have one or more **workspaces** that separate different brands, regions, or teams.
-
-From a user perspective:
-
-- Your tenant defines **who you share data with** (for example, colleagues in the same company).
-- Each workspace defines **which AI assistants, conversations, and settings** you see.
-- Your role in a workspace (for example, member, manager, admin) controls what actions you can take.
+These docs are organized to match that sidebar exactly. Each section in the navigation here corresponds to a section in the app.
 
 <Callout kind="info">
-
-If you do not see a workspace or page that a teammate can access, you may lack permissions or not belong to the same workspace. Ask a tenant or workspace admin to review your access.
-
+What you see in the sidebar depends on your role and plan. If a section described in these docs doesn't appear for you, your account may not have access to it yet — reach out to your organization administrator to check your permissions.
 </Callout>
 
-### Sign-in and email verification
+## Workspaces and access
 
-To use tenant pages, you always go through a basic access flow:
+When you log in to Autoch.at, you're working inside a **workspace**. A workspace is your team's environment — it contains your AI assistants, conversations, clients, and settings.
 
-- **Sign-in required** – Pages in the main sidebar are only available when you are logged in.
-- **Email verification** – Newly invited users may be asked to verify their email before they can use tenant pages.
-- **Session timeouts** – If your session expires, the app redirects you back to sign-in when you try to open a tenant page.
+Some organizations use multiple workspaces to separate different brands, regions, or teams. If that's the case for you, you'll be able to switch between them from the header.
 
-In everyday use, this means:
+Your **role** within a workspace controls what you can see and do:
 
-- You can always reach public pages like the login and email verification screens, even if you are not signed in.
-- You only see tenant content once you are authenticated and your account is ready.
-- If a link sends you to a page but you end up on the sign-in screen instead, log in and try again.
+- **Agents** focus on day-to-day work in the Conversations inbox.
+- **Managers** can also view reports and manage client records.
+- **Admins** have access to AI configuration, settings, and most workspace options.
+- **Owners** have full access, including billing and user management.
 
-## Common layout conventions
+If you're not sure what role you have, your organization administrator can check and update it for you.
 
-All tenant pages share a common layout so you can move between sections without re-learning the interface.
+### Signing in and session management
 
-### Sidebar sections
+All pages in the main sidebar require you to be signed in. If your session expires, the app will redirect you to the login screen — just sign in again and you'll be taken back to where you were.
 
-The left sidebar is your main navigation and maps directly to the structure of this Pages section:
+New users who were invited by email may need to verify their address before they can access the workspace.
 
-- **Dashboard** – See a high-level snapshot of activity and important shortcuts across your workspace.
-- **AI Config** – Manage how your AI assistants behave, connect to data sources, and control automation.
-- **Conversations** – View and manage live and historical chat, voice, and email conversations with customers.
-- **CRM** – Work with clients and related records that power your conversations and outreach.
-- **Insights** – Review analytics, performance metrics, and conversation outcomes across your tenant.
-- **Settings** – Configure workspace-wide settings such as members, channels, billing, and preferences.
+## The sidebar sections
 
-Each page doc in this section describes one of these areas from a **user workflow** perspective, not from an implementation or developer perspective.
+The left sidebar is your primary navigation. Here's what each section contains:
 
-### Header and global controls
+| Section | What you'll find there |
+|---|---|
+| **Dashboard** | A live snapshot of conversations, leads, channel status, and system health |
+| **AI Assistant** | Assistants, playbooks, training context, routing rules, safety settings, and experiments |
+| **Conversations** | The unified inbox for chat, SMS, email, voice, and social — plus workflows and outbound tools |
+| **CRM** | Client records, CRM integrations, and lead qualification settings |
+| **Insights** | Analytics, conversation intelligence, and voice performance metrics |
+| **Social** | Social media publishing, queues, analytics, and the AI caption generator |
+| **Settings** | Channels, branding, users, billing, and workspace preferences |
 
-The top header bar provides shared tools you will see across most tenant pages:
+## The header
 
-- **Theme toggle** – Switch between light and dark modes without leaving your current screen.
-- **Global search and shortcuts** – Jump quickly to conversations, clients, or pages wherever you are.
-- **Onboarding widgets** – See guidance and progress indicators when your tenant is still being set up.
-- **Realtime badges and counters** – Get live feedback, such as active conversations, new messages, or pending items.
+The top header bar gives you access to a few useful tools that are available across all pages:
 
-These controls work the same way in Dashboard, Conversations, CRM, and Insights so you can rely on consistent behavior as you move around.
+- **Theme toggle** — Switch between light and dark mode without leaving your current screen.
+- **Global search** — Jump to a conversation, client, or page from anywhere in the app.
+- **Onboarding progress** — If your workspace is still being set up, you may see a progress indicator here.
+- **Live activity badges** — Counters for things like unread conversations or pending items update in real time.
 
-## How permissions affect what you see
+## How to use these docs alongside the app
 
-Your role and workspace membership determine which sidebar items and page actions appear.
+The most effective way to use this documentation is to keep it open alongside the app. When you're on a page in Autoch.at, find the matching doc here and skim the headings to understand what each part of the page does.
 
-At a high level:
+Each doc explains:
 
-- **Standard members** focus on day-to-day work in Conversations and CRM.
-- **Team leads** often gain extra access in Insights to review performance and outcomes.
-- **Tenant admins** can reach more Settings options, including members, channels, and billing.
-
-<Callout kind="info">
-
-If a section described in these docs does not appear in your sidebar, your account may not have access to it yet. Contact a tenant admin to check your role or invite you to the relevant workspace.
-
-</Callout>
-
-## Using the docs alongside the app
-
-Treat this Pages section as a **map between the in-app sidebar and the documentation**. When you open a page in Autoch.at, you can usually find a matching doc that explains:
-
-- What you can do on that page.
-- How data and actions on that page affect other areas.
-- Which permissions you need for specific tasks.
-
-A practical way to work:
-
-- Keep Autoch.at open in one browser tab and these docs open in another.
-- As you explore a sidebar section, open the matching doc and skim the headings.
-- Use the doc examples to try actions in your own workspace, then confirm you see similar results.
+- What the page is for and when you'd use it.
+- How to complete the most common tasks on that page.
+- How actions on that page affect other parts of the app.
+- Which role or permission level is needed for specific actions.
 
 ## Suggested reading path
 
-Use the steps below to learn the app in a logical order and connect pages in the app to their docs.
+If you're new to Autoch.at, here's a logical order to work through the docs:
 
 <Steps>
 
 <Step title="Start with the Dashboard" icon="layout-dashboard">
 
-Begin with the Dashboard to understand your workspace at a glance and how navigation is organized. Confirm you can see key widgets and shortcuts relevant to your role.
+The [Dashboard](/pages/overview/dashboard) gives you a feel for the app's layout and shows you what's happening in your workspace at a glance. It's a good reference point before diving into configuration.
 
 </Step>
 
-<Step title="Explore conversations and clients" icon="message-circle">
+<Step title="Learn the inbox" icon="message-circle">
 
-Next, learn how day-to-day work happens. Read the Conversations and Conversation detail docs, then the Clients page, and compare them to what you see in your workspace.
-
-</Step>
-
-<Step title="Configure AI and context" icon="zap">
-
-Once you know how conversations and clients appear, review the Assistants and Training context pages. Use them to understand how AI behavior and knowledge shape what happens in the inbox.
+Read through [Conversations](/pages/conversations/conversations) and [Conversation Detail](/pages/conversations/conversation-detail) to understand how day-to-day work happens. Then check [Clients](/pages/crm/clients) to see how customer records connect to conversations.
 
 </Step>
 
-<Step title="Review insights and settings" icon="settings">
+<Step title="Configure your AI" icon="zap">
 
-Finish with Analytics, Settings, and Billing. These pages help you measure outcomes, manage access, and control tenant-wide options such as plans and payment details.
+Once you understand the inbox, work through [Assistants](/pages/ai-config/assistants), [Training Context](/pages/ai-config/training-context), and [Playbooks](/pages/ai-config/playbooks). These three pages are the core of how Autoch.at's AI behaves.
+
+</Step>
+
+<Step title="Set up your workspace" icon="settings">
+
+Finish with [Settings](/pages/settings/users) and [Billing](/pages/settings/billing) to configure your team, channels, and plan. These pages are typically handled by an admin or owner.
 
 </Step>
 
 </Steps>
 
-## Main page-level docs
-
-The cards below link to the primary page docs that mirror the sidebar structure. Use them to jump directly to the area you care about.
+## Jump to a section
 
 <Columns cols={3}>
 
@@ -143,11 +108,9 @@ The cards below link to the primary page docs that mirror the sidebar structure.
   title="Dashboard"
   href="/pages/overview/dashboard"
   icon="layout-dashboard"
-  cta="View workspace overview"
+  cta="See your workspace at a glance"
 >
-
-Understand the main dashboard layout, key widgets, and how to use it as a home base for your daily work.
-
+Understand the main dashboard layout, key metrics, and how to use it as your daily home base.
 </Card>
 
 <Card
@@ -156,20 +119,16 @@ Understand the main dashboard layout, key widgets, and how to use it as a home b
   icon="zap"
   cta="Configure AI assistants"
 >
-
-Learn how assistants are organized, how to adjust behavior, and how assistant settings affect customer conversations.
-
+Learn how to create assistants, write personas, and assign them to channels.
 </Card>
 
 <Card
-  title="Training context"
+  title="Training Context"
   href="/pages/ai-config/training-context"
   icon="database"
   cta="Control AI knowledge"
 >
-
-See how to connect knowledge sources and manage the context that your AI uses to answer questions accurately.
-
+Connect knowledge sources and manage what your AI knows.
 </Card>
 
 </Columns>
@@ -182,36 +141,17 @@ See how to connect knowledge sources and manage the context that your AI uses to
   icon="message-circle"
   cta="Work from the inbox"
 >
-
-Review the inbox layout, filters, assignment tools, and how different channels appear in one view.
-
-</Card>
-
-<Card
-  title="Conversation detail"
-  href="/pages/conversations/conversation-detail"
-  icon="message-circle"
-  cta="Understand each thread"
->
-
-Dive into the detailed view for a single conversation, including timelines, AI suggestions, and linked records.
-
+Review the inbox layout, filters, and how different channels appear together.
 </Card>
 
 <Card
   title="Clients"
   href="/pages/crm/clients"
   icon="users"
-  cta="Manage CRM records"
+  cta="Manage client records"
 >
-
-See how client records are structured, how they connect to conversations, and how to keep data up to date.
-
+See how client records are structured and how they connect to conversations.
 </Card>
-
-</Columns>
-
-<Columns cols={3}>
 
 <Card
   title="Analytics"
@@ -219,40 +159,30 @@ See how client records are structured, how they connect to conversations, and ho
   icon="bar-chart"
   cta="Measure performance"
 >
-
-Explore the analytics dashboards, learn what each metric means, and understand how filters change the view.
-
+Explore the analytics dashboards and understand what each metric means.
 </Card>
+
+</Columns>
+
+<Columns cols={3}>
 
 <Card
   title="Settings"
-  href="/pages/settings/settings"
+  href="/pages/settings/users"
   icon="settings"
-  cta="Configure workspace"
+  cta="Configure your workspace"
 >
-
-Learn where to adjust workspace-wide options including members, channels, and key configuration choices.
-
+Manage users, channels, branding, and workspace-wide options.
 </Card>
 
 <Card
   title="Billing"
   href="/pages/settings/billing"
   icon="credit-card"
-  cta="Manage plan and payments"
+  cta="Manage your plan"
 >
-
-Understand how billing works, how to view invoices, and how changes to your plan affect your tenant.
-
+Understand how billing works and how to manage your subscription.
 </Card>
-
-</Columns>
-
-## What to read next
-
-If you are new to Autoch.at as a tenant admin or power user, pair this overview with the broader getting started docs.
-
-<Columns cols={2}>
 
 <Card
   title="Quickstart"
@@ -260,20 +190,7 @@ If you are new to Autoch.at as a tenant admin or power user, pair this overview 
   icon="play-circle"
   cta="Set up your first workspace"
 >
-
-Walk through your initial setup, invite teammates, and confirm you can navigate to the main sidebar sections described here.
-
-</Card>
-
-<Card
-  title="Features"
-  href="/features"
-  icon="puzzle"
-  cta="Scan core capabilities"
->
-
-Review the major feature areas, then jump into their corresponding page docs in this section for hands-on details.
-
+Walk through the initial setup and get your first assistant live.
 </Card>
 
 </Columns>

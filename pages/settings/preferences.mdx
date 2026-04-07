@@ -1,59 +1,51 @@
 ---
 title: Preferences
-description: Configure workspace-level defaults, business hours, and operational preferences.
+description: Configure workspace-wide defaults for conversation assignment, notifications, business hours, and language settings.
 ---
 
-## What are Preferences?
+## Workspace preferences
 
-The **Preferences** page (located at **Settings > Preferences**) contains workspace-level configuration options that affect the general behavior of your Autoch.at environment.
+The **Preferences** page (at **Settings > Preferences**) controls the default behavior of your workspace — things like how new conversations are assigned, what timezone your reports use, and how notifications are delivered.
 
-Unlike channel-specific settings (like Email or Chat Widget), Preferences apply broadly across all channels and features in your workspace.
+## Conversation assignment
 
-## Business Hours
+### Auto-assignment
 
-Defining your **Business Hours** is one of the most important configurations in Preferences. Many features in Autoch.at behave differently depending on whether a conversation occurs during or outside of your defined business hours.
+When auto-assignment is enabled, new conversations are automatically assigned to an available agent rather than sitting unassigned in the shared queue.
 
-For example:
-- **Routing Rules** can route conversations differently after hours (e.g., "During business hours, escalate to a human. After hours, take a message and promise a callback.").
-- **Handoff Messages** can be customized for after-hours scenarios (e.g., "Our team is currently offline. We'll respond first thing in the morning.").
-- **Email Workflows** can trigger different sequences based on when an email arrives.
+You can choose between two assignment strategies:
 
-### Configuring Business Hours
+- **Round robin** — New conversations are distributed evenly across all available agents, cycling through the list in order.
+- **Least busy** — New conversations are assigned to the agent who currently has the fewest open conversations.
 
-1. Navigate to **Settings > Preferences**.
-2. In the **Business Hours** section, select your **Timezone**.
-3. For each day of the week, toggle it on or off to indicate whether it is a business day.
-4. For each active day, set the **Start Time** and **End Time** for your business hours.
-5. Click **Save**.
+If no agents are available (everyone is offline or at capacity), conversations remain unassigned until an agent becomes available.
 
-<Callout kind="tip">
-**Holiday Hours**: If you need to define specific holiday closures, you can add them as exceptions in the Business Hours section. This overrides your regular schedule for specific dates.
-</Callout>
+### Capacity limits
 
-## Default Language
+Set a maximum number of simultaneous open conversations per agent. When an agent reaches their limit, new conversations won't be auto-assigned to them until they resolve or transfer some of their existing ones.
 
-Set the default language for your workspace. This affects the language used in system-generated messages (e.g., the initial greeting in the chat widget, automated email responses).
+## Business hours
 
-If your AI assistants are configured to handle multiple languages, the **Default Language** setting determines the fallback language when the customer's language cannot be detected.
+Set your workspace's operating hours. Business hours are used in several places:
 
-## Conversation Assignment
+- **Routing rules** — You can route conversations differently outside business hours (e.g., to an AI assistant instead of a human team).
+- **Workflows** — Conditions like "outside business hours" use this setting.
+- **Response time expectations** — The AI can reference your business hours when customers ask when they'll hear back from a human.
 
-Configure how new conversations are automatically assigned to human agents when they arrive in the inbox.
+Set your timezone first, then define your hours for each day of the week. You can set different hours for different days, or mark a day as closed.
 
-- **Round Robin**: Distribute new conversations evenly across all available agents.
-- **Least Busy**: Assign the new conversation to the agent with the fewest currently open conversations.
-- **Manual**: Do not automatically assign conversations. They will sit in the unassigned queue until an agent picks them up.
+## Notifications
 
-## Notification Defaults
+Configure how your workspace delivers notifications to agents:
 
-Set the default notification settings for new users in your workspace. Individual users can override these defaults in their personal [Profile](/pages/settings/profile) settings.
+- **Browser notifications** — Pop-up alerts in the browser when a new conversation is assigned or a customer replies.
+- **Email notifications** — Email alerts for new assignments, mentions in internal notes, or conversations that have been waiting too long.
+- **Notification frequency** — Choose between real-time notifications or a digest (e.g., a summary every 30 minutes).
 
-- **New Conversation Notifications**: Should new agents be notified by email, browser push, or in-app when a new conversation is assigned to them?
-- **Mention Notifications**: Should agents be notified when they are `@mentioned` in an internal note?
+Individual agents can also customize their own notification preferences from their Profile page — workspace preferences set the defaults.
 
-## Data and Privacy Defaults
+## Language and locale
 
-Configure the default data handling behavior for your workspace.
+Set the default language for the workspace interface. This affects the language of the Autoch.at UI for all agents in the workspace.
 
-- **Default Retention Period**: Set the default data retention policy for new workspaces (if your organization uses multiple workspaces). Individual workspace settings can override this.
-- **Conversation Transcripts**: Choose whether to automatically generate transcripts for voice calls.
+Note that this is separate from the language your AI assistants use to communicate with customers — that's configured in each assistant's persona settings.

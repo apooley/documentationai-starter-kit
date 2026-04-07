@@ -1,89 +1,64 @@
 ---
 title: Analytics
-description: Track your performance, conversation volume, and AI assistant metrics across all channels.
+description: Track conversation volume, AI performance, response times, lead conversion, and channel health — all in one dashboard.
 ---
 
-## What is the Analytics Dashboard?
+## Understanding your performance
 
-The **Analytics** page (located at **Insights > Analytics**) provides a comprehensive view of how your Autoch.at workspace is performing. It aggregates data from all your communication channels and AI assistants to help you understand conversation volume, resolution rates, and the impact of your automation efforts.
+The **Analytics** page (at **Insights > Analytics**) gives you a data-driven view of how your AI assistants and human team are performing. Use it to spot trends, identify problems, and make informed decisions about your configuration.
 
-Unlike the main Dashboard (which provides a quick operational snapshot), the Analytics page is designed for deeper analysis and reporting.
+The dashboard is organized into several sections, each focused on a different aspect of your operation.
 
-## Time Range and Exporting
+## Conversation overview
 
-At the top of the Analytics page, you can control the data you are viewing:
+The top section shows your high-level conversation metrics for the selected time period:
 
-- **Time Range Selector**: Choose the period you want to analyze (e.g., Last 7 Days, Last 30 Days, Last 90 Days). All charts and metrics on the page will update to reflect this window.
-- **Export**: Click the **Export** button to download the current data as a CSV file for use in external reporting tools or spreadsheets.
+| Metric | What it tells you |
+|---|---|
+| **Total conversations** | How many conversations were started across all channels |
+| **AI-handled** | How many were fully resolved by the AI without human intervention |
+| **Escalated to human** | How many were handed off to a human agent |
+| **Resolved** | How many were marked as resolved (by AI or human) |
+| **Average response time** | How quickly conversations received their first response |
+| **Average resolution time** | How long it took to resolve a conversation from start to finish |
 
-## Scheduled Reports
+Use the **time range selector** at the top to filter by day, week, month, or a custom date range. Use the **channel filter** to focus on a specific channel (chat, SMS, email, voice, or social).
 
-If you need to share performance data with your team or stakeholders regularly, you can configure **Scheduled Reports**.
+## AI performance
 
-1. Click **New Schedule**.
-2. Define the frequency (e.g., Weekly on Mondays, Monthly on the 1st).
-3. Select the metrics you want to include.
-4. Enter the email addresses of the recipients.
+This section focuses specifically on how your AI assistants are performing:
 
-Autoch.at will automatically generate and email a PDF or CSV report based on your schedule.
+- **Handoff rate** — The percentage of conversations the AI escalated to a human. A consistently high handoff rate may indicate gaps in your training context or playbooks.
+- **Playbook completion rate** — How often the AI successfully completed its assigned playbook goal. Low completion rates often point to unclear instructions or customers who are going off-script.
+- **FAQ hit rate** — How often the AI found a relevant answer in your training context. A low hit rate means customers are asking questions your knowledge base doesn't cover.
 
-## Key Metrics Overview
+<Callout kind="tip">
+The **FAQ miss report** is one of the most actionable parts of Analytics. It shows you the questions your AI couldn't answer — which is exactly what you should add to your Training Context next.
+</Callout>
 
-The top section of the dashboard highlights your most critical performance indicators:
+## Lead qualification
 
-- **Total Conversations**: The absolute number of interactions across all channels during the selected time range.
-- **Qualified Leads**: The number of conversations where an AI assistant successfully completed a qualification playbook.
-- **Conversion Rate**: The percentage of total conversations that resulted in a qualified lead.
-- **Avg Call Duration**: (If Voice is enabled) The average length of phone conversations handled by your AI assistants.
+If you're using Autoch.at for lead generation, this section shows you how your qualification funnel is performing:
 
-## Advanced Operational Metrics
+- **Leads started** — Conversations where the AI began a qualification playbook
+- **Leads completed** — Conversations where the customer provided all required qualification data
+- **Qualified leads** — Conversations where the customer met your qualification criteria
+- **Conversion rate** — Qualified leads as a percentage of conversations started
 
-This section dives deeper into the efficiency and quality of your support and sales operations.
+## Channel breakdown
 
-- **First Response Time**: How quickly, on average, a customer receives their first reply (from either an AI or a human).
-- **Resolution Time**: The average time it takes to close a conversation from the moment it starts.
-- **Agent Response Time**: How quickly human agents reply after a conversation is handed off from an AI assistant.
-- **CSAT / Satisfaction**: The average Customer Satisfaction score, derived from post-conversation surveys or AI sentiment analysis.
-- **Cost per Qualified Lead**: An estimated metric based on your Autoch.at usage costs divided by the number of qualified leads generated.
+See how each channel is performing individually. This helps you understand where your customers prefer to communicate and where your AI is most effective.
 
-## Visualizing Trends
+## Team performance
 
-The Analytics page includes several charts to help you spot patterns and trends over time.
+If your workspace has human agents, this section shows individual and team-level metrics:
 
-### Conversation Volume by Hour (Heatmap)
+- Conversations handled per agent
+- Average response time per agent
+- Resolution rate per agent
 
-This heatmap shows when your customers are most active. Darker colors indicate higher conversation volume.
+This data is useful for identifying top performers and spotting agents who might need additional support or training.
 
-- **Use Case**: Use this data to optimize your human agent staffing schedules. If you see a consistent spike in volume on Tuesday mornings, ensure you have enough agents online to handle escalations.
+## Exporting data
 
-### Assistant Performance Comparison
-
-If you have multiple AI assistants deployed, this chart compares their performance side-by-side.
-
-- **Use Case**: Identify which assistants are handling the most volume, which have the highest resolution rates, and which are triggering the most handoffs to human agents.
-
-### Conversations Over Time
-
-A line chart showing the daily or weekly trend of total conversations.
-
-- **Use Case**: Track the impact of marketing campaigns, product launches, or seasonal trends on your support volume.
-
-### Channel Distribution
-
-A breakdown of where your conversations are happening (e.g., Chat vs. SMS vs. Email).
-
-- **Use Case**: Understand which channels your customers prefer and allocate resources accordingly.
-
-## FAQ Analytics
-
-This section provides crucial feedback on the effectiveness of your Training Context.
-
-- **FAQ Hits**: The number of times an AI assistant successfully used an FAQ to answer a customer's question.
-- **FAQ Misses**: The number of times a customer asked a question that the AI could not answer using the available Training Context.
-- **Near-misses**: Instances where the AI found a potentially relevant FAQ but was not confident enough to use it.
-
-**Actionable Insight**: Regularly review your FAQ Misses and Near-misses. These represent gaps in your knowledge base. By adding new FAQs or updating existing ones to cover these topics, you can immediately improve your AI's resolution rate.
-
-## Conversations by Channel
-
-The bottom of the dashboard provides a detailed breakdown of performance metrics for each specific channel (Voice, SMS, Email, Web Chat). This allows you to see if certain channels are driving more qualified leads or requiring more human intervention than others.
+Click the **Export** button to download any report as a CSV file. This is useful for sharing with stakeholders or importing into your own analytics tools.

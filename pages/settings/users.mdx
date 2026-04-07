@@ -1,79 +1,59 @@
 ---
-title: Users & Roles
-description: Invite teammates, assign roles, and manage who can configure AI, settings, and billing.
+title: Users
+description: Invite your team, assign roles, and manage who has access to what in your workspace.
 ---
 
-## Managing Your Team
+## Managing your team
 
-The **Users** page (located at **Settings > Users**) is where you manage the human agents and administrators who have access to your Autoch.at workspace.
+The **Users** page (at **Settings > Users**) is where you control who has access to your Autoch.at workspace and what they can do once they're in.
 
-From here, you can invite new team members, change their permissions, and remove users who no longer need access.
+Every person who needs to use Autoch.at — whether they're an agent handling conversations, a manager reviewing reports, or an admin configuring the AI — needs to be invited here first.
 
-## Inviting a New User
+## Roles and permissions
 
-To add a teammate to your workspace:
+Autoch.at uses a role-based access system. When you invite someone, you assign them one of four roles:
 
-1. Navigate to **Settings > Users**.
-2. Click the **Invite User** button.
-3. Enter the user's email address.
-4. Select the appropriate **Role** for the user (see below for role descriptions).
-5. Click **Send Invite**.
+| Role | What they can do |
+|---|---|
+| **Agent** | Handle conversations in the inbox, reply to customers, view their own assigned conversations |
+| **Manager** | Everything an Agent can do, plus view reports, manage client records, and see all conversations |
+| **Admin** | Everything a Manager can do, plus configure AI assistants, playbooks, training context, settings, and channels |
+| **Owner** | Full access to everything, including billing and the ability to add or remove other Owners |
 
-The user will receive an email with a link to join your workspace. Until they accept the invitation, their status will show as "Pending."
+Choose the most restrictive role that still lets the person do their job. You can always upgrade a role later.
 
-## User Roles and Permissions
+## Inviting a team member
 
-Autoch.at uses a role-based access control (RBAC) system to ensure that users only have access to the features and data they need to do their jobs.
+1. Go to **Settings > Users**.
+2. Click **Invite User**.
+3. Enter their email address.
+4. Select their role.
+5. Click **Send Invitation**.
 
-When inviting or editing a user, you must assign them one of the following roles:
+They'll receive an email with a link to set up their account. The invitation expires after 7 days — if they don't accept in time, you can resend it from the Users page.
 
-### 1. Owner
+## Changing a user's role
 
-The Owner has complete control over the workspace. There is typically only one Owner (the person who created the workspace), but ownership can be transferred if necessary.
+1. Find the user in the list.
+2. Click the role dropdown next to their name.
+3. Select the new role.
+4. The change takes effect immediately.
 
-- **Permissions**: All permissions, including deleting the workspace, managing billing, and transferring ownership.
+## Removing a user
 
-### 2. Admin
+1. Find the user in the list.
+2. Click the **...** menu next to their name.
+3. Select **Remove from workspace**.
 
-Admins have broad access to configure the platform but cannot manage billing or delete the workspace.
-
-- **Permissions**:
-  - Manage all AI Configuration (Assistants, Playbooks, Training Context, Routing).
-  - Manage all Settings (Channels, Branding, Integrations).
-  - Invite and manage other users (except Owners).
-  - View all Analytics and Conversation Intelligence.
-  - Access and respond to all conversations in the Inbox.
-
-### 3. Manager
-
-Managers oversee the day-to-day operations of the support or sales team. They can manage conversations and view reports but cannot change core system settings.
-
-- **Permissions**:
-  - Access and respond to all conversations in the Inbox.
-  - Reassign conversations between agents.
-  - View Analytics and Conversation Intelligence.
-  - Manage CRM Clients and Connections.
-  - *Cannot* modify AI Assistants, Playbooks, or core Settings.
-
-### 4. Agent
-
-Agents are the frontline team members who handle customer interactions. Their access is restricted primarily to the Conversations Inbox.
-
-- **Permissions**:
-  - Access and respond to conversations assigned to them or their team.
-  - View the CRM profile of the customer they are currently talking to.
-  - *Cannot* view workspace-wide Analytics.
-  - *Cannot* modify AI Configuration or Settings.
-
-## Editing or Removing Users
-
-As your team changes, you can update user roles or revoke access entirely.
-
-1. Navigate to **Settings > Users**.
-2. Locate the user in the list.
-3. Click the **Actions** menu (usually represented by three dots) next to their name.
-4. Select **Edit Role** to change their permissions, or **Remove User** to revoke their access to the workspace.
+Removing a user revokes their access immediately. Their conversation history and any notes they left remain in the system — only their ability to log in is removed.
 
 <Callout kind="warning">
-**Removing a user is permanent.** If you remove a user, they will immediately lose access to the workspace. Any conversations currently assigned to them will be returned to the unassigned queue.
+You cannot remove the last Owner from a workspace. Make sure there's always at least one Owner who can manage billing and settings.
 </Callout>
+
+## Pending invitations
+
+The Users page shows a separate list of invitations that have been sent but not yet accepted. From here you can:
+
+- **Resend** — Send the invitation email again if the original expired or was missed.
+- **Cancel** — Revoke a pending invitation before it's accepted.

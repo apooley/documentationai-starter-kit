@@ -1,64 +1,60 @@
 ---
 title: PII & Privacy
-description: Control how Autoch.at handles sensitive data, including redaction and retention policies.
+description: Control how Autoch.at handles personally identifiable information — including data redaction, retention periods, and customer data deletion requests.
 ---
 
-## What is PII & Privacy?
+## Protecting your customers' data
 
-The **PII & Privacy** page (located at **Settings > PII & Privacy**) is where you configure how Autoch.at handles Personally Identifiable Information (PII) and other sensitive data within your conversations.
+The **PII & Privacy** page (at **Settings > PII & Privacy**) gives you control over how Autoch.at stores and handles personally identifiable information (PII) — things like names, email addresses, phone numbers, and any other data that could identify a specific individual.
 
-Autoch.at is designed with privacy in mind, offering tools to automatically detect, redact, and manage sensitive information before it is stored or processed by AI models.
+Getting this right matters both for your customers' trust and for compliance with regulations like GDPR, CCPA, and PIPEDA.
 
-## Data Redaction
+## PII redaction
 
-Data Redaction is the process of automatically identifying and masking sensitive information in customer messages before they are saved to the database or sent to an AI model for processing.
+When PII redaction is enabled, Autoch.at automatically detects and masks sensitive information in conversation transcripts. For example, a credit card number mentioned in a chat message would be replaced with `****` in the stored transcript.
 
-### How Redaction Works
+This is especially useful if your AI assistants handle conversations where customers might accidentally share sensitive data — like account numbers, social security numbers, or passwords.
 
-When a message arrives (via chat, SMS, email, etc.), Autoch.at scans the text for patterns that match common types of PII. If a match is found, the sensitive data is replaced with a placeholder (e.g., `[REDACTED_CREDIT_CARD]`).
+### Enabling PII redaction
 
-This ensures that:
-1. Your human agents do not see sensitive information they shouldn't have access to.
-2. Sensitive data is not inadvertently included in the context sent to external AI providers (like OpenAI or Anthropic).
-
-### Configuring Redaction Rules
-
-You can customize which types of data Autoch.at should automatically redact.
-
-1. Navigate to **Settings > PII & Privacy**.
-2. In the **Data Redaction** section, toggle the switches for the types of PII you want to protect.
-
-Common redaction categories include:
-- **Credit Card Numbers**: (e.g., Visa, Mastercard, Amex)
-- **Social Security Numbers (SSN)**: (US format)
-- **Email Addresses**: (If you don't need to collect them in the conversation body)
-- **Phone Numbers**: (If you don't need to collect them in the conversation body)
-- **Passwords/Secrets**: (Common patterns for API keys or passwords)
+1. Go to **Settings > PII & Privacy**.
+2. Toggle on **PII Redaction**.
+3. Select the types of data you want to redact (credit card numbers, phone numbers, email addresses, etc.).
+4. Click **Save**.
 
 <Callout kind="warning">
-**Redaction is irreversible.** Once a message is redacted and saved, the original sensitive data cannot be recovered. Ensure you only redact information you truly do not need for your business processes.
+PII redaction is applied at storage time. Once data is redacted in a transcript, it cannot be recovered. Make sure you only redact data you genuinely don't need to store.
 </Callout>
 
-## Data Retention Policies
+## Data retention
 
-Data Retention policies dictate how long Autoch.at stores your conversation history and customer data before automatically deleting it.
+Data retention settings control how long Autoch.at keeps your conversation history and client records before automatically deleting them.
 
-By default, Autoch.at retains data indefinitely to provide a complete history for your CRM and AI training context. However, many privacy regulations (like GDPR or CCPA) require businesses to delete customer data after a certain period or upon request.
+By default, Autoch.at retains data indefinitely. If your organization has a data retention policy (for example, "delete all conversation data after 12 months"), you can configure that here.
 
-### Configuring Retention
+### Setting a retention period
 
-1. Navigate to **Settings > PII & Privacy**.
-2. Locate the **Data Retention** section.
-3. Select your desired retention period from the dropdown menu (e.g., 30 days, 90 days, 1 year, Indefinitely).
-4. Click **Save Settings**.
+1. Go to **Settings > PII & Privacy**.
+2. In the **Data Retention** section, set your preferred retention period (in days, months, or years).
+3. Click **Save**.
 
-Once configured, Autoch.at will automatically permanently delete any conversations, attachments, and associated client records that exceed the specified age.
+Data older than the retention period will be automatically deleted on a rolling basis.
 
-### Handling Deletion Requests (Right to be Forgotten)
+## Deleting a customer's data
 
-If a customer requests that you delete their data (often referred to as the "Right to be Forgotten"), you can manually trigger a deletion from their Client profile.
+If a customer requests that their data be deleted (a "right to erasure" request under GDPR), you can fulfill it from the client's record:
 
-1. Go to **CRM > Clients**.
-2. Search for the customer and open their profile.
-3. Click the **Actions** menu (three dots) and select **Delete Client Data**.
-4. Confirm the deletion. This will permanently remove their profile and all associated conversation history from Autoch.at.
+1. Go to **CRM > Clients** and find the customer.
+2. Open their profile.
+3. Click **Delete Client Data**.
+4. Confirm the deletion.
+
+This permanently removes the client's personal information and conversation history from Autoch.at. This action cannot be undone.
+
+<Callout kind="info">
+Deleting a client's data does not affect any data that has already been synced to an external CRM. You'll need to handle deletion in your CRM separately.
+</Callout>
+
+## Data processing agreements
+
+If your organization requires a Data Processing Agreement (DPA) with Autoch.at for GDPR compliance, please contact our support team via the chat widget in your dashboard.

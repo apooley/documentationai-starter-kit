@@ -1,58 +1,42 @@
 ---
 title: Canned Responses
-description: Create pre-written replies that human agents can quickly insert into conversations.
+description: Create a library of pre-written replies that your team can insert into conversations with a single click — saving time on common questions.
 ---
 
-## What are Canned Responses?
+## Speed up your team's replies
 
-**Canned Responses** (located at **Settings > Canned Responses**) are pre-written message templates that your human agents can quickly insert into a conversation with a single click or keyboard shortcut.
+**Canned Responses** (at **Settings > Canned Responses**) are pre-written message templates that your agents can insert into any conversation with a single click or keyboard shortcut. They're ideal for the questions your team answers over and over again.
 
-They are designed to speed up response times for common, repetitive questions, ensuring that agents don't have to type the same answer dozens of times per day.
+Instead of typing the same answer from scratch every time, an agent types `/` followed by the shortcut keyword, and the full response is inserted into the composer — ready to review and send.
 
-## Why Use Canned Responses?
+## Creating a canned response
 
-Canned Responses provide several key benefits for your support and sales teams:
-
-- **Speed**: Agents can respond to common questions in seconds instead of minutes.
-- **Consistency**: Every customer gets the same accurate, approved answer to a standard question.
-- **Reduced Errors**: Pre-written and reviewed responses eliminate typos and factual mistakes.
-- **Onboarding**: New agents can be productive immediately, even before they've memorized all the answers.
-
-## Creating a Canned Response
-
-To create a new canned response:
-
-1. Navigate to **Settings > Canned Responses**.
+1. Go to **Settings > Canned Responses**.
 2. Click **Create Canned Response**.
-3. Fill in the following fields:
-   - **Name/Shortcut**: A short, memorable keyword that agents can type to trigger the response (e.g., `refund-policy`, `hours`, `billing-contact`). This is used for quick search within the composer.
-   - **Title**: A descriptive title that helps agents identify the response in the list (e.g., "Refund Policy Explanation", "Business Hours", "Billing Contact Information").
-   - **Content**: The full text of the response. You can use rich text formatting (bold, italics, lists) if the channel supports it.
+3. Fill in the details:
+   - **Name** — A descriptive label for internal use (e.g., "Refund Policy Explanation")
+   - **Shortcut** — A short keyword your agents will type to find it (e.g., `refund-policy`)
+   - **Message** — The full text of the response
 4. Click **Save**.
 
-## Using Canned Responses in the Inbox
+<Callout kind="tip">
+Keep shortcuts short and memorable. Agents will be typing these under pressure, so `refund` is better than `explain-our-refund-policy-to-customer`.
+</Callout>
 
-When a human agent is composing a reply in the Conversations Inbox, they can access canned responses in two ways:
+## Using canned responses in conversations
 
-1. **Keyboard Shortcut**: Type `/` (forward slash) followed by the shortcut keyword (e.g., `/refund-policy`). A dropdown will appear with matching responses. Press Enter to insert the selected response.
-2. **Toolbar Button**: Click the **Canned Responses** icon (lightning bolt) in the composer toolbar to browse the full list and search by title or keyword.
+In the conversation composer, type `/` to open the canned response picker. You can:
 
-Once inserted, the agent can review and edit the canned response before sending it, allowing them to personalize it for the specific customer's situation.
+- **Browse** — Scroll through all available responses
+- **Search** — Type part of the name or shortcut to filter the list
+- **Select** — Click a response to insert it into the composer
 
-## Using Personalization Variables
+Once inserted, you can edit the text before sending. This is useful for personalizing a template with the customer's name or specific details.
 
-You can include dynamic variables in your canned responses that are automatically replaced with customer-specific information when inserted.
+## Organizing canned responses
 
-For example:
-- `{{client.first_name}}` will be replaced with the customer's first name.
-- `{{agent.name}}` will be replaced with the agent's name.
+If you have a large library of canned responses, you can organize them into categories (like "Billing", "Technical Support", "Sales") to make them easier to find. Create categories by clicking **Add Category** at the top of the Canned Responses page.
 
-This allows you to create personalized responses at scale (e.g., "Hi {{client.first_name}}, thanks for reaching out! My name is {{agent.name}} and I'm happy to help.").
+## Who can create canned responses?
 
-## Managing Canned Responses
-
-As your business evolves, keep your canned responses up to date.
-
-- **Edit**: Modify the content of a response when policies or information changes.
-- **Delete**: Remove responses that are no longer relevant.
-- **Search**: Use the search bar on the Canned Responses page to quickly find a specific response by its title or shortcut keyword.
+Canned responses are workspace-wide — they're available to all agents in the workspace. Only users with the **Admin** or **Owner** role can create, edit, or delete them.

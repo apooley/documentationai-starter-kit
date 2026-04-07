@@ -1,58 +1,64 @@
 ---
 title: Qualification Settings
-description: Define the criteria your AI assistants use to score and qualify leads.
+description: Define the criteria your AI uses to qualify leads — the questions it asks, the fields it collects, and what counts as a qualified lead.
 ---
 
-## What are Qualification Settings?
+## What makes a qualified lead?
 
-**Qualification Settings** (located at **CRM > Qualification Settings**) allow you to define the specific criteria that determine whether a lead is considered "qualified" by your AI assistants.
+**Qualification Settings** (at **CRM > Qualification Settings**) is where you define what a "qualified lead" means for your business. Your AI assistant uses these settings to guide qualification conversations — asking the right questions, collecting the right information, and making the right call about whether a lead meets your criteria.
 
-When an AI assistant runs a qualification playbook, it collects information from the customer. Qualification Settings tell the system how to evaluate that information and decide if the lead meets your standards for a sales-ready prospect.
+Getting this right is one of the highest-value things you can do in Autoch.at. A well-configured qualification setup means your sales team only spends time on leads that are actually worth pursuing.
 
-## Why Configure Qualification Settings?
+## Qualification fields
 
-Without defined qualification criteria, your AI assistants have no way to consistently score leads. Two different assistants (or two different conversations) might make different judgments about whether a lead is qualified.
+Qualification fields are the pieces of information your AI collects from a prospect during a qualification conversation. Common examples include:
 
-By setting explicit criteria, you ensure:
-- **Consistency**: Every lead is evaluated against the same objective standards.
-- **Accuracy**: The "Qualified Leads" metric in your Analytics dashboard reflects your actual business definition of a qualified lead.
-- **Automation**: Qualified leads can automatically trigger follow-up actions (e.g., assign to a sales rep, send a notification, update the CRM).
+- Company name and size
+- Industry or vertical
+- Budget range
+- Timeline to purchase
+- Current solution they're using
+- Decision-making authority
 
-## Defining Qualification Criteria
+### Adding a qualification field
 
-Qualification criteria are the specific data points and thresholds that a lead must meet to be considered qualified.
+1. Go to **CRM > Qualification Settings**.
+2. Click **Add Field**.
+3. Choose the field type (text, number, dropdown, yes/no).
+4. Give it a label (e.g., "Budget Range") and, if it's a dropdown, add the options.
+5. Mark it as **Required** if the AI must collect this information before the conversation can be considered complete.
+6. Click **Save**.
 
-Common qualification frameworks include:
+## Qualification criteria
 
-### BANT (Budget, Authority, Need, Timeline)
+Qualification criteria are the rules that determine whether a lead is "qualified" based on the information collected. For example:
 
-BANT is a classic sales qualification framework. A lead is qualified if they have:
-- **Budget**: They have the financial resources to purchase your product.
-- **Authority**: They are the decision-maker (or a key influencer) for the purchase.
-- **Need**: They have a genuine problem that your product solves.
-- **Timeline**: They are planning to make a purchase decision within a specific timeframe.
+- Budget is greater than $5,000/month
+- Company size is more than 50 employees
+- Timeline to purchase is within 6 months
 
-### Custom Criteria
+### Setting up criteria
 
-You can also define your own custom qualification criteria based on your specific business model. For example:
-- **Company Size**: Only qualify leads from companies with more than 50 employees.
-- **Industry**: Only qualify leads from specific industries (e.g., SaaS, Healthcare, Finance).
-- **Use Case**: Only qualify leads who have a specific use case that your product supports.
-
-## Configuring Criteria in Autoch.at
-
-1. Navigate to **CRM > Qualification Settings**.
+1. In **CRM > Qualification Settings**, go to the **Criteria** tab.
 2. Click **Add Criterion**.
-3. Define the criterion:
-   - **Field**: The data point being evaluated (e.g., "Company Size", "Budget", "Decision Maker").
-   - **Condition**: The logic applied to the field (e.g., "is greater than", "is equal to", "contains").
-   - **Value**: The threshold or target value (e.g., "50", "$10,000", "Yes").
-4. Set the **Weight**: If some criteria are more important than others, you can assign a weight to each one. The system will calculate a weighted score for each lead.
-5. Define the **Qualification Threshold**: The minimum score a lead must achieve to be marked as "Qualified."
-6. Click **Save Settings**.
+3. Select the field to evaluate, the comparison operator, and the value.
+4. Add as many criteria as you need.
+5. Choose whether all criteria must be met (AND) or just one (OR).
 
-## How Qualification Affects Playbooks
+When a qualification conversation ends, Autoch.at evaluates the collected data against your criteria and marks the lead as Qualified or Not Qualified automatically.
 
-Your Qualification Settings work hand-in-hand with your [Playbooks](/pages/ai-config/playbooks). The playbook is responsible for *collecting* the qualification data (by asking the customer the right questions), and the Qualification Settings are responsible for *evaluating* that data.
+## Qualification scoring (optional)
 
-When a playbook completes, the AI checks the collected data against your Qualification Settings. If the lead meets the threshold, the conversation is tagged as "Qualified Lead" and any configured follow-up actions are triggered.
+Instead of a simple pass/fail, you can set up a scoring model that assigns points to different answers. For example:
+
+- Budget > $10k/month: 30 points
+- Company size > 100 employees: 20 points
+- Timeline within 3 months: 25 points
+
+Leads above a certain score threshold are marked as qualified. This gives you more nuance than a binary pass/fail — you can see at a glance how strong a lead is.
+
+## Viewing qualified leads
+
+Once your qualification settings are configured, qualified leads appear in **CRM > Clients** with a "Qualified" badge. You can filter the client list to show only qualified leads and sort by qualification score.
+
+If you've connected a CRM, qualified leads can also be automatically pushed to your CRM as new contacts or deals.

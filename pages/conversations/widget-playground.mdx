@@ -1,46 +1,47 @@
 ---
 title: Widget Playground
-description: Test your AI assistants in a live sandbox environment before deploying them to your website.
+description: Test your chat widget and AI assistant in a live sandbox before deploying to your website.
 ---
 
-## What is the Widget Playground?
+## Test before you go live
 
-The **Widget Playground** (located at **Conversations > Messaging > Widget Playground**) is a live, interactive testing environment that simulates the exact experience a customer would have when using the Autoch.at chat widget on your website.
+The **Widget Playground** (at **Conversations > Messaging > Widget Playground**) is a live preview environment where you can interact with your chat widget and AI assistant exactly as a real visitor would — without it being on your actual website.
 
-It is an essential tool for QA testing before you deploy a new assistant, update a playbook, or add new Training Context.
+Use it to:
+- Test your AI assistant's responses before going live
+- Verify that your widget looks correct with your branding
+- Check that your playbooks are working as expected
+- Train new team members on what the customer experience looks like
 
-## Why Use the Playground?
+## How it works
 
-Testing in the playground allows you to:
+The Widget Playground loads a full, functional version of your chat widget in a sandboxed page. Conversations you start here are real conversations — they go through your actual AI assistant, follow your actual playbooks, and appear in your Conversations inbox.
 
-- **Verify Behavior**: Confirm that your AI assistant responds correctly to different types of questions and scenarios.
-- **Test Playbooks**: Walk through a complete playbook flow (e.g., lead qualification) to ensure every step works as expected.
-- **Check Training Context**: Ask questions that should be answered by your uploaded documents or FAQs to verify the AI is retrieving the correct information.
-- **Test Routing Rules**: Trigger keywords or phrases that should activate a routing rule to confirm the handoff logic is working.
-- **Preview Branding**: See how the widget looks with your configured colors, logo, and header text before it goes live on your website.
+The only difference is that they're clearly labeled as "Playground" conversations so you can distinguish them from real customer conversations.
 
-## Using the Playground
+## Starting a test conversation
 
-1. Navigate to **Conversations > Messaging > Widget Playground**.
-2. The playground will render the chat widget exactly as it would appear on your website.
-3. Select the **Assistant** you want to test from the dropdown menu (if you have multiple assistants).
-4. Start typing in the chat input and interact with the assistant.
+1. Go to **Conversations > Messaging > Widget Playground**.
+2. The widget will load in the preview pane on the right.
+3. Click the chat button to open the widget.
+4. Type a message to start a conversation.
 
-The playground session is completely isolated from your live customer conversations. Any messages you send here will not appear in your production Conversations Inbox.
+Your AI assistant will respond just as it would for a real customer. You can test any scenario — ask questions, trigger playbooks, test escalation paths, and so on.
 
-## Interpreting the Results
+## What to test
 
-As you interact with the assistant in the playground, pay attention to:
+Before going live with a new assistant or playbook, we recommend testing:
 
-- **Accuracy**: Is the AI giving correct, up-to-date answers based on your Training Context?
-- **Tone**: Does the assistant's persona match your brand voice?
-- **Playbook Adherence**: Is the assistant following the steps in its assigned playbook, or is it going off-script?
-- **Routing Triggers**: When you type a keyword that should trigger a routing rule (e.g., "I want to speak to a human"), does the handoff occur as expected?
-
-## Resetting the Session
-
-If you want to start a fresh test from the beginning (e.g., to test the initial greeting or a different scenario), click the **Reset Session** button. This clears the conversation history and starts a new session, exactly as if a brand new visitor had opened the widget on your website.
+- **Common questions** — Does the AI answer your most frequent questions correctly?
+- **Edge cases** — What happens when someone asks something outside the AI's knowledge? Does it handle it gracefully?
+- **Playbook triggers** — Do your playbooks start correctly when the right conditions are met?
+- **Escalation** — Does the AI hand off to a human when it should?
+- **Branding** — Does the widget look right? Are the colors, logo, and greeting message correct?
 
 <Callout kind="tip">
-**Share the playground link with your team.** You can share the URL of the Widget Playground with colleagues so they can test the assistant without needing to navigate through the full dashboard. This is especially useful for getting feedback from non-technical stakeholders.
+Try to "break" your AI assistant in the playground before your customers do. Ask it confusing questions, give it incomplete information, and try to steer it off-topic. The more edge cases you find in testing, the better your customers' experience will be.
 </Callout>
+
+## Resetting the playground
+
+If you want to start fresh (for example, to test a different scenario from the beginning), click **Reset Conversation** to clear the current thread and start a new one.

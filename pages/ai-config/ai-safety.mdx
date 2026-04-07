@@ -1,72 +1,65 @@
 ---
 title: AI Safety
-description: Configure guardrails, blocked keywords, and serious mode triggers to ensure your AI assistants interact safely and appropriately with customers.
+description: Configure guardrails, blocked topics, and Serious Mode to keep your AI assistants on-brand and compliant.
 ---
 
-## The Hybrid Safety System
+## Why AI safety matters
 
-Autoch.at employs a **Hybrid Safety System** to protect your brand and your customers. This system combines built-in, non-removable system guardrails with your own custom rules.
+Your AI assistants are talking to real customers on your behalf. Without guardrails, they can occasionally go off-script — discussing topics outside their scope, making statements you'd rather not have associated with your brand, or mishandling sensitive situations.
 
-When evaluating a message (either incoming from a user or outgoing from an AI), the system checks both sets of rules. **The stricter rule always wins.** If the system blocks something, it stays blocked even if you haven't explicitly added it to your custom list. This provides a safety net while allowing you to enforce your specific business policies.
+The **AI Safety** page (at **AI Assistant > AI Safety**) gives you the tools to prevent this. It's not about limiting your AI — it's about making sure it stays focused, appropriate, and trustworthy.
 
-You can configure your custom safety rules by navigating to **AI Assistant > AI Safety**.
+## How Autoch.at's safety system works
 
-## Blocked Keywords
+Autoch.at uses a layered approach to safety:
 
-The **Blocked Keywords** section allows you to define specific words or phrases that the AI is strictly forbidden from using in its responses.
+1. **Blocked keywords and topics** — Hard stops that prevent the AI from engaging with specific content at all.
+2. **Serious Mode** — A special handling mode for sensitive inquiries that require a more careful, measured response.
+3. **Handoff triggers** — Automatic escalation to a human when the AI detects a situation it shouldn't handle alone.
 
-This is crucial for preventing the AI from:
-- Mentioning competitors by name.
-- Using proprietary internal terminology with customers.
-- Discussing confidential or unreleased features.
-- Using inappropriate or off-brand language.
+These layers work together. A conversation might pass the keyword check but still trigger Serious Mode, which then escalates to a human.
 
-### Configuring Blocked Keywords
+## Blocked keywords and topics
+
+Blocked keywords are words or phrases that, if detected in a customer's message, will prevent the AI from responding normally. Instead, it will either:
+
+- Redirect the conversation to a human agent.
+- Send a pre-configured fallback message.
+- End the conversation gracefully.
+
+### Adding a blocked keyword
 
 1. Go to **AI Assistant > AI Safety**.
-2. In the **Blocked Keywords** text area, enter one keyword or phrase per line.
-3. Click **Save Settings**.
+2. In the **Blocked Keywords** section, click **Add Keyword**.
+3. Enter the word or phrase.
+4. Choose the action to take when it's detected (redirect, fallback message, or end conversation).
+5. Click **Save**.
 
-If the AI generates a response containing a blocked keyword, the safety system will intercept it, redact the keyword, or block the message entirely and trigger a fallback response (e.g., "I'm sorry, I cannot discuss that topic.").
+Use this for topics that are completely off-limits — competitor names you don't want the AI to discuss, legally sensitive terms, or anything that should always go straight to a human.
 
-## Serious Mode Keywords
+## Serious Mode
 
-Not all customer inquiries should be handled with a cheerful, conversational tone. When a customer is upset, threatening legal action, or reporting a critical failure, the AI needs to recognize the severity of the situation and respond appropriately—or escalate immediately.
+**Serious Mode** is triggered when the AI detects that a conversation involves a sensitive topic — things like mental health crises, legal threats, medical emergencies, or expressions of distress.
 
-**Serious Mode** is a state triggered by specific keywords that forces the AI to adopt a professional, empathetic, and highly constrained tone, often prioritizing immediate handoff to a human agent.
+When Serious Mode activates, the AI shifts its behavior:
 
-### High Confidence Keywords
-
-These keywords trigger Serious Mode immediately, without requiring the AI to verify the context. They are typically unambiguous indicators of a severe issue.
-
-**Examples:**
-- `lawsuit`
-- `legal action`
-- `fraud`
-- `theft`
-- `cancel my account immediately`
-
-When a High Confidence keyword is detected in a user's message, the AI will instantly switch to Serious Mode and follow your configured escalation protocols (defined in Routing & Handoffs).
-
-### Medium Confidence Keywords
-
-These keywords suggest a potential issue but require the AI to analyze the surrounding context before triggering Serious Mode.
-
-**Examples:**
-- `very upset`
-- `extremely frustrated`
-- `privacy violation`
-- `unacceptable`
-
-When a Medium Confidence keyword is detected, the AI evaluates the entire message. If it determines the user is genuinely distressed or reporting a serious problem, it triggers Serious Mode. If the user is simply using the phrase casually (e.g., "I was very upset when my favorite show was canceled, but your product cheered me up!"), the AI will continue normally.
+- It stops following its normal playbook and persona.
+- It responds with calm, measured language focused on acknowledging the situation.
+- It immediately escalates to a human agent or provides emergency resources, depending on your configuration.
 
 ### Configuring Serious Mode
 
 1. Go to **AI Assistant > AI Safety**.
-2. Enter your **High Confidence Keywords** (one per line).
-3. Enter your **Medium Confidence Keywords** (one per line).
-4. Click **Save Settings**.
+2. In the **Serious Mode** section, toggle it on.
+3. Choose the escalation action (route to a specific team, send an emergency message, or both).
+4. Optionally, customize the message the AI sends when Serious Mode activates.
 
-<Callout kind="tip">
-**Combine with Routing Rules:** Ensure you have a Routing Rule set up to handle conversations that enter Serious Mode. You almost always want these escalated to a human agent immediately.
+<Callout kind="warning">
+Serious Mode is enabled by default for all new workspaces. We strongly recommend keeping it on. The cost of a false positive (a slightly awkward handoff) is much lower than the cost of an AI mishandling a genuine crisis.
 </Callout>
+
+## Reviewing safety events
+
+Every time a safety guardrail fires — whether it's a blocked keyword or a Serious Mode activation — Autoch.at logs it. You can review these events in **Insights > Analytics** to understand how often your guardrails are being triggered and whether your configuration needs adjustment.
+
+If you're seeing a lot of false positives (the AI escalating normal conversations unnecessarily), you may need to refine your blocked keyword list or adjust the sensitivity of Serious Mode.

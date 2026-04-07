@@ -1,93 +1,82 @@
 ---
 title: Email Workflows
-description: Design email workflows, sequences, and follow-ups tailored to your support and sales motions.
+description: Automate your email responses and follow-up sequences — triggered by events like a new email arriving, a conversation being resolved, or a specific tag being applied.
 ---
 
-## What are Email Workflows?
+## What email workflows do
 
-While Playbooks define the *conversational* goals of an AI assistant, **Email Workflows** (located at **Conversations > Email Workflows**) are designed specifically for the asynchronous nature of email.
+**Email Workflows** (at **Conversations > Email Workflows**) let you automate what happens when specific events occur in your email channel. Instead of manually sending follow-ups or confirmation messages, you set up a workflow once and it runs automatically every time the trigger fires.
 
-Email workflows allow you to automate sequences of emails, manage follow-ups, and handle complex routing based on the content of an incoming email or the status of a lead.
+Common uses include:
 
-## Key Concepts
+- Sending an auto-acknowledgment when a new support email arrives
+- Following up with a customer 24 hours after their issue was resolved
+- Sending a different response based on the subject line or email content
+- Notifying your team when a high-priority email comes in
 
-To effectively use Email Workflows, you need to understand a few core concepts:
+## How workflows are structured
+
+Every workflow has three parts:
+
+1. **Trigger** — The event that starts the workflow
+2. **Conditions** (optional) — Filters that must be true for the workflow to run
+3. **Actions** — What happens when the trigger fires and conditions are met
 
 ### Triggers
 
-A workflow is initiated by a **Trigger**. This is the event that causes the workflow to start.
-
-Common triggers include:
-- **New Email Received**: An email arrives at a specific address (e.g., `support@yourdomain.com`).
-- **Tag Added**: A specific tag is applied to a conversation (e.g., "High Priority").
-- **Lead Status Changed**: A contact's status in your CRM changes (e.g., from "New" to "Qualified").
-- **Time-Based**: A specific amount of time has passed since the last interaction (e.g., "No reply for 48 hours").
+| Trigger | When it fires |
+|---|---|
+| **New email received** | A new inbound email arrives in your inbox |
+| **Conversation resolved** | An email conversation is marked as resolved |
+| **Tag applied** | A specific tag is added to a conversation |
+| **No response after X hours** | A conversation has been open without a reply for a set time |
+| **Conversation assigned** | A conversation is assigned to a specific agent or team |
 
 ### Conditions
 
-Once a workflow is triggered, it evaluates **Conditions** to determine if it should proceed.
+Conditions let you narrow down when a workflow should run. For example, you might only want to send an auto-acknowledgment for emails that arrive outside business hours, or only follow up with customers who were tagged as "VIP."
 
-Conditions act as filters:
-- **Sender Domain**: Only run the workflow if the email comes from a specific domain (e.g., `@acmecorp.com`).
-- **Subject Line Contains**: Only run if the subject line includes certain keywords (e.g., "Invoice", "Urgent").
-- **Business Hours**: Only run the workflow during (or outside of) your defined business hours.
+You can add multiple conditions and choose whether all of them must be true (AND logic) or just one (OR logic).
 
 ### Actions
 
-If the conditions are met, the workflow executes one or more **Actions**.
+| Action | What it does |
+|---|---|
+| **Send email** | Send a message to the customer from your connected email address |
+| **Apply tag** | Add a tag to the conversation |
+| **Assign conversation** | Route the conversation to a specific agent or team |
+| **Add internal note** | Leave a private note on the conversation |
+| **Wait** | Pause the workflow for a set amount of time before the next action |
 
-Actions are the steps the workflow takes:
-- **Send Email**: Send a pre-written email template or an AI-generated response.
-- **Add Tag**: Apply a tag to the conversation for organization.
-- **Assign to Team/Agent**: Route the email to a specific human or group.
-- **Update CRM**: Change a field in the customer's CRM record.
-- **Wait**: Pause the workflow for a specified duration before executing the next action.
+You can chain multiple actions together to create multi-step sequences. For example: wait 1 hour → send a follow-up email → apply the "Followed Up" tag.
 
-## Creating an Email Workflow
+## Creating a workflow
 
-1. Navigate to **Conversations > Email Workflows**.
+1. Go to **Conversations > Email Workflows**.
 2. Click **Create Workflow**.
-3. Give your workflow a descriptive name (e.g., "Support Auto-Responder" or "Sales Follow-up Sequence").
-4. Define the **Trigger** that will start the workflow.
-5. Add any necessary **Conditions** to filter when the workflow runs.
-6. Add the **Actions** you want the workflow to perform.
-7. Save and activate the workflow.
+3. Give it a name that describes what it does (e.g., "Auto-Acknowledge New Emails").
+4. Select your trigger.
+5. Add any conditions you need.
+6. Add your actions in sequence.
+7. Toggle the workflow to **Active** and save.
 
-## Common Use Cases
+<Callout kind="tip">
+Start with a simple workflow — a single trigger and a single action — and test it before building something more complex. It's much easier to debug a simple workflow than a multi-step sequence.
+</Callout>
 
-### 1. The Auto-Responder
+## Testing a workflow
 
-The most basic email workflow is the auto-responder. It acknowledges receipt of an email and sets expectations for a reply.
+Before activating a workflow, use the **Test** button to simulate the trigger and see what would happen. Autoch.at will walk you through each step and show you the outcome without sending any real messages.
 
-- **Trigger**: New Email Received (to `support@yourdomain.com`).
-- **Condition**: None (applies to all emails).
-- **Action**: Send Email (Template: "We received your request and will reply within 24 hours.").
+## Managing workflows
 
-### 2. The Sales Follow-up Sequence
+All your active and inactive workflows are listed on the Email Workflows page. You can:
 
-This workflow automates follow-ups for leads who haven't responded.
+- **Toggle on/off** — Pause a workflow without deleting it
+- **Edit** — Update the trigger, conditions, or actions
+- **Duplicate** — Copy a workflow as a starting point for a new one
+- **Delete** — Permanently remove a workflow
 
-- **Trigger**: Tag Added ("Demo Requested").
-- **Action 1**: Send Email (Template: "Thanks for your interest! Here's a link to book a demo.").
-- **Action 2**: Wait (48 hours).
-- **Condition**: Has the user replied? (If Yes, exit workflow).
-- **Action 3**: Send Email (Template: "Just following up on my previous email. Are you still interested?").
-
-### 3. VIP Routing
-
-This workflow ensures your most important customers get immediate attention.
-
-- **Trigger**: New Email Received.
-- **Condition**: Sender Domain is in the "VIP Domains" list.
-- **Action 1**: Add Tag ("VIP").
-- **Action 2**: Assign to Team ("Tier 3 Support").
-- **Action 3**: Send Email (Template: "Hello VIP, we've escalated your request to our senior team.").
-
-## Managing Workflows
-
-As your processes evolve, you can easily update your workflows.
-
-- **Edit**: Modify the triggers, conditions, or actions of an existing workflow.
-- **Pause/Activate**: Temporarily disable a workflow without deleting it.
-- **Duplicate**: Create a copy of a workflow to use as a starting point for a new one.
-- **Delete**: Permanently remove a workflow that is no longer needed.
+<Callout kind="info">
+Workflows run in order of priority. If multiple workflows could fire for the same event, the one listed highest on the page takes precedence. You can drag and drop workflows to reorder them.
+</Callout>

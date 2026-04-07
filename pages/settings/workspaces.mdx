@@ -1,67 +1,62 @@
 ---
 title: Workspaces
-description: Manage multiple brands or departments under a single Autoch.at organization account.
+description: Manage multiple isolated environments within your organization — each with its own AI assistants, channels, and team members.
 ---
 
-## What are Workspaces?
+## What are workspaces?
 
-A **Workspace** in Autoch.at is a self-contained environment with its own AI assistants, playbooks, training context, channels, and conversations.
+A **workspace** is a self-contained environment within your Autoch.at organization. It has its own AI assistants, training context, channels, conversations, client records, and team members.
 
-If your organization has multiple distinct brands, products, or departments that need to operate independently, you can create a separate workspace for each one. This allows you to:
+Most businesses only need one workspace. But if you manage multiple brands, operate in different regions, or need to keep different teams completely separate, workspaces let you do that — all under one organization account.
 
-- Keep conversations, clients, and settings completely separate between teams.
-- Assign different users to different workspaces (e.g., the Sales team only sees the Sales workspace, the Support team only sees the Support workspace).
-- Apply different branding, AI configurations, and channel settings to each workspace.
+Go to **Settings > Workspaces** to manage your workspaces.
 
-All workspaces are managed under a single **Organization** account, giving administrators a unified view of the entire operation.
+## When to use multiple workspaces
 
-## Accessing Workspace Settings
+Here are some common reasons to create more than one workspace:
 
-To manage your workspaces, navigate to **Settings > Workspaces**.
+- **Multiple brands** — You run two different businesses and want completely separate AI assistants, inboxes, and client records for each.
+- **Regional teams** — Your US and UK teams need different language settings, business hours, and escalation paths.
+- **Client isolation** — You're an agency managing AI chat for multiple clients and need to keep their data completely separate.
+- **Staging environment** — You want a test workspace to experiment with new configurations before rolling them out to your production workspace.
 
-From this page, you can see a list of all workspaces in your organization, create new ones, and manage the settings for each.
+## Creating a workspace
 
-## Creating a New Workspace
-
-1. Navigate to **Settings > Workspaces**.
+1. Go to **Settings > Workspaces**.
 2. Click **Create Workspace**.
-3. Enter a **Name** for the new workspace (e.g., "Acme Corp - Support", "Acme Corp - Sales").
-4. Optionally, add a **Description** to clarify the workspace's purpose.
-5. Click **Create**.
+3. Give it a name and description.
+4. Click **Create**.
 
-Once created, the new workspace will be empty. You will need to configure its AI assistants, connect its channels, and invite users to it separately.
+The new workspace starts empty — you'll need to configure its AI assistants, channels, and team members separately.
 
-## Switching Between Workspaces
+## Switching between workspaces
 
-If you have access to multiple workspaces, you can switch between them using the **Workspace Switcher** in the top navigation bar of the Autoch.at dashboard.
+If you have access to multiple workspaces, you can switch between them using the workspace selector in the top header. Your conversations, clients, and settings are completely separate between workspaces.
 
-Clicking the switcher will display a list of all workspaces you have been granted access to. Select the workspace you want to work in, and the entire dashboard will reload with that workspace's data.
+## Managing workspace members
 
-## Managing Workspace Members
+Each workspace has its own member list. Being a member of one workspace doesn't automatically give you access to another.
 
-Each workspace has its own set of members. A user can be a member of multiple workspaces with different roles in each.
-
-To add a user to a specific workspace:
-1. Navigate to **Settings > Workspaces** and select the workspace.
-2. Go to the **Members** tab.
-3. Click **Add Member** and search for the user by name or email.
-4. Assign them a role within this workspace (Owner, Admin, Manager, or Agent).
+To add someone to a workspace:
+1. Go to **Settings > Workspaces** and select the workspace.
+2. Click **Add Member** and search for the user by name or email.
+3. Assign them a role within this workspace (Owner, Admin, Manager, or Agent).
 
 <Callout kind="info">
-**Organization-Level Admins**: Users with the Owner role at the organization level have access to all workspaces by default. Workspace-level roles only apply within that specific workspace.
+Users with the Owner role at the organization level have access to all workspaces by default. Workspace-level roles only apply within that specific workspace.
 </Callout>
 
-## Workspace vs. Organization Settings
+## Workspace vs. organization settings
 
-It's important to understand the distinction between settings that apply to the entire organization and settings that are specific to a single workspace.
+It's helpful to understand which settings apply to your entire organization and which are specific to a single workspace:
 
 | Setting | Level |
 |---|---|
-| Billing and Subscription | Organization |
-| Organization Branding Defaults | Organization |
-| User Invitations (to the org) | Organization |
-| AI Assistants and Playbooks | Workspace |
-| Training Context | Workspace |
-| Channel Connections (Chat, SMS, Email) | Workspace |
-| Conversations and Clients | Workspace |
-| Workspace-specific Branding Overrides | Workspace |
+| Billing and subscription | Organization |
+| Organization branding defaults | Organization |
+| User invitations (to the org) | Organization |
+| AI assistants and playbooks | Workspace |
+| Training context | Workspace |
+| Channel connections (chat, SMS, email) | Workspace |
+| Conversations and clients | Workspace |
+| Workspace-specific branding overrides | Workspace |

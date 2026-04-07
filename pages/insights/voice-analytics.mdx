@@ -1,58 +1,64 @@
 ---
 title: Voice Analytics
-description: Deep dive into call durations, transcripts, and AI voice performance metrics.
+description: Review call volume, duration, AI handling rates, and transcripts for all your AI voice conversations.
 ---
 
-## What is Voice Analytics?
+## Understanding your voice channel
 
-**Voice Analytics** (located at **Insights > Voice Analytics**) provides a dedicated reporting view for your AI-handled and human-assisted phone calls.
+**Voice Analytics** (at **Insights > Voice Analytics**) gives you detailed metrics and insights specifically for your AI voice channel — the phone calls handled by your AI assistant.
 
-While the main [Analytics](/pages/insights/analytics) dashboard gives you a high-level overview of all channels, Voice Analytics focuses exclusively on the unique metrics relevant to phone interactions, such as call duration, talk time, and transcription quality.
+If you're using Autoch.at for inbound phone support, sales calls, or appointment booking via voice, this is where you track how that channel is performing.
+
+## Key metrics
+
+### Call volume
+
+See how many calls your AI handled over any time period — by day, week, or month. Use this to understand peak call times and plan staffing accordingly.
+
+### Call outcomes
+
+Every call ends with one of these outcomes:
+
+| Outcome | Meaning |
+|---|---|
+| **Resolved by AI** | The AI handled the call to completion without human intervention |
+| **Transferred to agent** | The AI escalated the call to a human agent |
+| **Voicemail** | The call went to voicemail |
+| **Abandoned** | The caller hung up before the AI could help |
+
+Tracking outcomes over time helps you understand how effectively your AI is handling calls and whether your escalation thresholds are set correctly.
+
+### Average call duration
+
+How long calls are lasting on average. Unusually long calls often indicate that the AI is struggling with a particular type of request. Very short calls may indicate callers are hanging up out of frustration.
+
+### Transfer rate
+
+The percentage of calls that were transferred to a human agent. Like the handoff rate for chat, a high transfer rate may indicate gaps in your AI's knowledge or playbook.
+
+## Call transcripts
+
+Every call handled by Autoch.at is automatically transcribed. You can access transcripts from:
+
+- **Voice Analytics** — Click on any call in the call log to view its transcript.
+- **Conversations** — Voice calls appear in the Conversations inbox with their transcript attached.
+
+Transcripts are searchable, so you can find calls that mentioned a specific topic or keyword.
+
+## AI performance on voice
+
+The Voice Analytics page also shows AI-specific metrics for your voice channel:
+
+- **Intent recognition rate** — How often the AI correctly understood what the caller was asking for.
+- **First-call resolution** — How often the AI resolved the caller's issue in a single call.
+- **Average confidence score** — A measure of how confident the AI was in its responses during calls.
+
+Low confidence scores on specific topics are a signal to improve your training context for those areas.
+
+## Listening to calls
+
+In addition to reading transcripts, you can listen to call recordings directly from the call log. Click the play button next to any call to hear the recording.
 
 <Callout kind="info">
-Voice Analytics is only available if your Autoch.at plan includes voice capabilities and you have at least one phone number provisioned in **Settings > Phone Numbers**.
+Call recording is subject to local laws regarding consent. In many jurisdictions, you are required to inform callers that the call is being recorded. Autoch.at can be configured to play a disclosure message at the start of each call — contact support to enable this.
 </Callout>
-
-## Key Voice Metrics
-
-### Call Volume
-
-The total number of inbound and outbound calls handled during the selected time period. You can break this down by:
-- **AI-Handled Calls**: Calls where the AI assistant managed the entire interaction without human intervention.
-- **Escalated Calls**: Calls that were transferred from the AI to a human agent.
-- **Missed Calls**: Calls that were not answered.
-
-### Average Call Duration
-
-The average length of a phone call from the moment it is answered to when it is disconnected. Tracking this metric over time helps you understand if your AI assistants are resolving issues efficiently.
-
-A sudden increase in average call duration might indicate that the AI is struggling with a new type of inquiry and needs updated Training Context.
-
-### AI Containment Rate
-
-The percentage of calls that were fully handled by the AI assistant without requiring a human agent. A high containment rate means your AI is effectively resolving issues autonomously.
-
-### CSAT for Voice
-
-If you have configured post-call surveys (e.g., "Press 1 if you were satisfied with your support"), this metric shows the average satisfaction score for voice interactions.
-
-## Call Transcripts
-
-One of the most powerful features of Voice Analytics is access to AI-generated transcripts of your phone calls.
-
-For each call, you can:
-1. **Read the Transcript**: A full text version of the conversation, with speaker labels (e.g., "AI:" and "Customer:").
-2. **Listen to the Recording**: Play back the original audio (if recording is enabled and compliant with your local laws).
-3. **View AI Insights**: See the AI's analysis of the call, including the detected intent, the playbook that was used, and the final outcome (e.g., "Lead Qualified", "Escalated to Human", "Call Abandoned").
-
-<Callout kind="warning">
-**Recording Compliance:** Recording phone calls is subject to strict laws in many jurisdictions (e.g., two-party consent laws in some US states and Canadian provinces). Ensure you have obtained the necessary consent and configured the appropriate disclosures before enabling call recording. Consult your legal counsel if you are unsure.
-</Callout>
-
-## Improving Voice Performance
-
-Use the data in Voice Analytics to continuously improve your AI voice assistants.
-
-- **High Escalation Rate**: If many calls are being transferred to humans, review the call transcripts to understand why. The AI may be encountering questions it can't answer—add those topics to your Training Context.
-- **Long Call Duration**: If calls are taking too long, review the transcripts for inefficiencies in your Playbook flow. Are there too many clarifying questions? Is the AI repeating itself?
-- **Low CSAT**: If customers are dissatisfied after AI-handled calls, review the transcripts for tone and accuracy issues. Refine the assistant's Persona to be more empathetic and direct.

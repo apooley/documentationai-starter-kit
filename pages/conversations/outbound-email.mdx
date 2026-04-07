@@ -1,64 +1,55 @@
 ---
 title: Outbound Email
-description: Send one-off or bulk outbound emails to your clients directly from Autoch.at.
+description: Send one-off or bulk outbound emails to your clients directly from Autoch.at — without switching to a separate email tool.
 ---
 
-## What is Outbound Email?
+## Send emails directly from Autoch.at
 
-While [Email Workflows](/pages/conversations/email-workflows) automate triggered email sequences, **Outbound Email** (located at **Conversations > Outbound Email**) is designed for direct, intentional outreach.
+**Outbound Email** (at **Conversations > Outbound Email**) lets you compose and send emails to your clients without leaving Autoch.at. Whether you need to send a single follow-up or a batch message to a segment of your client list, you can do it here.
 
-It allows you to compose and send emails to individual clients or groups of clients from within Autoch.at, without needing to switch to a separate email client.
+This is different from email workflows — workflows are automated and trigger-based. Outbound Email is for when you want to send a message manually, on demand.
 
-## Use Cases
+## Sending a one-off email
 
-Outbound Email is ideal for scenarios where you want to proactively reach out to a customer or a segment of your client base.
+1. Go to **Conversations > Outbound Email**.
+2. Click **Compose**.
+3. In the **To** field, search for the client by name or email address.
+4. Add a subject line.
+5. Write your message. You can use the formatting toolbar to add bold, italics, links, and images.
+6. Click **Send**.
 
-Common use cases include:
-- **Proactive Support**: Notifying a specific customer about a bug fix that affected their account.
-- **Sales Outreach**: Sending a personalized pitch to a list of qualified leads.
-- **Announcements**: Informing a group of clients about a new feature or an upcoming maintenance window.
-- **Follow-ups**: Reaching out to a client who hasn't responded to an AI-initiated conversation.
+The email is sent immediately and a record of it appears in the client's conversation history.
 
-## Composing an Outbound Email
+## Sending to multiple recipients
 
-To send an outbound email:
+If you need to send the same message to multiple clients:
 
-1. Navigate to **Conversations > Outbound Email**.
-2. Click **Compose New Email**.
-3. In the **To** field, search for and select the recipient(s) from your [Clients](/pages/crm/clients) database, or enter an email address directly.
-4. Select the **From** address (your connected sending domain, configured in [Settings > Email](/pages/settings/email)).
-5. Enter a **Subject Line**.
-6. Compose your message in the body editor. You can use rich text formatting, insert images, and add attachments.
-7. Click **Send** to send immediately, or **Schedule** to send at a specific date and time.
+1. Click **Compose**.
+2. In the **To** field, add multiple recipients by searching for each one.
+3. Or click **Select from list** to filter your client list by tag, segment, or other criteria and select a group.
+4. Write your message.
+5. Click **Send to all**.
 
-## Using Email Templates
+<Callout kind="warning">
+When sending to multiple recipients, each client receives their own individual copy of the email — they won't see each other's addresses. However, be mindful of volume: sending large batches of unsolicited email can affect your domain's sender reputation.
+</Callout>
 
-To save time and ensure consistency, you can use pre-written email templates when composing outbound messages.
+## Using templates
 
-1. When composing an email, click the **Templates** button.
-2. Select a template from the list.
-3. The template content will be inserted into the email body. You can then personalize it before sending.
+If you send similar emails regularly, save time by using a canned response as a template:
 
-To create new templates, navigate to **Settings > Email** and look for the **Email Templates** section.
+1. In the composer, click the lightning bolt icon.
+2. Search for the canned response you want to use.
+3. Select it to insert it into the composer.
+4. Customize as needed before sending.
 
-## Personalization Variables
+## Tracking sent emails
 
-When sending to multiple recipients, you can use personalization variables to automatically insert client-specific information into your emails.
+All outbound emails sent from Autoch.at are tracked in the client's conversation history. You can see:
 
-For example:
-- `{{client.first_name}}` will be replaced with the recipient's first name.
-- `{{client.company}}` will be replaced with their company name.
-- `{{client.last_conversation_date}}` will be replaced with the date of their last interaction.
+- When the email was sent
+- Whether it was delivered
+- Whether it was opened (if open tracking is enabled)
+- Any replies the client sent back
 
-This allows you to send personalized emails at scale without manually editing each one.
-
-## Tracking and Results
-
-After sending an outbound email, you can track its performance:
-- **Delivered**: The email was successfully delivered to the recipient's server.
-- **Opened**: The recipient opened the email.
-- **Clicked**: The recipient clicked a link within the email.
-- **Replied**: The recipient sent a reply, which will appear in your [Conversations Inbox](/pages/conversations/conversations).
-- **Bounced**: The email could not be delivered (e.g., invalid address).
-
-Tracking data helps you understand the effectiveness of your outreach and identify which messages resonate with your audience.
+Replies from the client will appear in your Conversations inbox as a new message in the same thread.

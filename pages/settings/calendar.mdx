@@ -1,54 +1,55 @@
 ---
 title: Calendar Integration
-description: Connect your calendar so AI assistants can book meetings and check availability in real time.
+description: Connect your calendar so your AI assistant can check availability and book meetings directly in conversations.
 ---
 
-## What is the Calendar Integration?
+## Let your AI book meetings
 
-The **Calendar Integration** (located at **Settings > Calendar**) allows you to connect your calendar application to Autoch.at, enabling your AI assistants to book meetings on your behalf during conversations.
+When you connect a calendar to Autoch.at, your AI assistant can check your real-time availability and offer booking slots to customers — all within a conversation, without any back-and-forth.
 
-When a customer expresses interest in a demo, consultation, or appointment, the AI can check your real-time availability and book the meeting directly in the conversation—without any human intervention.
+Go to **Settings > Calendar** to connect your calendar.
 
-## Why Connect Your Calendar?
+## Supported calendar providers
 
-Connecting your calendar transforms your AI assistants from simple question-answering bots into full-fledged scheduling agents. Key benefits include:
+- **Google Calendar** — Connect via Google OAuth
+- **Microsoft Outlook / Microsoft 365** — Connect via Microsoft OAuth
+- **Calendly** — Connect via Calendly OAuth
 
-- **24/7 Booking**: Customers can book meetings at any time, even outside of business hours, without waiting for a human to respond.
-- **Reduced Back-and-Forth**: Eliminate the "What times work for you?" email chains. The AI presents available slots and confirms the booking instantly.
-- **Automatic Invites**: Once a meeting is booked, calendar invites are automatically sent to both the customer and the assigned team member.
-- **CRM Integration**: Booked meetings can be automatically logged in your connected CRM as activities or deals.
+## Connecting your calendar
 
-## Supported Calendar Providers
-
-Autoch.at currently supports integration with the following calendar providers:
-
-- **Google Calendar**: Connect your Google Workspace or personal Gmail calendar.
-- **Microsoft Outlook / Microsoft 365**: Connect your Outlook or Microsoft 365 calendar.
-- **Calendly**: If you already use Calendly for scheduling, you can connect it to Autoch.at so the AI uses your existing Calendly booking pages.
-
-## Connecting Your Calendar
-
-1. Navigate to **Settings > Calendar**.
+1. Go to **Settings > Calendar**.
 2. Click **Connect Calendar**.
 3. Select your calendar provider.
-4. You will be redirected to your provider's authorization page.
-5. Log in and grant Autoch.at permission to read your availability and create events.
-6. You will be returned to Autoch.at, and your calendar will be listed as connected.
+4. You'll be redirected to your provider's authorization page — log in and grant Autoch.at permission to read your calendar and create events.
+5. Once authorized, you'll be returned to Autoch.at and your calendar will appear as connected.
 
-## Configuring Booking Rules
+<Callout kind="info">
+Autoch.at only reads your calendar to check availability and creates new events when a booking is confirmed. It does not modify or delete existing events.
+</Callout>
 
-Once your calendar is connected, you can configure the rules that govern how and when meetings can be booked.
+## Configuring booking settings
 
-- **Meeting Duration**: Define the default length of a meeting (e.g., 30 minutes, 1 hour).
-- **Buffer Time**: Add padding before or after meetings to prevent back-to-back bookings (e.g., 15 minutes before and after each meeting).
-- **Availability Window**: Define the days and hours when meetings can be booked (e.g., Monday to Friday, 9 AM to 5 PM in your timezone).
-- **Advance Notice**: Require a minimum amount of notice before a meeting can be booked (e.g., "No meetings can be booked less than 24 hours in advance").
-- **Maximum Future Booking**: Limit how far in advance a meeting can be scheduled (e.g., "No meetings more than 60 days in the future").
+Once your calendar is connected, you can configure how bookings work:
 
-## Enabling Booking in Playbooks
+- **Meeting duration** — The default length of meetings the AI will offer (e.g., 30 minutes, 1 hour).
+- **Buffer time** — Padding before and after meetings so you're never booked back-to-back.
+- **Availability window** — How far in advance customers can book (e.g., up to 4 weeks out).
+- **Business hours** — The days and times the AI should offer as available.
 
-To allow an AI assistant to book meetings, you need to include a booking step in its [Playbook](/pages/ai-config/playbooks).
+## Using calendar booking in conversations
 
-In your playbook instructions, include a step like: "Once the user has confirmed their interest in a demo, offer to book a meeting. Check the calendar for available slots and present 3 options to the user. Once they select a time, confirm the booking and send them a calendar invite."
+Once configured, your AI assistant can use the calendar tool in any conversation. When a customer asks to schedule a meeting, the AI will:
 
-The AI will use the connected calendar and your configured booking rules to execute this step automatically.
+1. Check your real-time availability.
+2. Offer a few available time slots.
+3. Confirm the customer's preferred time.
+4. Create the calendar event and send a confirmation.
+
+The customer receives a calendar invite, and the event appears in your calendar automatically.
+
+## Disconnecting a calendar
+
+1. Go to **Settings > Calendar**.
+2. Click **Disconnect** next to the calendar you want to remove.
+
+Disconnecting a calendar stops the AI from being able to check availability or book meetings. Existing calendar events created by Autoch.at are not affected.

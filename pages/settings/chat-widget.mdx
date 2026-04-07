@@ -1,59 +1,96 @@
 ---
 title: Chat Widget
-description: Install and configure the website chat widget, including launch rules and initial greetings.
+description: Configure and deploy the Autoch.at chat widget on your website — including appearance, behavior, launch rules, and the JavaScript API.
 ---
 
-## What is the Chat Widget?
+## Your website's chat interface
 
-The **Chat Widget** (configured at **Settings > Chat Widget**) is the customer-facing interface that lives on your website. It allows visitors to interact with your AI assistants or human agents in real-time.
+The **Chat Widget** (configured at **Settings > Chat Widget**) is the floating chat button and conversation window that appears on your website. It's how your visitors start a chat conversation with your AI assistant or your team.
 
-From this settings page, you can customize how the widget looks, how it behaves, and get the code snippet needed to install it on your site.
+Getting the widget right is important — it's often the first interaction a customer has with your AI.
 
-## Installing the Widget
+## Installation
 
-To add the Autoch.at widget to your website, you need to embed a small piece of JavaScript code.
+To add the widget to your website:
 
-1. Navigate to **Settings > Chat Widget**.
-2. Locate the **Installation Code** section.
-3. Click **Copy Code**.
-4. Paste this code snippet into the `<head>` or just before the closing `</body>` tag of your website's HTML.
+1. Go to **Settings > Chat Widget**.
+2. Copy the installation code snippet.
+3. Paste it into the head or just before the closing body tag of every page where you want the widget to appear.
 
-If you use a Content Management System (CMS) like WordPress, Shopify, or Webflow, you can usually add this code through their respective theme settings or by using a custom code plugin.
-
-## Customizing Appearance
-
-While the core colors and logos are pulled from your [Branding Settings](/pages/settings/branding), you can further customize the widget's appearance here.
-
-- **Widget Position**: Choose whether the chat launcher button appears on the bottom-left or bottom-right of the screen.
-- **Launcher Icon**: Select the icon that appears on the closed widget button (e.g., a chat bubble, a question mark, or your company logo).
-- **Header Text**: Customize the title displayed at the top of the open chat window (e.g., "Chat with Us", "Support", or "Autoch.at Assistant").
-
-## Configuring Behavior
-
-You can control how and when the widget interacts with your website visitors.
-
-### Initial Greeting
-
-The **Initial Greeting** is the first message a visitor sees when they open the chat widget.
-
-- **Welcome Message**: Set a friendly, inviting message (e.g., "Hi there! How can we help you today?").
-- **Suggested Prompts**: Provide 2-3 clickable options to help users start the conversation quickly (e.g., "I need technical support", "I have a billing question", "I want to book a demo"). These prompts can be tied directly to specific [Playbooks](/pages/ai-config/playbooks).
-
-### Launch Rules (Proactive Chat)
-
-Instead of waiting for the user to click the widget, you can configure **Launch Rules** to proactively open the chat window based on specific triggers.
-
-- **Time on Page**: Open the widget after the user has been on the page for a certain number of seconds (e.g., 30 seconds).
-- **Scroll Depth**: Open the widget when the user scrolls past a certain percentage of the page (e.g., 50%).
-- **Exit Intent**: Open the widget when the user's mouse cursor moves towards the top of the browser window, indicating they are about to leave the site.
+The widget will load automatically once the script is on the page.
 
 <Callout kind="tip">
-**Use proactive chat sparingly.** While it can increase engagement, popping up the chat window immediately on every page load can be annoying. Target specific high-value pages (like pricing or checkout) with relevant, contextual greetings.
+If you use a tag manager like Google Tag Manager, you can add the widget script there instead of editing your site's code directly. This makes it easy to deploy and update without a developer.
 </Callout>
 
-## Advanced Settings
+## Appearance
 
-For developers, the Chat Widget settings page also provides access to advanced configuration options.
+### Widget position
 
-- **Allowed Domains**: For security, you can restrict the widget to only load on specific domains (e.g., `yourwebsite.com`). This prevents unauthorized use of your widget code on other sites.
-- **JavaScript API**: Access documentation for the Autoch.at JavaScript API, which allows you to programmatically open/close the widget, pass custom user data (like a logged-in user's ID or email), or trigger specific events from your website's code.
+Choose where the chat button appears on the page — bottom-right or bottom-left. Bottom-right is the most common convention and what most visitors expect.
+
+### Greeting message
+
+Set the message that appears in the chat window when a visitor first opens it. A good greeting is welcoming and sets expectations:
+
+> "Hi there! I'm your AI assistant. Ask me anything about our products, or I can connect you with our team."
+
+### Widget color and logo
+
+The widget inherits your brand colors and logo from **Settings > Branding**. You can override them here if you want the widget to use different colors from the rest of your branding.
+
+## Launch behavior
+
+### Proactive triggers
+
+You can configure the widget to open automatically based on visitor behavior:
+
+- **Time on page** — Open after the visitor has been on the page for X seconds.
+- **Scroll depth** — Open when the visitor scrolls to a certain percentage of the page.
+- **Exit intent** — Open when the visitor moves their cursor toward the browser's close button.
+- **Specific pages** — Only trigger on certain URLs (e.g., your pricing page or checkout).
+
+Use proactive triggers carefully — an intrusive widget that pops up immediately can hurt more than it helps.
+
+### Allowed domains
+
+For security, you can restrict the widget to only load on specific domains. This prevents someone from copying your installation code and embedding your widget on their own site.
+
+## The JavaScript API
+
+For more advanced integrations, Autoch.at provides a JavaScript API that lets you control the widget programmatically from your website's code.
+
+### Opening and closing the widget
+
+```javascript
+// Open the chat widget
+AutochatWidget.open();
+
+// Close the chat widget
+AutochatWidget.close();
+```
+
+### Identifying the visitor
+
+If you know who the visitor is (for example, they're logged into your app), you can pass their identity to Autoch.at so the conversation is automatically linked to their client record:
+
+```javascript
+AutochatWidget.identify({
+  name: "Jane Smith",
+  email: "jane@example.com",
+  phone: "+1-555-0100"
+});
+```
+
+### Passing custom attributes
+
+You can also pass custom data that will be available to your AI assistant and visible in the conversation detail:
+
+```javascript
+AutochatWidget.setAttributes({
+  plan: "Pro",
+  accountId: "ACC-12345"
+});
+```
+
+This is particularly useful for support scenarios — your AI can greet the customer by name and already know their account details before they say a word.
