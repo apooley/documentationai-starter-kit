@@ -1,335 +1,89 @@
 ---
-title: Use analytics
-description: Understand analytics for conversations, channels, and assistants, including trends, scheduled reports, and FAQ performance metrics.
+title: Analytics
+description: Track your performance, conversation volume, and AI assistant metrics across all channels.
 ---
 
-## Overview
+## What is the Analytics Dashboard?
 
-Analytics surfaces how your assistants are performing over time, across channels, and against your FAQs so you can make informed operational decisions.
+The **Analytics** page (located at **Insights > Analytics**) provides a comprehensive view of how your Autoch.at workspace is performing. It aggregates data from all your communication channels and AI assistants to help you understand conversation volume, resolution rates, and the impact of your automation efforts.
 
-Use this page to understand what each part of the `/analytics` screen does and how to complete common workflows like changing date ranges or managing scheduled reports.
+Unlike the main Dashboard (which provides a quick operational snapshot), the Analytics page is designed for deeper analysis and reporting.
 
-<Callout kind="info">
+## Time Range and Exporting
 
-Analytics shows patterns and trends. Treat values as directional signals when deciding where to optimize, not as precise billing or finance data.
+At the top of the Analytics page, you can control the data you are viewing:
 
-</Callout>
+- **Time Range Selector**: Choose the period you want to analyze (e.g., Last 7 Days, Last 30 Days, Last 90 Days). All charts and metrics on the page will update to reflect this window.
+- **Export**: Click the **Export** button to download the current data as a CSV file for use in external reporting tools or spreadsheets.
 
-## Page layout
+## Scheduled Reports
 
-The analytics page is organized into several sections:
+If you need to share performance data with your team or stakeholders regularly, you can configure **Scheduled Reports**.
 
-- Global controls: date range selector and export
-- Scheduled reports list
-- Summary stats cards
-- Advanced metrics grid
-- Conversation volume heatmap
-- Assistant comparison table
-- Charts: conversations over time and channel distribution
-- FAQ analytics
+1. Click **New Schedule**.
+2. Define the frequency (e.g., Weekly on Mondays, Monthly on the 1st).
+3. Select the metrics you want to include.
+4. Enter the email addresses of the recipients.
 
-Each section responds to the current date range and filters, so you always look at a consistent slice of activity.
+Autoch.at will automatically generate and email a PDF or CSV report based on your schedule.
 
-### Date range selector and export
+## Key Metrics Overview
 
-The top of the page includes a date range control and export actions.
+The top section of the dashboard highlights your most critical performance indicators:
 
-- **Date range selector**: Filters all charts, cards, and tables to a specific time window (for example, last 7 days, last 30 days, custom).
-- **Export**: Generates a downloadable report for the current filters, typically as CSV or similar tabular format.
+- **Total Conversations**: The absolute number of interactions across all channels during the selected time range.
+- **Qualified Leads**: The number of conversations where an AI assistant successfully completed a qualification playbook.
+- **Conversion Rate**: The percentage of total conversations that resulted in a qualified lead.
+- **Avg Call Duration**: (If Voice is enabled) The average length of phone conversations handled by your AI assistants.
 
-<Callout kind="info">
+## Advanced Operational Metrics
 
-Use the same date range across Analytics and other tools when comparing results so you do not misinterpret short-term spikes or dips.
+This section dives deeper into the efficiency and quality of your support and sales operations.
 
-</Callout>
+- **First Response Time**: How quickly, on average, a customer receives their first reply (from either an AI or a human).
+- **Resolution Time**: The average time it takes to close a conversation from the moment it starts.
+- **Agent Response Time**: How quickly human agents reply after a conversation is handed off from an AI assistant.
+- **CSAT / Satisfaction**: The average Customer Satisfaction score, derived from post-conversation surveys or AI sentiment analysis.
+- **Cost per Qualified Lead**: An estimated metric based on your Autoch.at usage costs divided by the number of qualified leads generated.
 
-### Scheduled reports list
+## Visualizing Trends
 
-Below the header, you see a list of scheduled analytics reports that your team has configured.
+The Analytics page includes several charts to help you spot patterns and trends over time.
 
-Each scheduled report entry typically includes:
+### Conversation Volume by Hour (Heatmap)
 
-- Report name and description
-- Frequency (for example, daily, weekly, monthly)
-- Delivery destination (such as email)
-- Status and last run time
-- Controls to edit, delete, or trigger the report immediately
+This heatmap shows when your customers are most active. Darker colors indicate higher conversation volume.
 
-If no reports exist, the list shows an empty state with guidance to create your first schedule.
+- **Use Case**: Use this data to optimize your human agent staffing schedules. If you see a consistent spike in volume on Tuesday mornings, ensure you have enough agents online to handle escalations.
 
-### Summary stats cards
+### Assistant Performance Comparison
 
-Summary stats cards give a quick snapshot of overall conversation performance for the selected period. Typical cards include:
+If you have multiple AI assistants deployed, this chart compares their performance side-by-side.
 
-- **Total conversations**: Overall number of conversations handled by your assistants.
-- **Qualified conversations**: Conversations that met your internal criteria for being qualified (for example, sales-ready or support-relevant).
-- **Conversion**: The proportion of conversations that reached your conversion threshold (such as booking a meeting or resolving a ticket).
-- **Average duration**: Typical length of conversations, which helps you understand engagement depth.
+- **Use Case**: Identify which assistants are handling the most volume, which have the highest resolution rates, and which are triggering the most handoffs to human agents.
 
-<Callout kind="info">
+### Conversations Over Time
 
-Use summary stats to spot high-level shifts first. If a metric changes significantly, drill into channel, assistant, or FAQ sections to investigate why.
+A line chart showing the daily or weekly trend of total conversations.
 
-</Callout>
+- **Use Case**: Track the impact of marketing campaigns, product launches, or seasonal trends on your support volume.
 
-### Advanced metrics grid
+### Channel Distribution
 
-The advanced metrics grid surfaces more detailed performance indicators, often per assistant or channel. Common metrics include:
+A breakdown of where your conversations are happening (e.g., Chat vs. SMS vs. Email).
 
-- **Response times**: How quickly the assistant replies, such as median or average initial response time.
-- **CSAT**: High-level customer satisfaction scores if you collect them.
-- **Cost metrics**: Relative costs associated with conversations, which can help with budgeting and model selection.
+- **Use Case**: Understand which channels your customers prefer and allocate resources accordingly.
 
-Interpret these as comparative signals between assistants, channels, or periods rather than exact accounting for spend.
+## FAQ Analytics
 
-### Volume heatmap
+This section provides crucial feedback on the effectiveness of your Training Context.
 
-The heatmap shows conversation volume by hour and day, helping you understand when your assistants are busiest.
+- **FAQ Hits**: The number of times an AI assistant successfully used an FAQ to answer a customer's question.
+- **FAQ Misses**: The number of times a customer asked a question that the AI could not answer using the available Training Context.
+- **Near-misses**: Instances where the AI found a potentially relevant FAQ but was not confident enough to use it.
 
-Typical usage:
+**Actionable Insight**: Regularly review your FAQ Misses and Near-misses. These represent gaps in your knowledge base. By adding new FAQs or updating existing ones to cover these topics, you can immediately improve your AI's resolution rate.
 
-- Identify **peak hours** to adjust staffing or bot routing.
-- Spot **quiet periods** that may be suitable for maintenance.
-- Compare weekdays and weekends to see if demand shifts by day.
+## Conversations by Channel
 
-<Callout kind="info">
-
-Use the heatmap to align human coverage with automated support. If certain hours consistently spike, consider tightening escalation rules or adding specialized flows.
-
-</Callout>
-
-### Assistant comparison table
-
-The assistant comparison table allows you to see how different assistants perform side by side.
-
-You typically see, per assistant:
-
-- Conversation counts and growth
-- Engagement or completion metrics
-- Quality or satisfaction signals
-- High-level cost indicators
-
-Use this table to decide where to clone successful patterns or where an assistant needs tuning, retraining, or different routing.
-
-### Time-series and channel charts
-
-Analytics includes charts that show how conversations unfold over time and across channels.
-
-- **Conversations over time**: A line chart that tracks volume during the selected range. Look for trends, spikes, and dips to correlate with releases, campaigns, or incidents.
-- **Channel distribution pie**: A breakdown by channel (for example, chat, voice, email) to see where users interact most.
-- **Channel metrics cards**: Per-channel callouts for volume and key performance indicators, helping you compare channels directly.
-
-<Callout kind="info">
-
-When you see a change in one channel but not others, check recent configuration, routing, or deployment changes specific to that channel.
-
-</Callout>
-
-### FAQ analytics
-
-FAQ analytics focus on how questions that should be answered by your FAQs perform in practice.
-
-You typically see:
-
-- **Hits**: When an FAQ matched and resolved the user question.
-- **Misses**: When available FAQs did not match or were not used.
-- **Near-misses**: Cases that almost matched existing FAQs and may point to content gaps.
-- **Time series**: How these outcomes evolve over time.
-
-Use this section to decide which FAQs to add, update, or retire to keep your knowledge base aligned with real user queries.
-
-## Key workflows
-
-This section walks through common actions you take on the analytics page.
-
-### Change the date range
-
-Adjust the date range to focus on a specific period.
-
-<Steps>
-
-<Step title="Open the date range selector" icon="calendar">
-
-Click the date range control at the top of the analytics page. A menu opens with preset options and a custom range picker.
-
-</Step>
-
-<Step title="Choose a preset or custom range" icon="settings">
-
-Select a preset option such as last 7 days or last 30 days, or define a custom start and end date that matches your reporting period.
-
-</Step>
-
-<Step title="Apply the filter and review updates" icon="check-circle">
-
-Confirm your choice. The page reloads analytics cards, charts, tables, and the heatmap to reflect the new range. Verify that chart axes and summary values now align with the selected period.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-When comparing performance across periods, keep one browser tab fixed to an earlier range and another to a later range. This avoids repeatedly switching filters and reduces mistakes.
-
-</Callout>
-
-### Create a scheduled report
-
-Set up a scheduled report to receive regular analytics summaries without manually exporting.
-
-<Steps>
-
-<Step title="Start a new schedule" icon="plus">
-
-In the scheduled reports section, click the control to create a new report schedule. The report configuration form opens.
-
-</Step>
-
-<Step title="Configure scope and frequency" icon="settings">
-
-Choose the reporting scope such as assistants or channels, set the desired frequency (daily, weekly, monthly), and pick the date range pattern (for example, previous day or previous week).
-
-</Step>
-
-<Step title="Set recipients and delivery details" icon="users">
-
-Enter recipient addresses or destinations and, if available, a subject or label that helps recipients recognize the report.
-
-</Step>
-
-<Step title="Save and confirm scheduling" icon="check-circle">
-
-Save the report schedule. The new entry appears in the scheduled reports list with its next run time. Check that the status shows as active or enabled.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-Limit each scheduled report to a clear audience and purpose. For example, send a focused weekly assistant comparison to operations leads and a monthly high-level summary to executives.
-
-</Callout>
-
-### Edit or delete a scheduled report
-
-Update or remove schedules as your reporting needs change.
-
-<Steps>
-
-<Step title="Locate the schedule to modify" icon="search">
-
-Scroll to the scheduled reports list and identify the report based on its name, frequency, or recipients.
-
-</Step>
-
-<Step title="Open edit or delete actions" icon="edit">
-
-Use the actions menu or buttons associated with the entry. Choose edit to modify details or delete to remove the schedule entirely.
-
-</Step>
-
-<Step title="Apply changes or confirm deletion" icon="check">
-
-For edits, adjust configuration fields such as frequency, recipients, or scope and save. For deletions, confirm the action when prompted. The list updates to reflect your changes.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-When editing a schedule, make incremental changes and monitor the next delivered report. If the format or scope no longer fits stakeholders, adjust again rather than creating multiple overlapping schedules.
-
-</Callout>
-
-### Trigger or export a report on demand
-
-Generate one-time outputs when you need data outside the regular schedule.
-
-<Steps>
-
-<Step title="Export the current view" icon="download">
-
-Use the export action near the date range selector to download a one-time report that matches your current filters and range. The system creates a file, and your browser starts the download.
-
-</Step>
-
-<Step title="Trigger a scheduled report immediately" icon="play-circle">
-
-In the scheduled reports list, use the trigger or run-now action for a specific schedule. This sends or generates the report immediately using that schedule's configuration.
-
-</Step>
-
-<Step title="Verify delivery or file contents" icon="check-circle">
-
-Check the downloaded file or the delivery destination to ensure the report looks as expected: correct date range, fields, and recipient list.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-Use on-demand exports for ad hoc analysis. For recurring needs, convert a frequently used export pattern into a scheduled report to avoid manual repetition.
-
-</Callout>
-
-## Loading and empty states
-
-Analytics includes states that help you understand what is happening when data is not immediately visible.
-
-### Loading state
-
-When you open analytics or change filters, the page displays a loading skeleton while it fetches fresh data.
-
-You typically see placeholder shapes where cards, charts, and tables will render. Once data loads successfully, the placeholders disappear and the real values appear.
-
-If the loading state persists longer than expected, check network connectivity or reload the page. If the issue continues, contact support with details about the timeframe and filters you selected.
-
-### No data and empty states
-
-You may occasionally see empty states instead of full charts or tables.
-
-Common cases:
-
-- **New tenant or recent setup**: If your workspace is new or your assistants have not yet handled conversations, summary stats and charts may show no data.
-- **Narrow date range**: Very short or future date windows can legitimately return no results.
-- **No scheduled reports configured**: The scheduled reports list shows a message inviting you to create a schedule.
-
-<Callout kind="info">
-
-When you encounter an empty analytics view, first expand the date range and confirm that your assistants and channels are active. If you still see no data for periods with known activity, escalate to your admin or support team.
-
-</Callout>
-
-## Related pages
-
-Use these pages alongside analytics to act on what you learn from the data.
-
-<Columns cols={2}>
-
-<Card
-  title="Use the dashboard"
-  href="/introduction"
-  icon="bar-chart"
-  cta="Review high-level activity"
->
-
-See overall workspace health, recent activity, and key indicators before diving into detailed analytics.
-
-</Card>
-
-<Card
-  title="Manage conversations"
-  href="/quickstart"
-  icon="message-circle"
-  cta="Act on insights"
->
-
-Open individual conversations to audit transcripts, update outcomes, or refine assistant behavior based on analytics findings.
-
-</Card>
-
-</Columns>
+The bottom of the dashboard provides a detailed breakdown of performance metrics for each specific channel (Voice, SMS, Email, Web Chat). This allows you to see if certain channels are driving more qualified leads or requiring more human intervention than others.

@@ -8,16 +8,13 @@ description: Learn what the dashboard shows, how to adjust the time range and re
 The dashboard at `/dashboard` is your home base for understanding how your AI assistants are performing. It gives you a live snapshot of conversations, qualified leads, channel activity, and system health for your tenant.
 
 Use it to answer questions like:
-
 - How many conversations and leads are we getting?
 - Which channels and assistants are busiest?
 - Is the system configured and ready for new campaigns?
 - Where should I click next to investigate or take action?
 
 <Callout kind="info">
-
 What you see on the dashboard depends on your permissions, plan, and integrations. Voice tiles only appear if your tenant includes voice, and CRM widgets only appear after you connect a CRM.
-
 </Callout>
 
 ## Time range and refresh controls
@@ -27,10 +24,9 @@ The controls at the top of the page decide which data you see and how fresh it i
 ### Time range selector
 
 Use the time range selector to set the window for all metrics and widgets:
-
 - **Last 24 hours**
 - **Last 7 days**
-- **Last 30 days**
+- **Last 30 days** (Default)
 - **Last 90 days**
 
 When you switch the range, all numbers, charts, and insights update to match that period. Start with **Last 7 days** for a quick weekly view, then expand to **Last 30 days** when you want to see longer trends.
@@ -38,14 +34,12 @@ When you switch the range, all numbers, charts, and insights update to match tha
 ### Last updated and refresh
 
 Next to the greeting, the dashboard shows:
-
 - **Last updated** — when the data was last refreshed.
 - A **Refresh** button — to update the dashboard immediately.
 
 Use **Refresh** when you expect a spike in activity (for example, after launching a campaign) and want the latest counts and insights without waiting.
 
 After you click refresh, watch for:
-
 - The last updated timestamp to change.
 - Stats, insights, and recent activity to reflect the latest conversations for the selected time range.
 
@@ -54,194 +48,29 @@ After you click refresh, watch for:
 The stats grid highlights the most important numbers for your tenant at a glance.
 
 Common tiles include:
+- **Total Conversations** — All conversations in the selected time range.
+- **Qualified Leads** — How many conversations became qualified leads, and the conversion rate.
+- **Voice Calls** — Voice conversations for the period, when voice is part of your plan.
+- **Active Channels** — The number of channels currently active and receiving messages.
 
-- **Total conversations** — All conversations in the selected time range, often with a comparison to the previous period.
-- **Qualified leads and conversion** — How many conversations became qualified leads, and the conversion rate.
-- **Voice calls** — Voice conversations for the period, when voice is part of your plan.
-- **Active channels** — How many channels (voice, chat, email, integrations) had at least one conversation.
+## Insights Panel
 
-Hover or tap tiles to see exact values and trends (for example, `+18% vs previous 7 days`). Use this area to quickly see whether engagement and lead quality are moving up or down.
+The Insights panel uses AI to analyze your recent performance and generate actionable insights. Click **Generate Insights** to have the system review your recent conversations and highlight trends, issues, or opportunities.
 
-<Callout kind="info">
+## Quick Actions and System Status
 
-If your plan does not include voice, you will not see voice tiles or voice readiness in system status. If you expect to see them and do not, ask a tenant admin to confirm your subscription.
+Below the main stats, you'll find sections designed to help you navigate quickly:
 
-</Callout>
+### Quick Actions
+- **Conversations**: Quick links to view Chat, SMS, Email, and Voice conversations, along with their current counts.
+- **Assistants**: A quick link to view your configured assistants.
+- **Training**: A quick link to access your Training Assets (Context).
 
-## AI insights and patterns
+### System Status
+This panel provides a quick health check of your setup:
+- **Your system phone number**: Displays your primary provisioned phone number with a quick copy button.
+- **Service Status**: Shows the current status (Active/Inactive) for Chat, SMS, Email, and Voice channels.
 
-Below or next to the stats grid, AI-generated insights summarize what is changing in your data without requiring you to dig through reports.
+## Onboarding Tour
 
-These widgets typically highlight:
-
-- Spikes or drops in conversations and qualified leads.
-- Shifts in channel mix (for example, more voice vs chat).
-- Assistants or training areas that may need attention.
-
-Insights always follow your selected time range. If you move from 7 days to 30 days, expect the narrative and patterns to adjust accordingly.
-
-Use this section to decide where to focus: which assistants to tune, which channels to promote, and which workflows to review in more detail.
-
-## Recent activity
-
-The Recent activity list shows the latest conversations so you can jump straight from high-level trends to specific interactions.
-
-Each entry usually includes:
-
-- **Channel** — Voice, chat, email, or another source.
-- **Assistant** — Which assistant handled the conversation.
-- **Timestamp** — When it started or was last updated.
-- **Outcome** — For example, qualified, resolved, or escalated.
-
-Click any conversation row to open the full conversation view in the **Conversations** area.
-
-Use Recent activity when:
-
-- A metric changes suddenly and you want to see what caused it.
-- You need real, recent examples for QA or coaching.
-- You want to confirm that new campaigns are generating live conversations.
-
-## Quick actions
-
-Quick action cards surface common follow-up tasks based on what the dashboard shows.
-
-Typical quick actions include:
-
-- **View conversations by channel** — Open filtered lists for specific channels (for example, only voice or only chat).
-- **Manage assistants** — Go to the assistants list to review configuration, routing, and performance.
-- **Review or add training** — Open training and knowledge settings to improve responses and qualification.
-
-Use these cards to move directly from “I see a trend” to “I am taking action” without hunting through the side navigation.
-
-## System status and readiness
-
-The system status area confirms whether core services are configured and ready, so you can launch campaigns with confidence.
-
-Depending on your setup, you may see:
-
-- **Phone number and voice readiness** — Whether voice calling is available and correctly configured.
-- **Channel connections** — High-level status for chat, email, or other external channels.
-- **Integrations readiness** — Whether key integrations (such as CRM) are connected and healthy.
-- **General service status** — An indicator that backend services are operating normally for your tenant.
-
-Check this section before:
-
-- Turning on new campaigns or routing production traffic.
-- Troubleshooting why a channel or integration is not generating activity.
-- Onboarding a new tenant or environment.
-
-<Callout kind="info">
-
-If you are a tenant admin, use system status as your first stop when something looks off. It highlights missing phone numbers, disconnected channels, or inactive CRM connections that can explain gaps in the dashboard.
-
-</Callout>
-
-## Daily workflow
-
-Use this lightweight routine to keep your tenant on track.
-
-<Steps>
-
-<Step title="Scan the right time range" icon="bar-chart">
-
-- Pick a time range that matches your question (for example, **Last 24 hours** for daily health or **Last 7 days** for weekly trends).
-- Check the last updated timestamp and click **Refresh** if you need the very latest numbers.
-
-</Step>
-
-<Step title="Read stats and AI insights" icon="info">
-
-- Look at total conversations, qualified leads, conversion rate, and active channels for big changes.
-- Review AI insights for callouts on spikes, drops, or channels and assistants that need attention.
-
-</Step>
-
-<Step title="Drill into real conversations" icon="message-circle">
-
-- Use the Recent activity list to open a few representative conversations.
-- Look for patterns in customer questions, handoffs, or missed opportunities.
-
-</Step>
-
-<Step title="Take action from quick links" icon="arrow-right">
-
-- Use quick action cards to jump into **Conversations**, **Assistants**, or **Training context**.
-- Update routing, training, or campaigns based on what you saw, then return to the dashboard to monitor impact over the next day or week.
-
-</Step>
-
-</Steps>
-
-## Jump to other areas
-
-Use these links when the dashboard tells you where to investigate next.
-
-<Columns cols={3}>
-
-<Card
-  title="Conversations"
-  href="/pages/conversations/conversations"
-  icon="message-circle"
-  cta="Review interactions"
->
-
-See all conversations behind your dashboard metrics, filter by channel, and open individual threads.
-
-</Card>
-
-<Card
-  title="Assistants"
-  href="/pages/ai-config/assistants"
-  icon="zap"
-  cta="Manage assistants"
->
-
-Configure assistants, review routing, and align behavior with your goals.
-
-</Card>
-
-<Card
-  title="Training context"
-  href="/pages/ai-config/training-context"
-  icon="database"
-  cta="Improve answers"
->
-
-Add or adjust training data so assistants respond accurately and qualify leads correctly.
-
-</Card>
-
-<Card
-  title="Analytics"
-  href="/pages/insights/analytics"
-  icon="chart-bar"
-  cta="Deep-dive reports"
->
-
-Run detailed reports and explore trends beyond the high-level dashboard tiles.
-
-</Card>
-
-<Card
-  title="CRM Connections"
-  href="/pages/crm/crm-connections"
-  icon="link"
-  cta="Connect CRM"
->
-
-Connect or troubleshoot CRM integrations to enrich leads and channel data.
-
-</Card>
-
-<Card
-  title="Email settings"
-  href="/pages/settings/email"
-  icon="mail"
-  cta="Configure email"
->
-
-Set up or adjust email sending so email conversations and campaigns appear correctly in your metrics.
-
-</Card>
-
-</Columns>
+If you are new to Autoch.at, you may see a prompt to **Start Tour**. This interactive guide will walk you through the key features of the dashboard and help you get started faster. You can choose to **Skip** it if you prefer to explore on your own.

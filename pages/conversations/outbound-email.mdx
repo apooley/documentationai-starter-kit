@@ -1,0 +1,64 @@
+---
+title: Outbound Email
+description: Send one-off or bulk outbound emails to your clients directly from Autoch.at.
+---
+
+## What is Outbound Email?
+
+While [Email Workflows](/pages/conversations/email-workflows) automate triggered email sequences, **Outbound Email** (located at **Conversations > Outbound Email**) is designed for direct, intentional outreach.
+
+It allows you to compose and send emails to individual clients or groups of clients from within Autoch.at, without needing to switch to a separate email client.
+
+## Use Cases
+
+Outbound Email is ideal for scenarios where you want to proactively reach out to a customer or a segment of your client base.
+
+Common use cases include:
+- **Proactive Support**: Notifying a specific customer about a bug fix that affected their account.
+- **Sales Outreach**: Sending a personalized pitch to a list of qualified leads.
+- **Announcements**: Informing a group of clients about a new feature or an upcoming maintenance window.
+- **Follow-ups**: Reaching out to a client who hasn't responded to an AI-initiated conversation.
+
+## Composing an Outbound Email
+
+To send an outbound email:
+
+1. Navigate to **Conversations > Outbound Email**.
+2. Click **Compose New Email**.
+3. In the **To** field, search for and select the recipient(s) from your [Clients](/pages/crm/clients) database, or enter an email address directly.
+4. Select the **From** address (your connected sending domain, configured in [Settings > Email](/pages/settings/email)).
+5. Enter a **Subject Line**.
+6. Compose your message in the body editor. You can use rich text formatting, insert images, and add attachments.
+7. Click **Send** to send immediately, or **Schedule** to send at a specific date and time.
+
+## Using Email Templates
+
+To save time and ensure consistency, you can use pre-written email templates when composing outbound messages.
+
+1. When composing an email, click the **Templates** button.
+2. Select a template from the list.
+3. The template content will be inserted into the email body. You can then personalize it before sending.
+
+To create new templates, navigate to **Settings > Email** and look for the **Email Templates** section.
+
+## Personalization Variables
+
+When sending to multiple recipients, you can use personalization variables to automatically insert client-specific information into your emails.
+
+For example:
+- `{{client.first_name}}` will be replaced with the recipient's first name.
+- `{{client.company}}` will be replaced with their company name.
+- `{{client.last_conversation_date}}` will be replaced with the date of their last interaction.
+
+This allows you to send personalized emails at scale without manually editing each one.
+
+## Tracking and Results
+
+After sending an outbound email, you can track its performance:
+- **Delivered**: The email was successfully delivered to the recipient's server.
+- **Opened**: The recipient opened the email.
+- **Clicked**: The recipient clicked a link within the email.
+- **Replied**: The recipient sent a reply, which will appear in your [Conversations Inbox](/pages/conversations/conversations).
+- **Bounced**: The email could not be delivered (e.g., invalid address).
+
+Tracking data helps you understand the effectiveness of your outreach and identify which messages resonate with your audience.

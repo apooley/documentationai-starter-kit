@@ -1,484 +1,70 @@
 ---
-title: Manage training context
-description: Configure and maintain the training data assistants use, including documents, products, UI screens, websites, instructions, and FAQs in the Training Context page.
+title: Training Context
+description: Learn how to provide your AI assistants with the knowledge they need to answer questions accurately and consistently.
 ---
 
-## Training Context overview
+## What is Training Context?
 
-Training Context centralizes all the knowledge your assistants use to answer questions and take actions. Use it to manage documents, UI screens, websites, instructions, FAQs, and product data for a workspace.
+**Training Context** is the knowledge base that powers your AI assistants. It's the collection of documents, website links, FAQs, and specific instructions that the AI uses to understand your business, products, and policies.
 
-The Training Context page lives at `/training-context` and is primarily used by tenant admins and advanced users who curate knowledge for multiple assistants.
+Without training context, an assistant relies solely on its general knowledge (which may be outdated or incorrect for your specific business). With comprehensive training context, your assistant becomes a specialized expert on your company.
 
-<Callout kind="info">
+## Types of Training Context
 
-Access to Training Context depends on your tenant permissions. Tenant admins see all workspaces, while scoped users only see workspaces they belong to and can manage items based on their role.
+Autoch.at supports several types of training context, allowing you to import knowledge from various sources. Navigate to **AI Assistant > Training Context** to manage your knowledge base.
 
+### 1. Documents
+
+You can upload files directly to Autoch.at. The AI will extract the text and use it to answer customer questions.
+
+- **Supported formats**: PDF, DOCX, TXT, CSV, Markdown.
+- **Best for**: Employee handbooks, product manuals, technical specifications, and policy documents.
+
+<Callout kind="tip">
+**Keep documents focused:** A 10-page document about a specific product is better than a 500-page document covering everything. Break large manuals into smaller, topic-specific files for better AI retrieval.
 </Callout>
 
-### Key capabilities
+### 2. Website Crawling (Links)
 
-- View and manage all training items for a workspace in one place.
-- Upload or import new context (files, products, websites, UI screens, FAQs, instructions).
-- Organize content into folders and apply filters to keep knowledge structured.
-- Assign context items to specific assistants to control what each assistant can use.
-- Perform bulk operations such as delete, move, and regenerate summaries.
+You can provide Autoch.at with URLs to crawl and index. The AI will read the text on those pages and use it as context.
 
-## Page layout and navigation
+- **Best for**: Public-facing knowledge bases, blog posts, pricing pages, and "About Us" sections.
+- **Syncing**: You can configure Autoch.at to periodically re-crawl these links to ensure the AI's knowledge stays up-to-date with your website.
 
-The Training Context page is organized into a common header area and a set of content sections.
+### 3. FAQs (Frequently Asked Questions)
 
-### Workspace selector
+FAQs are direct question-and-answer pairs. They are the most precise form of training context because you explicitly define the exact answer the AI should give for a specific question.
 
-Use the workspace selector at the top of the page to switch between workspaces. All filters, sections, and items are scoped to the currently selected workspace.
+- **Best for**: Common customer inquiries (e.g., "What are your business hours?", "Do you offer refunds?").
+- **Overrides**: If an FAQ contradicts information found in a document or website link, the AI will prioritize the FAQ answer.
 
-When you change the workspace, the usage overview, filters, and item lists update to reflect that workspace.
+### 4. Specific Instructions (Snippets)
 
-### Usage overview
+Instructions are short, targeted pieces of text that guide the AI's behavior or provide specific facts that don't fit neatly into a document or FAQ.
 
-The usage overview helps you track how much training data you have configured and how it is distributed.
+- **Best for**: Temporary promotions, specific phrasing requirements (e.g., "Always refer to our product as 'The Platform', never 'The App'"), or handling edge cases.
 
-Typical elements include:
+## Managing Your Knowledge Base
 
-- A character or token usage breakdown across your context types.
-- A progress bar indicating how much of your available quota you have used.
-- High-level counts of items (for example, number of documents, products, or website pages).
+As your business evolves, your training context needs to evolve with it.
 
-Use this section to quickly see whether you are approaching limits and where most of your training data lives.
+### Organizing Context
 
-### Global filters and search
+You can organize your training context using **Tags** or **Folders** (depending on your plan). This allows you to group related documents and links together, making it easier to manage and update them.
 
-Global filters appear above the active section and apply within that section:
+### Reviewing AI Usage
 
-- **Search**: Find items by name, title, or other indexed metadata.
-- **Type**: Narrow down by subtype when relevant (for example, file type or content category).
-- **Folder**: Filter to a specific folder or subfolder.
-- **Domain/status**: Filter by source domain, sync status, or processing state.
+You can see which pieces of training context the AI is using most frequently in the **Insights > Analytics** dashboard. If a document is rarely used, it might be outdated or irrelevant. If an FAQ is used constantly, you might want to expand on that topic in your main documentation.
 
-Filters combine with search, so you can search within a subset such as a folder or domain.
+### Updating and Deleting
 
-### Bulk selection bar
+When a policy changes or a product is updated, you must update the corresponding training context.
 
-When you select one or more items in a list or card view, a bulk selection bar appears. From this bar you can:
+1. Go to **AI Assistant > Training Context**.
+2. Locate the outdated document, link, or FAQ.
+3. Edit the FAQ, re-crawl the link, or upload a new version of the document.
+4. Delete any context that is no longer accurate.
 
-- Delete selected items.
-- Move selected items to a folder.
-- Assign selected items to assistants.
-- Regenerate summaries for selected items.
-
-Bulk actions apply to the active section only and respect any filters you have applied.
-
-## Training Context sections
-
-Each major content type has its own collapsible section. All sections share common behaviors: list or card views, folder management, upload or import actions, and assignment to assistants.
-
-<ExpandableGroup>
-
-<Expandable title="Overview">
-
-The **Overview** section gives you a cross-cutting view of all training context for the workspace.
-
-Typical elements:
-
-- Aggregate usage metrics across all content types.
-- Key counts, such as total documents, products, websites, UI screens, instructions, and FAQs.
-- Recent activity, such as latest uploads or imports.
-- Quick links into specific sections or folders that may need attention.
-
-Use the Overview section to understand coverage and spot gaps in your training data before you drill into a specific content type.
-
-</Expandable>
-
-<Expandable title="Products">
-
-The **Products** section manages structured product data used by assistants for pricing, availability, and catalog questions.
-
-Key capabilities:
-
-- Import products from CSV or JSON files.
-- Import via URL or feed configuration for ongoing syncs.
-- Review and filter products by category, status, or source.
-- Assign product sets or folders to specific assistants.
-
-Use this section when you want assistants to answer detailed product questions based on your catalog instead of unstructured documents.
-
-</Expandable>
-
-<Expandable title="Documents">
-
-The **Documents** section stores unstructured or semi-structured files such as PDFs, Word documents, and text files.
-
-Key capabilities:
-
-- Upload single documents or perform bulk uploads.
-- Organize documents into folders by topic, department, or product line.
-- Filter by file type, status, or folder.
-- Assign document folders or individual documents to assistants.
-
-Use this section for policies, how-to guides, support playbooks, and other reference material assistants should rely on.
-
-</Expandable>
-
-<Expandable title="UI Screens">
-
-The **UI Screens** section manages screenshots and UI captures that help assistants reason about your application interface.
-
-Key capabilities:
-
-- Upload UI screens or capture images that represent key flows.
-- Group screens into folders that mirror user journeys (for example, onboarding, billing, support).
-- Filter by folder or feature area.
-- Assign specific UI flows to assistants that need context about your product interface.
-
-Use this section to enable assistants to reference and describe your UI accurately.
-
-</Expandable>
-
-<Expandable title="Website">
-
-The **Website** section connects to your public or internal websites and keeps page content in sync.
-
-Key capabilities:
-
-- Configure website crawls from a base URL or sitemap.
-- Refresh existing crawls to pull updated content.
-- Filter content by domain, path, or status (for example, pending, processed, failed).
-- Assign website sections or domains to assistants.
-
-Use this section when you want assistants to answer questions based on knowledge that already exists on your website.
-
-</Expandable>
-
-<Expandable title="Instructions">
-
-The **Instructions** section manages system- or assistant-level instruction blocks that guide behavior and tone.
-
-Key capabilities:
-
-- Create and edit reusable instruction sets.
-- Organize instructions into folders by use case or team.
-- Filter by folder or usage (for example, shared vs. assistant-specific).
-- Assign instruction sets to one or more assistants.
-
-Use this section to centralize the rules and guidelines that shape how assistants respond.
-
-</Expandable>
-
-<Expandable title="FAQs">
-
-The **FAQs** section stores question-and-answer pairs that assistants can use for high-precision responses.
-
-Key capabilities:
-
-- Create FAQs directly or import them from existing sources.
-- Organize FAQs into folders by topic or product area.
-- Filter by folder, category, or status.
-- Assign FAQ sets to assistants for targeted Q&A behavior.
-
-Use this section when you want tight control over how specific questions are answered.
-
-</Expandable>
-
-</ExpandableGroup>
-
-## Core workflows
-
-This section covers the main workflows you perform in Training Context. Each workflow applies to one or more sections; follow the same pattern in each relevant section.
-
-### Upload or bulk upload context items
-
-Use this workflow to bring new documents, UI screens, instructions, or FAQs into the system.
-
-<Steps>
-
-<Step title="Choose workspace and section" icon="home">
-
-- Select the workspace from the workspace selector at the top of the page.
-- Open the section that matches the content you want to upload, such as **Documents**, **UI Screens**, **Instructions**, or **FAQs**.
-
-Success signal: The list in the section updates to show items for the selected workspace and content type.
-
-</Step>
-
-<Step title="Start an upload" icon="upload">
-
-- Click the **Upload** or **Add** button in the section header or empty state.
-- For bulk uploads, choose the bulk upload option if presented (for example, **Bulk upload** or **Upload multiple files**).
-
-Success signal: An upload dialog or file picker opens.
-
-</Step>
-
-<Step title="Select and confirm files" icon="check-circle">
-
-- Select one or more files from your computer.
-- Confirm or edit metadata such as name, folder, or tags if the dialog offers these options.
-- Submit the upload.
-
-Success signal: Items appear in the list with a processing or pending status, then transition to a ready status when ingestion completes.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-Uploads depend on the `trainingContextUploadEnabled` feature flag. If this flag is disabled for your tenant, upload and import buttons are hidden or replaced with a banner explaining that uploads are not available.
-
+<Callout kind="warning">
+**Stale context leads to bad answers.** Make it a habit to review your training context regularly, especially after major product releases or policy changes.
 </Callout>
-
-### Organize items into folders
-
-Folders help you keep growing training data manageable and assign groups of items to assistants.
-
-<Steps>
-
-<Step title="Create a folder" icon="folder">
-
-- In the relevant section, locate the folder controls (for example, **New folder** in the header or sidebar).
-- Click **New folder** and enter a folder name that reflects its content or use case.
-- Confirm to create the folder.
-
-Success signal: The new folder appears in the folder list or as a node in the folder tree.
-
-</Step>
-
-<Step title="Move items into a folder" icon="arrow-right">
-
-- Select one or more items in the list or card view by using the checkboxes.
-- In the bulk selection bar, choose **Move** or **Move to folder**.
-- Pick the destination folder and confirm.
-
-Success signal: Items display the new folder association and show up when you filter by that folder.
-
-</Step>
-
-<Step title="Edit or reorganize folders" icon="edit">
-
-- Open folder options on an existing folder (for example, a context menu or edit icon).
-- Rename the folder, move it under a different parent, or delete it when it is no longer needed.
-- Confirm your changes.
-
-Success signal: The folder tree updates, and any items retain their association with the updated folder structure.
-
-</Step>
-
-</Steps>
-
-### Assign context items to assistants
-
-Assignment controls which assistants see and use each piece of training data.
-
-<Steps>
-
-<Step title="Select items to assign" icon="users">
-
-- Navigate to the section that contains the items you want to assign.
-- Apply filters to narrow down to the relevant folder or category if needed.
-- Select the items using the checkboxes.
-
-Success signal: The bulk selection bar appears with assignment-related actions.
-
-</Step>
-
-<Step title="Assign to assistants" icon="arrow-right">
-
-- Click **Assign to assistant** (or equivalent assignment action) in the bulk selection bar.
-- In the assignment dialog, search for and select one or more assistants.
-- Confirm the assignment.
-
-Success signal: Items show updated assistant associations, and the assistants start using this context in their responses.
-
-</Step>
-
-</Steps>
-
-### Import products
-
-Use the Products section to bring in structured catalog data via file upload or a feed.
-
-<Steps>
-
-<Step title="Open the Products section" icon="package">
-
-- Choose the target workspace.
-- Navigate to the **Products** section.
-
-Success signal: The product list, filters, and usage overview for products load.
-
-</Step>
-
-<Step title="Choose an import method" icon="download">
-
-- Click **Import products** or the equivalent action.
-- Select an available import method:
-  - CSV or JSON file upload.
-  - URL-based import.
-  - Feed configuration for recurring syncs.
-
-Success signal: An import configuration dialog appears with fields specific to the chosen method.
-
-</Step>
-
-<Step title="Configure and run the import" icon="settings">
-
-- Provide the required details for the import (for example, file selection, URL, or feed parameters).
-- Map fields if the import workflow supports schema mapping.
-- Start the import and wait for processing to complete.
-
-Success signal: New or updated products appear in the list with a completed status, and product usage in the overview updates accordingly.
-
-</Step>
-
-</Steps>
-
-### Crawl and refresh website content
-
-Website crawls keep your assistant aligned with your live site.
-
-<Steps>
-
-<Step title="Configure a new crawl" icon="cloud">
-
-- Open the **Website** section for the workspace.
-- Click **Add site** or **New crawl**.
-- Enter the base URL or sitemap URL for the site you want to sync.
-
-Success signal: A new site entry appears with an initial pending or scheduled status.
-
-</Step>
-
-<Step title="Run or schedule the crawl" icon="play-circle">
-
-- Choose whether to start a crawl immediately or schedule it, depending on available options.
-- Confirm the crawl settings.
-
-Success signal: The site status moves through running and then to completed, with a count of pages or items processed.
-
-</Step>
-
-<Step title="Refresh existing website content" icon="refresh-ccw">
-
-- In the **Website** section, locate an existing site configuration.
-- Use the refresh or resync action to trigger a new crawl.
-- Monitor the status until it returns to completed.
-
-Success signal: The last refreshed timestamp updates, and assistants can use the latest website content.
-
-</Step>
-
-</Steps>
-
-### Bulk delete, organize, and regenerate summaries
-
-Bulk actions help you maintain data quality as your training context grows.
-
-<Steps>
-
-<Step title="Select multiple items" icon="check-square">
-
-- Apply filters to narrow the list if needed (for example, by folder or status).
-- Use the checkboxes to select all items on the page or a specific subset.
-
-Success signal: The bulk selection bar appears, showing the number of items selected.
-
-</Step>
-
-<Step title="Choose a bulk action" icon="settings">
-
-- From the bulk selection bar, choose one of the available actions:
-  - **Delete** to permanently remove items you no longer need.
-  - **Move** to reorganize items into different folders.
-  - **Assign** to update assistant mappings.
-  - **Regenerate summaries** to refresh automatically generated summaries or embeddings.
-
-Success signal: A confirmation dialog appears summarizing the action and the number of items affected.
-
-</Step>
-
-<Step title="Confirm and verify results" icon="check-circle">
-
-- Confirm the bulk action and wait for processing to complete.
-- Refresh the view or check statuses to ensure the changes have applied:
-  - Deleted items are no longer visible.
-  - Items show updated folders or assistant assignments.
-  - Items with regenerated summaries show updated timestamps or statuses.
-
-Success signal: The list and item details reflect your bulk changes with no unexpected items remaining.
-
-</Step>
-
-</Steps>
-
-## Feature gating and permissions
-
-Uploads and some imports are gated so you can control who can modify training data.
-
-<Callout kind="info">
-
-The `trainingContextUploadEnabled` flag controls whether upload and import features appear in Training Context. When disabled, users can still view existing context (subject to permissions) but cannot add new items.
-
-</Callout>
-
-Typical behaviors when the feature is disabled:
-
-- Upload and import buttons are hidden or disabled.
-- Empty states display a feature gate banner instead of upload CTAs.
-- Users see clear messaging that uploads are not enabled for their tenant or role.
-
-Coordinate with your platform administrator if you need uploads enabled for your tenant.
-
-## Loading and empty states
-
-Training Context includes clear loading and empty states to guide users.
-
-### Loading states
-
-When data is loading or a section is fetching items:
-
-- A skeleton or shimmer layout stands in for lists and cards.
-- Filters and controls may appear disabled until data finishes loading.
-- Workspace switches and section changes trigger short loading states as content refreshes.
-
-Once loading completes, the skeleton disappears and the real items appear with their latest statuses.
-
-### Empty states
-
-Each section has dedicated empty states to encourage first-time setup:
-
-- **No items yet**: Shows when a section has no content. The page displays guidance and a primary CTA such as **Upload**, **Import**, or **Add** based on the section.
-- **Filter-empty states**: When filters or search return no results, the page suggests clearing filters or adjusting the search term.
-- **Feature-gated empty states**: When uploads are disabled, the empty state focuses on view-only behavior and may include a link or message about enabling uploads.
-
-Use these states to orient new users and make it clear what the next action should be.
-
-## Related configuration and management pages
-
-Connect Training Context with related areas of the product to get the most value from your knowledge.
-
-<Columns cols={2}>
-
-<Card
-  title="Manage assistants"
-  href="/assistants"
-  icon="users"
-  cta="Open Assistants"
-  horizontal="true"
->
-
-Link assistants to the right training context, configure behaviors, and test responses that use your curated knowledge.
-
-</Card>
-
-<Card
-  title="Workspace and tenant settings"
-  href="/settings"
-  icon="settings"
-  cta="Open Settings"
-  horizontal="true"
->
-
-Adjust permissions, feature flags like training context uploads, and workspace-level defaults that affect Training Context.
-
-</Card>
-
-</Columns>

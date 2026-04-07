@@ -1,0 +1,54 @@
+---
+title: Messaging Directives
+description: Create global rules and instructions that apply to all your AI assistants across every channel.
+---
+
+## What are Messaging Directives?
+
+While Playbooks define specific goals and Personas define an individual assistant's tone, **Messaging Directives** are global rules that apply to *all* your AI assistants, regardless of their specific role or the channel they are operating on.
+
+Think of Directives as your company's universal communication guidelines. They ensure consistency and compliance across every automated interaction.
+
+You can manage these global rules by navigating to **AI Assistant > Messaging Directives**.
+
+## Why Use Directives?
+
+Directives are perfect for enforcing rules that should never be broken, such as:
+
+- **Brand Voice**: "Always refer to our company as 'Autoch.at', never 'Auto Chat'."
+- **Formatting**: "Always use bullet points when listing more than two items."
+- **Compliance**: "Never guarantee a specific delivery date; always say 'estimated delivery'."
+- **Safety**: "If a user asks for medical advice, state clearly that we are a software company and cannot provide medical information."
+
+By setting these rules globally, you don't have to remember to add them to every single assistant's persona or every individual playbook.
+
+## Creating a Directive
+
+To create a new global rule:
+
+1. Navigate to **AI Assistant > Messaging Directives**.
+2. Click **Create Directive**.
+3. Give the directive a clear, descriptive name (e.g., "Formatting: Bullet Points").
+4. Write the specific instruction in the **Directive Content** field. Be as clear and unambiguous as possible.
+5. Save the directive.
+
+It will immediately take effect for all active assistants.
+
+## Directives vs. Training Context
+
+It's important to understand the difference between a Directive and Training Context (like an FAQ or a Document).
+
+- **Training Context** provides *information* (e.g., "Our office hours are 9 AM to 5 PM EST."). The AI uses this information to answer questions.
+- **Messaging Directives** provide *instructions on behavior* (e.g., "Always end your response by asking if there's anything else you can help with."). The AI follows these instructions when formulating its response.
+
+<Callout kind="tip">
+**Keep Directives concise.** If you have a 5-page document on your brand voice, don't paste the whole thing into a Directive. Instead, extract the 3-5 most critical rules (e.g., "Never use emojis," "Always use title case for product names") and create individual Directives for them. Upload the full document to Training Context.
+</Callout>
+
+## Managing Directives
+
+As your business policies change, you can easily update or disable Directives.
+
+- **Edit**: Modify the content of a directive to refine the AI's behavior.
+- **Toggle On/Off**: Temporarily disable a directive without deleting it. This is useful for testing how a rule affects conversation quality or for seasonal guidelines (e.g., "During December, always wish the customer Happy Holidays").
+- **Delete**: Permanently remove a directive that is no longer relevant.

@@ -1,151 +1,59 @@
 ---
-title: Core Features of Autoch.at
-description: Learn about the essential tools in Autoch.at, including the shared conversation timeline, AI assistants, and routing options to streamline team workflows.
+title: Features
+description: A comprehensive list of Autoch.at's capabilities across AI, channels, CRM, and analytics.
 ---
 
-## Overview
+## Core Platform Features
 
-Autoch.at provides a unified platform for managing customer conversations across email, SMS, website chat, and voice calls. You access all messages in one shared timeline, eliminating fragmentation and ensuring context persists across channels. Key features include AI-powered drafting and summarization, intelligent routing, standardized playbooks, and analytics to track outcomes.
+Autoch.at is built to unify your customer communications and automate repetitive tasks using advanced AI. Here is a breakdown of the key features available on the platform.
 
-<Callout kind="info">
-Enable these features in your dashboard at `https://dashboard.example.com/settings` to start unifying your conversations.
-</Callout>
+### AI Assistants & Automation
 
-## Key Features at a Glance
+- **Multi-Assistant Architecture**: Create specialized AI agents for different roles (e.g., Support, Sales, Reception).
+- **Custom Personas**: Define the exact tone, personality, and behavioral guidelines for each assistant.
+- **Playbooks**: Build version-controlled, goal-oriented conversational flows (e.g., Lead Qualification, Troubleshooting).
+- **Training Context**: Upload documents (PDF, DOCX), sync website URLs, and create FAQs to build a custom knowledge base.
+- **Routing Rules**: Automatically transfer conversations between assistants or to human teams based on keywords, intent, or channel.
+- **Handoff Guardrails**: Prevent abuse with limits on handoffs per conversation, cooldown periods, and loop prevention.
+- **AI Safety System**: Enforce brand safety with blocked keywords and "Serious Mode" triggers for sensitive inquiries.
+- **Playbook Experiments**: Run A/B tests on different playbook versions to optimize conversion and resolution rates.
+- **Messaging Directives**: Apply global rules and formatting instructions across all assistants.
 
-<Columns cols={3}>
-  <Card title="Unified Timeline" icon="message-circle" href="#unified-timeline">
-    View every interaction in a single, chronological record across all channels.
-  </Card>
-  <Card title="AI Assistants" icon="zap" href="#ai-assistants">
-    Automate drafts, summaries, and routing with customizable guardrails.
-  </Card>
-  <Card title="Routing & Handoffs" icon="git-branch" href="#routing">
-    Direct conversations to the right team member based on rules you define.
-  </Card>
-  <Card title="Playbooks" icon="book-open" href="#playbooks">
-    Standardize responses with versioned templates you can audit.
-  </Card>
-  <Card title="Analytics" icon="bar-chart-3" href="#analytics">
-    Measure conversation success and identify areas for improvement.
-  </Card>
-</Columns>
+### Unified Inbox & Channels
 
-## Unified Conversation Timeline
+- **Omnichannel Inbox**: Manage Chat, SMS, Email, Voice, and Social Media conversations from a single, real-time timeline.
+- **Web Chat Widget**: Customizable website widget with proactive launch rules (time on page, scroll depth, exit intent).
+- **SMS & Voice**: Provision phone numbers directly within Autoch.at to handle text messages and AI voice calls.
+- **Email Integration**: Connect custom domains to send and receive support emails.
+- **Social Media Integration**: Connect social profiles to manage direct messages and comments.
+- **Email & SMS Workflows**: Automate asynchronous follow-ups, auto-responders, and status-based messaging sequences.
+- **Internal Notes & Mentions**: Collaborate with teammates privately within a customer thread.
+- **Canned Responses**: Quickly insert pre-written replies for common human-handled questions.
+- **AI Suggested Replies**: Get AI-generated draft responses based on the conversation context when a human takes over.
 
-Combine messages from multiple channels into one cohesive view. You see emails, SMS, chats, and call notes in sequence, with clear ownership and status indicators.
+### CRM & Client Management
 
-### How It Works
+- **Built-in Lightweight CRM**: Automatically create and manage profiles for every contact.
+- **Conversation History**: View the complete, cross-channel history of every interaction with a specific client.
+- **Custom Tags & Fields**: Organize clients and conversations with custom labels and data points.
+- **Duplicate Merging**: Automatically detect and merge duplicate contact records.
+- **Import/Export**: Easily move client data in and out of Autoch.at via CSV.
+- **External CRM Connections**: Two-way sync with major CRMs (Salesforce, HubSpot, Pipedrive, Zoho) to keep your system of record up to date.
 
-<Steps>
-  <Step title="Connect Channels" icon="plug">
-    Link your email, SMS provider, chat widget, and telephony service in the dashboard.
-  </Step>
-  <Step title="View Timeline" icon="timeline">
-    Open any conversation to see the full history, tagged by channel.
-  </Step>
-  <Step title="Assign Ownership" icon="user-check">
-    Tag teammates and set next steps directly in the timeline.
-  </Step>
-</Steps>
+### Insights & Analytics
 
-```mermaid
-sequenceDiagram
-    participant C as Customer
-    participant A as Autoch.at
-    participant T as Teammate
-    C->>A: Email/SMS/Chat/Call
-    A->>A: Unify into Timeline
-    A->>T: Notify & Route
-    T->>A: Respond in Timeline
-    A->>C: Multi-channel Reply
-```
+- **Real-time Dashboard**: Monitor live conversation volume, active channels, and system health.
+- **Performance Analytics**: Track resolution times, first response times, and handoff rates.
+- **Conversation Intelligence**: Analyze trends, missed follow-ups, and objections across all interactions.
+- **FAQ Analytics**: Identify gaps in your Training Context by tracking FAQ hits, misses, and near-misses.
+- **Scheduled Reports**: Automatically generate and email performance reports to stakeholders.
+- **Voice Analytics**: Deep dive into call durations, transcripts, and AI voice performance.
 
-## AI Drafting and Summarization
+### Security & Administration
 
-AI assistants draft replies, summarize long threads, and suggest escalations while respecting your business rules.
-
-<Tabs>
-  <Tab title="Drafting" icon="edit-3">
-    Configure AI to generate responses based on playbook templates.
-
-    <CodeGroup tabs="JavaScript,cURL">
-    ````javascript
-    const response = await fetch('https://api.example.com/v1/conversations/{conversationId}/draft', {
-      method: 'POST',
-      headers: { 'Authorization': 'Bearer YOUR_API_KEY' },
-      body: JSON.stringify({ prompt: 'Suggest polite follow-up' })
-    });
-    ````
-    ````bash
-    curl -X POST https://api.example.com/v1/conversations/{conversationId}/draft \
-      -H "Authorization: Bearer YOUR_API_KEY" \
-      -d '{"prompt": "Suggest polite follow-up"}'
-    ````
-    </CodeGroup>
-  </Tab>
-  <Tab title="Summarization" icon="file-text">
-    Get concise overviews of conversation history.
-
-    <Callout kind="tip">
-      Use summaries to quickly catch up on assigned conversations.
-    </Callout>
-  </Tab>
-</Tabs>
-
-<ParamField path="conversationId" param-type="string" required="true">
-  Unique ID from the conversation timeline.
-</ParamField>
-
-<ParamField query="model" param-type="string" required="false">
-  AI model variant, e.g., `quiet-ai-standard`.
-</ParamField>
-
-## Routing and Handoff Mechanisms
-
-Route incoming messages by channel, keywords, or intent. Hand off seamlessly between teammates with context preserved.
-
-<Expandable title="Advanced Routing Rules" default-open="false">
-  Define rules like:
-
-  | Rule Type   | Example Trigger          | Action                  |
-  |-------------|--------------------------|-------------------------|
-  | Keyword     | `refund` or `billing`    | Route to support@       |
-  | Channel     | SMS                      | Assign to mobile team   |
-  | Intent (AI) | `sales inquiry`          | Handoff to sales lead   |
-
-  Test rules in the dashboard simulator before going live.
-</Expandable>
-
-## Playbooks for Standardized Responses
-
-Create versioned playbooks to ensure consistent, auditable responses. Roll back changes if needed.
-
-<Steps>
-  <Step title="Create Playbook" icon="plus">
-    Draft templates for common scenarios like refunds or onboarding.
-  </Step>
-  <Step title="Version Control" icon="git-commit">
-    Publish updates and track usage analytics.
-  </Step>
-  <Step title="Apply Automatically" icon="zap">
-    AI suggests playbook matches during drafting.
-  </Step>
-</Steps>
-
-## Analytics for Conversation Outcomes
-
-Track metrics like resolution time, customer satisfaction, and channel performance.
-
-<Image
-  src="https://via.placeholder.com/800x400/eee/999?text=Analytics+Dashboard"
-  alt="Autoch.at analytics dashboard showing conversation metrics"
-  width="800"
-  height="400"
-/>
-
-View reports at `https://dashboard.example.com/analytics`. Filter by time period, team, or channel to identify bottlenecks.
-
-<Callout kind="success">
-  Regularly review analytics to refine your routing and playbooks for better outcomes.
-</Callout>
+- **Role-Based Access Control (RBAC)**: Assign Owner, Admin, Manager, or Agent roles to control permissions.
+- **PII Redaction**: Automatically detect and mask sensitive information (credit cards, SSNs) before it is stored or processed.
+- **Data Retention Policies**: Configure automatic deletion of old conversations to comply with privacy regulations (GDPR, CCPA).
+- **Two-Factor Authentication (2FA)**: Secure user accounts with mandatory or optional 2FA.
+- **Custom Shortlinks**: Use your own branded domain for shortened URLs sent via SMS.
+- **Workspaces**: Manage multiple distinct brands or departments under a single organization account.

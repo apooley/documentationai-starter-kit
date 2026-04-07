@@ -1,528 +1,59 @@
 ---
-title: Configure the chat widget
-description: Configure the web chat widget appearance, allowed domains, proactive messaging, and tracking so it installs cleanly on your site and emits reliable analytics.
+title: Chat Widget
+description: Install and configure the website chat widget, including launch rules and initial greetings.
 ---
 
-## Overview
+## What is the Chat Widget?
 
-Configure the Chat Widget settings to control how the embeddable widget looks, where it can load, when it proactively appears, and how its events are tracked.
+The **Chat Widget** (configured at **Settings > Chat Widget**) is the customer-facing interface that lives on your website. It allows visitors to interact with your AI assistants or human agents in real-time.
 
-<Tabs>
+From this settings page, you can customize how the widget looks, how it behaves, and get the code snippet needed to install it on your site.
 
-<Tab title="Configuration" icon="settings">
+## Installing the Widget
 
-### Prerequisites
+To add the Autoch.at widget to your website, you need to embed a small piece of JavaScript code.
 
-<Callout kind="info">
+1. Navigate to **Settings > Chat Widget**.
+2. Locate the **Installation Code** section.
+3. Click **Copy Code**.
+4. Paste this code snippet into the `<head>` or just before the closing `</body>` tag of your website's HTML.
 
-You need:
+If you use a Content Management System (CMS) like WordPress, Shopify, or Webflow, you can usually add this code through their respective theme settings or by using a custom code plugin.
 
-- Access to your website codebase or tag manager to add the embed snippet before the closing `</body>` tag.
-- DNS or hosting access to confirm the exact domains where the widget should load (for example, `app.acme.com`, `www.acme.com`).
-- Tenant admin or workspace admin permissions to change Settings → Chat Widget.
+## Customizing Appearance
 
-</Callout>
+While the core colors and logos are pulled from your [Branding Settings](/pages/settings/branding), you can further customize the widget's appearance here.
 
-If you do not add your production domains to **Allowed domains**, the widget does not load even if the embed snippet is present.
+- **Widget Position**: Choose whether the chat launcher button appears on the bottom-left or bottom-right of the screen.
+- **Launcher Icon**: Select the icon that appears on the closed widget button (e.g., a chat bubble, a question mark, or your company logo).
+- **Header Text**: Customize the title displayed at the top of the open chat window (e.g., "Chat with Us", "Support", or "Autoch.at Assistant").
 
-### Chat widget appearance fields
+## Configuring Behavior
 
-Use the **Chat Widget Configuration** section to control how the widget looks on your site.
+You can control how and when the widget interacts with your website visitors.
 
-<ParamField body="theme" param-type="string" required="true" show-location="false">
-Visual theme for the widget. Choose `Light` for light backgrounds or `Dark` for darker pages and better contrast.
-</ParamField>
+### Initial Greeting
 
-<ParamField body="position" param-type="string" required="true" show-location="false">
-Screen corner where the launcher button appears. Options: `Bottom right`, `Bottom left`, `Top right`, `Top left`.
-</ParamField>
+The **Initial Greeting** is the first message a visitor sees when they open the chat widget.
 
-<ParamField body="widgetColor" param-type="string" required="true" show-location="false">
-Hex color that controls the launcher button, primary buttons, and key accents in the widget. Use a brand-safe color to match your site.
-</ParamField>
+- **Welcome Message**: Set a friendly, inviting message (e.g., "Hi there! How can we help you today?").
+- **Suggested Prompts**: Provide 2-3 clickable options to help users start the conversation quickly (e.g., "I need technical support", "I have a billing question", "I want to book a demo"). These prompts can be tied directly to specific [Playbooks](/pages/ai-config/playbooks).
 
-<ParamField body="greetingMessage" param-type="string" required="true" show-location="false">
-Text shown when the widget opens for the first time, above the message composer. Use it to set expectations, for example, "Ask anything about your account."
-</ParamField>
+### Launch Rules (Proactive Chat)
 
-<ParamField body="avatarUrl" param-type="string" show-location="false">
-Optional image URL used for the assistant avatar in the conversation view. Use a square image hosted over HTTPS for best rendering.
-</ParamField>
+Instead of waiting for the user to click the widget, you can configure **Launch Rules** to proactively open the chat window based on specific triggers.
 
-<ParamField body="headerIconUrl" param-type="string" show-location="false">
-Optional icon URL shown in the header next to the widget title or wordmark. Use a transparent PNG or SVG for best results.
-</ParamField>
-
-<ParamField body="headerWordmarkUrl" param-type="string" show-location="false">
-Optional logo or wordmark URL used in the header. This typically displays your brand name or logotype.
-</ParamField>
+- **Time on Page**: Open the widget after the user has been on the page for a certain number of seconds (e.g., 30 seconds).
+- **Scroll Depth**: Open the widget when the user scrolls past a certain percentage of the page (e.g., 50%).
+- **Exit Intent**: Open the widget when the user's mouse cursor moves towards the top of the browser window, indicating they are about to leave the site.
 
 <Callout kind="tip">
-
-Preview how the widget looks on both light and dark pages. If your site has multiple themes, pick the theme and widget color that maintains contrast in the most common environment.
-
+**Use proactive chat sparingly.** While it can increase engagement, popping up the chat window immediately on every page load can be annoying. Target specific high-value pages (like pricing or checkout) with relevant, contextual greetings.
 </Callout>
 
-### Save widget configuration
+## Advanced Settings
 
-Use the **Save widget configuration** button to apply appearance changes to new widget loads.
+For developers, the Chat Widget settings page also provides access to advanced configuration options.
 
-<Steps>
-
-<Step title="Adjust visual settings" icon="edit">
-
-- Open **Settings → Chat Widget → Configuration**.
-- In **Chat Widget Configuration**, set **Theme**, **Position**, **Widget color**, and **Greeting message**.
-- Optionally add **Avatar URL**, **Header icon URL**, and **Header wordmark URL**.
-
-</Step>
-
-<Step title="Preview on your site" icon="monitor">
-
-- Open a page that already has the chat widget embed snippet installed.
-- Hard refresh the page to bypass cached assets.
-- Open the widget and confirm the new colors, images, and greeting message render as expected.
-
-</Step>
-
-<Step title="Save your changes" icon="check-circle">
-
-- Return to **Settings → Chat Widget → Configuration**.
-- Click **Save widget configuration**.
-- Confirm the saved indicator appears and changes persist after a page refresh.
-
-</Step>
-
-</Steps>
-
-### Allowed domains
-
-Allowed domains restrict where the widget can initialize and connect to your tenant.
-
-<Callout kind="alert">
-
-If the current page domain is not in **Allowed domains**, the widget fails to load or connect even if the embed snippet exists. Always add production and staging domains before testing.
-
-</Callout>
-
-#### Allowed domain fields
-
-<ParamField body="domain" param-type="string" required="true" show-location="false">
-Hostname where the widget is allowed to run, for example, `app.acme.com` or `help.acme.io`. Do not include protocol or path.
-</ParamField>
-
-<ParamField body="workspace" param-type="string" required="true" show-location="false">
-Workspace associated with conversations that start from this domain. Each domain routes to exactly one workspace, but you can change it at any time.
-</ParamField>
-
-<ParamField body="status" param-type="string" show-location="false">
-Read-only active indicator showing whether the most recent health checks and loads for this domain succeeded.
-</ParamField>
-
-#### Manage allowed domains
-
-Use the domain input, workspace dropdown, and domain list controls to manage access.
-
-<Steps>
-
-<Step title="Add an allowed domain" icon="plus">
-
-- Go to **Settings → Chat Widget → Configuration → Allowed domains**.
-- Enter the domain in the add-domain field, for example `www.acme.com`.
-- Select the **Workspace** that should receive new conversations from this domain.
-- Click **Add domain** and confirm the new row appears in the list with an active status.
-
-</Step>
-
-<Step title="Change a domain workspace" icon="settings">
-
-- Locate the domain in the list.
-- Use the workspace dropdown in that row to select the new workspace.
-- Confirm that new conversations from that domain now appear in the updated workspace.
-
-</Step>
-
-<Step title="Remove a domain" icon="trash">
-
-- Find the domain you want to deauthorize.
-- Click the **Remove** or delete icon in the domain row.
-- Confirm the removal. The widget no longer initializes on that domain after you deploy and reload the page.
-
-</Step>
-
-</Steps>
-
-### Generate embed token and install the widget
-
-The **Embed code** section lets you generate a widget token and copy the installation snippet for your site.
-
-<ParamField body="widgetToken" param-type="string" required="true" show-location="false">
-Unique token that identifies your tenant and configuration. The dashboard generates this when you click **Generate token**.
-</ParamField>
-
-<Callout kind="info">
-
-Use one widget token per tenant. If you regenerate the token, update the embed snippet everywhere it is installed.
-
-</Callout>
-
-<Steps>
-
-<Step title="Generate or locate your widget token" icon="key-round">
-
-- Open **Settings → Chat Widget → Configuration → Embed code**.
-- Click **Generate token** if you do not see a token yet.
-- Note the displayed token and confirm the embed snippet reflects it.
-
-</Step>
-
-<Step title="Copy the embed snippet" icon="copy">
-
-- In the **Embed code** panel, copy the provided snippet using the **Copy** button.
-- The snippet is pre-configured with your `widgetToken` and tenant endpoint.
-
-</Step>
-
-<Step title="Paste before the closing body tag" icon="terminal">
-
-- Open your website layout or template in your code editor or CMS.
-- Paste the snippet immediately before the closing `</body>` tag on pages where the widget should appear.
-- Save and deploy your changes.
-
-```html
-<!-- Example: chat widget embed snippet -->
-<script>
-  (function () {
-    window.chatWidget = window.chatWidget || {};
-    window.chatWidget.widgetToken = "YOUR_WIDGET_TOKEN";
-  })();
-</script>
-<script src="YOUR_WIDGET_SCRIPT_URL" async></script>
-```
-
-The authoritative embed snippet is always the one shown in the **Embed code** panel, so copy it directly from there instead of retyping from this example.
-
-</Step>
-
-<Step title="Publish and verify" icon="check-circle">
-
-- Open your site in a browser at a domain included in **Allowed domains**.
-- Confirm the launcher button appears in the configured position.
-- Click the launcher and verify the greeting message and branding match your configuration.
-- Repeat for any additional environments (staging, preview) after adding those domains.
-
-</Step>
-
-</Steps>
-
-### Proactive messaging configuration
-
-Proactive messaging automatically opens the widget and shows a message when the visitor matches configured triggers.
-
-#### Proactive messaging fields
-
-<ParamField body="proactiveEnabled" param-type="boolean" required="false" show-location="false">
-Master toggle that enables or disables proactive messaging. When disabled, no automatic prompts appear, even if triggers are configured.
-</ParamField>
-
-<ParamField body="proactiveMessageTemplate" param-type="string" required="false" show-location="false">
-Text template for the proactive message shown when a trigger fires. Write a short, clear invitation to start a conversation.
-</ParamField>
-
-<ParamField body="timeDelaySeconds" param-type="integer" required="false" show-location="false">
-Minimum number of seconds after page load before the proactive message can appear.
-</ParamField>
-
-<ParamField body="scrollPercentage" param-type="integer" required="false" show-location="false">
-Scroll depth (0–100) required before the proactive message can appear. Use higher values when you only want to engage engaged readers.
-</ParamField>
-
-<ParamField body="idleTimeSeconds" param-type="integer" required="false" show-location="false">
-Number of seconds without mouse or keyboard activity required to trigger the message.
-</ParamField>
-
-<ParamField body="exitIntent" param-type="boolean" required="false" show-location="false">
-Enable detection of exit-intent, such as the cursor moving rapidly toward the browser chrome, to trigger a proactive prompt.
-</ParamField>
-
-<ParamField body="customEvents" param-type="array" required="false" show-location="false">
-List of custom event rules. Each rule specifies a type (`Hover`, `Click`, or `Focus`) and a CSS selector that identifies the element that should trigger a proactive message.
-</ParamField>
-
-<ParamField body="showOncePerSession" param-type="boolean" required="false" show-location="false">
-Prevent the same visitor from seeing the proactive message more than once per browser session, regardless of how many triggers fire.
-</ParamField>
-
-<Callout kind="tip">
-
-Combine a generous time delay with **Show only once per session** to avoid overwhelming visitors. For example, wait 30–45 seconds and only show the prompt once.
-
-</Callout>
-
-#### Configure a proactive message
-
-<Steps>
-
-<Step title="Enable proactive messaging" icon="toggle-right">
-
-- Go to **Settings → Chat Widget → Configuration → Proactive Messaging**.
-- Turn on the **Enable proactive messaging** toggle.
-- Enter a concise **Message template**, for example, "Need help finding the right plan? Chat with us."
-
-</Step>
-
-<Step title="Set trigger conditions" icon="zap">
-
-- Configure one or more triggers:
-  - **Time delay**: choose a delay such as 30 seconds.
-  - **Scroll percentage**: set 50 or 60 to target engaged readers.
-  - **Idle time**: specify a threshold like 20 seconds.
-  - **Exit intent**: enable to catch users as they move to close or leave the page.
-- If you use custom events, define rules such as:
-  - Type `Click` with selector `.pricing-cta-button`
-  - Type `Hover` with selector `#contact-support-link`
-
-```javascript
-// Example: custom event target element
-<button class="pricing-cta-button">
-  Talk to sales
-</button>
-```
-
-</Step>
-
-<Step title="Limit frequency" icon="settings">
-
-- Enable **Show only once per session** to avoid repeated prompts.
-- Save the configuration to ensure the session rules apply.
-
-</Step>
-
-<Step title="Test triggers" icon="play-circle">
-
-- Open a page with the embed snippet in a new incognito window.
-- Interact with the page to meet your trigger conditions (for example, scroll past 60 percent).
-- Confirm the widget opens with your proactive message and only appears once per session.
-- Repeat for custom event elements and exit-intent behavior.
-
-</Step>
-
-</Steps>
-
-</Tab>
-
-<Tab title="Tracking" icon="bar-chart">
-
-### Tracking health overview
-
-The **Tracking** tab helps you monitor whether widget events are emitted, delivered to your webhooks, and accepted by downstream analytics tools.
-
-<Callout kind="info">
-
-Use the **Configuration** tab to control how the widget looks and behaves, and the **Tracking** tab to confirm that data from those interactions is flowing correctly.
-
-</Callout>
-
-### Tracking health metrics and controls
-
-The **Tracking health** panel shows status over a selected time window.
-
-<ParamField body="timeWindow" param-type="string" required="true" show-location="false">
-Time range selector for the health view. Options typically include `Last 1 hour`, `Last 24 hours`, and `Last 7 days`.
-</ParamField>
-
-<ParamField body="statusBadge" param-type="string" show-location="false">
-High-level status indicator. `Healthy` means webhook failures are within acceptable thresholds; `Warning` indicates elevated failure rates or recent errors.
-</ParamField>
-
-<ParamField body="emittedEvents" param-type="integer" show-location="false">
-Total number of widget events emitted in the selected time window, such as `widget_opened` or `message_sent`.
-</ParamField>
-
-<ParamField body="webhookAttempts" param-type="integer" show-location="false">
-Total number of webhook delivery attempts for tracking and analytics destinations.
-</ParamField>
-
-<ParamField body="webhookFailRate" param-type="number" show-location="false">
-Percentage of webhook attempts that failed (HTTP error, timeout, or network issue). High values indicate downstream problems.
-</ParamField>
-
-<ParamField body="lastEvent" param-type="string" show-location="false">
-Timestamp and type of the most recent event, which helps confirm that events are still flowing in real time.
-</ParamField>
-
-In addition, the Tracking tab shows:
-
-- A breakdown by event type and time series so you can see volume trends.
-- A **Recent failures** table that lists webhook targets, status codes, failure reasons, and timestamps.
-
-### Validate tracking health
-
-<Steps>
-
-<Step title="Select a time window" icon="clock">
-
-- Open **Settings → Chat Widget → Tracking → Tracking health**.
-- Choose **Last 1 hour** when testing a recent change or **Last 24 hours** for daily trends.
-- Click **Refresh** to reload metrics for the selected window.
-
-</Step>
-
-<Step title="Confirm overall status" icon="check-circle">
-
-- Review the **Status** badge:
-  - `Healthy` suggests events are flowing and webhooks are being delivered.
-  - `Warning` signals a spike in failures or missing events.
-- Compare **Emitted events** with expected traffic for your site.
-
-</Step>
-
-<Step title="Inspect event types and series" icon="bar-chart">
-
-- Use the **By event type** table to confirm that canonical events such as `widget_opened` and `message_sent` appear.
-- Check the time series chart for unexpected drops, especially around recent deployments.
-- Note which event types show the largest share of failures, if any.
-
-</Step>
-
-<Step title="Review recent failures" icon="alert-triangle">
-
-- Scroll to the **Recent failures** table.
-- For each failed delivery, note the endpoint, status code (for example, `500` or `404`), and error message.
-- Use these details to debug your webhook handler or analytics endpoint.
-
-</Step>
-
-</Steps>
-
-### Tracking code and analytics providers
-
-The **Tracking code** section helps you connect widget events to your analytics stack using a guided snippet builder and provider-specific templates.
-
-<ParamField body="guidedSnippetBuilder" param-type="object" show-location="false">
-Interactive tool that lets you select providers, events, and destinations, then generates a combined snippet tailored to your setup.
-</ParamField>
-
-<ParamField body="templates" param-type="array" show-location="false">
-Collection of prebuilt snippets for common providers, including GA4 `gtag`, Meta Pixel, and a generic `dataLayer` pattern.
-</ParamField>
-
-<ParamField body="canonicalEvents" param-type="array" show-location="false">
-Standardized event names exposed to tracking code, such as `widget_opened`, `widget_closed`, `message_sent`, and `conversation_resolved`.
-</ParamField>
-
-#### When to use the guided snippet builder
-
-Use the **Guided snippet builder** when:
-
-- You are setting up tracking for the first time.
-- You need to send events to more than one provider in a single handler.
-- You want a single combined snippet you can paste into your tag manager or site code.
-
-The builder lets you:
-
-- Choose providers (GA4 `gtag`, Meta Pixel, `dataLayer`).
-- Pick which canonical events to forward.
-- Copy a **combined snippet** that wires up all selected providers with one click.
-
-#### When to use templates
-
-Use the **Templates** section when:
-
-- You already have a tracking architecture and want to integrate widget events into it.
-- You prefer to manage provider logic yourself.
-- You want a reference implementation for one specific provider.
-
-Templates typically include:
-
-- A callback that receives widget events.
-- Provider-specific calls using canonical events.
-
-```javascript
-// Example: forwarding widget events to GA4 with gtag
-window.chatWidget = window.chatWidget || {};
-window.chatWidget.onEvent = function (event) {
-  if (event.name === "widget_opened") {
-    gtag("event", "widget_opened", { widget_location: event.context.position });
-  }
-
-  if (event.name === "message_sent") {
-    gtag("event", "widget_message_sent", {
-      message_length: event.payload.text.length,
-      channel: "web_chat",
-    });
-  }
-};
-```
-
-### Troubleshooting tracking and health
-
-<Steps>
-
-<Step title="Widget appears but no events in Tracking" icon="help-circle">
-
-- Confirm the page includes the latest widget script and not a cached or self-hosted copy.
-- Open **Settings → Chat Widget → Tracking → Tracking health** and set **Last 1 hour**.
-- Interact with the widget (open, send a message) and click **Refresh**.
-- If **Emitted events** remains at 0, check the browser console for JavaScript errors.
-
-</Step>
-
-<Step title="High webhook fail rate" icon="alert-triangle">
-
-- In **Tracking health**, open **Recent failures**.
-- Identify recurring status codes:
-  - `4xx` errors usually point to authentication, URL, or payload validation issues in your endpoint.
-  - `5xx` errors indicate your endpoint is failing or overloaded.
-- Test your webhook endpoint independently (for example, with a test POST request) using a sample widget event.
-- Fix the underlying issue, then monitor **Webhook fail rate** until it returns to a normal baseline.
-
-</Step>
-
-<Step title="Analytics platform missing events" icon="bug">
-
-- Open your tracking code or tag manager implementation and verify that widget events are being forwarded using canonical names such as `widget_opened` and `message_sent`.
-- Compare the code to the relevant provider template or the generated snippet from the **Guided snippet builder**.
-- Use your analytics provider"s real-time or debug view to confirm events arrive when you interact with the widget.
-- Ensure ad blockers or script blockers are not blocking the provider"s script on your test environment.
-
-</Step>
-
-</Steps>
-
-</Tab>
-
-</Tabs>
-
-## General troubleshooting
-
-Use these checks if the widget does not show up or behaves unexpectedly.
-
-<Steps>
-
-<Step title="Widget not appearing at all" icon="help-circle">
-
-- Confirm you installed the embed snippet before the closing `</body>` tag on the page you are testing.
-- Verify the snippet uses a valid `widgetToken` from **Settings → Chat Widget → Configuration → Embed code**.
-- Check the browser console for network errors loading `widget.js` or CORS issues.
-
-</Step>
-
-<Step title="Widget blocked on certain domains" icon="shield">
-
-- Go to **Settings → Chat Widget → Configuration → Allowed domains**.
-- Confirm the exact hostname you are testing (for example, `staging.acme.com`) appears in the list.
-- Add the domain and assign the correct workspace if it is missing, then reload the page.
-- If you recently updated DNS, allow time for propagation before re-testing.
-
-</Step>
-
-<Step title="Appearance changes not reflected" icon="refresh-ccw">
-
-- Ensure you clicked **Save widget configuration** after editing appearance or proactive messaging settings.
-- Hard refresh your browser (<kbd>Shift</kbd> + reload) or clear cache to bypass stale assets.
-- If you use a CDN, purge the cache for the page or script where the widget loads.
-
-</Step>
-
-</Steps>
+- **Allowed Domains**: For security, you can restrict the widget to only load on specific domains (e.g., `yourwebsite.com`). This prevents unauthorized use of your widget code on other sites.
+- **JavaScript API**: Access documentation for the Autoch.at JavaScript API, which allows you to programmatically open/close the widget, pass custom user data (like a logged-in user's ID or email), or trigger specific events from your website's code.

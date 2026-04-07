@@ -1,396 +1,68 @@
 ---
-title: Manage CRM clients
-description: Use the Clients page to search, filter, tag, import, export, and manage client records across your CRM workspace.
+title: Clients
+description: Manage client records, tags, import/export, and duplicate merges.
 ---
 
-## Clients directory overview
+## What is the Clients Page?
 
-Use the Clients page at `/clients` as your CRM directory for all people and companies you work with. From this page you search, filter, tag, and bulk-manage client records across your tenant.
+The **Clients** page (located at **CRM > Clients**) is your central hub for managing all the individuals and organizations that interact with your Autoch.at assistants and human agents.
 
-Each row represents a client with basic contact and account context so you can quickly jump into details or related conversations.
+It acts as a lightweight, built-in CRM (Customer Relationship Management) system, allowing you to view contact details, conversation history, and custom data for every person who has reached out via chat, SMS, email, voice, or social media.
 
-## Page layout and key elements
+## Navigating the Clients List
 
-The Clients page combines search, tag filters, a data table, and pagination to handle both small lists and large CRMs.
+When you open the Clients page, you'll see a list of all your contacts.
 
-### Search and filtering
+### The Client Table
 
-Search and filtering sit above the table so you can narrow results before taking actions.
+The main table displays key information for each client:
+- **Name**: The client's full name (if known).
+- **Email**: Their primary email address.
+- **Phone**: Their primary phone number.
+- **Company**: The organization they belong to.
+- **Tags**: Any labels applied to their profile (e.g., "VIP", "Lead", "Support").
+- **Last Active**: The date and time of their most recent interaction.
 
-- **Search bar** — Filter clients by name, email, company, or other indexed fields. Use this to quickly find a specific person or a small group.
-- **Tag filter** — Limit the list to clients with one or more tags (for example, `vip`, `trial`, `churn-risk`). Combine search and tag filters to build precise slices of your client base.
+### Searching and Filtering
 
-When you apply a search term or tag filter, the list updates immediately and all subsequent bulk actions apply only to the filtered set.
+You can quickly find specific clients using the tools at the top of the page:
+- **Search Bar**: Search by name, email, phone number, or company name.
+- **Tag Filter**: Click a tag (e.g., "All", "VIP") to view only clients with that specific label.
 
-### Bulk actions toolbar
+## Managing Client Records
 
-The bulk actions toolbar appears when you select one or more clients in the table.
+Autoch.at provides several tools for keeping your client database organized and up-to-date.
 
-Typical actions include:
+### Creating a Client Manually
 
-- **Export** — Download selected clients (or the current filtered set) as a CSV for reporting, audits, or offline analysis.
-- **Delete** — Remove selected clients from your CRM.
-- **Tags** — Apply, remove, or replace tags in bulk across the selected clients.
+While Autoch.at automatically creates a client record when someone new sends a message, you can also add clients manually:
+1. Click the **Create Client** button.
+2. Fill in their details (Name, Email, Phone, Company).
+3. Add any relevant tags.
+4. Click **Save**.
 
-<Callout kind="alert">
+### Importing and Exporting
 
-Bulk actions affect every selected client. Confirm the number of selected rows and any active filters before exporting, tagging, or deleting to avoid unintended changes.
+If you have an existing list of contacts, you can bring them into Autoch.at:
+- **Import**: Click the **Import** button to upload a CSV file containing your client data. Autoch.at will guide you through mapping the columns in your file to the correct fields in the system.
+- **Export All**: Click the **Export all** button to download your entire client list as a CSV file for use in other tools or for backup purposes.
 
-</Callout>
+### Reviewing Duplicates
 
-### Clients table
+Over time, a single person might contact you from different email addresses or phone numbers, resulting in duplicate records.
 
-The main table lists client records with quick access to the most important fields.
+1. Click the **Review duplicates** button.
+2. Autoch.at will scan your database and present potential matches based on similar names, emails, or phone numbers.
+3. You can review these suggestions and choose to **Merge** the records, combining their conversation histories and contact details into a single, unified profile.
 
-Common columns include:
+## The Client Detail View
 
-- **Select** — A checkbox for row selection and bulk actions.
-- **Name** — The primary client name. Click this to open the client detail page.
-- **Email** — The main contact email used in conversations and outreach.
-- **Phone** — A direct phone number for call and SMS workflows.
-- **Company** — The organization associated with the client, if applicable.
-- **Tags** — Labels you assign for segmentation, lifecycle, or routing.
-- **Created** — The date the client was first created in your tenant.
-- **Actions** — Row-level actions such as Edit and Delete.
+Clicking on a client's name in the list opens their full profile.
 
-### Pagination
+This view provides a comprehensive look at the individual:
+- **Contact Information**: Edit their name, email, phone, and company.
+- **Custom Fields**: View and update any custom data points you've defined for your business (e.g., "Account ID", "Subscription Tier").
+- **Conversation History**: A complete log of every interaction this client has had with your AI assistants and human agents across all channels.
+- **Notes**: Add internal notes about the client that are visible only to your team.
 
-Pagination controls appear below the table when you have more clients than can fit on a single page.
-
-- Move forward and back through pages while preserving your current search, tag filters, and sort.
-- Page changes load a new slice of client data so you always work against the latest records.
-
-## Create, edit, and delete clients
-
-Use these workflows to maintain accurate client records from the list view.
-
-<Steps>
-
-<Step title="Create a new client" icon="plus">
-
-- Open `/clients` from the main navigation.
-- Click **New client** (or the equivalent create button above the table).
-- Enter at least the client's **name** and one contact method such as **email** or **phone**.
-- Optionally add **company** and any initial **tags**.
-- Save the client.
-
-Your new client appears at the top of the list or according to your current sort order, and is immediately available for conversations and automations.
-
-</Step>
-
-<Step title="Edit an existing client" icon="edit">
-
-- Locate the client using search or tag filters.
-- Either open the client detail view from the **Name** column or use the **Edit** action in the row's Actions menu.
-- Update fields such as **name**, **email**, **phone**, **company**, or **tags**.
-- Save your changes.
-
-The list refreshes with the updated values. Any workflows that depend on these fields (for example, email sending or routing rules based on tags) use the new data immediately.
-
-</Step>
-
-<Step title="Delete a client" icon="trash">
-
-- Search or filter to find the client you want to remove.
-- In the client's row, open the **Actions** menu and choose **Delete**.
-- Confirm the deletion in the dialog.
-
-<Callout kind="alert">
-
-Deleting a client removes them from your active CRM directory and may affect related workflows, such as email lists or routing rules. Confirm you are deleting the correct record before you proceed.
-
-</Callout>
-
-After deletion, the client disappears from the list and can no longer be targeted from the Clients page.
-
-</Step>
-
-</Steps>
-
-## Bulk export and bulk delete
-
-When working with many records, use bulk actions from the Clients page instead of editing one by one.
-
-<Steps>
-
-<Step title="Select clients for bulk actions" icon="check-circle">
-
-- Use search and tag filters to narrow the list to the clients you want to change.
-- Select individual rows using the checkboxes, or select the header checkbox to choose all visible rows on the current page.
-- Confirm the selection count in the bulk actions toolbar.
-
-All bulk actions on this page affect only the selected rows.
-
-</Step>
-
-<Step title="Export selected clients to CSV" icon="download">
-
-- After selecting the desired clients, click **Export** in the bulk actions toolbar.
-- Choose whether to export only the selected rows or all clients that match your current filters (if available in your tenant).
-- Confirm the export.
-
-Most exports include core client fields such as name, email, phone, company, created date, tags, and any other columns that appear in your table. Use this file for reporting, backups, or importing into other tools.
-
-</Step>
-
-<Step title="Bulk delete clients" icon="trash">
-
-- Select the clients you need to remove.
-- Click **Delete** in the bulk actions toolbar.
-- Review the number of clients that will be deleted and confirm.
-
-<Callout kind="alert">
-
-Bulk delete removes multiple clients at once. This may break downstream processes that reference these clients, such as mailing lists or assignment rules. Always verify filters and selection counts before confirming a bulk delete.
-
-</Callout>
-
-Deleted clients disappear from the current list and no longer appear in subsequent searches from the Clients page.
-
-</Step>
-
-</Steps>
-
-## Bulk tag management
-
-Tags help you segment clients for campaigns, routing, and reporting. From the Clients page you manage tags across many records at once.
-
-<Steps>
-
-<Step title="Apply tags to many clients" icon="plus">
-
-- Filter the list to the group you want to tag (for example, all `trial` clients).
-- Select the relevant clients using row checkboxes.
-- Click the **Tags** bulk action and choose **Add tags**.
-- Pick one or more tags, or create a new tag if your tenant allows it.
-- Confirm the change.
-
-The selected tags are added to every selected client, preserving any tags they already had.
-
-</Step>
-
-<Step title="Remove tags in bulk" icon="minus">
-
-- Search or filter to the group of clients that share the tag you want to remove.
-- Select all relevant clients.
-- Open the **Tags** bulk action and choose **Remove tags**.
-- Select the tag or tags you want to remove, then confirm.
-
-The specified tags are removed from each selected client, while other tags remain unchanged.
-
-</Step>
-
-<Step title="Replace tags across a segment" icon="settings">
-
-- Build a filtered list that represents the segment you want to retag.
-- Select all clients in that segment.
-- Use the **Tags** bulk action and choose **Replace tags** (if available).
-- Choose tags to remove (for example, `trial`) and tags to add (for example, `customer`).
-- Confirm the replacement.
-
-Every selected client loses the removed tags and gains the new tags in a single operation, allowing you to shift entire cohorts between lifecycle stages.
-
-</Step>
-
-</Steps>
-
-### Suggested tagging strategy
-
-Use a consistent tagging scheme so segments stay meaningful over time. A simple pattern is:
-
-- **Lifecycle tags** — Describe where the client is in your journey, such as `lead`, `trial`, `customer`, `churn-risk`, `closed-lost`.
-- **Priority tags** — Indicate importance or attention level, such as `vip`, `high-touch`, `self-serve`.
-- **Segment tags** — Capture attributes like industry or region, such as `saas`, `healthcare`, `emea`, `north-america`.
-- **Source or channel tags** — Show where the client came from, such as `web-signup`, `referral`, `event-2024`.
-
-Before rolling out a new tag, decide:
-
-- What decision or workflow the tag will drive.
-- When the tag should be added or removed.
-- Whether an existing tag already covers the same meaning.
-
-Document your standard tags in your team workspace so everyone uses the same names.
-
-## Import clients from CSV
-
-Use CSV import to upload clients at scale from another system or spreadsheet.
-
-<Steps>
-
-<Step title="Prepare your CSV file" icon="database">
-
-- Create or export a CSV file from your existing system.
-- Include at least a **name** column and either **email** or **phone** for contact.
-- Optionally add columns for **company** and **tags** (for example, a comma-separated list of tags per row).
-
-Keep headers clear and consistent so the import mapping step is straightforward.
-
-</Step>
-
-<Step title="Upload and map columns" icon="upload">
-
-- Go to `/clients`.
-- In the header or empty state, choose **Import CSV**.
-- Select your CSV file from your computer.
-- Map each CSV column to a client field such as **name**, **email**, **phone**, **company**, or **tags**.
-- Review the sample preview of a few rows, then confirm to start the import.
-
-The system uses these mappings to create or update client records without requiring any additional tools.
-
-</Step>
-
-<Step title="Review import results and handle issues" icon="info">
-
-After the import runs, review the status:
-
-- Confirm the total number of imported clients matches your expectation.
-- Check for any reported errors, such as missing required fields or invalid emails.
-- Use the **search** and **created date** columns on `/clients` to spot newly added data.
-
-If some rows fail, adjust your CSV and run a follow-up import for just those records.
-
-</Step>
-
-</Steps>
-
-### Common import issues and how to fix them
-
-Most import problems come from formatting or mapping issues in the CSV file:
-
-- **Missing required contact details**  
-  Rows without a name or without at least one contact field (email or phone) are often rejected. Add the missing values or remove those rows from the import.
-
-- **Invalid email addresses**  
-  Emails with spaces, missing `@`, or invalid domains can block a row. Correct the addresses in your CSV and re-import only the failed rows.
-
-- **Unexpected tag formatting**  
-  If your tags column uses a different separator than expected, some imports treat the entire value as one tag. Standardize on a comma-separated list like `vip, saas, north-america`.
-
-- **Mismatched headers during mapping**  
-  If the importer does not auto-detect a column, manually map it to the proper field instead of leaving it unmapped.
-
-When in doubt, test with a small sample file first, verify the result on `/clients`, then run the full import.
-
-## Review duplicates and merge clients
-
-The system can group potential duplicate clients based on shared identifiers such as email or phone. From the Clients area you review these groups and merge records to keep your CRM clean.
-
-<Steps>
-
-<Step title="Open potential duplicate groups" icon="alert-triangle">
-
-- Navigate to `/clients`.
-- Use the duplicate review entry point (for example, a **Review duplicates** link or banner when duplicates are detected).
-- View the list of duplicate groups, each showing clients that likely represent the same person or account.
-
-Each group shows all records that might refer to the same client so you can review them together.
-
-</Step>
-
-<Step title="Compare and choose a primary record" icon="monitor">
-
-- Open a duplicate group to see all client records in that group.
-- Compare key fields such as **name**, **email**, **phone**, **company**, **tags**, and any custom fields you rely on.
-- Look at linked activity where visible, such as the most recent conversations or notes.
-- Decide which record should be the **primary** client to keep, usually the one with the most complete and up-to-date information.
-- Mark other records in the group as duplicates to merge into the primary.
-
-If you are not sure whether two records represent the same person, do not merge them. Instead, leave them separate or confirm with your team.
-
-</Step>
-
-<Step title="Merge duplicates" icon="merge">
-
-- Confirm the primary client in the group.
-- Confirm which duplicate records will be merged into it.
-- Start the merge.
-
-<Callout kind="alert">
-
-Merging clients combines data into the primary record and removes the duplicate records from your active list. This can affect historical reporting and linked conversations. Review each merge carefully and avoid merging records that represent different people or organizations.
-
-</Callout>
-
-After a successful merge, the Clients list shows only the primary client for that group. Related data points, such as recent activity, are associated with the primary record so you continue working from a single source of truth.
-
-</Step>
-
-</Steps>
-
-### Safe duplicate review checklist
-
-Before you confirm a merge, double-check:
-
-- **Identifiers** — Emails and phone numbers either match or clearly belong to the same person.
-- **Names** — Name differences are minor (for example, `Jonathan Lee` vs `Jon Lee`) and not completely different people.
-- **Company** — Company and role details align, especially for common names.
-- **Recent activity** — Conversation history and notes look like they belong to the same relationship.
-
-If any of these do not line up, skip the merge and investigate further.
-
-## Empty state: starting with no clients
-
-When your tenant has no clients yet, the Clients page shows an empty state instead of a table.
-
-In this state you typically see two primary actions:
-
-- **Create your first client** — Open the new client form to add a single record.
-- **Import from CSV** — Start a bulk import to bring in existing clients from other systems.
-
-Once you add your first client or complete an import, the standard list view appears with search, filters, and pagination.
-
-## Troubleshooting the Clients page
-
-Use these checks when something on `/clients` does not look right.
-
-### Clients are missing or the list is empty
-
-- **Confirm filters** — Clear the search bar and remove all tag filters to see if clients reappear.
-- **Check date assumptions** — Use the **Created** column to verify whether clients exist for the period you expect.
-- **Check tenant context** — Ensure you are in the correct workspace or tenant if your account has access to multiple environments.
-
-If clients remain missing after these checks, contact your admin or support with the approximate created dates and any known emails for the missing clients so they can investigate.
-
-### Bulk actions are disabled
-
-- **Selection** — Confirm you selected at least one client; bulk actions only appear when rows are selected.
-- **Permissions** — Some tenants restrict bulk delete or export to admins. If the action never appears, ask a tenant admin to review your role.
-
-### Import or merge takes longer than expected
-
-Large imports and merges often run as background jobs.
-
-If an operation is taking longer than expected:
-
-- Refresh the Clients page to see if the status updated.
-- Check whether some rows or groups completed while others are still processing.
-- For very large imports or merges, allow additional time for the system to finish, then retry viewing the page.
-
-## Related pages
-
-Use these pages alongside the Clients list to work at the right level of detail.
-
-<Columns cols={3}>
-
-<Card
-  title="Conversations"
-  href="/pages/conversations/conversations"
-  icon="message-circle"
-  cta="View and manage all conversations linked to your clients"
-/>
-
-<Card
-  title="Conversation detail"
-  href="/pages/conversations/conversation-detail"
-  icon="message-circle"
-  cta="See how individual conversations connect to client records"
-/>
-
-<Card
-  title="Settings"
-  href="/pages/settings/settings"
-  icon="settings"
-  cta="Configure workspace settings that affect client management"
-/>
-
-</Columns>
+By keeping your client records accurate and utilizing tags, you empower both your human agents and your AI assistants to provide more personalized and effective support.

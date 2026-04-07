@@ -1,190 +1,90 @@
 ---
-title: Integrations and Connections
-description: Integrate Autoch.at with third-party services, set up webhooks, and connect additional channels to enhance your customer communication ecosystem.
+title: Integrations
+description: Connect Autoch.at with your existing tools, CRMs, and communication channels.
 ---
 
-## Overview
+## Connecting Your Tech Stack
 
-Autoch.at supports seamless integrations with popular third-party services, webhooks for real-time event notifications, and advanced channel connections. You can extend your multi-channel inbox by connecting tools like CRMs, messaging apps, and telephony providers. This guide covers supported integrations, webhook setup, channel connections, custom API usage, and data syncing practices.
+Autoch.at is designed to be the central hub for your customer communications, but it doesn't operate in a vacuum. By integrating Autoch.at with the tools you already use, you can ensure data flows seamlessly across your organization, eliminating manual data entry and providing your AI assistants with the context they need to be effective.
 
-<Callout kind="info">
-Review your Autoch.at dashboard permissions before configuring integrations. Ensure you have admin access for webhook and API keys.
-</Callout>
+Integrations in Autoch.at fall into three main categories: Communication Channels, Customer Relationship Management (CRM) systems, and Custom API connections.
 
-## Supported Integrations
+## Communication Channels
 
-Autoch.at integrates natively with key services to unify your conversations. Use the dashboard to enable these connections.
+To unify your inbox, you must first connect the channels where your customers are trying to reach you. Autoch.at supports a wide array of native channel integrations.
 
-<Columns cols={3}>
-  <Card title="Zapier" icon="zap" href="https://zapier.com/apps/autoch-at/integrations">
-    Automate workflows across 5000+ apps. Trigger actions on new messages or handoffs.
-  </Card>
-  <Card title="Slack" icon="message-circle" href="https://api.autoch.at/docs/slack">
-    Notify your team in Slack channels for urgent conversations or escalations.
-  </Card>
-  <Card title="Twilio" icon="phone" href="https://api.autoch.at/docs/twilio">
-    Add SMS and voice channels with programmable messaging.
-  </Card>
-</Columns>
+### Web Chat
 
-<Columns cols={2}>
-  <Card title="HubSpot" icon="users" href="https://api.autoch.at/docs/hubspot">
-    Sync contacts and conversations to your CRM automatically.
-  </Card>
-  <Card title="Intercom" icon="message-square" href="https://api.autoch.at/docs/intercom">
-    Import historical chat data and route between platforms.
-  </Card>
-</Columns>
+The Autoch.at Chat Widget is the most direct way to deploy an AI assistant. It can be installed on virtually any website by embedding a small JavaScript snippet.
 
-## Webhook Configuration
+We provide specific installation guides for popular platforms:
+- **WordPress**: Install via a custom HTML block or a header/footer plugin.
+- **Shopify**: Add the snippet to your `theme.liquid` file.
+- **Webflow**: Embed the code in your project's custom code settings.
 
-Set up webhooks to receive real-time events like new messages, status changes, or AI escalations. Follow these steps in your Autoch.at dashboard.
+### Email
 
-<Steps>
-  <Step title="Create Webhook" icon="plus">
-    Navigate to Settings > Webhooks > New Webhook. Enter your endpoint URL, such as `https://your-webhook-url.com/autoch.at`.
-  </Step>
-  <Step title="Select Events" icon="list">
-    Choose events: `message.received`, `conversation.assigned`, `ai.escalated`.
-  </Step>
-  <Step title="Verify and Save" icon="check-circle">
-    Autoch.at sends a verification ping. Respond with HTTP 200 to activate.
-  </Step>
-</Steps>
+You can connect your existing support email addresses (e.g., `support@yourcompany.com`) to Autoch.at. This allows your AI assistants to draft replies or handle entire email threads automatically.
 
-Verify payloads with this example:
+- **Custom Domains**: Verify your domain's DNS records (SPF, DKIM) within Autoch.at to send emails directly from the platform.
+- **Forwarding**: Set up forwarding rules in your current provider (Google Workspace, Microsoft 365) to route incoming messages to your Autoch.at inbox.
 
-<CodeGroup tabs="JavaScript,Python">
-  ```javascript
-  // Example webhook handler
-  app.post('/autoch.at', (req, res) => {
-    const event = req.body.event; // e.g., "message.received"
-    const conversationId = req.body.data.conversation_id;
-    console.log(`New ${event}: ${conversationId}`);
-    res.status(200).send('OK');
-  });
-  ```
-  ```python
-  # Example webhook handler
-  from flask import Flask, request
+### SMS and Voice
 
-  app = Flask(__name__)
+Autoch.at allows you to provision phone numbers directly within the platform to handle text messages and AI voice calls.
 
-  @app.route('/autoch.at', methods=['POST'])
-  def webhook():
-      event = request.json['event']  # e.g., "message.received"
-      conversation_id = request.json['data']['conversation_id']
-      print(f"New {event}: {conversation_id}")
-      return 'OK', 200
-  ```
-</CodeGroup>
+- **Local Numbers**: Provision numbers in your specific area code.
+- **Toll-Free Numbers**: Set up 800 numbers for national reach.
+- **Bring Your Own Carrier (BYOC)**: For enterprise customers, Autoch.at can integrate with your existing SIP trunking provider (e.g., Twilio, Telnyx) to handle voice traffic.
 
-## Advanced Channel Connections
+### Social Media
 
-Connect specialized channels using API keys or OAuth.
+Connect your brand's social media profiles to manage direct messages and comments from the unified inbox.
 
-<Tabs>
-  <Tab title="Voice (Twilio)" icon="phone">
-    <Steps>
-      <Step title="Get Twilio SID">
-        Log in to Twilio Console and copy your Account SID and Auth Token.
-      </Step>
-      <Step title="Configure in Dashboard">
-        Go to Channels > Voice > Add Twilio. Paste credentials.
-      </Step>
-    </Steps>
+- **Facebook Messenger**: Handle DMs sent to your Facebook Business Page.
+- **Instagram Direct**: Manage messages sent to your professional Instagram account.
+- **X (Twitter) Direct Messages**: Respond to DMs sent to your X profile.
 
-    <ParamField header="X-Twilio-SID" param-type="string" required="true">
-      Your Twilio Account SID.
-    </ParamField>
-  </Tab>
-  <Tab title="Custom Chat" icon="message-circle">
-    Use webhooks for custom widget integration.
+## CRM Integrations
 
-    ```javascript
-    // Embed script in your site
-    (function() {
-      const script = document.createElement('script');
-      script.src = 'https://widget.autoch.at/js/v1.js';
-      script.setAttribute('data-key', 'YOUR_WIDGET_KEY');
-      document.head.appendChild(script);
-    })();
-    ```
-  </Tab>
-</Tabs>
+Connecting your CRM is crucial for keeping your customer records accurate and providing your AI assistants with personalized context.
 
-## API Endpoints for Custom Integrations
+Autoch.at offers native, two-way synchronization with several major CRM platforms. When connected, Autoch.at will automatically log conversations, update contact details, and pull relevant account information to inform the AI's responses.
 
-Build custom flows with Autoch.at REST API at `https://api.autoch.at/v1`.
+### Supported Native CRMs
 
-<Request tabs="cURL,JavaScript" show-lines="true">
-  ```bash
-  curl -X POST https://api.autoch.at/v1/conversations \
-    -H "Authorization: Bearer YOUR_API_KEY" \
-    -H "Content-Type: application/json" \
-    -d '{
-      "channel": "email",
-      "customer_id": "cust_123",
-      "message": "Hello from integration!"
-    }'
-  ```
-  ```javascript
-  const response = await fetch('https://api.autoch.at/v1/conversations', {
-    method: 'POST',
-    headers: {
-      'Authorization': 'Bearer YOUR_API_KEY',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      channel: 'email',
-      customer_id: 'cust_123',
-      message: 'Hello from integration!'
-    })
-  });
-  ```
-</Request>
+- **Salesforce**: Sync leads, contacts, and log conversation activities directly to Salesforce records.
+- **HubSpot**: Keep your HubSpot contacts up-to-date and trigger HubSpot workflows based on Autoch.at interactions.
+- **Pipedrive**: Automatically create deals and log activities when an AI assistant qualifies a lead.
+- **Zoho CRM**: Sync contact data and conversation history to your Zoho account.
 
-<Response tabs="200,400">
-  ```json
-  {
-    "success": true,
-    "conversation_id": "conv_abc123",
-    "timeline": [
-      {
-        "id": "msg_1",
-        "type": "outbound",
-        "content": "Hello from integration!",
-        "timestamp": "2024-01-15T10:30:00Z"
-      }
-    ]
-  }
-  ```
-  ```json
-  {
-    "error": "Invalid API key",
-    "code": 401
-  }
-  ```
-</Response>
+If you use a CRM that is not natively supported, you can often connect it using our API or a third-party automation platform.
 
-## Data Syncing Best Practices
+## Custom Integrations and API
 
-Follow these practices to ensure reliable data flow.
+For advanced use cases, Autoch.at provides tools to build custom integrations with your proprietary software or specialized third-party tools.
 
-<Expandable title="Sync Frequency and Conflict Resolution" default-open="true">
-Set sync intervals to 5-15 minutes for most integrations. Use idempotent operations with `conversation_id` as the key to avoid duplicates.
+### Webhooks
 
-For conflicts, Autoch.at prioritizes the latest timestamp. Enable webhook retries (up to 3 attempts) in settings.
-</Expandable>
+You can configure Autoch.at to send real-time HTTP POST requests (webhooks) to your servers whenever specific events occur.
 
-<Callout kind="tip">
-Test integrations in sandbox mode first. Monitor the Audit Log for sync errors and use `https://dashboard.autoch.at/logs` for details.
-</Callout>
+Common webhook events include:
+- A new conversation is started.
+- A conversation is handed off to a human agent.
+- An AI assistant successfully qualifies a lead.
+- A conversation is marked as resolved.
 
-<ExpandableGroup>
-  <Expandable title="Troubleshooting Common Issues">
-    - **Webhook timeouts**: Increase your endpoint timeout to `>30s`.
-    - **Rate limits**: API allows 1000 req/min; implement exponential backoff.
-    - **Data drift**: Run daily full syncs via `/v1/sync` endpoint.
-  </Expandable>
-</ExpandableGroup>
+### REST API
+
+The Autoch.at REST API allows developers to programmatically interact with the platform. You can use the API to:
+- Export conversation transcripts for external analysis.
+- Update a client's custom fields based on actions taken in your own app.
+- Trigger outbound SMS or email messages.
+- Manage your Training Context programmatically.
+
+### Automation Platforms
+
+If you don't have developer resources, you can use third-party automation platforms to connect Autoch.at to thousands of other apps.
+
+- **Zapier**: Create "Zaps" to connect Autoch.at with tools like Slack, Google Sheets, or Mailchimp.
+- **Make (formerly Integromat)**: Build complex, multi-step workflows integrating Autoch.at with your broader tech stack.

@@ -36,7 +36,7 @@
             ]
           },
           {
-            "group": "AI Config",
+            "group": "AI Assistant",
             "icon": "zap",
             "pages": [
               {
@@ -50,19 +50,24 @@
                 "icon": "book-open"
               },
               {
-                "title": "Training context",
+                "title": "Experiments",
+                "path": "pages/ai-config/experiments",
+                "icon": "flask-conical"
+              },
+              {
+                "title": "Training Context",
                 "path": "pages/ai-config/training-context",
                 "icon": "database"
+              },
+              {
+                "title": "Messaging Directives",
+                "path": "pages/ai-config/messaging-directives",
+                "icon": "list-checks"
               },
               {
                 "title": "Routing & Handoffs",
                 "path": "pages/ai-config/routing-handoffs",
                 "icon": "arrow-left-right"
-              },
-              {
-                "title": "Experiments",
-                "path": "pages/ai-config/experiments",
-                "icon": "flask-conical"
               },
               {
                 "title": "AI Safety",
@@ -76,14 +81,24 @@
             "icon": "message-circle",
             "pages": [
               {
-                "title": "Conversations",
+                "title": "Conversations Inbox",
                 "path": "pages/conversations/conversations",
+                "icon": "inbox"
+              },
+              {
+                "title": "Conversation Detail",
+                "path": "pages/conversations/conversation-detail",
                 "icon": "message-circle"
               },
               {
-                "title": "Conversation detail",
-                "path": "pages/conversations/conversation-detail",
-                "icon": "message-circle"
+                "title": "Widget Playground",
+                "path": "pages/conversations/widget-playground",
+                "icon": "play-circle"
+              },
+              {
+                "title": "Voice Conversations",
+                "path": "pages/conversations/voice",
+                "icon": "phone"
               },
               {
                 "title": "Email Workflows",
@@ -94,6 +109,11 @@
                 "title": "SMS Workflows",
                 "path": "pages/conversations/sms-workflows",
                 "icon": "smartphone"
+              },
+              {
+                "title": "Outbound Email",
+                "path": "pages/conversations/outbound-email",
+                "icon": "send"
               }
             ]
           },
@@ -110,6 +130,11 @@
                 "title": "CRM Connections",
                 "path": "pages/crm/crm-connections",
                 "icon": "link"
+              },
+              {
+                "title": "Qualification Settings",
+                "path": "pages/crm/qualification-settings",
+                "icon": "check-circle"
               }
             ]
           },
@@ -121,6 +146,47 @@
                 "title": "Analytics",
                 "path": "pages/insights/analytics",
                 "icon": "chart-bar"
+              },
+              {
+                "title": "Conversation Intelligence",
+                "path": "pages/insights/conversation-intelligence",
+                "icon": "brain"
+              },
+              {
+                "title": "Voice Analytics",
+                "path": "pages/insights/voice-analytics",
+                "icon": "phone-call"
+              }
+            ]
+          },
+          {
+            "group": "Social Media",
+            "icon": "share-2",
+            "pages": [
+              {
+                "title": "Social Profiles",
+                "path": "pages/social/social-profiles",
+                "icon": "user-circle"
+              },
+              {
+                "title": "Posts",
+                "path": "pages/social/social-posts",
+                "icon": "file-text"
+              },
+              {
+                "title": "Post Queues",
+                "path": "pages/social/social-queues",
+                "icon": "list"
+              },
+              {
+                "title": "Social Analytics",
+                "path": "pages/social/social-analytics",
+                "icon": "trending-up"
+              },
+              {
+                "title": "Caption Generator",
+                "path": "pages/social/caption-generator",
+                "icon": "sparkles"
               }
             ]
           },
@@ -129,7 +195,7 @@
             "icon": "settings",
             "pages": [
               {
-                "title": "Users",
+                "title": "Users & Roles",
                 "path": "pages/settings/users",
                 "icon": "users"
               },
@@ -137,6 +203,11 @@
                 "title": "Profile",
                 "path": "pages/settings/profile",
                 "icon": "circle-user"
+              },
+              {
+                "title": "Workspaces",
+                "path": "pages/settings/workspaces",
+                "icon": "layout-grid"
               },
               {
                 "title": "Branding",
@@ -154,16 +225,62 @@
                 "icon": "mail"
               },
               {
+                "title": "Phone Numbers",
+                "path": "pages/settings/phone-numbers",
+                "icon": "phone"
+              },
+              {
+                "title": "Calendar Integration",
+                "path": "pages/settings/calendar",
+                "icon": "calendar"
+              },
+              {
+                "title": "Bring Your Own Key (BYOK)",
+                "path": "pages/settings/byok",
+                "icon": "key"
+              },
+              {
+                "title": "Canned Responses",
+                "path": "pages/settings/canned-responses",
+                "icon": "message-square"
+              },
+              {
+                "title": "Conversation Tags",
+                "path": "pages/settings/conversation-tags",
+                "icon": "tag"
+              },
+              {
+                "title": "Preferences",
+                "path": "pages/settings/preferences",
+                "icon": "sliders"
+              },
+              {
                 "title": "PII & Privacy",
                 "path": "pages/settings/pii-privacy",
                 "icon": "file-lock"
               },
               {
-                "title": "Billing",
+                "title": "Usage & Billing",
                 "path": "pages/settings/billing",
                 "icon": "credit-card"
               }
             ]
+          }
+        ]
+      },
+      {
+        "tab": "Features",
+        "icon": "star",
+        "pages": [
+          {
+            "title": "Features",
+            "path": "features",
+            "icon": "star"
+          },
+          {
+            "title": "Integrations",
+            "path": "integrations",
+            "icon": "plug"
           }
         ]
       },

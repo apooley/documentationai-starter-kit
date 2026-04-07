@@ -1,0 +1,73 @@
+---
+title: Phone Numbers
+description: Provision and manage phone numbers for SMS and AI voice calls within your workspace.
+---
+
+## What are Phone Numbers in Autoch.at?
+
+To use Autoch.at's SMS and voice features, you need at least one phone number provisioned within your workspace. These numbers are used to:
+
+- **Receive inbound SMS messages** from customers, which are routed to your AI assistants or the Conversations Inbox.
+- **Send outbound SMS messages** via workflows or manual outreach.
+- **Receive inbound phone calls**, which are answered by your AI voice assistants.
+- **Make outbound calls** (if outbound voice is enabled on your plan).
+
+You can manage your provisioned numbers by navigating to **Settings > Phone Numbers**.
+
+## Provisioning a New Number
+
+To add a new phone number to your workspace:
+
+1. Navigate to **Settings > Phone Numbers**.
+2. Click **Provision Number** or **Add Number**.
+3. Select the **Number Type**:
+   - **Local Number**: A number with a specific area code, ideal for businesses that want to appear local to their customers.
+   - **Toll-Free Number**: An 800/888/877 number, ideal for national businesses where customers shouldn't pay for the call.
+4. If you selected a Local Number, choose the **Country** and **Area Code** you want.
+5. Autoch.at will display a list of available numbers matching your criteria.
+6. Select the number you want and click **Provision**.
+
+The number will be immediately available in your workspace and will start appearing as the sender ID for outbound SMS messages.
+
+<Callout kind="info">
+**Number Costs**: Each provisioned phone number incurs a monthly fee in addition to your base subscription. The cost varies by number type and country. Review the pricing details in **Settings > Usage & Billing** before provisioning.
+</Callout>
+
+## Configuring a Number
+
+After provisioning a number, you can configure how it behaves.
+
+1. Navigate to **Settings > Phone Numbers**.
+2. Click on the number you want to configure.
+3. Adjust the following settings:
+
+- **Friendly Name**: Give the number an internal label (e.g., "US Support Line", "Sales Hotline") to make it easy to identify.
+- **Assigned Assistant**: Choose which AI assistant should handle calls and SMS messages received on this number.
+- **Fallback Behavior**: Define what happens if the AI cannot handle the call (e.g., transfer to a specific team, send to voicemail, play a custom message).
+- **Business Hours**: Optionally, configure different behavior for calls received outside of your defined business hours.
+
+## Releasing a Number
+
+If you no longer need a phone number, you can release it to stop being charged.
+
+1. Navigate to **Settings > Phone Numbers**.
+2. Click on the number you want to release.
+3. Click **Release Number**.
+4. Confirm the action.
+
+<Callout kind="warning">
+**Releasing is permanent.** Once you release a number, it is returned to the carrier's pool and may be assigned to another customer. You cannot recover a released number. Any conversations associated with that number will remain in your history, but the number will no longer be active.
+</Callout>
+
+## SMS Compliance (10DLC Registration)
+
+In the United States, sending business text messages requires registration under the **10DLC (10-Digit Long Code)** framework. This is a carrier-level requirement designed to reduce spam and protect consumers.
+
+If you are sending SMS messages in the US, you must register your brand and the specific use cases (called "campaigns") for which you are sending texts.
+
+Autoch.at guides you through this registration process within the Phone Numbers settings page. The registration typically requires:
+- Your legal business name and address.
+- Your EIN (Employer Identification Number) or business registration number.
+- A description of the types of messages you will be sending.
+
+Unregistered numbers may have their messages blocked by carriers. We strongly recommend completing this registration before launching any SMS campaigns.

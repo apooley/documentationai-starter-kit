@@ -1,414 +1,79 @@
 ---
-title: Manage users and roles
-description: Configure tenant users, roles, and permissions in Settings → Users, including invitations, role templates, CRM access, user limits, and deletion behavior.
+title: Users & Roles
+description: Invite teammates, assign roles, and manage who can configure AI, settings, and billing.
 ---
 
-## Settings → Users overview
+## Managing Your Team
 
-Use the Users settings page to control who can access your tenant, what they can do, and how many seats you are using.
+The **Users** page (located at **Settings > Users**) is where you manage the human agents and administrators who have access to your Autoch.at workspace.
 
-<Callout kind="info">
+From here, you can invite new team members, change their permissions, and remove users who no longer need access.
 
-Access the Users page as a tenant admin. Non-admin users cannot view or change tenant users, roles, or permissions.
+## Inviting a New User
 
+To add a teammate to your workspace:
+
+1. Navigate to **Settings > Users**.
+2. Click the **Invite User** button.
+3. Enter the user's email address.
+4. Select the appropriate **Role** for the user (see below for role descriptions).
+5. Click **Send Invite**.
+
+The user will receive an email with a link to join your workspace. Until they accept the invitation, their status will show as "Pending."
+
+## User Roles and Permissions
+
+Autoch.at uses a role-based access control (RBAC) system to ensure that users only have access to the features and data they need to do their jobs.
+
+When inviting or editing a user, you must assign them one of the following roles:
+
+### 1. Owner
+
+The Owner has complete control over the workspace. There is typically only one Owner (the person who created the workspace), but ownership can be transferred if necessary.
+
+- **Permissions**: All permissions, including deleting the workspace, managing billing, and transferring ownership.
+
+### 2. Admin
+
+Admins have broad access to configure the platform but cannot manage billing or delete the workspace.
+
+- **Permissions**:
+  - Manage all AI Configuration (Assistants, Playbooks, Training Context, Routing).
+  - Manage all Settings (Channels, Branding, Integrations).
+  - Invite and manage other users (except Owners).
+  - View all Analytics and Conversation Intelligence.
+  - Access and respond to all conversations in the Inbox.
+
+### 3. Manager
+
+Managers oversee the day-to-day operations of the support or sales team. They can manage conversations and view reports but cannot change core system settings.
+
+- **Permissions**:
+  - Access and respond to all conversations in the Inbox.
+  - Reassign conversations between agents.
+  - View Analytics and Conversation Intelligence.
+  - Manage CRM Clients and Connections.
+  - *Cannot* modify AI Assistants, Playbooks, or core Settings.
+
+### 4. Agent
+
+Agents are the frontline team members who handle customer interactions. Their access is restricted primarily to the Conversations Inbox.
+
+- **Permissions**:
+  - Access and respond to conversations assigned to them or their team.
+  - View the CRM profile of the customer they are currently talking to.
+  - *Cannot* view workspace-wide Analytics.
+  - *Cannot* modify AI Configuration or Settings.
+
+## Editing or Removing Users
+
+As your team changes, you can update user roles or revoke access entirely.
+
+1. Navigate to **Settings > Users**.
+2. Locate the user in the list.
+3. Click the **Actions** menu (usually represented by three dots) next to their name.
+4. Select **Edit Role** to change their permissions, or **Remove User** to revoke their access to the workspace.
+
+<Callout kind="warning">
+**Removing a user is permanent.** If you remove a user, they will immediately lose access to the workspace. Any conversations currently assigned to them will be returned to the unassigned queue.
 </Callout>
-
-The Users page includes:
-
-- A **user table** with Email, Role, Role template, Status, CRM access, and Last login
-- Actions to **invite**, **edit**, **resend invite**, and **delete** users
-- A **Role templates** section to define reusable permission sets
-- A **user limit** indicator that shows how many users you have used and when you reach your limit
-
-<Tabs>
-
-<Tab title="Manage users" icon="users">
-
-### User roles and status
-
-Roles define the baseline level of access for each person in your tenant.
-
-- **Admin**: Full control over tenant-level configuration, including settings, users, analytics, integrations, and experiments. Admins can invite users, manage permissions, and always have CRM access enabled.
-- **User**: Access is controlled by fine-grained permissions. Users typically work in conversations, CRM, and analytics but cannot manage other users unless explicitly allowed.
-
-Statuses describe where a user is in their lifecycle:
-
-- **Invited**: You sent an invitation, but the user has not completed signup.
-- **Active**: The user accepted the invite and can sign in with their configured permissions.
-- **Suspended**: The user cannot sign in or take actions but remains in your records for auditing.
-
-### User table fields
-
-Use these fields to review and adjust access for each person in your tenant.
-
-<ParamField body="email" param-type="string" show-location="false">
-Email address used for login and notifications. This value must be unique per tenant.
-</ParamField>
-
-<ParamField body="role" param-type="enum" show-location="false">
-High-level role for the user. Supported values are `admin` and `user`. Admins inherit full access; users rely on fine-grained permissions and optional role templates.
-</ParamField>
-
-<ParamField body="roleTemplate" param-type="string" show-location="false">
-Optional role template assigned to the user. When set, the template's permissions apply to the user in addition to their base role.
-</ParamField>
-
-<ParamField body="status" param-type="enum" show-location="false">
-Current account status. Supported values are `invited`, `active`, and `suspended`. Status controls sign-in ability and whether the user can perform actions.
-</ParamField>
-
-<ParamField body="crmAccess" param-type="boolean" show-location="false">
-Indicates whether the user can access CRM features. Admins always have CRM access enabled. For non-admin users, toggle CRM access with a checkbox.
-</ParamField>
-
-<ParamField body="lastLogin" param-type="datetime" show-location="false">
-Timestamp of the user's most recent successful sign-in. Use this to identify inactive accounts that may be candidates for suspension or removal.
-</ParamField>
-
-### Permission categories
-
-Fine-grained permissions allow you to grant each user exactly what they need.
-
-<ParamField body="conversations" param-type="object" show-location="false">
-Controls access to chat, voice, and email conversations. Includes actions such as view, create, edit, delete, and manage conversation-level settings.
-</ParamField>
-
-<ParamField body="settings" param-type="object" show-location="false">
-Controls access to configuration areas like branding, channels, and organization settings. Reserve manage-level access for trusted admins.
-</ParamField>
-
-<ParamField body="users" param-type="object" show-location="false">
-Controls access to user management. Grant this only to admins who should invite, edit, or remove users and manage role templates.
-</ParamField>
-
-<ParamField body="analytics" param-type="object" show-location="false">
-Controls access to analytics dashboards and reports. Typical permissions allow viewing or exporting metrics without changing configuration.
-</ParamField>
-
-<ParamField body="integrations" param-type="object" show-location="false">
-Controls access to CRM connections and other third-party integrations. Manage-level access lets users connect, disconnect, or reconfigure integrations.
-</ParamField>
-
-<ParamField body="experiments" param-type="object" show-location="false">
-Controls access to experiments and testing features that affect routing, playbooks, or assistant behavior.
-</ParamField>
-
-<Callout kind="tip">
-
-Aim for least-privilege access. Start with the minimum permissions a user needs and expand only when required.
-
-</Callout>
-
-### Invite a new user
-
-Invite new teammates from the Users page. Each invite consumes one seat toward your user limit when it is created.
-
-<Steps>
-
-<Step title="Open the invite dialog" icon="users">
-
-From **Settings → Users**, select **Invite user** to open the invite dialog. The dialog shows an email field and a role dropdown.
-
-</Step>
-
-<Step title="Fill in email and role" icon="edit">
-
-Enter the user's work email in the **Email** field and choose **Admin** or **User** from the **Role** dropdown. Optionally select a **Role template** if you want to apply a predefined permission set.
-
-</Step>
-
-<Step title="Configure CRM access" icon="settings">
-
-If the new user is not an admin, decide whether they need CRM access. Toggle the **CRM access** checkbox on the invite dialog if available. Admins automatically receive CRM access and do not show a toggle.
-
-</Step>
-
-<Step title="Send the invitation" icon="play-circle">
-
-Select **Send invite**. The new entry appears in the user table with **Status** set to `invited`. The user receives an email invitation and must complete signup to become `active`.
-
-</Step>
-
-</Steps>
-
-When the user completes signup successfully, the Status column updates to `active`, and the Last login column shows the time of their first sign-in.
-
-<Callout kind="alert">
-
-If you reach your user limit, the invite action may be disabled or show a warning. Remove unused users or upgrade your plan to add more users.
-
-</Callout>
-
-### Edit a user's role, status, or permissions
-
-Use the Edit User dialog to adjust an existing user's access without removing them.
-
-<Steps>
-
-<Step title="Open the Edit User dialog" icon="edit">
-
-Locate the user in the table and select **Edit**. This opens the Edit User dialog with fields for Email, Role, Status, Role template, CRM access, and permission checkboxes.
-
-</Step>
-
-<Step title="Adjust email, role, and status" icon="users">
-
-Update the **Email** if the user changed addresses, choose the desired **Role** (admin or user), and set the **Status** to `active` or `suspended`. Use `suspended` when you want to temporarily block access without deleting the user.
-
-</Step>
-
-<Step title="Update CRM access and role template" icon="settings">
-
-For non-admins, toggle **CRM access** on or off. If you rely on role templates, select a different **Role template** to apply a new set of permissions, or clear the selection to manage permissions manually.
-
-</Step>
-
-<Step title="Refine fine-grained permissions" icon="lock">
-
-Use the permission checkboxes across **Conversations**, **Settings**, **Users**, **Analytics**, **Integrations**, and **Experiments** to add or remove capabilities. Check or uncheck actions such as view, create, edit, delete, and manage based on the user's responsibilities.
-
-</Step>
-
-<Step title="Save changes" icon="check-circle">
-
-Select **Save**. The user table updates immediately to show the new Role, Status, Role template, and CRM access values. Any changes to permissions apply the next time the user performs an action.
-
-</Step>
-
-</Steps>
-
-### Resend an invitation
-
-If a user loses their invite email or the link expires, resend the invitation without creating a duplicate account.
-
-<Steps>
-
-<Step title="Find the invited user" icon="users">
-
-On the Users page, filter or scan the list for entries with **Status** set to `invited`.
-
-</Step>
-
-<Step title="Trigger resend invite" icon="play-circle">
-
-Open the actions menu for that user and select **Resend invite**. The system sends a fresh invitation email to the same address.
-
-</Step>
-
-<Step title="Confirm invite status" icon="check-circle">
-
-Keep the **Status** column on `invited`. After the user accepts the new invitation, the status updates to `active` and Last login displays their first sign-in time.
-
-</Step>
-
-</Steps>
-
-### Remove a user
-
-Delete a user when they no longer need access to your tenant.
-
-<Callout kind="alert">
-
-Deleting a user is permanent. The user loses access immediately and you cannot restore their individual account. Conversation and CRM records they created remain for audit and reporting.
-
-</Callout>
-
-<Steps>
-
-<Step title="Open delete confirmation" icon="trash">
-
-From the Users page, locate the user and open the actions menu. Select **Delete user** to open the confirmation dialog.
-
-</Step>
-
-<Step title="Review impact and confirm" icon="alert-triangle">
-
-Review the confirmation message, which explains that the user will lose access and cannot sign back in. Confirm the deletion to proceed.
-
-</Step>
-
-<Step title="Verify removal and seat usage" icon="check-circle">
-
-The user disappears from the table. Your used-user count decreases, and you free up a seat under your user limit for a new invite.
-
-</Step>
-
-</Steps>
-
-</Tab>
-
-<Tab title="Role templates" icon="settings">
-
-### What role templates do
-
-Role templates group common permissions into reusable profiles. Assign a template to multiple users to keep their permissions in sync and reduce manual configuration.
-
-Typical use cases include:
-
-- Standard **agent** permissions for handling conversations and CRM
-- **Manager** permissions for viewing analytics and managing a team without full admin rights
-- **Integrator** permissions for configuring integrations and experiments
-
-When you update a template, any user that references it should receive the updated permissions the next time their permissions are evaluated.
-
-### Role template fields
-
-<ParamField body="templateName" param-type="string" show-location="false">
-Human-readable name for the template, such as `Support agent` or `Sales manager`. Displayed in the Role template dropdown on the Users page.
-</ParamField>
-
-<ParamField body="permissions" param-type="object" show-location="false">
-Set of permission checkboxes across categories like conversations, settings, users, analytics, integrations, and experiments. These mirror the fine-grained permission options in the Edit User dialog.
-</ParamField>
-
-### Create a role template
-
-Create templates for common roles before inviting a large group of users.
-
-<Steps>
-
-<Step title="Open Role templates" icon="settings">
-
-From **Settings → Users**, switch to the **Role templates** section or panel. You see a list of existing templates and an option to create a new one.
-
-</Step>
-
-<Step title="Define template name" icon="edit">
-
-Select **New template** and enter a clear **Name** that reflects the responsibilities, such as `Support agent` or `Admin with CRM only`.
-
-</Step>
-
-<Step title="Select permissions" icon="lock">
-
-Check the permissions this template should grant across **Conversations**, **Settings**, **Users**, **Analytics**, **Integrations**, and **Experiments**. Follow least-privilege practices and enable only the actions this group requires.
-
-</Step>
-
-<Step title="Save the template" icon="check-circle">
-
-Save the new template. It appears in the Role templates list and becomes available in the **Role template** dropdown when inviting or editing users.
-
-</Step>
-
-</Steps>
-
-### Assign a role template to a user
-
-Use templates to quickly align multiple users with the same access pattern.
-
-<Steps>
-
-<Step title="Edit the user" icon="users">
-
-On the Users page, locate the target user and select **Edit** to open the Edit User dialog.
-
-</Step>
-
-<Step title="Choose a template" icon="settings">
-
-In the **Role template** dropdown, select the template you created, such as `Support agent`. The dialog applies the template's permissions to the user.
-
-</Step>
-
-<Step title="Review and save" icon="check-circle">
-
-Verify that the permission checkboxes match your expectations based on the template. Select **Save** to apply the changes. The Role template column in the table now shows the assigned template name.
-
-</Step>
-
-</Steps>
-
-### Update or delete a role template
-
-Keep templates up to date as your processes evolve.
-
-<Steps>
-
-<Step title="Edit a template" icon="edit">
-
-In the **Role templates** section, select the template you want to change and choose **Edit**. Adjust the permissions or name as needed, then save. Users that rely on this template inherit the updated permissions.
-
-</Step>
-
-<Step title="Delete a template" icon="trash">
-
-From the same section, choose **Delete** on a template you no longer use. Confirm the deletion in the dialog. After deletion, the template disappears from the dropdown in the Edit User dialog, and you may need to adjust affected users' permissions directly.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-Before deleting a template, review which users currently reference it. Reassign those users to a different template or verify that their manual permissions remain correct.
-
-</Callout>
-
-</Tab>
-
-</Tabs>
-
-## User limits and CRM access
-
-User limits define how many entries you can maintain in the Users table. The Users page shows how many seats you are using and warns you when you reach your limit.
-
-<Callout kind="alert">
-
-When you hit your user limit, you may not be able to send new invitations. Remove unused users or upgrade your subscription on **Settings → Billing** to add more seats.
-
-</Callout>
-
-CRM access is tracked per user:
-
-- Admin users always have CRM access enabled and cannot have it turned off.
-- Non-admin users show a **CRM access** checkbox in the Edit User dialog.
-- Turning off CRM access removes the ability to view or update CRM records but does not affect other permissions.
-
-## Troubleshooting
-
-<ExpandableGroup>
-
-<Expandable title="Cannot invite a new user">
-
-If the **Invite user** button is disabled or shows a warning, check your **user limit** at the top of the Users page. Remove users who no longer need access or visit **Settings → Billing** to increase your plan's seat count.
-
-If the button is enabled but the invite fails, verify that the email address is valid and not already in use within the same tenant.
-
-</Expandable>
-
-<Expandable title="User remains in invited status">
-
-If a user is stuck in the `invited` state:
-
-- Confirm they received the email and that it was not filtered as spam.
-- Use **Resend invite** from the user actions menu.
-- If they still cannot complete signup, check whether the original invite link expired and ensure they use the most recent email.
-
-You can also delete the `invited` user and send a fresh invite if necessary.
-
-</Expandable>
-
-<Expandable title="User should no longer see CRM data">
-
-When a non-admin user can still see CRM records after you changed permissions:
-
-- Open **Edit** for that user and verify the **CRM access** checkbox is off.
-- Confirm that no role template grants additional CRM-related permissions.
-- Ask the user to sign out and sign back in so that their session picks up the updated permissions.
-
-Admins always retain CRM access. To block CRM access entirely, change their role from admin to user and configure limited permissions.
-
-</Expandable>
-
-<Expandable title="User cannot access areas they need">
-
-If a user reports missing menus or permission errors:
-
-- Open the **Edit User** dialog and review their assigned **Role template** and permission checkboxes across all categories.
-- Ensure they have at least `view` permissions in the relevant section, such as conversations, analytics, or integrations.
-- Consider creating or updating a role template that captures the correct set of permissions for their job.
-
-</Expandable>
-
-</ExpandableGroup>

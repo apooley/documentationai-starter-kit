@@ -1,0 +1,62 @@
+---
+title: Conversation Intelligence
+description: Analyze response speed, missed follow-ups, and objections across your conversations to improve AI and agent performance.
+---
+
+## What is Conversation Intelligence?
+
+**Conversation Intelligence** (located at **Insights > Conversation Intelligence**) is an analytical tool that goes beyond simple volume metrics. It uses AI to retrospectively analyze the content and quality of your conversations, surfacing patterns, problems, and opportunities that would be impossible to find by reading individual threads.
+
+Think of it as an automated quality assurance (QA) reviewer that reads every conversation and reports back on what's working, what's not, and what needs attention.
+
+## Running an Analysis
+
+Conversation Intelligence does not run continuously in real-time. Instead, you trigger an analysis on demand.
+
+1. Navigate to **Insights > Conversation Intelligence**.
+2. Use the **filter controls** at the top of the page to define the scope of your analysis:
+   - **Time Range**: Analyze conversations from the last 7 days, 30 days, or 90 days.
+   - **Channel**: Focus on a specific channel (Chat, SMS, Email, Voice) or analyze all channels together.
+   - **Playbook**: Narrow the analysis to conversations that used a specific playbook.
+   - **Version**: If you are running Playbook Experiments, you can compare the intelligence results across different playbook versions.
+3. Click **Run Analysis**.
+
+The system will process the conversations matching your filters. For large datasets, this may take a few minutes. The page will display the **Latest Run** timestamp and the **Status** (e.g., "completed") once it's ready.
+
+## What the Analysis Reports
+
+The Conversation Intelligence dashboard presents its findings in three key sections.
+
+### Response Time vs. Qualification
+
+This section analyzes the relationship between how quickly a response is sent and whether the conversation results in a qualified lead.
+
+The goal is to answer the question: **Does responding faster lead to more qualified leads?**
+
+If the data shows a strong correlation, it's a signal to prioritize reducing your first response time—either by improving AI automation or ensuring human agents are staffed during peak hours.
+
+### Missed Follow-ups
+
+This section identifies conversations where a follow-up was expected but never happened.
+
+Common scenarios include:
+- A customer asked a question that the AI couldn't answer, but no human agent followed up.
+- A customer said they would "think about it" and come back, but there was no proactive outreach.
+- A conversation was left open for an extended period without any new messages.
+
+Reviewing missed follow-ups helps you identify gaps in your routing rules or agent workflows, and can directly improve your conversion rates.
+
+### Objections
+
+This section identifies the most common objections or concerns raised by customers across all analyzed conversations.
+
+For example, if many customers are saying things like "your price is too high" or "I'm not sure if this integrates with our tool," the Objections section will surface these patterns.
+
+This data is invaluable for:
+- **Training Context**: Add FAQs or documents that directly address the most common objections.
+- **Playbook Refinement**: Update your playbooks to proactively address objections before the customer raises them.
+- **Product Feedback**: Share objection data with your product team to inform the roadmap.
+
+<Callout kind="tip">
+**Run Conversation Intelligence regularly.** As your AI assistants handle more conversations, the quality of the analysis improves. We recommend running it weekly or after any significant change to your assistants, playbooks, or training context.
+</Callout>

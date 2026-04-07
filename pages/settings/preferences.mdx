@@ -1,0 +1,59 @@
+---
+title: Preferences
+description: Configure workspace-level defaults, business hours, and operational preferences.
+---
+
+## What are Preferences?
+
+The **Preferences** page (located at **Settings > Preferences**) contains workspace-level configuration options that affect the general behavior of your Autoch.at environment.
+
+Unlike channel-specific settings (like Email or Chat Widget), Preferences apply broadly across all channels and features in your workspace.
+
+## Business Hours
+
+Defining your **Business Hours** is one of the most important configurations in Preferences. Many features in Autoch.at behave differently depending on whether a conversation occurs during or outside of your defined business hours.
+
+For example:
+- **Routing Rules** can route conversations differently after hours (e.g., "During business hours, escalate to a human. After hours, take a message and promise a callback.").
+- **Handoff Messages** can be customized for after-hours scenarios (e.g., "Our team is currently offline. We'll respond first thing in the morning.").
+- **Email Workflows** can trigger different sequences based on when an email arrives.
+
+### Configuring Business Hours
+
+1. Navigate to **Settings > Preferences**.
+2. In the **Business Hours** section, select your **Timezone**.
+3. For each day of the week, toggle it on or off to indicate whether it is a business day.
+4. For each active day, set the **Start Time** and **End Time** for your business hours.
+5. Click **Save**.
+
+<Callout kind="tip">
+**Holiday Hours**: If you need to define specific holiday closures, you can add them as exceptions in the Business Hours section. This overrides your regular schedule for specific dates.
+</Callout>
+
+## Default Language
+
+Set the default language for your workspace. This affects the language used in system-generated messages (e.g., the initial greeting in the chat widget, automated email responses).
+
+If your AI assistants are configured to handle multiple languages, the **Default Language** setting determines the fallback language when the customer's language cannot be detected.
+
+## Conversation Assignment
+
+Configure how new conversations are automatically assigned to human agents when they arrive in the inbox.
+
+- **Round Robin**: Distribute new conversations evenly across all available agents.
+- **Least Busy**: Assign the new conversation to the agent with the fewest currently open conversations.
+- **Manual**: Do not automatically assign conversations. They will sit in the unassigned queue until an agent picks them up.
+
+## Notification Defaults
+
+Set the default notification settings for new users in your workspace. Individual users can override these defaults in their personal [Profile](/pages/settings/profile) settings.
+
+- **New Conversation Notifications**: Should new agents be notified by email, browser push, or in-app when a new conversation is assigned to them?
+- **Mention Notifications**: Should agents be notified when they are `@mentioned` in an internal note?
+
+## Data and Privacy Defaults
+
+Configure the default data handling behavior for your workspace.
+
+- **Default Retention Period**: Set the default data retention policy for new workspaces (if your organization uses multiple workspaces). Individual workspace settings can override this.
+- **Conversation Transcripts**: Choose whether to automatically generate transcripts for voice calls.

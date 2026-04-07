@@ -1,241 +1,91 @@
 ---
-title: Configure SMS Workflows
-description: Configure automated SMS workflows on the SMSWorkflows page, including goals, routing, response templates, and activation for tenant-scoped messaging.
+title: SMS Workflows
+description: Configure SMS-specific workflows, compliance settings, and engagement patterns.
 ---
 
-## SMS Workflows page
+## What are SMS Workflows?
 
-Configure automated handling for inbound SMS conversations on the `/SMSWorkflows` page. Each workflow defines how the system should respond, which assistant to use, and how important the workflow is relative to others.
+While Email Workflows handle asynchronous communication, **SMS Workflows** (located at **Conversations > SMS Workflows**) are designed for the immediate, high-engagement nature of text messaging.
 
-The page shows your existing workflows as cards. Each card includes:
+SMS workflows allow you to automate sequences of text messages, manage opt-ins and opt-outs, and handle routing based on the content of an incoming text or the status of a lead.
 
-- Workflow name
-- Truncated description
-- **Active** badge (on/off)
-- **Goal** badge (for example `general_inquiry`, `lead_capture`)
-- Step count (managed in the workflow builder)
-- Priority number
+## Key Concepts
 
-From this view you create new workflows, edit existing ones, toggle them active, or delete them.
+To effectively use SMS Workflows, you need to understand a few core concepts:
 
-<Callout kind="info">
+### Triggers
 
-SMS workflows require both SMS plan access and the smsWorkflowsEnabled feature flag. The page is tenant-scoped and only available to authenticated users in tenants where SMS is enabled.
+A workflow is initiated by a **Trigger**. This is the event that causes the workflow to start.
 
-</Callout>
+Common triggers include:
+- **New SMS Received**: A text message arrives at a specific provisioned phone number.
+- **Keyword Received**: A user texts a specific word (e.g., "JOIN", "STOP", "HELP").
+- **Tag Added**: A specific tag is applied to a conversation (e.g., "SMS Lead").
+- **Lead Status Changed**: A contact's status in your CRM changes (e.g., from "New" to "Qualified").
 
-## When to use SMS workflows
+### Conditions
 
-Use SMS workflows when you want to:
+Once a workflow is triggered, it evaluates **Conditions** to determine if it should proceed.
 
-- Auto-reply to common inbound SMS messages.
-- Route messages to a specific assistant based on intent or goal.
-- Ensure high-priority workflows run before more general ones.
-- Keep a clear record of which automation is active for SMS.
+Conditions act as filters:
+- **Phone Number**: Only run the workflow if the text comes from a specific area code or country.
+- **Message Contains**: Only run if the message includes certain keywords (e.g., "Appointment", "Confirm").
+- **Business Hours**: Only run the workflow during (or outside of) your defined business hours.
 
-Workflows do not use email templates or test-matching tools. Those capabilities are specific to email workflows.
+### Actions
 
-## Create a new SMS workflow
+If the conditions are met, the workflow executes one or more **Actions**.
 
-Set up a new workflow from the `/SMSWorkflows` page to define goals, context, and routing for inbound SMS.
+Actions are the steps the workflow takes:
+- **Send SMS**: Send a pre-written text message template or an AI-generated response.
+- **Add Tag**: Apply a tag to the conversation for organization.
+- **Assign to Team/Agent**: Route the text to a specific human or group.
+- **Update CRM**: Change a field in the customer's CRM record.
+- **Wait**: Pause the workflow for a specified duration before executing the next action.
 
-<Steps>
+## Creating an SMS Workflow
 
-<Step title="Open SMS workflows and start a new workflow" icon="play-circle">
+1. Navigate to **Conversations > SMS Workflows**.
+2. Click **Create Workflow**.
+3. Give your workflow a descriptive name (e.g., "Appointment Reminder" or "Opt-in Confirmation").
+4. Define the **Trigger** that will start the workflow.
+5. Add any necessary **Conditions** to filter when the workflow runs.
+6. Add the **Actions** you want the workflow to perform.
+7. Save and activate the workflow.
 
-- Sign in to your tenant with an account that can manage SMS.
-- Go to the `/SMSWorkflows` route.
-- Select **New workflow**.
-- If no workflows exist yet, use the **No SMS workflows yet** empty state button.
+## Common Use Cases
 
-Your screen shows a workflow form with fields for name, goal, description, context, response template, assigned agent, priority, and active state.
+### 1. The Opt-in Confirmation
 
-</Step>
+This workflow ensures compliance by confirming a user's intent to receive text messages.
 
-<Step title="Fill in workflow details" icon="edit">
+- **Trigger**: Keyword Received ("JOIN").
+- **Action 1**: Send SMS (Template: "Welcome to Autoch.at alerts! Reply STOP to cancel at any time.").
+- **Action 2**: Update CRM (Set "SMS Opt-in" to True).
 
-Provide core configuration in the form:
+### 2. The Appointment Reminder
 
-<ParamField body="name" param-type="string" required="true" show-location="false">
-Workflow name shown on the card and in internal tools. Use something descriptive, such as `Lead capture SMS` or `After-hours support`.
-</ParamField>
+This workflow automates reminders for scheduled events.
 
-<ParamField body="goal" param-type="enum" required="true" show-location="false">
-Overall purpose of the workflow, selected from predefined values such as `general_inquiry` or `lead_capture`. The goal appears as a badge on the card and can be used to reason about how messages are handled.
-</ParamField>
+- **Trigger**: Tag Added ("Appointment Scheduled").
+- **Action 1**: Wait (24 hours before appointment).
+- **Action 2**: Send SMS (Template: "Reminder: You have an appointment tomorrow at [Time]. Reply CONFIRM or CANCEL.").
+- **Condition**: Has the user replied? (If Yes, exit workflow).
+- **Action 3**: Wait (2 hours before appointment).
+- **Action 4**: Send SMS (Template: "Your appointment is in 2 hours. See you soon!").
 
-<ParamField body="description" param-type="string" show-location="false">
-Optional short summary of what the workflow does. The list view shows a truncated version on the card to help operators scan workflows quickly.
-</ParamField>
+### 3. The Keyword Auto-Responder
 
-<ParamField body="context" param-type="string" show-location="false">
-Longer free-text context for the assistant, such as business rules, FAQs, or tone guidelines specific to this workflow. This does not appear in the card and is aimed at improving replies.
-</ParamField>
+This workflow provides immediate answers to common questions via text.
 
-<ParamField body="responseTemplate" param-type="string" show-location="false">
-Optional guidance for how responses should be structured for this workflow, for example expected fields or phrasing. This template is specific to SMS workflows and is separate from any email templates.
-</ParamField>
+- **Trigger**: Keyword Received ("HOURS").
+- **Action 1**: Send SMS (Template: "Our business hours are Monday-Friday, 9 AM to 5 PM EST.").
 
-<ParamField body="assignedAssistantId" param-type="string" show-location="false">
-Assistant the workflow uses when generating replies. The dropdown lists assistants configured on the [Assistants](/pages/ai-config/assistants) page.
-</ParamField>
+## Managing Workflows
 
-<ParamField body="priority" param-type="integer" show-location="false">
-Numeric priority for the workflow. Lower or higher values may be treated as more important depending on your internal convention, and the value shows on the card so you can see how workflows are ordered relative to each other.
-</ParamField>
+As your processes evolve, you can easily update your workflows.
 
-<ParamField body="isActive" param-type="boolean" show-location="false">
-Controls whether the workflow is currently used for SMS handling. You can toggle this later from the workflow card without opening the edit form.
-</ParamField>
-
-After filling in the form, select **Save**. The new workflow appears in the card grid with its name, goal, priority, step count, and active badge.
-
-</Step>
-
-<Step title="Add and arrange steps in WorkflowBuilder" icon="settings">
-
-Once you create the workflow, edit its steps using the WorkflowBuilder. The builder controls the sequence of actions and checks the workflow runs through.
-
-- Open the workflow and choose **Edit** if the builder does not open automatically.
-- Use the WorkflowBuilder to add, remove, or reorder steps for this workflow.
-- Save your changes when the step sequence reflects how you want SMS to be handled.
-
-The workflow card updates its step count to reflect the steps configured in the builder.
-
-</Step>
-
-<Step title="Activate the workflow" icon="check-circle">
-
-- Return to the workflow list.
-- Confirm the workflow card shows the configuration you expect.
-- Turn the **Active** switch on if the workflow should start handling SMS conversations.
-
-Once active, the workflow participates in automated SMS handling for your tenant according to its priority and steps.
-
-</Step>
-
-</Steps>
-
-## Edit an existing SMS workflow
-
-Update workflow metadata or steps as your SMS processes evolve.
-
-<Steps>
-
-<Step title="Open the workflow for editing" icon="edit">
-
-- Go to `/SMSWorkflows`.
-- Locate the workflow card using its name, goal badge, or priority.
-- Select **Edit** on the card.
-
-The edit form opens with the current values for name, goal, description, context, response template, assigned agent, priority, and active state.
-
-</Step>
-
-<Step title="Update details and steps" icon="settings">
-
-- Adjust form fields such as **Goal**, **Description**, **Context**, **Response template**, **Assigned agent**, or **Priority**.
-- Use the **Active** checkbox to temporarily pause the workflow without deleting it.
-- Open WorkflowBuilder from the same screen to modify the step sequence.
-
-Select **Save** to persist your changes. The workflow card updates automatically, including badges, step count, and active status.
-
-</Step>
-
-</Steps>
-
-## Enable or disable a workflow
-
-Toggle workflows on or off from the list view without opening the form.
-
-<Steps>
-
-<Step title="Toggle Active from the card" icon="check-circle">
-
-- Go to `/SMSWorkflows`.
-- Find the workflow card you want to change.
-- Use the **Active** badge or switch on the card to enable or disable the workflow.
-
-The card immediately reflects the new state, and the system includes or excludes the workflow when handling SMS conversations.
-
-</Step>
-
-</Steps>
-
-## Delete a workflow
-
-Remove workflows that you no longer need.
-
-<Steps>
-
-<Step title="Delete from the workflow card" icon="trash">
-
-- Open `/SMSWorkflows`.
-- On the workflow card you want to remove, select **Delete**.
-- Confirm the deletion when prompted.
-
-The card disappears from the grid, and the workflow no longer participates in SMS handling for your tenant.
-
-</Step>
-
-</Steps>
-
-<Callout kind="alert">
-
-Deleting a workflow is permanent. If you only want to stop using a workflow temporarily, turn off the **Active** toggle instead of deleting it.
-
-</Callout>
-
-## Access control and tenant scope
-
-The SMS Workflows page is tenant-specific and uses authenticated, tenant-scoped API calls. Operators see and manage only the workflows for their current tenant.
-
-If you do not see the `/SMSWorkflows` page or cannot create workflows:
-
-- Confirm your tenant has SMS enabled on the Billing or Settings pages.
-- Verify that the `smsWorkflowsEnabled` feature flag is active for your account or tenant.
-- Check with an administrator if your role has permissions to manage SMS workflows.
-
-## Related pages
-
-Connect SMS workflows with other conversation and AI configuration pages.
-
-<Columns cols={3}>
-
-<Card
-  title="Conversations"
-  href="/pages/conversations/conversations"
-  icon="message-circle"
-  cta="Monitor active conversations"
-  horizontal="true"
->
-
-View and manage live conversations that may be handled by your SMS workflows.
-
-</Card>
-
-<Card
-  title="Conversation detail"
-  href="/pages/conversations/conversation-detail"
-  icon="message-circle"
-  cta="Inspect message history"
-  horizontal="true"
->
-
-Drill into individual SMS threads to see how workflows and assistants responded.
-
-</Card>
-
-<Card
-  title="Assistants"
-  href="/pages/ai-config/assistants"
-  icon="zap"
-  cta="Configure assistants"
-  horizontal="true"
->
-
-Create and tune assistants that you assign to SMS workflows for automated replies.
-
-</Card>
-
-</Columns>
+- **Edit**: Modify the triggers, conditions, or actions of an existing workflow.
+- **Pause/Activate**: Temporarily disable a workflow without deleting it.
+- **Duplicate**: Create a copy of a workflow to use as a starting point for a new one.
+- **Delete**: Permanently remove a workflow that is no longer needed.

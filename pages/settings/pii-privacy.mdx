@@ -1,157 +1,64 @@
 ---
-title: PII and privacy settings
-description: Configure how PII is stored and redacted in conversations, including storage policy, redaction rules, and safe saving behavior.
+title: PII & Privacy
+description: Control how Autoch.at handles sensitive data, including redaction and retention policies.
 ---
 
-## Understand PII and privacy controls
+## What is PII & Privacy?
 
-PII and privacy settings control whether the system stores personally identifiable information in client records and how it redacts sensitive data from AI prompts and logs.
+The **PII & Privacy** page (located at **Settings > PII & Privacy**) is where you configure how Autoch.at handles Personally Identifiable Information (PII) and other sensitive data within your conversations.
 
-<Callout kind="info">
+Autoch.at is designed with privacy in mind, offering tools to automatically detect, redact, and manage sensitive information before it is stored or processed by AI models.
 
-Redaction runs independently of storage. Even if you disable PII storage, configured redaction rules still apply to AI prompts and internal processing.
+## Data Redaction
 
+Data Redaction is the process of automatically identifying and masking sensitive information in customer messages before they are saved to the database or sent to an AI model for processing.
+
+### How Redaction Works
+
+When a message arrives (via chat, SMS, email, etc.), Autoch.at scans the text for patterns that match common types of PII. If a match is found, the sensitive data is replaced with a placeholder (e.g., `[REDACTED_CREDIT_CARD]`).
+
+This ensures that:
+1. Your human agents do not see sensitive information they shouldn't have access to.
+2. Sensitive data is not inadvertently included in the context sent to external AI providers (like OpenAI or Anthropic).
+
+### Configuring Redaction Rules
+
+You can customize which types of data Autoch.at should automatically redact.
+
+1. Navigate to **Settings > PII & Privacy**.
+2. In the **Data Redaction** section, toggle the switches for the types of PII you want to protect.
+
+Common redaction categories include:
+- **Credit Card Numbers**: (e.g., Visa, Mastercard, Amex)
+- **Social Security Numbers (SSN)**: (US format)
+- **Email Addresses**: (If you don't need to collect them in the conversation body)
+- **Phone Numbers**: (If you don't need to collect them in the conversation body)
+- **Passwords/Secrets**: (Common patterns for API keys or passwords)
+
+<Callout kind="warning">
+**Redaction is irreversible.** Once a message is redacted and saved, the original sensitive data cannot be recovered. Ensure you only redact information you truly do not need for your business processes.
 </Callout>
 
-When you change any toggle in this section, the app updates local state only. Changes take effect for your tenant after you select **Save PII Settings** and the save request completes.
+## Data Retention Policies
 
-## Workflow: configure and apply PII settings
+Data Retention policies dictate how long Autoch.at stores your conversation history and customer data before automatically deleting it.
 
-Use this workflow whenever you adjust your PII policy for the tenant.
+By default, Autoch.at retains data indefinitely to provide a complete history for your CRM and AI training context. However, many privacy regulations (like GDPR or CCPA) require businesses to delete customer data after a certain period or upon request.
 
-<Steps>
+### Configuring Retention
 
-<Step title="Choose a storage policy" icon="lock">
+1. Navigate to **Settings > PII & Privacy**.
+2. Locate the **Data Retention** section.
+3. Select your desired retention period from the dropdown menu (e.g., 30 days, 90 days, 1 year, Indefinitely).
+4. Click **Save Settings**.
 
-Decide whether to store PII in client records by using the **Enable PII Storage** toggle.
+Once configured, Autoch.at will automatically permanently delete any conversations, attachments, and associated client records that exceed the specified age.
 
-- Turn it **on** to allow PII fields (for example, phones, emails, addresses) to be stored with client records according to your retention policies.
-- Turn it **off** to avoid storing PII in client records while still redacting sensitive data from AI prompts and logs using the redaction rules below.
+### Handling Deletion Requests (Right to be Forgotten)
 
-When you change this toggle, nothing is written to the backend until you save. The UI reflects your pending choice immediately.
+If a customer requests that you delete their data (often referred to as the "Right to be Forgotten"), you can manually trigger a deletion from their Client profile.
 
-</Step>
-
-<Step title="Configure redaction rules" icon="shield">
-
-Under PII redaction configuration, enable or disable redaction for each PII type and choose whether to allow first and last names in prompts.
-
-- Enable redaction toggles for data you do not want to appear in AI prompts or logs; matching values are replaced with placeholders such as `[SSN]` or `[EMAIL]`.
-- Disable redaction for fields that your policy allows the AI to see in clear text, understanding they may still be stored if PII storage is enabled.
-
-You can adjust multiple toggles in a single session before saving.
-
-</Step>
-
-<Step title="Save PII settings" icon="check-circle">
-
-After you finish configuring storage and redaction:
-
-- Select **Save PII Settings**.
-- Wait for the loading spinner on the button to complete.
-
-When the spinner disappears without an error, the backend has persisted your new PII configuration for the tenant.
-
-</Step>
-
-<Step title="Validate behavior" icon="bar-chart">
-
-Validate that the system behaves as expected:
-
-- Start a test conversation and enter sample PII (for example, a phone number, email address, or SSN-like value).
-- Confirm that the UI, AI prompts, and logs show placeholders where redaction is enabled and raw values where it is disabled.
-- Check a client record to verify whether PII fields are stored according to the **Enable PII Storage** setting.
-
-If the behavior does not match your expectations, return to PII & Privacy settings, adjust toggles, and save again.
-
-</Step>
-
-</Steps>
-
-<Callout kind="alert">
-
-Before disabling PII storage or loosening redaction, confirm with your legal, security, and compliance teams that the new configuration aligns with your data handling and retention obligations.
-
-</Callout>
-
-## Settings reference
-
-Use this section as a reference for each toggle and its impact.
-
-### Storage policy
-
-<ParamField body="pii_storage_enabled" param-type="boolean" required="true" show-location="false">
-
-**Enable PII Storage**. When `true`, the system stores PII in client records and other persistent data structures according to your retention policies. When `false`, the system avoids storing PII in client records, but PII redaction rules still apply to AI prompts and logs, and redacted values appear as placeholders such as `[EMAIL]` or `[PHONE]`.
-
-</ParamField>
-
-### Redaction rules
-
-All of these settings live under the `pii_redaction_config` structure and control how the system redacts PII from AI prompts and internal text.
-
-<ParamField body="redact_ssn" param-type="boolean" required="false" show-location="false">
-
-Redact Social Security numbers and similar national identifiers. When enabled, detected SSN-like patterns in text are replaced with a placeholder such as `[SSN]` before sending content to AI models or storing logs.
-
-</ParamField>
-
-<ParamField body="redact_credit_cards" param-type="boolean" required="false" show-location="false">
-
-Redact payment card numbers. When enabled, detected credit card patterns (for example, 16-digit sequences that pass basic validation) are replaced with a placeholder such as `[CREDIT_CARD]` in AI prompts and logs.
-
-</ParamField>
-
-<ParamField body="redact_phone" param-type="boolean" required="false" show-location="false">
-
-Redact phone numbers. When enabled, phone-like strings are replaced with a placeholder such as `[PHONE]` in text sent to models and stored in logs.
-
-</ParamField>
-
-<ParamField body="redact_email" param-type="boolean" required="false" show-location="false">
-
-Redact email addresses. When enabled, email-like strings are replaced with a placeholder such as `[EMAIL]` before content reaches AI models or is written to logs.
-
-</ParamField>
-
-<ParamField body="redact_address" param-type="boolean" required="false" show-location="false">
-
-Redact physical mailing addresses. When enabled, street address patterns are replaced with a placeholder such as `[ADDRESS]` in prompts and logs.
-
-</ParamField>
-
-<ParamField body="redact_dob" param-type="boolean" required="false" show-location="false">
-
-Redact dates of birth. When enabled, detected birthdate values are replaced with a placeholder such as `[DOB]` in prompts and logs.
-
-</ParamField>
-
-### Name handling in prompts
-
-Use these toggles to control whether first and last names remain visible to AI models and logs, even when other PII is redacted.
-
-<ParamField body="allow_first_name" param-type="boolean" required="false" show-location="false">
-
-Allow first names to pass through without redaction. When `true`, the system does not replace detected first names with placeholders, even if other PII types are redacted. When `false`, first names may be removed or generalized according to your broader redaction configuration.
-
-</ParamField>
-
-<ParamField body="allow_last_name" param-type="boolean" required="false" show-location="false">
-
-Allow last names to pass through without redaction. When `true`, detected last names remain visible in AI prompts and logs. When `false`, last names are handled according to your redaction policy and may be removed or replaced.
-
-</ParamField>
-
-## Safe change management
-
-<Callout kind="info">
-
-Treat changes to PII & Privacy settings as policy changes. Record who changed what and when, and pair configuration updates with internal approvals where required.
-
-</Callout>
-
-For high-assurance environments:
-
-- Test changes in a lower-risk tenant before applying them to production.
-- Capture screenshots or change logs of your settings before and after updates.
-- Re-validate behavior after any major product, compliance, or integration changes that might affect data flows.
+1. Go to **CRM > Clients**.
+2. Search for the customer and open their profile.
+3. Click the **Actions** menu (three dots) and select **Delete Client Data**.
+4. Confirm the deletion. This will permanently remove their profile and all associated conversation history from Autoch.at.

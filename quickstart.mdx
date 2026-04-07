@@ -1,26 +1,70 @@
 ---
-title: Getting Started with Autoch.at
+title: Quickstart
 description: >-
   Quickly set up your Autoch.at account, connect your communication channels,
   and handle your first conversation to begin unifying customer interactions.
 ---
-## Where to start:&#x20;
+
+## Where to start
+
+Autoch.at is designed to be powerful yet easy to set up. To get your first AI assistant running and handling conversations, follow these core steps:
 
 <Columns cols="2">
-  <Card title="Assistants" href="pages/ai-config/assistants" icon="bot" horizontal="false" target="_self">
-    Set up assistants - the basic building blocks of Autoch.at.
+  <Card title="Assistants" href="/pages/ai-config/assistants" icon="bot" horizontal="false" target="_self">
+    Set up assistants - the basic building blocks of Autoch.at. Define their roles, channels, and base behaviors.
   </Card>
-
-  <Card title="Playbooks" href="pages/ai-config/playbooks" icon="book-open-icon" horizontal="false" target="_self">
-    Playbooks are a versioned, replicable behaviour layer on top of assistants.
+  <Card title="Playbooks" href="/pages/ai-config/playbooks" icon="book-open" horizontal="false" target="_self">
+    Playbooks are a versioned, replicable behavior layer on top of assistants. Define specific goals and conversational flows.
   </Card>
-
-  <Card title="Training Context" href="pages/ai-config/training-context" icon="book-check-icon" horizontal="false" target="_self">
-    Give your assistants the right knowledge for the job.
+  <Card title="Training Context" href="/pages/ai-config/training-context" icon="database" horizontal="false" target="_self">
+    Give your assistants the right knowledge for the job by uploading documents, syncing products, or crawling your website.
   </Card>
-
-  <Card title="Conversations" href="pages/conversations/conversations" icon="lucide-messages-square" horizontal="false" target="_self">
-    Review the conversations your assistants have.
+  <Card title="Conversations" href="/pages/conversations/conversations" icon="message-circle" horizontal="false" target="_self">
+    Review the conversations your assistants have across all channels in a single, unified inbox.
   </Card>
 </Columns>
 
+## Step-by-Step Setup
+
+### 1. Create an Assistant
+
+Your first step is to create an AI Assistant. Navigate to **AI Assistant > Assistants** in the sidebar and click **Create Assistant**.
+
+Give your assistant a name (e.g., "Support Bot"), select the channels it should operate on (like Chat or Email), and define its core persona.
+
+### 2. Add Training Context
+
+An assistant is only as good as the knowledge it has access to. Go to **AI Assistant > Training Context** to add your business information.
+
+You can:
+- Upload PDF or Word documents containing your policies
+- Add links to your website for the AI to crawl
+- Create specific Instructions or FAQs for common questions
+
+### 3. Create a Playbook
+
+Playbooks tell your assistant *what* to achieve in a conversation. Navigate to **AI Assistant > AI Playbooks** and create a new playbook.
+
+Define the goal (e.g., "Qualify the lead and collect their email address") and attach it to the assistant you created in Step 1.
+
+### 4. Configure Routing & Handoffs
+
+You'll want to ensure that complex issues are escalated to human agents. Go to **AI Assistant > Routing & Handoffs**.
+
+Set up a routing rule that triggers when a user asks to speak to a human, or when the AI detects a high-priority intent like "billing issue" or "cancel subscription".
+
+### 5. Test in the Widget Playground
+
+Before going live, test your setup. Navigate to **Conversations > Messaging > Widget Playground**.
+
+Here you can interact with your assistant exactly as a customer would on your website. Test different scenarios to ensure the assistant uses the training context correctly and follows the playbook instructions.
+
+### 6. Go Live
+
+Once you're satisfied with the assistant's performance, you can deploy it to your live channels.
+
+- For **Chat**, go to **Settings > Chat Widget** to get the installation code for your website.
+- For **Email**, go to **Settings > Email** to connect your sending domain and configure forwarding.
+- For **SMS/Voice**, go to **Settings > Phone Numbers** to provision a number.
+
+Now you're ready to start unifying your customer interactions with Autoch.at!

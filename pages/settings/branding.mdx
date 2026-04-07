@@ -1,232 +1,55 @@
 ---
-title: Configure branding
-description: Control how your organization and workspaces appear to customers, including names, logo, primary color, contact details, and custom short domains.
+title: Branding Settings
+description: Customize how your brand appears across all customer interactions, including the chat widget and emails.
 ---
 
-## Branding settings overview
+## What are Branding Settings?
 
-Branding settings control the names, logo, color, and links customers see in widgets, emails, SMS, and shortlinks. Tenant admins manage these settings at the organization level and per workspace.
+The **Branding** page (located at **Settings > Branding**) allows you to configure the visual identity of your Autoch.at workspace.
 
-<Tabs>
+These settings ensure that when your AI assistants or human agents interact with customers—whether via the website chat widget, email, or custom shortlinks—the experience feels native to your organization.
 
-<Tab title="Branding" icon="settings">
+## Branding Scope
 
-Branding controls the visual identity and contact information that appears across your channels.
+If your Autoch.at account supports multiple **Workspaces**, you can define branding at two levels:
 
-### Fields
+- **Organization Default**: These settings apply to all workspaces unless explicitly overridden. This is useful for maintaining a consistent corporate identity across different departments or brands.
+- **Workspace Override**: You can customize the branding for a specific workspace (e.g., a sub-brand or a specific product line) without affecting the rest of the organization.
 
-<ParamField body="brandingScope" param-type="string" required="true" show-location="false">
-Choose whether this workspace uses the organization default branding (`__tenant__`) or its own workspace-specific branding. Workspace scope lets you override the default for a particular workspace.
-</ParamField>
+Use the **Branding Scope** dropdown at the top of the page to select which level you are editing.
 
-<ParamField body="legalBusinessName" param-type="string" show-location="false">
-Registered legal name of your business. This field has its own Save control, accepts up to 255 characters, and is used wherever your legal entity name is required (for example, contracts or disclosures).
-</ParamField>
+## Core Branding Elements
 
-<ParamField body="companyName" param-type="string" show-location="false">
-Friendly name used in the widget header, emails, and SMS. Use the name customers expect to recognize (for example, `Acme Support`).
-</ParamField>
+The primary tab on this page allows you to configure the core visual elements of your brand.
 
-<ParamField body="logoUrl" param-type="string" show-location="false">
-Public URL for your company logo. The app loads and previews the logo from this URL and uses it in widgets and notifications.
-</ParamField>
+### Company Information
 
-<ParamField body="primaryColor" param-type="string" show-location="false">
-Hex color code for the primary brand color. Update using the color picker or by entering a hex value. This color is applied to buttons, accents, and other UI elements.
-</ParamField>
+- **Legal Business Name**: Your official corporate name (e.g., "Autochat Inc."). This is often required for compliance reasons in SMS and email communications.
+- **Company Name (Display)**: The friendly name shown to customers in the chat widget header and email signatures (e.g., "Autoch.at").
+- **Company Phone Number**: Your primary public contact number.
+- **Company Website**: The main URL for your business.
 
-<ParamField body="companyPhoneNumber" param-type="string" show-location="false">
-Customer-facing phone number shown where contact details are displayed. Include country code and formatting that matches your region.
-</ParamField>
+### Visual Identity
 
-<ParamField body="companyWebsite" param-type="string" show-location="false">
-Primary website URL for your company. Used in communication footers and as a default redirect target where needed.
-</ParamField>
+- **Logo URL**: Provide a link to your company logo (must be a publicly accessible image URL, like `https://example.com/logo.png`). This logo will appear in the chat widget header and in automated email templates.
+- **Primary Color**: Select your brand's primary hex color code (e.g., `#20aea5`). This color will be used for buttons, links, and accents within the chat widget and email templates to match your website's design.
 
-<Callout kind="info">
+After making changes, click **Save Branding** to apply them across your selected scope.
 
-Logo and website URLs must be publicly accessible so widgets, emails, and SMS can load assets and links for your customers.
+## Custom Shortlinks
 
-</Callout>
+The second tab on the Branding page allows you to configure **Custom Shortlinks**.
 
-### Update organization and workspace branding
+When Autoch.at sends an SMS message that includes a link (e.g., a link to a playbook form, a calendar booking page, or a payment portal), it automatically shortens the URL to save characters and track clicks.
 
-Use these steps to set scope and update the main branding fields.
+By default, these links use a generic Autoch.at domain. To maintain brand trust and improve deliverability, you can configure a custom shortlink domain (e.g., `link.yourcompany.com`).
 
-<Steps>
+### Setting Up a Custom Domain
 
-<Step title="Choose branding scope" icon="settings">
+1. Navigate to **Settings > Branding** and click the **Custom Shortlinks** tab.
+2. Enter the subdomain you wish to use (e.g., `go.yourdomain.com`).
+3. Autoch.at will provide you with a set of DNS records (usually a CNAME record).
+4. Log in to your domain registrar (e.g., GoDaddy, Cloudflare, Namecheap) and add the provided DNS records.
+5. Return to Autoch.at and click **Verify**.
 
-- Open **Settings → Branding**.
-- In **Branding scope**, select **Organization default** (uses `__tenant__` branding) or **Workspace specific** for this workspace.
-
-Success looks like the scope selector showing your chosen option and the branding form reflecting the corresponding values.
-
-</Step>
-
-<Step title="Set your legal business name" icon="edit">
-
-- In **Legal Business Name**, enter the registered name of your entity (up to 255 characters).
-- Click the dedicated **Save** button next to this field.
-
-When the save completes, the field remains populated with your legal name without any error message.
-
-</Step>
-
-<Step title="Configure visible company details" icon="edit">
-
-- Update **Company Name** with the customer-facing brand name that should appear in headers and messages.
-- Set the **Logo URL** to a hosted image; confirm the preview updates to the correct logo.
-- Pick a **Primary Color** using the color picker or by entering a hex code in the text input.
-- Fill in **Company Phone Number** and **Company Website** with the details you want customers to see.
-
-You should see the logo preview update and the color picker reflect your chosen brand color.
-
-</Step>
-
-<Step title="Save branding" icon="check-circle">
-
-- Review all values for accuracy.
-- Click **Save Branding** to apply changes to all fields except **Legal Business Name**, which you already saved separately.
-
-After saving, the page does not show validation errors, and new conversations or widgets use the updated name, logo, and color.
-
-</Step>
-
-</Steps>
-
-</Tab>
-
-<Tab title="Custom shortlinks" icon="link">
-
-Custom shortlinks let you use branded domains for links sent from widgets, email, or SMS, with DNS and SSL managed per domain.
-
-### Global shortlink settings
-
-<ParamField body="enableCustomShortDomain" param-type="boolean" show-location="false">
-Toggle to allow using custom short domains across your tenant. When disabled, all workspaces fall back to the default system domain.
-</ParamField>
-
-<Callout kind="alert">
-
-Custom short domains only work when DNS records are correct and SSL is active. Until both are verified, links may not resolve or may show browser security warnings.
-
-</Callout>
-
-### New domain form
-
-Use the new domain form to register additional branded short domains.
-
-<ParamField body="shortDomain" param-type="string" show-location="false">
-Hostname for the short domain (for example, `links.acme.support`). The field validates format and uniqueness and can show an error state when invalid.
-</ParamField>
-
-<ParamField body="workspace" param-type="string" show-location="false">
-Workspace that owns this short domain. Includes a **Default** option to apply the domain at the tenant level when no more specific workspace domain exists.
-</ParamField>
-
-<ParamField body="saveDomain" param-type="action" show-location="false">
-Action button that creates or updates the domain configuration with the current values. Triggers validation on the short domain input.
-</ParamField>
-
-### Per-domain settings and status
-
-Each existing domain shows configuration controls and status panels.
-
-<ParamField body="domainWorkspace" param-type="string" show-location="false">
-Per-domain workspace selector that lets you change which workspace uses this domain without recreating it.
-</ParamField>
-
-<ParamField body="dnsPanel" param-type="object" show-location="false">
-Panel that displays the required DNS A record values and the domain's `dns_status`. Shows a **Verify DNS** action when the domain is not yet verified.
-</ParamField>
-
-<ParamField body="sslPanel" param-type="object" show-location="false">
-Panel that manages TLS certificates. Shows **Generate SSL Certificate** when DNS is verified but SSL is not yet active, and displays an active state once SSL is provisioned.
-</ParamField>
-
-<ParamField body="domainCompanyWebsite" param-type="string" show-location="false">
-Website URL to redirect root traffic from the short domain (for example, when a user visits `https://links.acme.support/`). Includes a **Save** button to persist changes.
-</ParamField>
-
-### Add a custom short domain
-
-Follow this flow to register a new custom domain.
-
-<Steps>
-
-<Step title="Enable custom short domains" icon="settings">
-
-- Open **Settings → Branding → Custom shortlinks**.
-- Turn on **Enable custom short domain** if it is not already enabled.
-
-The domain form and existing domain cards become active when the feature is enabled.
-
-</Step>
-
-<Step title="Create the domain" icon="plus">
-
-- In **Short Domain**, enter your desired hostname, such as `links.acme.support`.
-- Choose the **Workspace** that should use this domain, or select **Default** for a tenant-wide domain.
-- Click **Save Domain**.
-
-If validation passes, you see the new domain appear in the list with DNS and SSL panels.
-
-</Step>
-
-</Steps>
-
-### Verify DNS and activate SSL
-
-DNS verification ensures the domain points to the correct infrastructure before generating certificates.
-
-<Steps>
-
-<Step title="Add the DNS A record" icon="terminal">
-
-- In the new domain card, open the **DNS** panel and note the required A record hostname and value.
-- In your DNS provider, create or update the A record for the short domain to match the provided value.
-
-DNS changes can take time to propagate; delays here are controlled by your DNS provider.
-
-</Step>
-
-<Step title="Verify DNS status" icon="check-circle">
-
-- After DNS propagation, return to the domain's **DNS** panel.
-- Click **Verify DNS**.
-
-When verification succeeds, the DNS status updates to verified and the SSL panel shows the option to generate a certificate.
-
-</Step>
-
-<Step title="Generate SSL certificate" icon="lock">
-
-- In the **SSL** panel, confirm that DNS is verified.
-- Click **Generate SSL Certificate** to request and install a certificate for the domain.
-
-Once SSL is active, the panel shows an active state and users can access links over HTTPS without browser warnings.
-
-</Step>
-
-<Step title="Configure root redirect (optional)" icon="edit">
-
-- In the domain card, locate **Company Website**.
-- Enter the URL you want users to reach when they open the bare short domain in a browser (for example, `https://acme.support`).
-- Click the associated **Save** button.
-
-Test by visiting the short domain root; it should redirect to the specified website.
-
-</Step>
-
-</Steps>
-
-<Callout kind="info">
-
-If verification or SSL generation fails, recheck the DNS A record values at your provider and wait for propagation before trying again.
-
-</Callout>
-
-</Tab>
-
-</Tabs>
+Once verified, all future SMS links generated by your workspace will use your custom branded domain.

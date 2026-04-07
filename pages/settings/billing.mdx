@@ -1,395 +1,68 @@
 ---
-title: Manage billing and subscriptions
-description: Understand the Billing page, track usage and overages, download invoices, and manage your subscription and billing portal access as an account owner.
+title: Usage & Billing
+description: Review your plan, usage, invoices, and manage payment details for your workspace.
 ---
 
-## Billing overview
+## Managing Your Subscription
 
-Use the Billing page at `/billing` to see your current plan, track product usage, understand projected charges, and manage your subscription and invoices from a single place.
+The **Usage & Billing** page (located at **Settings > Usage & Billing**) is where workspace Owners can manage their Autoch.at subscription, view current usage, and update payment methods.
 
 <Callout kind="info">
-
-Only tenant admins or account owners can access the Billing page and manage subscriptions. If you do not see Billing in Settings, ask an admin to update your role.
-
+Only users with the **Owner** role can access the Billing page. Admins, Managers, and Agents will not see this option in their settings menu.
 </Callout>
 
-The Billing page is organized into the following areas:
+## Understanding Your Plan
 
-- **Trial banner** (if your account is still in a trial)
-- **Current plan and limits**
-- **Usage cards** for each product (conversations, voice, SMS, email)
-- **Overage breakdown** and **projected total**
-- **Recent invoices** with PDF downloads
-- **Plan comparison** and upgrade/subscribe actions
-- **Manage billing portal** entry point for cancel/reactivate and payment details
+Autoch.at offers different subscription tiers based on the features you need and the volume of conversations you handle.
 
-The UI relies on a billing service behind the scenes for subscription status, plans, usage, invoices, and checkout or billing portal links.
+At the top of the Billing page, you will see your **Current Plan** details:
+- **Plan Name**: (e.g., Starter, Pro, Enterprise)
+- **Billing Cycle**: (Monthly or Annual)
+- **Next Billing Date**: When your card will be charged next.
+- **Base Price**: The fixed cost of your subscription.
 
----
+### Upgrading or Downgrading
 
-## Trial status and current plan
+If you need access to more advanced features (like custom shortlinks, advanced AI models, or more workspaces), you can upgrade your plan at any time.
 
-### Trial banner
+1. Click the **Change Plan** button.
+2. Review the available tiers and select the one that best fits your needs.
+3. Confirm the change. Upgrades are typically prorated and applied immediately.
 
-When your tenant is in a trial period, a banner appears at the top of the Billing page.
+Downgrades will take effect at the end of your current billing cycle.
 
-The banner typically shows:
+## Tracking Usage
 
-- Remaining trial days or end date
-- The plan you will move to after the trial (if already selected)
-- A clear **Subscribe** or **Upgrade** button to start a paid subscription before the trial ends
+Autoch.at plans often include a set amount of usage (e.g., a certain number of AI-handled conversations or SMS segments per month). If you exceed these limits, you may incur overage charges.
 
-Once your trial ends or you convert to a paid plan, this banner disappears.
+The **Usage** section provides a real-time view of your consumption for the current billing period.
 
-### Current plan and limits
+### Key Usage Metrics
 
-Below the trial banner, you see your **current plan summary**. This section includes:
+- **AI Conversations**: The number of unique conversations where an AI assistant sent at least one message.
+- **SMS Segments**: The number of text message segments sent or received. (Note: Long SMS messages are broken into multiple segments by carriers).
+- **Voice Minutes**: The total duration of phone calls handled by Autoch.at.
+- **Active Phone Numbers**: The number of phone numbers provisioned for your workspace.
 
-- **Plan name** (for example, Starter, Growth, Enterprise)
-- **Billing interval** (for example, monthly, annually)
-- **Base price** (amount per billing period, excluding tax)
-- **Included usage limits** per billing period for:
-  - Conversations
-  - Voice minutes or calls
-  - SMS messages
-  - Email messages
+By monitoring these metrics, you can anticipate your monthly costs and decide if upgrading to a higher tier with larger included allowances would be more cost-effective.
 
-This section is the reference point for how many units of each product you can consume before overages apply.
+## Payment Methods and Invoices
 
----
+### Updating Your Payment Method
 
-## Usage and overage breakdown
+To ensure uninterrupted service, keep your payment information up to date.
 
-The Billing page shows detailed usage for the current billing period, with a breakdown by product and clear indicators when you approach or exceed your plan limits.
+1. Scroll down to the **Payment Method** section.
+2. Click **Update Payment Method**.
+3. Enter your new credit card details securely via our payment processor (Stripe).
+4. Save the changes.
 
-### Usage cards
+### Viewing Invoices
 
-Usage is grouped into separate cards, one per channel:
+You can download past invoices for your accounting records.
 
-- **Conversations**
-- **Voice**
-- **SMS**
-- **Email**
+1. Scroll to the **Billing History** section.
+2. You will see a list of all past charges, including the date, amount, and status (Paid, Pending, Failed).
+3. Click the **Download** icon next to any invoice to save it as a PDF.
 
-Each card typically includes:
-
-- **Current period usage** (for example, `7,500 / 10,000` conversations)
-- A **progress indicator** that fills as usage increases
-- **Overage usage** if you go beyond your included limit
-- A timestamp or note indicating **which billing period** the totals apply to
-
-The Billing page keeps usage aligned with your current subscription period rather than calendar dates.
-
-### Overage and projected total
-
-Below or alongside the usage cards, the Billing page shows a **cost breakdown** for the current billing period:
-
-- **Base plan** charge for your current plan
-- **Overage amounts** by product (for example, extra conversations, over-limit SMS)
-- **Add-ons** if applicable (for example, extra seats or additional features)
-- A **projected total** for the period, combining base, overages, and add-ons
-
-This projection helps you estimate your upcoming invoice based on usage so far. Actual charges may vary slightly depending on proration, adjustments, or local taxes applied by the billing provider.
-
----
-
-## View usage details
-
-Use the usage area of the Billing page to quickly understand how close you are to plan limits and where overages may occur.
-
-<Steps>
-
-<Step title="Open the Billing page" icon="settings">
-
-- Go to your application Settings.
-- Select **Billing** or navigate directly to `/billing`.
-
-</Step>
-
-<Step title="Review overall plan usage" icon="bar-chart">
-
-- Find the **Current plan** section at the top.
-- Confirm your **billing period** and **included usage limits** for each product.
-
-</Step>
-
-<Step title="Inspect per-product usage cards" icon="monitor">
-
-- Scroll to the **Usage** section with cards for conversations, voice, SMS, and email.
-- For each card, check:
-  - Current period usage versus limit
-  - Whether usage is **within** the limit, **near** the limit, or **over** the limit
-  - Any labels or colors indicating overage
-
-</Step>
-
-<Step title="Check overage breakdown and projected total" icon="bar-chart">
-
-- Look for the **Cost breakdown** area.
-- Review:
-  - Base plan amount
-  - Overage totals per product
-  - Any add-on charges
-  - The **projected total** for the current period
-
-</Step>
-
-</Steps>
-
-When everything is working, the Billing page updates usage throughout the billing period, and the projected total reflects what you are likely to be charged on the next invoice.
-
----
-
-## Invoices and downloads
-
-The lower part of the Billing page lists your **recent invoices** for the tenant.
-
-Each invoice row typically includes:
-
-- **Issue date** (start or end of billing period)
-- **Status** (for example, paid, upcoming, past due)
-- **Total amount**
-- A **Download** button or link to get the invoice PDF
-
-### Download a past invoice
-
-<Steps>
-
-<Step title="Open the invoices list" icon="folder">
-
-- From `/billing`, scroll down to the **Invoices** section.
-- Confirm the table has at least one invoice row.
-
-</Step>
-
-<Step title="Find the invoice you need" icon="search">
-
-- Use the date and amount columns to locate the relevant invoice.
-- Check the **status** (for example, paid) if you are reconciling payments.
-
-</Step>
-
-<Step title="Download the invoice PDF" icon="download">
-
-- Click the **Download** action for the invoice row.
-- Your browser downloads the PDF from the billing service.
-- Open the file to view line items, billing details, and tax where applicable.
-
-</Step>
-
-</Steps>
-
-If the billing service has no invoices yet, the Billing page shows a clear **no invoices** message instead of an empty table. This is common for new tenants that have not completed a full billing cycle.
-
----
-
-## Subscribe, upgrade, or change plans
-
-The Billing page lets you start a paid subscription from trial, upgrade to a higher plan, or adjust your plan when usage changes.
-
-The application uses a billing service and hosted **checkout** or **billing portal** to securely collect payment details and confirm changes.
-
-### Start a subscription from trial
-
-<Steps>
-
-<Step title="Confirm trial status" icon="info">
-
-- Go to `/billing`.
-- Look for the **Trial** banner at the top, including trial days remaining and the plan you will move to.
-
-</Step>
-
-<Step title="Review available plans" icon="bar-chart">
-
-- Scroll down to the **Plans** or **Plan comparison** section.
-- Compare plan names, included limits, and base prices.
-
-</Step>
-
-<Step title="Choose a plan and start checkout" icon="play-circle">
-
-- Click **Subscribe**, **Upgrade**, or a similar button on your chosen plan.
-- The app redirects to a hosted **checkout** experience provided by the billing service.
-
-</Step>
-
-<Step title="Complete payment details" icon="lock">
-
-- Enter your payment information and billing details.
-- Confirm the subscription in the checkout page.
-- After the checkout completes, you are redirected back to the application, and the **Current plan** section updates to show your new plan.
-
-</Step>
-
-</Steps>
-
-### Upgrade or downgrade your plan
-
-After you are on a paid plan, you can move between plans from the same Plan comparison section.
-
-<Steps>
-
-<Step title="Open the plan comparison" icon="settings">
-
-- From `/billing`, scroll to the **Plans** or **Compare plans** section.
-- Review how each plan changes your included limits.
-
-</Step>
-
-<Step title="Select a new plan" icon="arrow-right">
-
-- Click **Upgrade** on a higher-tier plan to gain more capacity or features.
-- Click a lower plan if you want to reduce included usage and base price.
-- The app opens a **billing portal** or **plan change** flow with your billing provider.
-
-</Step>
-
-<Step title="Confirm plan change" icon="check-circle">
-
-- Follow the prompts in the hosted billing experience.
-- Confirm the plan change and any proration details presented by the billing provider.
-- After completion, the **Current plan** and **usage limits** on `/billing` reflect the updated plan.
-
-</Step>
-
-</Steps>
-
-Actual proration, partial-period credits, and tax handling are managed by the underlying billing provider and may vary by region.
-
----
-
-## Manage billing portal, cancel, and reactivate
-
-Some actions, such as updating payment methods or canceling a subscription, happen inside a hosted **billing portal**.
-
-From the Billing page, you typically see a button such as **Manage billing** or **Open billing portal**.
-
-### Open the billing portal
-
-<Steps>
-
-<Step title="Locate the billing portal button" icon="settings">
-
-- Go to `/billing`.
-- Find the **Manage billing** or **Open billing portal** button near the Current plan section.
-
-</Step>
-
-<Step title="Launch the portal" icon="external-link">
-
-- Click the button to open the hosted billing portal in a new tab or window.
-- The portal is provided by the billing service and pre-loaded with your tenant's subscription.
-
-</Step>
-
-<Step title="Update payment and billing details" icon="edit">
-
-- Inside the portal, you can typically:
-  - Update payment methods
-  - Change billing contact details
-  - View full billing history
-- Save changes in the portal. Updates sync back to the application via the billing service.
-
-</Step>
-
-</Steps>
-
-### Cancel or reactivate your subscription
-
-<Steps>
-
-<Step title="Start from the billing portal" icon="alert-triangle">
-
-- Open the billing portal from `/billing` as described above.
-- Navigate to the **Subscription** section in the portal.
-
-</Step>
-
-<Step title="Cancel your subscription" icon="trash">
-
-- Choose the **Cancel subscription** or **End plan** option in the billing portal.
-- Review any details about when access will end.
-- Confirm the cancellation.
-- The Billing page updates to show your subscription as canceled or scheduled to cancel at period end.
-
-</Step>
-
-<Step title="Reactivate if available" icon="plus">
-
-- If the billing portal presents a **Resume** or **Reactivate** option:
-  - Select it to continue your subscription.
-  - Confirm the change.
-- After reactivation, the **Current plan** section on `/billing` shows an active subscription again.
-
-</Step>
-
-</Steps>
-
-Options for immediate cancellation, end-of-period cancellation, and reactivation depend on how your tenant's billing is configured in the billing provider.
-
----
-
-## Loading, errors, and empty states
-
-The Billing page calls the billing service for several pieces of information: subscription, usage for the current period, invoices, and available plans. The UI accounts for temporary loading or missing data.
-
-### Loading state
-
-When you first open `/billing` or refresh the page:
-
-- A **loading skeleton** or placeholders show where plan, usage, and invoice data will appear.
-- After the billing service responds, these skeletons are replaced by actual values.
-
-If loading takes longer than expected, verify network connectivity or try again. Persistent loading problems may indicate an issue with the billing service integration.
-
-### No invoices
-
-If your tenant has never been billed or is still in trial:
-
-- The **Invoices** section shows a **no invoices yet** message.
-- The invoice table and Download buttons remain hidden until the first invoice is generated.
-
-### General billing issues
-
-If you see unexpected gaps in data, such as a missing current plan or usage cards not updating, confirm:
-
-- You are signed in as a tenant admin or account owner.
-- Your subscription is active in the billing portal.
-- The time range is within the current billing period.
-
-Contact support if Billing continues to show incomplete or inconsistent information even after refreshing and confirming your subscription in the billing portal.
-
----
-
-## Related settings and analytics
-
-Use other parts of the application to complement what you see on the Billing page, such as configuring usage and monitoring performance.
-
-<Columns cols={2}>
-
-<Card
-  title="Settings overview"
-  href="/features"
-  icon="settings"
-  cta="Configure your workspace"
-  horizontal="true"
->
-
-Review other workspace settings that interact with Billing, such as integrations and channel configuration.
-
-</Card>
-
-<Card
-  title="Monitor usage and performance"
-  href="/integrations"
-  icon="bar-chart"
-  cta="Explore analytics options"
-  horizontal="true"
->
-
-Connect analytics or integrations to better understand how conversations, voice, SMS, and email usage drive your billing.
-
-</Card>
-
-</Columns>
+If a payment fails, Autoch.at will automatically retry the charge over the next few days and send an email notification to the workspace Owner. If the payment cannot be processed, your workspace may be temporarily suspended until the balance is settled.

@@ -1,133 +1,79 @@
 ---
-title: Configure CRM connections
-description: Connect Salesforce, HubSpot, Microsoft Dynamics, and AutoChat CRM to sync contacts and conversation data from the CRM Connections page.
+title: CRM Connections
+description: Connect your CRM so contacts and activity stay in sync between Autoch.at and your source of record.
 ---
 
-## Overview
+## What are CRM Connections?
 
-Use the CRM Connections page to connect your external CRM so the system can sync contact information and conversation data in both directions.
+While Autoch.at has a built-in [Clients](/pages/crm/clients) database, many businesses already use a dedicated Customer Relationship Management (CRM) system like Salesforce, HubSpot, or Pipedrive as their central source of truth.
 
-The CRM Connections page lives at the `/crm-connection` route in the app and is intended for admins and operators who manage integrations and data flows.
+**CRM Connections** (located at **CRM > CRM Connections**) allow you to link Autoch.at to your existing CRM. This ensures that data flows seamlessly between the two platforms, keeping your records accurate and your team informed.
 
-<Callout kind="info">
+## Why Connect Your CRM?
 
-Access to CRM Connections depends on feature flags such as `crmConnectionsEnabled` and per-CRM flags like `salesforceEnabled`, `hubspotEnabled`, and `dynamicsEnabled`. If you do not see the page or a specific CRM, contact your account administrator.
+Connecting your CRM provides several key benefits:
 
-</Callout>
+1. **Unified Data**: When a new lead interacts with an Autoch.at assistant, their contact information is automatically pushed to your CRM.
+2. **Contextual Conversations**: Autoch.at can pull data from your CRM (e.g., account status, recent purchases) to provide the AI assistant with more context, enabling highly personalized responses.
+3. **Activity Logging**: Every conversation a customer has with an AI assistant or human agent in Autoch.at is logged as an activity on their CRM record.
+4. **Workflow Automation**: You can trigger Autoch.at workflows based on changes in your CRM (e.g., send an SMS when a lead's status changes to "Qualified").
 
-## Available CRM integrations
+## Supported CRMs
 
-The CRM Connections page supports the following CRM providers:
+Autoch.at currently supports direct integrations with several major CRM platforms.
 
-<Columns cols={4}>
+- **Salesforce**
+- **HubSpot**
+- **Pipedrive**
+- **Zoho CRM**
 
-<Card title="Salesforce" href="/integrations" icon="cloud" cta="View integration">
+If your CRM is not listed, you may be able to connect it using our API or a third-party automation tool like Zapier or Make.
 
-Sync leads, contacts, and conversation context with your Salesforce org using OAuth-based authentication and scheduled syncs.
+## Setting Up a Connection
 
-</Card>
+To connect your CRM to Autoch.at:
 
-<Card title="HubSpot" href="/integrations" icon="cloud" cta="View integration">
+1. Navigate to **CRM > CRM Connections**.
+2. Locate your CRM provider in the list of available integrations.
+3. Click **Connect**.
+4. You will be redirected to your CRM provider's login page to authorize the connection.
+5. Once authorized, you will be returned to Autoch.at to configure the integration settings.
 
-Connect to HubSpot to keep contact records and engagement history aligned with conversations in your workspace.
+## Configuring the Integration
 
-</Card>
+After connecting your CRM, you need to define how data should flow between the two systems.
 
-<Card title="Microsoft Dynamics" href="/integrations" icon="cloud" cta="View integration">
+### Field Mapping
 
-Integrate with Microsoft Dynamics to enrich contacts and push conversation outcomes back into your Dynamics environment.
+Field mapping tells Autoch.at which fields in its database correspond to which fields in your CRM.
 
-</Card>
+For example, you might map:
+- Autoch.at `Email` -> CRM `Email Address`
+- Autoch.at `Phone` -> CRM `Mobile Phone`
+- Autoch.at `Company` -> CRM `Account Name`
 
-<Card title="AutoChat CRM" href="/integrations" icon="cloud" cta="View integration">
+You can also map custom fields you've created in Autoch.at to custom fields in your CRM.
 
-Use the built-in AutoChat CRM to store and sync contacts and conversation data without relying on an external system.
+### Sync Settings
 
-</Card>
+You can control the direction and frequency of the data sync:
 
-</Columns>
+- **Two-Way Sync**: Changes made in Autoch.at update the CRM, and changes made in the CRM update Autoch.at. (Recommended)
+- **One-Way Sync (Autoch.at to CRM)**: Autoch.at pushes data to the CRM, but does not pull updates back.
+- **One-Way Sync (CRM to Autoch.at)**: Autoch.at pulls data from the CRM, but does not push updates back.
 
-<Callout kind="tip">
+### Activity Logging
 
-More CRM integrations are planned. If you rely on a specific CRM that is not listed here, share it with your account team so they can prioritize support.
+You can choose which types of Autoch.at activities should be logged in your CRM:
 
-</Callout>
+- **All Conversations**: Log every interaction, regardless of channel or outcome.
+- **Only Handoffs**: Only log conversations that were escalated to a human agent.
+- **Only Qualified Leads**: Only log conversations where the AI assistant successfully qualified the user based on a playbook.
 
-## Common actions on the CRM Connections page
+## Managing Connections
 
-On `/crm-connection`, each supported CRM appears as a tile or row with its current status and available actions.
+You can manage your active CRM connections from the **CRM Connections** page.
 
-Typical actions include:
-
-- **Connect**: Start the connection flow, usually via OAuth or an API key, depending on the CRM.
-- **Test connection**: Verify that credentials are valid and the CRM endpoint is reachable.
-- **Sync now**: Trigger an immediate sync of contacts and conversation data, outside the scheduled interval.
-- **Disconnect**: Remove the connection and stop any further syncs from that CRM.
-
-When you enable sync, you may also see options for what to sync (for example, contacts and notes) and how often to run automatic syncs.
-
-## Connect and verify a CRM connection
-
-Use this workflow to connect any supported CRM and confirm that it is working.
-
-<Steps>
-
-<Step title="Open the CRM Connections page" icon="folder">
-
-- Sign in as an admin or operator with integration permissions.
-- Navigate to the `/crm-connection` route using the main navigation or by entering it directly in the browser.
-- Confirm that the CRM you want to connect appears in the list and is not already connected.
-
-</Step>
-
-<Step title="Start the connection flow" icon="play-circle">
-
-- Locate the CRM tile, such as Salesforce, HubSpot, Microsoft Dynamics, or AutoChat CRM.
-- Click **Connect** to open the authentication or configuration modal.
-- If the CRM uses OAuth, follow the prompts to sign in and authorize access.
-- If the CRM uses an API key or similar credential, enter the required values and save.
-
-</Step>
-
-<Step title="Enable and configure sync" icon="settings">
-
-- After a successful connection, enable sync if it is not already turned on.
-- Choose what to sync, such as contacts and conversation notes, based on your data needs.
-- Set the sync interval that fits your workflows, then save your settings.
-
-</Step>
-
-<Step title="Test and trigger a sync" icon="check-circle">
-
-- Click **Test connection** to confirm that the integration is healthy.
-- If the test passes, click **Sync now** to run an immediate sync and validate data flow.
-- Check that new or updated contacts and conversation data appear correctly in both systems.
-
-</Step>
-
-<Step title="Manage or disconnect later" icon="trash">
-
-- Return to `/crm-connection` any time to adjust sync options or run a manual sync.
-- Use **Disconnect** if you need to remove access to a CRM and stop all syncing.
-
-</Step>
-
-</Steps>
-
-## Related pages
-
-<Columns cols={2}>
-
-<Card title="Clients" href="/pages/crm/clients" icon="users" cta="Manage clients">
-
-View and manage client records that receive synced data from your connected CRMs.
-
-</Card>
-
-<Card title="Integrations overview" href="/integrations" icon="plug" cta="Explore integrations">
-
-See other integrations that complement CRM Connections, such as channels and analytics.
-
-</Card>
-
-</Columns>
+- **Edit Settings**: Update your field mappings or sync preferences.
+- **Pause Sync**: Temporarily stop data from flowing between the systems.
+- **Disconnect**: Permanently remove the integration. (This will not delete any data that has already been synced).
