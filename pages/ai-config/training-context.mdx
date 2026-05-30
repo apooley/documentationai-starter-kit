@@ -1,6 +1,6 @@
 ---
 title: Training Context
-description: Give your AI assistants the knowledge they need to answer questions accurately — by uploading documents, crawling your website, writing FAQs, or adding custom text.
+description: Give your AI assistants the knowledge they need to answer questions accurately — by uploading documents, crawling your website, writing FAQs, or adding custom instructions.
 ---
 
 ## Why training context matters
@@ -11,38 +11,40 @@ Without training context, your assistant can only rely on general knowledge from
 
 Go to **AI Assistant > Training Context** to manage your knowledge base.
 
-## The four types of training context
+## The six types of training context
 
-### Website links
+The Training Context page is divided into six main tabs, each designed for a specific type of information:
 
+### 1. Products
+Import your product catalog so your assistant can answer questions about what you sell, pricing, features, and availability. You can import products via CSV upload, JSON upload, or by providing a URL to a CSV or JSON feed. 
+
+If your product feed encounters a sync error, you'll see a detailed error message and a **Retry sync** button to manually trigger a fresh pull.
+
+### 2. Documents
+Upload PDF, DOCX, or plain text files containing your policies, product documentation, onboarding guides, or any other reference material. Autoch.at will extract the text and make it available to your assistant.
+
+### 3. UI Screens
+Upload structured UI Screens context files. This helps the AI answer questions about specific screens in your application without mixing them into general documents.
+
+### 4. Website
 Provide a URL and Autoch.at will crawl the page and pull in its content. This is the fastest way to get your existing documentation, help center, or product pages into the system.
 
-You can add individual pages or a root URL to crawl an entire site. After the initial crawl, you can re-crawl a link at any time to pick up changes.
+Website crawls run as background jobs. You'll see a live progress banner showing how many pages have been crawled and the current queue size. After the initial crawl, you can re-crawl a link at any time to pick up changes.
 
 <Callout kind="tip">
 If your website has a sitemap, use the sitemap URL for a more complete crawl. This ensures the system finds all your pages, not just the ones linked from the homepage.
 </Callout>
 
-### Documents
+### 5. Instructions
+Custom instructions are for specific scenarios or edge cases. These are like sticky notes for your AI — "always mention our 30-day guarantee" or "if someone asks about X, explain Y". They're great for business rules that don't fit neatly into documents or products.
 
-Upload PDF or Word files containing your policies, product documentation, onboarding guides, or any other reference material. Autoch.at will extract the text and make it available to your assistant.
+### 6. FAQs
+FAQs are the most targeted type of training context. Each FAQ is a specific question-and-answer pair. FAQs take priority over other context types when the customer's question closely matches the FAQ question.
 
-Supported formats include PDF, DOCX, and plain text files.
-
-### FAQs
-
-FAQs are the most targeted type of training context. Each FAQ is a specific question-and-answer pair that you write directly in Autoch.at.
-
-Use FAQs for:
-- Questions that come up constantly and need a precise, consistent answer
-- Topics where your documents are too long or too general
-- Edge cases that your website doesn't cover
-
-FAQs take priority over other context types when the customer's question closely matches the FAQ question.
-
-### Custom text
-
-Custom text is a free-form field where you can paste in any content that doesn't fit the other formats — internal notes, product descriptions, pricing tables, or anything else. It's the most flexible option and works well for short, structured information.
+You can add FAQs in three ways:
+- **Add manually** — Write individual question-and-answer pairs directly in the app.
+- **Import CSV** — Upload a spreadsheet of FAQs.
+- **Import from URL** — Paste a link to your website's FAQ page (or paste the HTML directly). Autoch.at will scan the page, extract the questions and answers, let you preview them, and import them as drafts.
 
 ## Managing your knowledge base
 
@@ -51,8 +53,8 @@ Custom text is a free-form field where you can paste in any content that doesn't
 Stale training context leads to wrong answers. Make it a habit to review your knowledge base after major product releases, policy changes, or pricing updates.
 
 1. Go to **AI Assistant > Training Context**.
-2. Find the outdated item (document, link, FAQ, or custom text).
-3. Edit or re-crawl it to reflect the current information.
+2. Find the outdated item across the various tabs.
+3. Edit, re-sync, or re-crawl it to reflect the current information.
 4. Delete anything that's no longer accurate.
 
 <Callout kind="warning">

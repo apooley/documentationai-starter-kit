@@ -27,6 +27,7 @@ At the top of the conversation list, you can filter by:
 | **Channel** | Chat, SMS, Email, Voice, or Social |
 | **Assignee** | Conversations assigned to you, your team, or unassigned |
 | **Tags** | Conversations labeled with specific tags |
+| **Training Review** | Filter by training review status (All, Good, or Bad) |
 | **Search** | Full-text search across message content and client names |
 
 Use these filters together to quickly find what you're looking for. For example: "Show me all open, unassigned email conversations tagged as Billing Issue."
@@ -44,11 +45,15 @@ Every conversation has a status that tells you where it is in its lifecycle:
 
 You can change a conversation's status from the conversation detail view or by using the quick actions in the conversation list.
 
+Conversations that have been inactive for 30 minutes will automatically close. This triggers the post-close pipeline, which generates an AI summary and syncs the lead to your CRM (if configured).
+
 ## AI vs. human handling
 
 Autoch.at shows you clearly whether a conversation is currently being handled by an AI assistant or a human agent. Look for the indicator at the top of the conversation thread.
 
 When an AI is handling a conversation, it responds automatically. When a human takes over, the AI steps back. You can take over a conversation at any time by clicking **Take Over** — the AI will stop responding and the conversation will be assigned to you.
+
+You'll also see "Training: Good" or "Training: Bad" badges on conversations in the list if they have been reviewed through the Training Review feature.
 
 ## Assigning conversations
 

@@ -1,6 +1,6 @@
 ---
 title: Preferences
-description: Configure workspace-wide defaults for conversation assignment, notifications, business hours, and language settings.
+description: Configure workspace-wide defaults for conversation assignment, notifications, business hours, CRM sync, and language settings.
 ---
 
 ## Workspace preferences
@@ -34,12 +34,21 @@ Set your workspace's operating hours. Business hours are used in several places:
 
 Set your timezone first, then define your hours for each day of the week. You can set different hours for different days, or mark a day as closed.
 
+## CRM Lead Sync
+
+When a conversation is inactive for 30 minutes, it automatically closes. At this point, Autoch.at can automatically sync the lead to your connected CRM.
+
+You can configure which leads get synced:
+- **All leads** — Every closed conversation syncs to your CRM.
+- **Qualified leads only** — Only conversations where the AI successfully qualified the lead (based on your Qualification Settings) will sync.
+
 ## Notifications
 
 Configure how your workspace delivers notifications to agents:
 
 - **Browser notifications** — Pop-up alerts in the browser when a new conversation is assigned or a customer replies.
-- **Email notifications** — Email alerts for new assignments, mentions in internal notes, or conversations that have been waiting too long.
+- **Email notifications** — Toggle email alerts on or off for the workspace.
+- **Notification triggers** — Choose which events trigger notifications (e.g., notify on all new conversations, or only when a lead is marked as qualified/unqualified).
 - **Notification frequency** — Choose between real-time notifications or a digest (e.g., a summary every 30 minutes).
 
 Individual agents can also customize their own notification preferences from their Profile page — workspace preferences set the defaults.
