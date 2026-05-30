@@ -42,6 +42,20 @@ Before going live with a new assistant or playbook, we recommend testing:
 Try to "break" your AI assistant in the playground before your customers do. Ask it confusing questions, give it incomplete information, and try to steer it off-topic. The more edge cases you find in testing, the better your customers' experience will be.
 </Callout>
 
+## Training mode slash commands
+
+If your assistant has **Training mode (web chat)** enabled, you can type special slash commands directly in the widget to control the session:
+
+| Command | What it does |
+|---|---|
+| `/clear` | Fully resets the widget session — wipes the stored contact (name and email), conversation, draft, and session tracking, then restarts name/email collection from scratch. This does not send any message to the AI. |
+| `/flag-good` | Marks the current conversation as a good training example |
+| `/flag-bad` | Marks the current conversation as a bad training example |
+
+<Callout kind="tip">
+Use `/clear` when you want to simulate a brand-new visitor starting fresh — for example, to test your name/email collection flow again without refreshing the browser.
+</Callout>
+
 ## Resetting the playground
 
-If you want to start fresh (for example, to test a different scenario from the beginning), click **Reset Conversation** to clear the current thread and start a new one.
+If you want to start fresh (for example, to test a different scenario from the beginning), click **Reset Conversation** to clear the current thread and start a new one. This is equivalent to typing `/clear` in the widget when training mode is active.
