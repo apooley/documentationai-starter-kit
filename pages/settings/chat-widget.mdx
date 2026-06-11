@@ -1,116 +1,101 @@
 ---
-title: Chat Widget
-description: Configure and deploy the Autoch.at chat widget on your website — including appearance, launcher styles, behavior, and the JavaScript API.
+title: "Chat Widget"
+description: "Configure the appearance, behavior, and tracking of your website chat widget."
+icon: "message-circle"
 ---
 
-## Your website's chat interface
+The Chat Widget settings allow you to customize how the Autoch.at widget looks and behaves on your website. You can adjust colors, text, launcher styles, and proactive messaging to match your brand.
 
-The **Chat Widget** (configured at **Settings > Chat Widget**) is the floating chat button and conversation window that appears on your website. It's how your visitors start a chat conversation with your AI assistant or your team.
+## Widget Configuration
 
-Getting the widget right is important — it's often the first interaction a customer has with your AI.
+These settings control the visual appearance of the widget on your website.
 
-## Installation
+### Launcher Style
 
-To add the widget to your website:
+Choose how the widget button appears when closed:
+- **Floating circle**: A standard circular button in the corner of the screen.
+- **Bottom-right bar**: A wide rectangular bar docked to the bottom right.
+- **Centre-left bar**: A vertical rectangular bar docked to the middle left of the screen.
 
-1. Go to **Settings > Chat Widget**.
-2. Copy the installation code snippet.
-3. Paste it into the head or just before the closing body tag of every page where you want the widget to appear.
+### Launcher Content
 
-The widget will load automatically once the script is on the page.
+Control what is displayed inside the launcher button:
+- **Icon only**: Shows only the chat icon.
+- **Text only**: Shows only the text label.
+- **Icon + text**: Shows both the icon and the text label.
 
-<Callout kind="tip">
-If you use a tag manager like Google Tag Manager, you can add the widget script there instead of editing your site's code directly. This makes it easy to deploy and update without a developer.
+<Callout kind="info">
+When using **Text only** or **Icon + text**, you can customize the text using the **Launcher Text** field (e.g., "Chat with us").
 </Callout>
 
-## Appearance
+### Theme and Colors
 
-### Launcher style
+- **Theme**: Choose between Light and Dark mode for the widget interface.
+- **Widget Color**: The primary accent color used for the widget button, highlights, and active states. Enter a hex code (e.g., `#3B82F6`) or use the color picker to match your brand.
+- **Header Font Colour**: The color of the company name text in the open widget header. This is useful if your widget color is light and you need dark text for contrast.
 
-You can customize how the closed widget launcher appears on your site:
+### Branding and Images
 
-- **Floating circle** (default) — A circular button in the bottom corner.
-- **Bottom-right bar** — A horizontal bar docked flush to the bottom-right edge of the viewport.
-- **Centre-left bar** — A vertical bar docked flush to the left edge of the viewport, vertically centered.
+- **Greeting Message**: The default message shown at the top of the chat window before a conversation starts.
+- **Avatar URL**: An optional image URL for the AI assistant's avatar.
+- **Header Icon URL**: An optional image URL for the icon shown in the widget header.
+- **Header Wordmark URL**: An optional image URL for a full logo/wordmark in the header. If provided, this replaces the text-based company name.
 
-### Launcher content
+### White Labeling
 
-For the closed launcher, you can choose what content to display:
+If your workspace has the White Label add-on enabled, you can check the **Hide "Powered by" disclaimer** box to remove the Autoch.at branding from the bottom of the widget.
 
-- **Icon only** (default) — Shows the chat icon (or your custom header icon).
-- **Text only** — Shows a text label (e.g., "Chat with us").
-- **Icon + text** — Shows both the icon and the text label.
+<Callout kind="warning">
+We recommend keeping a disclaimer on AI-assisted experiences for transparency and compliance. You are responsible for any disclosure obligations in your jurisdiction.
+</Callout>
 
-If you select a text option, you can customize the **Launcher Text** field.
+## Proactive Messaging
 
-### Widget position
+Proactive messaging allows you to show a message bubble above the chat launcher when visitors meet certain conditions. Clicking the bubble opens the chat with your message.
 
-Choose where the open chat panel appears on the page — bottom-right or bottom-left. Bottom-right is the most common convention and what most visitors expect.
+To use this feature, toggle **Enable proactive messaging**.
 
-*(Note: If you use the "Floating circle" launcher style, this setting also controls which corner the circle appears in.)*
+### Message Template
 
-### Greeting message
+This is the text shown in the proactive bubble above the launcher. If the visitor clicks the bubble to open the chat, this text will appear as the first message from the assistant.
 
-Set the message that appears in the chat window when a visitor first opens it. A good greeting is welcoming and sets expectations:
+### Triggers
 
-> "Hi there! I'm your AI assistant. Ask me anything about our products, or I can connect you with our team."
+Configure when the proactive bubble should appear:
 
-### Widget color and logo
+- **Time on page**: Show the bubble after the visitor has been on the page for a specific number of seconds.
+- **Scroll depth**: Show the bubble after the visitor scrolls down a certain percentage of the page (e.g., 50%).
+- **Custom events**: Trigger the bubble when a user interacts with specific elements on your site. You can add multiple events based on:
+  - **Hover**: When the user hovers over an element.
+  - **Click**: When the user clicks an element.
+  - **Focus**: When the user focuses on an input field.
+  
+  For custom events, provide the CSS selector of the target element (e.g., `#pricing-button` or `.cta-link`).
 
-The widget inherits your brand colors and logo from **Settings > Branding**. You can override them here if you want the widget to use different colors from the rest of your branding.
+<Callout kind="tip">
+By default, proactive messages are set to **Show only once per session** to prevent annoying visitors with repeated popups. You can disable this if you want the bubble to trigger multiple times.
+</Callout>
 
-## Launch behavior
+## Allowed Domains
 
-### Proactive triggers
+For security, the widget will only load on domains you explicitly authorize. 
 
-You can configure the widget to open automatically based on visitor behavior:
+1. Enter your website domain (e.g., `example.com`).
+2. Click **Add Domain**.
+3. The widget will now function on that domain and any of its subdomains.
 
-- **Time on page** — Open after the visitor has been on the page for X seconds.
-- **Scroll depth** — Open when the visitor scrolls to a certain percentage of the page.
-- **Exit intent** — Open when the visitor moves their cursor toward the browser's close button.
-- **Specific pages** — Only trigger on certain URLs (e.g., your pricing page or checkout).
+## Embed Code
 
-Use proactive triggers carefully — an intrusive widget that pops up immediately can hurt more than it helps.
+Once you have configured your widget and added your allowed domains, click **Generate token** to create your unique embed code. 
 
-### Allowed domains
+Copy this code snippet and paste it into the `<head>` or `<body>` of your website's HTML.
 
-For security, you can restrict the widget to only load on specific domains. This prevents someone from copying your installation code and embedding your widget on their own site.
+## Tracking Integrations
 
-## The JavaScript API
+The Tracking tab allows you to connect your chat widget to external analytics platforms.
 
-For more advanced integrations, Autoch.at provides a JavaScript API that lets you control the widget programmatically from your website's code.
+- **Google Analytics (GA4)**: Enter your Measurement ID (e.g., `G-XXXXXXXXXX`) to send chat events to GA4.
+- **Meta Pixel**: Enter your Pixel ID to send chat events to Facebook/Meta.
+- **PostHog**: Enter your PostHog API Key and Host URL to track widget interactions.
 
-### Opening and closing the widget
-
-```javascript
-// Open the chat widget
-AutochatWidget.open();
-
-// Close the chat widget
-AutochatWidget.close();
-```
-
-### Identifying the visitor
-
-If you know who the visitor is (for example, they're logged into your app), you can pass their identity to Autoch.at so the conversation is automatically linked to their client record:
-
-```javascript
-AutochatWidget.identify({
-  name: "Jane Smith",
-  email: "jane@example.com",
-  phone: "+1-555-0100"
-});
-```
-
-### Passing custom attributes
-
-You can also pass custom data that will be available to your AI assistant and visible in the conversation detail:
-
-```javascript
-AutochatWidget.setAttributes({
-  plan: "Pro",
-  accountId: "ACC-12345"
-});
-```
-
-This is particularly useful for support scenarios — your AI can greet the customer by name and already know their account details before they say a word.
+When enabled, the widget automatically fires events for actions like opening the widget, starting a conversation, and completing a goal.

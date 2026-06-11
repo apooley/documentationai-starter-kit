@@ -1,60 +1,102 @@
 ---
-title: Preferences
-description: Configure workspace-wide defaults for conversation assignment, notifications, business hours, CRM sync, and language settings.
+title: "Preferences"
+description: "Configure your notification preferences, CRM sync rules, and personal settings."
+icon: "sliders"
 ---
 
-## Workspace preferences
+The Preferences page allows you to customize how your workspace handles notifications, CRM synchronization, and personal interface settings.
 
-The **Preferences** page (at **Settings > Preferences**) controls the default behavior of your workspace — things like how new conversations are assigned, what timezone your reports use, and how notifications are delivered.
+## Call Recording
 
-## Conversation assignment
+If you have provisioned a Telnyx voice number, you can enable call recording here. 
 
-### Auto-assignment
+When **Enable call recording for Telnyx voice calls** is checked, all inbound and outbound calls will be recorded. Callers will hear an automated notification that the call is being recorded for training, quality, and compliance purposes.
 
-When auto-assignment is enabled, new conversations are automatically assigned to an available agent rather than sitting unassigned in the shared queue.
+## CRM Integration
 
-You can choose between two assignment strategies:
+This section provides a quick link to open the CRM application. If you don't have a CRM account yet, clicking **Open CRM** will automatically create one for you and link it to your workspace.
 
-- **Round robin** — New conversations are distributed evenly across all available agents, cycling through the list in order.
-- **Least busy** — New conversations are assigned to the agent who currently has the fewest open conversations.
+## Storage Usage
 
-If no agents are available (everyone is offline or at capacity), conversations remain unassigned until an agent becomes available.
+Monitor your workspace's storage consumption. This includes:
+- **Database**: Storage used by your contacts, conversations, and training data.
+- **Recordings**: Storage used by voice call recordings.
 
-### Capacity limits
+## Setup Wizard
 
-Set a maximum number of simultaneous open conversations per agent. When an agent reaches their limit, new conversations won't be auto-assigned to them until they resolve or transfer some of their existing ones.
+The Setup Wizard guides you through the essential steps of configuring your workspace, such as creating an assistant, adding knowledge, and testing the chat widget.
 
-## Business hours
+- **Open Setup Wizard**: Click this button to launch the onboarding wizard at any time. Your completed steps are preserved, so you can resume where you left off.
+- **Show Setup Wizard button**: When enabled, a floating Setup Wizard button will appear in the bottom-right corner of your dashboard until you complete all onboarding steps. You can disable this if you prefer to hide the floating button.
 
-Set your workspace's operating hours. Business hours are used in several places:
+## Lead Notification Settings
 
-- **Routing rules** — You can route conversations differently outside business hours (e.g., to an AI assistant instead of a human team).
-- **Workflows** — Conditions like "outside business hours" use this setting.
-- **Response time expectations** — The AI can reference your business hours when customers ask when they'll hear back from a human.
+Configure how and when you receive notifications about new leads.
 
-Set your timezone first, then define your hours for each day of the week. You can set different hours for different days, or mark a day as closed.
+### CRM Lead Sync
 
-## CRM Lead Sync
+When a conversation is inactive for 30 minutes, it automatically closes. At this point, the system can sync the lead data to your connected CRM (requires CRM Connection sync to be enabled).
 
-When a conversation is inactive for 30 minutes, it automatically closes. At this point, Autoch.at can automatically sync the lead to your connected CRM.
+Choose your sync rule:
+- **Send all leads to CRM**: Every captured lead is synced, regardless of their qualification score.
+- **Only send qualified leads to CRM**: Only leads that meet your Qualification Settings criteria will be synced.
 
-You can configure which leads get synced:
-- **All leads** — Every closed conversation syncs to your CRM.
-- **Qualified leads only** — Only conversations where the AI successfully qualified the lead (based on your Qualification Settings) will sync.
+### Notification Triggers
 
-## Notifications
+Choose which events trigger an email notification:
+- **Notify when lead is qualified**: Receive an alert when a lead meets your qualification criteria.
+- **Notify when lead is unqualified**: Receive an alert when a lead fails to meet your qualification criteria.
 
-Configure how your workspace delivers notifications to agents:
+### Email Notifications
 
-- **Browser notifications** — Pop-up alerts in the browser when a new conversation is assigned or a customer replies.
-- **Email notifications** — Toggle email alerts on or off for the workspace.
-- **Notification triggers** — Choose which events trigger notifications (e.g., notify on all new conversations, or only when a lead is marked as qualified/unqualified).
-- **Notification frequency** — Choose between real-time notifications or a digest (e.g., a summary every 30 minutes).
+Add the email addresses that should receive the lead notifications configured above. You can add multiple recipients.
 
-Individual agents can also customize their own notification preferences from their Profile page — workspace preferences set the defaults.
+### SMS Notifications
 
-## Language and locale
+Add phone numbers (in E.164 format, e.g., `+1234567890`) to receive SMS alerts for major system events.
 
-Set the default language for the workspace interface. This affects the language of the Autoch.at UI for all agents in the workspace.
+You can opt-in to specific alert types:
+- **Usage threshold alerts**: Get notified when your workspace reaches 80% and 100% of its usage limits.
+- **BYOK key failure alerts**: Get notified if your Bring Your Own Key (OpenAI/Anthropic) API key fails or is rejected.
+- **Security alerts**: Get notified of HIGH and CRITICAL security events.
 
-Note that this is separate from the language your AI assistants use to communicate with customers — that's configured in each assistant's persona settings.
+## Custom Webhook
+
+You can configure a custom webhook to receive JSON payloads when conversations close.
+
+1. Toggle **Enable Webhook**.
+2. Select what data to include in the payload:
+   - **Include conversation summary**: Adds the AI-generated summary of the conversation.
+   - **Include contact details**: Adds the captured name, email, and phone number.
+   - **Include qualification score**: Adds the lead's qualification status and score.
+3. Click **Save Notification Preferences**.
+
+## n8n Webhooks
+
+If you use n8n for automation, you can send signed event payloads directly to your n8n workflows.
+
+1. Click **Add Webhook** and enter your n8n webhook URL.
+2. The system will send a test event immediately to verify the connection.
+3. Payloads are signed using HMAC SHA-256 with the `X-Autochat-Signature` header and a timestamp in `X-Autochat-Timestamp`.
+
+## Webhook Goals
+
+Goals allow you to trigger webhooks (`goal.triggered.v1`) when specific conditions are met during a conversation.
+
+1. Click **Add Goal** to define a new condition.
+2. Configure the **Per-conversation goal cap** to limit how many times goals can fire in a single conversation (1-25).
+3. Choose what data to include in the goal payload:
+   - **Include contact name and value**: Adds the contact's details.
+   - **Include AI summary**: Adds a summary of the context that triggered the goal. You can choose the summary detail level (Short, Medium, or Long).
+
+## Phone Number Provisioning
+
+If your plan allows it, you can provision a voice-capable phone number for your assistant directly from this page. Click **Provision Phone Number** to select a local number.
+
+## Keyboard Shortcuts
+
+Toggle **Enable Shortcuts** to turn on keyboard shortcuts for the application interface (e.g., `Cmd+K` for the command menu).
+
+## Default Currency
+
+Select the default currency used for billing and financial metrics in your workspace.

@@ -1,76 +1,53 @@
 ---
-title: Use the organization dashboard
-description: Learn what the dashboard shows, how to adjust the time range and refresh data, and how to use key sections to monitor conversations, leads, and system readiness.
+title: "Dashboard"
+description: "Your central hub for monitoring assistant performance, system status, and quick actions."
+icon: "layout-dashboard"
 ---
 
-## What the dashboard is for
+The Dashboard is the first screen you see when you log in. It provides a high-level overview of your workspace's health, recent activity, and quick access to common tasks.
 
-The dashboard at `/dashboard` is your home base for understanding how your AI assistants are performing. It gives you a live snapshot of conversations, qualified leads, channel activity, and system health for your organization.
+## Quick Actions
 
-Use it to answer questions like:
-- How many conversations and leads are we getting?
-- Which channels and assistants are busiest?
-- Is the system configured and ready for new campaigns?
-- Where should I click next to investigate or take action?
+At the top of the dashboard, you'll find quick action buttons to jump straight into common workflows:
+- **Test Assistant**: Opens the Widget Playground to test your AI assistant.
+- **Add Knowledge**: Takes you to the Training Context page to upload documents or add website URLs.
+- **View Conversations**: Opens the Conversations Inbox to review recent chats.
 
-<Callout kind="info">
-What you see on the dashboard depends on your permissions, plan, and integrations. Voice tiles only appear if your organization includes voice, and CRM widgets only appear after you connect a CRM.
-</Callout>
+## Setup Wizard
 
-## Time range and refresh controls
+If you are new to Autoch.at, you will see a **Setup Wizard** card on your dashboard. This wizard guides you through the essential steps to get your workspace ready:
+1. Explore your dashboard
+2. Create your first assistant
+3. Add business knowledge
+4. Test your setup
+5. Set up widget tracking (if enabled)
 
-The controls at the top of the page decide which data you see and how fresh it is.
+You can click **Resume Setup** to continue where you left off. Once completed, the card will disappear, but you can always reopen the wizard from **Settings > Preferences**.
 
-### Time range selector
+## System Status
 
-Use the time range selector to set the window for all metrics and widgets:
-- **Last 24 hours**
-- **Last 7 days**
-- **Last 30 days** (Default)
-- **Last 90 days**
+The System Status panel shows the health and configuration state of your communication channels:
+- **Chat Widget**: Shows if your web widget is active and configured.
+- **Email**: Shows if your inbound email forwarding is set up.
+- **SMS**: Shows if you have provisioned a phone number for SMS.
+- **Voice**: Shows if you have provisioned a phone number for voice calls.
 
-When you switch the range, all numbers, charts, and insights update to match that period. Start with **Last 7 days** for a quick weekly view, then expand to **Last 30 days** when you want to see longer trends.
+If a service is not yet configured, you will see a red **Setup** badge. Clicking the service will take you directly to the relevant settings page.
 
-### Last updated and refresh
+## Performance Metrics
 
-Next to the greeting, the dashboard shows:
-- **Last updated** — when the data was last refreshed.
-- A **Refresh** button — to update the dashboard immediately.
+The dashboard displays key metrics for the current billing period:
+- **Total Conversations**: The number of unique conversations handled by your assistant.
+- **Messages Sent**: The total number of messages sent by the AI.
+- **Human Handoffs**: The number of times a conversation was escalated to a human agent.
+- **Avg. Resolution Time**: The average time it takes to close a conversation.
 
-Use **Refresh** when you expect a spike in activity (for example, after launching a campaign) and want the latest counts and insights without waiting.
+## Recent Activity
 
-After you click refresh, watch for:
-- The last updated timestamp to change.
-- Stats, insights, and recent activity to reflect the latest conversations for the selected time range.
+The Recent Activity feed shows a real-time log of events in your workspace, such as:
+- New conversations started
+- Leads qualified
+- Human handoffs requested
+- Training context updates completed (e.g., website crawls finished)
 
-## Stats grid and key metrics
-
-The stats grid highlights the most important numbers for your organization at a glance.
-
-Common tiles include:
-- **Total Conversations** — All conversations in the selected time range.
-- **Qualified Leads** — How many conversations became qualified leads, and the conversion rate.
-- **Voice Calls** — Voice conversations for the period, when voice is part of your plan.
-- **Active Channels** — The number of channels currently active and receiving messages.
-
-## Insights Panel
-
-The Insights panel uses AI to analyze your recent performance and generate actionable insights. Click **Generate Insights** to have the system review your recent conversations and highlight trends, issues, or opportunities.
-
-## Quick Actions and System Status
-
-Below the main stats, you'll find sections designed to help you navigate quickly:
-
-### Quick Actions
-- **Conversations**: Quick links to view Chat, SMS, Email, and Voice conversations, along with their current counts.
-- **Assistants**: A quick link to view your configured assistants.
-- **Training**: A quick link to access your Training Assets (Context).
-
-### System Status
-This panel provides a quick health check of your setup:
-- **Your system phone number**: Displays your primary provisioned phone number with a quick copy button.
-- **Service Status**: Shows the current status (Active/Inactive) for Chat, SMS, Email, and Voice channels.
-
-## Onboarding Tour
-
-If you are new to Autoch.at, you may see a prompt to **Start Tour**. This interactive guide will walk you through the key features of the dashboard and help you get started faster. You can choose to **Skip** it if you prefer to explore on your own.
+Clicking on an activity item will take you directly to the relevant conversation or settings page.
