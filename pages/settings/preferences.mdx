@@ -28,6 +28,8 @@ The Setup Wizard guides you through the essential steps of configuring your work
 
 - **Open Setup Wizard**: Click this button to launch the onboarding wizard at any time. Your completed steps are preserved, so you can resume where you left off.
 - **Show Setup Wizard button**: When enabled, a floating Setup Wizard button will appear in the bottom-right corner of your dashboard until you complete all onboarding steps. You can disable this if you prefer to hide the floating button.
+- **Show contextual help icons**: Controls the question-mark help icons shown next to labels and settings across the app.
+- **Reset onboarding progress**: Click this if you want to walk through the Setup Wizard from the beginning again.
 
 ## Lead Notification Settings
 
@@ -50,6 +52,20 @@ Choose which events trigger an email notification:
 ### Email Notifications
 
 Add the email addresses that should receive the lead notifications configured above. You can add multiple recipients.
+
+### Structured Email (XML)
+
+Send ADF (Auto Lead Data Format) or custom XML lead emails automatically after a conversation closes and the inactivity summary is generated. This is useful for integrating with legacy CRMs or automotive dealership systems that ingest leads via email.
+
+1. Toggle **Enable structured XML email**.
+2. Add one or more **Recipients**.
+3. Choose your **Format**:
+   - **ADF**: Standard automotive lead format. You can configure the Vendor Name, Provider Name, Service, and URL, and map Autoch.at fields (like Name, Email, Phone, Summary) to specific ADF XML paths.
+   - **Freeform**: Write your own custom XML template. You can use smart tags like `{{name}}`, `{{email}}`, `{{phone}}`, and `{{display_summary}}` to inject lead data into your template.
+
+<Callout kind="info">
+ADF XML is sent via Autoch.at's dedicated email service to ensure CRM-compatible delivery.
+</Callout>
 
 ### SMS Notifications
 
