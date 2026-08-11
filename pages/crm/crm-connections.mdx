@@ -1,6 +1,6 @@
 ---
 title: CRM Connections
-description: Sync your Autoch.at client records with Salesforce, HubSpot, or other CRMs — keeping your contact data consistent across tools.
+description: Sync your Autoch.at client records with Salesforce, HubSpot, Microsoft Dynamics, or other CRMs — keeping your contact data consistent across tools.
 ---
 
 ## Keep your CRM in sync
@@ -11,6 +11,7 @@ When a customer chats with your AI assistant and gets qualified as a lead, that 
 
 ## Supported CRMs
 
+- **Microsoft Dynamics 365** — Entities, contacts, leads, accounts, and annotations
 - **HubSpot** — Contacts, companies, deals, and notes
 - **Salesforce** — Contacts, leads, accounts, and activities
 - **Pipedrive** — Contacts, deals, and notes
@@ -43,6 +44,12 @@ Map the fields in Autoch.at to the corresponding fields in your CRM. For example
 
 Custom fields you've created in Autoch.at can also be mapped to custom fields in your CRM.
 
+#### Microsoft Dynamics 365 Field Mapping
+For Microsoft Dynamics, you have granular control over exactly which Dataverse table (Entity) receives your leads. 
+- You can select the target table (e.g., `contact`, `lead`, `account`) and map Autoch.at fields to specific Dynamics attributes.
+- **Autochat Notes**: You can map the `autochat_notes` platform field to a Dynamics attribute and set its write mode to **Append** or **Replace**. Using Append allows you to push structured notes into the same memo field as the conversation summary without overwriting it.
+- Note: Standard Annotation notes are still attached to the contact/lead/account automatically when supported.
+
 ### Conversation sync
 
 Choose whether to sync conversation summaries and notes to your CRM. When enabled, a note is added to the contact's record in your CRM each time a conversation is resolved, summarizing what was discussed.
@@ -52,5 +59,5 @@ Choose whether to sync conversation summaries and notes to your CRM. When enable
 The CRM Connections page shows the status of your connection and a log of recent sync activity. If a sync fails (for example, because a required field is missing), the error will appear here with details about what went wrong.
 
 <Callout kind="info">
-If your CRM connection shows an error, the most common cause is an expired authorization token. Click **Reconnect** to re-authorize and restore the connection.
+If your CRM connection shows an error, the most common cause is an expired authorization token. Click **Reconnect** to re-authorize and restore the connection. For Microsoft Dynamics, if your connection drops, you can often use the **Reconnect with saved credentials** button to restore access without needing to re-enter your environment details.
 </Callout>

@@ -26,7 +26,15 @@ Give your playbook a clear name that describes its purpose — something like "L
 
 ### Goal
 
-The goal is a single sentence that describes what the assistant is trying to achieve. For example: "Determine if the user is a qualified buyer and collect their name, company, and email address."
+The Primary Goal describes what the assistant is trying to achieve. This is a multi-line field, allowing you to break down complex goals into readable paragraphs or bullet points. 
+
+For example:
+```text
+Determine if the user is a qualified buyer.
+- Collect their name, company, and email address.
+- Ask about their current software stack.
+- Find out their timeline for implementation.
+```
 
 The AI uses this goal to stay on track. If the conversation drifts, it will steer back towards the goal.
 

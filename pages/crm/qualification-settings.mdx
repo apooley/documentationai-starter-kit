@@ -5,7 +5,7 @@ description: Define the criteria your AI uses to qualify leads — the questions
 
 ## What makes a qualified lead?
 
-**Qualification Settings** (at **CRM > Qualification Settings**) is where you define what a "qualified lead" means for your business. Your AI assistant uses these settings to guide qualification conversations — asking the right questions, collecting the right information, and making the right call about whether a lead meets your criteria.
+**Qualification Settings** (at **Configuration > AI Assistant > Qualification Settings**) is where you define what a "qualified lead" means for your business. Your AI assistant uses these settings to guide qualification conversations — asking the right questions, collecting the right information, and making the right call about whether a lead meets your criteria.
 
 Getting this right is one of the highest-value things you can do in Autoch.at. A well-configured qualification setup means your sales team only spends time on leads that are actually worth pursuing.
 
@@ -22,7 +22,7 @@ Qualification fields are the pieces of information your AI collects from a prosp
 
 ### Adding a qualification field
 
-1. Go to **CRM > Qualification Settings**.
+1. Go to **AI Assistant > Qualification Settings**.
 2. Click **Add Field**.
 3. Choose the field type (text, number, dropdown, yes/no).
 4. Give it a label (e.g., "Budget Range") and, if it's a dropdown, add the options.
@@ -37,15 +37,24 @@ Qualification criteria are the rules that determine whether a lead is "qualified
 - Company size is more than 50 employees
 - Timeline to purchase is within 6 months
 
+### Required Contact Fields
+
+You can specify which contact details a lead must provide to be considered qualified. 
+
+- **Require Email or Phone**: Use this when either contact method is enough. (This option takes precedence over the individual Email/Phone checkboxes).
+- **Require Email**: The lead must provide an email address.
+- **Require Phone**: The lead must provide a phone number.
+- **Require Company**: The lead must provide a company name.
+
 ### Setting up criteria
 
-1. In **CRM > Qualification Settings**, go to the **Criteria** tab.
+1. In **AI Assistant > Qualification Settings**, go to the **Criteria** tab.
 2. Click **Add Criterion**.
 3. Select the field to evaluate, the comparison operator, and the value.
 4. Add as many criteria as you need.
 5. Choose whether all criteria must be met (AND) or just one (OR).
 
-When a qualification conversation ends, Autoch.at evaluates the collected data against your criteria and marks the lead as Qualified or Not Qualified automatically.
+As the conversation progresses, Autoch.at evaluates the collected data against your criteria in real-time. The current qualification status and extracted data are visible directly in the Conversation Detail view.
 
 ## Qualification scoring (optional)
 
