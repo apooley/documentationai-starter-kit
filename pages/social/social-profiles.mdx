@@ -39,6 +39,50 @@ For Facebook and Instagram, Autoch.at provides a **Native Meta Connector**. This
 
 When connecting a Facebook or Instagram account, you'll see the option to use the Native Meta Connector. Select your workspace and starting platform, then click **Connect via Native Meta** to authorize the connection directly with Meta.
 
+## Native Meta DM support
+
+The Native Meta Connector now fully supports DM (direct message) conversations — both inbound and outbound — for Facebook and Instagram. This means your AI assistant can handle Meta DMs end-to-end, just like it handles chat, SMS, and email.
+
+### Connecting Meta DMs
+
+The connection uses Meta's OAuth flow to authorize DM access for your connected Facebook Page or Instagram Business account.
+
+<Steps>
+  <Step title="Go to Social Profiles" icon="users">
+    Navigate to **Social Media > Profiles** and click **Connect Account**.
+  </Step>
+  <Step title="Select Meta" icon="facebook">
+    Choose Facebook or Instagram as the platform.
+  </Step>
+  <Step title="Authorize via OAuth" icon="lock">
+    You'll be redirected to Meta's authorization page. Log in with the account that manages your Page and grant DM access permissions.
+  </Step>
+  <Step title="Return to Autoch.at" icon="check-circle">
+    After authorization, you'll be returned to Autoch.at. The account will appear as connected and DMs will start flowing into your inbox.
+  </Step>
+</Steps>
+
+### Inbound DM processing
+
+When a user sends a DM to your connected Facebook Page or Instagram Business account, the message is received, processed, and routed through Autoch.at just like any other channel:
+
+- DMs appear in your [Conversations Inbox](/pages/conversations/conversations) alongside chat, SMS, and email.
+- DM history is persisted — you can view the full conversation thread, including messages sent before Autoch.at was connected.
+- Your AI assistant can respond automatically based on its playbook and persona configuration.
+- Your team can take over and reply directly from Autoch.at.
+
+### Compliance callbacks
+
+DM interactions are subject to Meta's messaging policies. The Native Meta Connector handles compliance callbacks natively, ensuring that your DM interactions — including AI-generated responses — meet Meta's requirements for response windows, messaging types, and user consent.
+
+<Callout kind="warning">
+You are responsible for ensuring your AI assistant's DM responses comply with Meta's messaging policies, including the 24-hour messaging window and restrictions on promotional content. Violating Meta's policies can result in messaging restrictions or account suspension.
+</Callout>
+
+<Callout kind="info">
+Orphan Default Profiles — profiles created during initial setup that were never fully configured — are cleaned up automatically. No manual action is needed.
+</Callout>
+
 ## What happens after connecting
 
 Once connected:

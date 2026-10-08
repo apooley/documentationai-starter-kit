@@ -71,3 +71,25 @@ Leads above a certain score threshold are marked as qualified. This gives you mo
 Once your qualification settings are configured, qualified leads appear in **CRM > Clients** with a "Qualified" badge. You can filter the client list to show only qualified leads and sort by qualification score.
 
 If you've connected a CRM, qualified leads can also be automatically pushed to your CRM as new contacts or deals.
+
+## ADF (Automated Data Forwarding)
+
+When a lead qualifies, Autoch.at can automatically send an ADF (Structured XML Email) to your CRM or lead recipient. ADF is the standard format for delivering lead data to automotive and real estate CRM systems.
+
+### ADF on qualification
+
+The **Send ADF on qualification** toggle (preference key: `structured_xml_email_on_qualification`, default: on) controls whether ADF is sent automatically when a lead qualifies. When enabled, the ADF fires as soon as the lead meets your qualification criteria. When disabled, ADF sends are manual only — you'll need to trigger them from the [Conversation Detail](/pages/conversations/conversation-detail) page using the Resend ADF button.
+
+### Quiet-window delay
+
+After a lead is provisionally qualified, the system waits for a quiet window — a period of conversation silence — before summarizing and sending the ADF. This ensures the conversation has settled and the ADF summary captures the latest context, rather than cutting off a conversation that's still active.
+
+This behavior is automatic. No configuration is needed.
+
+### Deferred ADF until contact info
+
+ADF sales sends are deferred until the lead has an email address or phone number on file. If the lead qualifies but hasn't yet provided contact information, the system waits. Once an email or phone number lands in the lead record, the ADF sends automatically.
+
+<Callout kind="warning">
+If contact information is never collected, the ADF will not send. Make sure your qualification flow requires at least an email or phone number, or follow up manually using the Resend ADF button in the [Conversation Detail](/pages/conversations/conversation-detail) view.
+</Callout>

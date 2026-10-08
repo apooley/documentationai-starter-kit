@@ -112,3 +112,39 @@ The Tracking tab allows you to connect your chat widget to external analytics pl
 - **PostHog**: Enter your PostHog API Key and Host URL to track widget interactions.
 
 When enabled, the widget automatically fires events for actions like opening the widget, starting a conversation, and completing a goal.
+
+## Tracking Configuration
+
+The **Tracking** tab in Chat Widget settings lets you enable tracking and manage event mappings. Event mappings connect widget events to external tracking outcomes — for example, mapping a "Lead Qualified" event to a specific conversion goal in your analytics platform.
+
+### Enabling tracking
+
+<Steps>
+  <Step title="Open the Tracking tab" icon="bar-chart">
+    Go to **Settings > Chat Widget** and click the **Tracking** tab.
+  </Step>
+  <Step title="Enable tracking" icon="toggle-left">
+    Toggle **Enable tracking** to turn on event tracking for the widget.
+  </Step>
+  <Step title="Create an event mapping" icon="plus">
+    Click **Add event mapping** to create a new outcome. Give it a name (e.g., "Lead Qualified"), select the widget event that should trigger it, and configure the destination.
+  </Step>
+  <Step title="Save" icon="check">
+    Click **Save** to activate the event mapping.
+  </Step>
+</Steps>
+
+### chat_started event
+
+The `autoch.at.chat_started.v1` event is emitted when a user sends their first real message in the widget chat. This is distinct from widget open events — it only fires once the user has actually typed and sent a message.
+
+```json
+{
+  "event": "autoch.at.chat_started.v1",
+  "workspace_id": "ws_abc123",
+  "conversation_id": "conv_xyz789",
+  "timestamp": "2026-09-25T16:41:59Z"
+}
+```
+
+Use this event in analytics funnels to measure widget engagement and drop-off rates — for example, comparing how many visitors open the widget versus how many actually start a conversation.

@@ -85,6 +85,31 @@ Expand the panel to see a chronological log of:
 
 If a delivery fails, the status badge will turn red and you can see the error details in the table. The right sidebar also displays a quick summary of the latest delivery status (e.g., "CRM: Delivered · Notifications: Delivered").
 
+### Manual ADF resend
+
+If an ADF (Automated Data Forwarding) send failed or was missed, you can manually trigger a resend directly from the conversation detail page. This rebuilds the Structured XML from the conversation's current fields and sends it without re-running summarization or replaying the prior email body.
+
+<Steps>
+  <Step title="Open the conversation" icon="message-square">
+    Open the conversation in the Conversation Detail view.
+  </Step>
+  <Step title="Locate the ADF section" icon="send">
+    Scroll to the **Delivery & Sync** panel below the transcript.
+  </Step>
+  <Step title="Click Resend ADF" icon="refresh-cw">
+    Click **Resend ADF** to rebuild and resend the Structured XML.
+  </Step>
+  <Step title="Confirm" icon="check-circle">
+    Confirm the action. The ADF will be generated from the conversation's current state and delivered to your CRM or lead recipient.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+The resend rebuilds the XML from the conversation's current state, so any updates to the lead's contact info or qualification data since the original send will be reflected in the new ADF payload.
+</Callout>
+
+For ADF configuration options, see [Qualification Settings](/pages/crm/qualification-settings).
+
 ## Taking over from the AI
 
 If an AI assistant is currently handling the conversation, you'll see a **Take Over** button at the top of the thread. Click it to:

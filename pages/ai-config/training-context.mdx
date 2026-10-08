@@ -20,6 +20,14 @@ Import your product catalog so your assistant can answer questions about what yo
 
 If your product feed encounters a sync error, you'll see a detailed error message and a **Retry sync** button to manually trigger a fresh pull.
 
+#### Product link validation
+
+The AI now requires `search_products` evidence before sending any product link in chat. When the assistant wants to share a product URL, it first searches your product catalog to verify the product exists. If no matching product is found, the assistant fails closed — it will not send a fabricated or invented link.
+
+<Callout kind="info">
+This means the AI will never hallucinate product URLs. Keep your product catalog and training context up to date so the assistant can find and link to real products. If products are missing from your catalog, the AI won't be able to share links to them — even if they exist on your website.
+</Callout>
+
 ### 2. Documents
 Upload PDF, DOCX, or plain text files containing your policies, product documentation, onboarding guides, or any other reference material. Autoch.at will extract the text and make it available to your assistant.
 

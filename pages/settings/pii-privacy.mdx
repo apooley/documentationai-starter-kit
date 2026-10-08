@@ -26,6 +26,14 @@ This is especially useful if your AI assistants handle conversations where custo
 PII redaction is applied at storage time. Once data is redacted in a transcript, it cannot be recovered. Make sure you only redact data you genuinely don't need to store.
 </Callout>
 
+### Contact data and redaction
+
+Even when PII redaction is turned off, Autoch.at still collects and saves contact data — phone numbers and email addresses — that a user types in the chat widget. This ensures the AI agent doesn't re-ask for contact information the user has already provided.
+
+<Callout kind="info">
+Redaction controls whether PII is visible in conversation transcripts and logs. It does not prevent the system from storing contact data for lead continuity. The underlying contact data is always persisted so your team can follow up with leads, regardless of redaction settings.
+</Callout>
+
 ## Data retention
 
 Data retention settings control how long Autoch.at keeps your conversation history and client records before automatically deleting them.

@@ -76,6 +76,38 @@ Playbooks define what your assistant is trying to achieve in a conversation. You
 
 See [Playbooks](/pages/ai-config/playbooks) for how to create and structure them.
 
+### Product link validation
+
+Your assistant validates product links against your product catalog before sending them in chat. When the AI wants to share a product link, it uses `search_products` to verify that the product actually exists in your catalog. If no matching product is found, the assistant fails closed — it will not send a fabricated or invented URL.
+
+<Callout kind="info">
+This means the AI will never hallucinate product links. Keep your [Training Context](/pages/ai-config/training-context) and product catalog up to date so the assistant can find and link to real products.
+</Callout>
+
+## Cloning an assistant
+
+You can clone an existing assistant to any workspace within the same tenant. This is useful for promoting a tested configuration from a staging workspace to production, or for creating a variant of a working assistant without starting from scratch.
+
+When you clone, the assistant's persona, channel assignments, model settings, and temperature are copied. You can optionally include a copy of the assistant's attached playbook.
+
+<Steps>
+  <Step title="Open the assistant" icon="settings">
+    Go to **AI Assistant > Assistants** and click the assistant you want to clone.
+  </Step>
+  <Step title="Click Clone" icon="copy">
+    Click **Clone** in the assistant's configuration.
+  </Step>
+  <Step title="Select the target workspace" icon="layers">
+    Choose which workspace to clone the assistant into. You can clone to the current workspace or any other workspace in the same tenant.
+  </Step>
+  <Step title="Choose whether to copy the playbook" icon="book-open">
+    Check **Copy playbook** if you want to include a copy of the assistant's attached playbook in the clone. Leave it unchecked if the target workspace already has the playbook you want to use.
+  </Step>
+  <Step title="Confirm" icon="check-circle">
+    Click **Confirm** to create the cloned assistant in the target workspace.
+  </Step>
+</Steps>
+
 ## Testing your assistant
 
 Before sending your assistant live, test it in the **Widget Playground** at **Conversations > Messaging > Widget Playground**. Select the assistant you want to test and interact with it exactly as a customer would.

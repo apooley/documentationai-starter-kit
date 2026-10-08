@@ -38,6 +38,16 @@ Determine if the user is a qualified buyer.
 
 The AI uses this goal to stay on track. If the conversation drifts, it will steer back towards the goal.
 
+### Close chat after goals are met
+
+When a playbook's goals are met, you can choose whether the conversation should close automatically or stay open.
+
+Enable **Close chat after goals are met** if you want the assistant to wrap up naturally and close the conversation once the goal is achieved. The agent gives a brief closing message and the conversation ends. Disable it if you want the conversation to remain open so the user can continue chatting after the goal is met.
+
+<Callout kind="tip">
+Enable this toggle for transactional flows — like lead qualification or appointment booking — where there's no reason for the conversation to continue after the goal is achieved. Disable it for support flows where the user may have follow-up questions after the initial issue is resolved.
+</Callout>
+
 ### Instructions
 
 The instructions are the heart of your playbook. They tell the assistant exactly what to do, step by step.
@@ -67,6 +77,26 @@ An assistant can have multiple playbooks attached. The AI determines which one a
 
 <Callout kind="info">
 If you have multiple playbooks attached to the same assistant, make sure each one has a distinct goal. Overlapping goals can confuse the AI about which playbook to follow.
+</Callout>
+
+## Duplicating a playbook
+
+You can duplicate an existing playbook to quickly create a variant for A/B testing or iteration. The duplicate copies the goal, instructions, and all settings from the original, so you can tweak it without touching the working version.
+
+<Steps>
+  <Step title="Open the playbook" icon="book-open">
+    Go to **AI Assistant > Playbooks** and click the playbook you want to duplicate.
+  </Step>
+  <Step title="Click Duplicate" icon="copy">
+    Click **Duplicate** to create a copy of the playbook.
+  </Step>
+  <Step title="Edit the copy" icon="edit">
+    Rename the duplicate, adjust the goal or instructions as needed, and save your changes.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Use duplication together with [Experiments](/pages/ai-config/experiments) to A/B test playbook variations without modifying your live playbook.
 </Callout>
 
 ## A/B testing your playbooks

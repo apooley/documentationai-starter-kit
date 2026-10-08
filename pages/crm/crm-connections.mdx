@@ -54,6 +54,27 @@ For Microsoft Dynamics, you have granular control over exactly which Dataverse t
 
 Choose whether to sync conversation summaries and notes to your CRM. When enabled, a note is added to the contact's record in your CRM each time a conversation is resolved, summarizing what was discussed.
 
+### Dynamics memo field truncation
+
+When a conversation's full text exceeds the Microsoft Dynamics 10,000 character Memo field limit, Autoch.at uses prefer-recent truncation: it keeps the newest conversation turns and truncates older content. This ensures the most recent context — which is usually the most relevant for your sales team — is always preserved in the CRM record.
+
+<Callout kind="info">
+The most recent conversation turns are always kept. Only older messages at the beginning of the conversation are truncated to fit the Dynamics Memo field cap.
+</Callout>
+
+## Product feed sync
+
+If your CRM connection includes a product feed (for example, syncing a vehicle inventory or product catalog), Autoch.at periodically syncs the feed to keep your product data current. When a feed sync fails, the system automatically retries with a backoff schedule:
+
+| Retry | Delay after failure |
+|---|---|
+| 1st retry | 1 hour |
+| 2nd retry | 3 hours |
+| 3rd retry | 8 hours |
+| Subsequent retries | Every 24 hours |
+
+The retry counter resets on the first successful sync. Tenant admins receive an email notification once per failure streak — not on every individual retry — so you're alerted to persistent issues without inbox flooding.
+
 ## Monitoring the connection
 
 The CRM Connections page shows the status of your connection and a log of recent sync activity. If a sync fails (for example, because a required field is missing), the error will appear here with details about what went wrong.
