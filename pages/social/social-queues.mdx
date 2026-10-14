@@ -1,48 +1,77 @@
 ---
-title: Post Queues
-description: Set up automated posting schedules so your social accounts stay active without requiring you to manually publish every post.
+title: Posting Queues
+description: Set weekly posting times for each social profile, then add posts to the queue and let them go out at the next free slot without scheduling each one.
 ---
 
-## Keep your social presence consistent
+A **queue** is a weekly posting schedule for one [profile](/pages/social/social-profiles). For example, "Monday, Wednesday and Friday at 10:00". Add posts to the queue and each goes out at the next free time slot, so you don't have to pick a date for every post.
 
-**Post Queues** (at **Social Media > Queues**) let you define a repeating posting schedule for each of your social accounts. Once you've set up a queue, you just add posts to it and Autoch.at publishes them automatically at the next available time slot.
+Find it in the left menu under **Social Media** > **Queues**. The page is titled **Posting Queues**.
 
-This is the most efficient way to maintain a consistent social presence without having to manually schedule every individual post.
-
-## How queues work
-
-A queue has two components:
-
-1. **A schedule** — The days and times you want posts to go out (e.g., Monday, Wednesday, and Friday at 10am).
-2. **A pool of posts** — The posts waiting to be published.
-
-When a scheduled time slot arrives, Autoch.at takes the next post from the pool and publishes it. If the pool is empty, the time slot is skipped.
-
-## Creating a queue
-
-1. Go to **Social Media > Queues**.
-2. Click **Create Queue**.
-3. Select the social account this queue is for.
-4. Set your posting schedule — choose the days and times you want posts to go out.
-5. Click **Save**.
-
-## Adding posts to a queue
-
-There are two ways to add posts to a queue:
-
-- **From the Posts page** — When creating a post, choose **Add to queue** instead of scheduling a specific time.
-- **From the Queue page** — Click **Add Post** directly within the queue.
-
-Posts in the queue are published in order (first in, first out). You can drag and drop posts within the queue to reorder them.
-
-## Pausing a queue
-
-If you want to temporarily stop publishing from a queue (for example, during a company crisis or a sensitive news event), click **Pause Queue**. Posts will stay in the queue but won't be published until you resume.
-
-<Callout kind="tip">
-It's good practice to pause your queues during major news events or crises, even if your content isn't related. Automated posts that go out at the wrong moment can look tone-deaf.
+<Callout kind="info">
+You need at least one profile first. Without one, the page says "No profiles found. Create a profile first." Queues appear in the menu once a profile exists.
 </Callout>
 
-## Queue analytics
+## What you'll see
 
-The queue page shows basic stats for each queue — how many posts have been published, the average engagement per post, and the next scheduled publish time.
+The page shows one card per profile. Each card shows:
+
+- The profile's name, colour and description.
+- A green tick when the queue is active, or a grey cross when it's inactive.
+- **Status**: **Active** or **Inactive**.
+- **Timezone**.
+- **Time Slots**: each day and time, such as "Monday at 09:00".
+
+Profiles without a queue show "No queue configured" and a **Create Queue** button.
+
+## Create a queue
+
+<Steps>
+  <Step title="Open the form">
+    Click **Create Queue** at the top, or on the profile's card.
+  </Step>
+  <Step title="Choose the profile">
+    Pick the **Profile** the queue is for. A profile has one queue.
+  </Step>
+  <Step title="Set the timezone">
+    Choose **Timezone**: UTC, Eastern, Central, Mountain or Pacific Time.
+  </Step>
+  <Step title="Add time slots">
+    Click **+ Add Slot**. Choose a day of the week and a time. Repeat for each slot. Use the bin icon to remove one. You need at least one slot, otherwise you'll see "Please add at least one time slot".
+  </Step>
+  <Step title="Turn it on">
+    Leave **Queue is active** ticked so it runs.
+  </Step>
+  <Step title="Save">
+    Click **Create Queue**. You'll see "Queue created successfully".
+  </Step>
+</Steps>
+
+## Add posts to a queue
+
+Posts join a queue from the [Posts](/pages/social/social-posts) page, not from the Queues page:
+
+- When creating a post with no schedule date, click **Create & Add to Queue**.
+- On an existing draft, click the **clock icon** (Add to queue).
+
+The post is placed in the next free slot in the queue for the post's profile.
+
+## Change, pause or delete a queue
+
+- **Edit Queue**: change the timezone or slots, then click **Update Queue**.
+- **Pause**: edit the queue, untick **Queue is active**, and click **Update Queue**. The card then shows **Inactive**.
+- **Delete**: click the red bin icon and confirm ("Are you sure you want to delete this queue?").
+
+<Callout kind="tip">
+Consider switching queues to inactive during major news events or a crisis. Automated posts that go out at the wrong moment can look tone-deaf.
+</Callout>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Posts" icon="message-square" href="/pages/social/social-posts">
+    Write posts and add them to a queue.
+  </Card>
+  <Card title="Social Analytics" icon="bar-chart-3" href="/pages/social/social-analytics">
+    See how your posts perform.
+  </Card>
+</Columns>

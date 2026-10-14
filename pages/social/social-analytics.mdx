@@ -1,53 +1,67 @@
 ---
 title: Social Analytics
-description: Track engagement, reach, and follower growth across all your connected social media accounts.
+description: See impressions, likes, shares, comments and clicks for your social posts in one place, filter by profile, platform and dates, and export to CSV.
 ---
 
-## Measure your social performance
+**Social Analytics** shows how your published posts performed across every connected network, so you don't have to check each platform separately.
 
-The **Social Analytics** page (at **Social Media > Analytics**) gives you a consolidated view of how your social media accounts are performing. Instead of checking each platform's native analytics separately, you can see all your key metrics in one place.
+Find it in the left menu under **Social Media** > **Analytics**. You can also reach it from the **Analytics** button on the [Posts](/pages/social/social-posts) page.
 
-## What's tracked
+## Filter the data
 
-### Engagement metrics
+Across the top:
 
-| Metric | What it measures |
+| Filter | Options |
 |---|---|
-| **Likes / Reactions** | How many people reacted positively to your posts |
-| **Comments** | How many comments your posts received |
-| **Shares / Reposts** | How many times your content was shared |
-| **Clicks** | How many people clicked links in your posts |
-| **Engagement rate** | Total engagements as a percentage of reach |
+| **Profile** | **All Profiles**, or one of your [profiles](/pages/social/social-profiles) |
+| **Platform** | **All Platforms**, Twitter, Instagram, Facebook, LinkedIn, TikTok or YouTube |
+| **From Date** / **To Date** | Any date range. The page opens on the last 30 days. |
+| **Last 7 Days** | A shortcut that sets the dates to the past week |
 
-### Reach and impressions
+The numbers update as soon as you change a filter.
 
-- **Reach** — The number of unique accounts that saw your content.
-- **Impressions** — The total number of times your content was displayed (one person can generate multiple impressions).
+## The summary cards
 
-### Follower growth
+| Card | What it counts |
+|---|---|
+| **Total Posts** | Posts included in the current results |
+| **Impressions** | How many times your posts were shown. One person can see a post more than once. |
+| **Engagement** | Likes, shares and comments added together |
+| **Clicks** | Clicks on links in your posts |
 
-Track how your follower count changes over time for each connected account.
+Below them are separate totals for **Likes**, **Shares** and **Comments**.
 
-### DM response metrics
+## Post Performance table
 
-Since Autoch.at handles your social DMs, you can also see:
+One row per post and account, with:
 
-- **DMs received** — Total incoming direct messages per platform
-- **AI-handled** — DMs resolved by your AI assistant without human intervention
-- **Average response time** — How quickly DMs received their first response
+- **Platform** and **Account** (@username)
+- **Impressions**, **Likes**, **Shares**, **Comments** and **Clicks**
+- **Date**
 
-## Filtering the data
+If nothing matches your filters you'll see "No analytics data available". Try widening the dates or choosing **All Platforms**.
 
-Use the filters at the top of the page to:
+## Export
 
-- **Select accounts** — View data for all accounts or a specific one
-- **Select date range** — Day, week, month, or custom range
-- **Select metric type** — Focus on engagement, reach, or DM metrics
-
-## Exporting data
-
-Click **Export** to download your social analytics data as a CSV file for use in your own reports or dashboards.
+Click **Export CSV** to download the table. The file includes Post ID, Platform, Account, Impressions, Likes, Shares, Comments, Clicks, Views and Date, ready for Excel or Google Sheets. If there's nothing to export you'll see "No data to export".
 
 <Callout kind="info">
-Social analytics data is pulled from each platform's API and may be delayed by up to a few hours. Real-time data is not available.
+Results come from each social network, so very recent posts may show low numbers at first. Check back after a while. The **Sync** button reloads the page; it's not a guaranteed refresh from the networks.
 </Callout>
+
+## Tips
+
+- Compare platforms for the same date range to see where your audience engages most.
+- Look at your best posts and reuse their style. Try [Caption Generator](/pages/social/caption-generator) to draft something similar.
+- High impressions but few clicks usually means the call to action is unclear.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Posts" icon="message-square" href="/pages/social/social-posts">
+    Create, schedule and retry posts.
+  </Card>
+  <Card title="Queues" icon="calendar" href="/pages/social/social-queues">
+    Keep a steady posting rhythm.
+  </Card>
+</Columns>

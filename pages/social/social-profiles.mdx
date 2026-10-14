@@ -1,105 +1,71 @@
 ---
 title: Social Profiles
-description: Connect and manage your social media accounts — Facebook, Instagram, LinkedIn, and more — to handle DMs and comments directly in Autoch.at.
+description: Create profiles to group your social media accounts by brand or location, then turn on social for a workspace to start posting, scheduling and tracking results.
 ---
 
-## Bring social into your inbox
+A **profile** is a named, coloured folder for your social accounts. Use one profile per brand, location or client so posts, queues and analytics stay organised. Connecting the actual Facebook, Instagram or other accounts happens on the [Social Accounts](/pages/social/social-accounts) page.
 
-**Social Profiles** (at **Social Media > Profiles**) is where you connect your social media accounts to Autoch.at. Once connected, incoming direct messages and comments from those platforms flow into your Conversations inbox alongside your chat, SMS, and email conversations.
-
-Your AI assistant can handle social DMs just like any other channel — responding automatically, qualifying leads, and escalating to a human when needed.
+Find it in the left menu under **Social Media** > **Profiles**.
 
 <Callout kind="info">
-The Social Media suite is a premium feature. If your workspace doesn't have the social add-on enabled, you'll see a prompt to purchase it. Once the add-on is granted to your workspace, the Social Media section unlocks immediately.
+Social Media is an optional add-on and is switched on **per workspace**. If the **Social Media** section is missing from your menu, the add-on isn't active for your account. Contact support or your account owner.
 </Callout>
 
-## Supported platforms
+## Before you start: turn social on for your workspace
 
-- **Facebook** — Pages and Messenger
-- **Instagram** — Business accounts (DMs and comments)
-- **LinkedIn** — Company pages
-- **X (Twitter)** — Business accounts (DMs and mentions)
+On the Profiles page, the **Workspace** box shows the workspace you're working in (switch workspaces from the sidebar). Next to the name you'll see "(Social enabled)" when it's on.
 
-## Connecting a social account
+If you see "Social not enabled for this workspace.", click **Enable social add-on** to go to **Settings** > **Workspaces**. See [Workspaces](/pages/settings/workspaces).
 
-1. Go to **Social Media > Profiles**.
-2. Click **Connect Account**.
-3. Select the platform you want to connect.
-4. You'll be redirected to that platform's authorization page — log in with the account that manages your business page.
-5. Grant Autoch.at the requested permissions.
-6. Once authorized, you'll be returned to Autoch.at and the account will appear as connected.
-
-<Callout kind="info">
-You need to be an admin of the Facebook Page, Instagram Business account, or LinkedIn Company Page to connect it. Personal profiles cannot be connected.
-</Callout>
-
-### Native Meta Connector
-
-For Facebook and Instagram, Autoch.at provides a **Native Meta Connector**. This direct integration offers improved reliability and enables advanced features like AI auto-replies for DMs.
-
-When connecting a Facebook or Instagram account, you'll see the option to use the Native Meta Connector. Select your workspace and starting platform, then click **Connect via Native Meta** to authorize the connection directly with Meta.
-
-## Native Meta DM support
-
-The Native Meta Connector now fully supports DM (direct message) conversations — both inbound and outbound — for Facebook and Instagram. This means your AI assistant can handle Meta DMs end-to-end, just like it handles chat, SMS, and email.
-
-### Connecting Meta DMs
-
-The connection uses Meta's OAuth flow to authorize DM access for your connected Facebook Page or Instagram Business account.
+## Create your first profile
 
 <Steps>
-  <Step title="Go to Social Profiles" icon="users">
-    Navigate to **Social Media > Profiles** and click **Connect Account**.
+  <Step title="Start">
+    If this is your first time you'll see **Set Up Your Social Media Profile**. Click **Set Up Profile**. Otherwise click **Create Profile**.
   </Step>
-  <Step title="Select Meta" icon="facebook">
-    Choose Facebook or Instagram as the platform.
+  <Step title="Fill in the form">
+    Enter a **Name** (required, up to 255 characters). Optionally add a **Description** and pick a **Color**.
   </Step>
-  <Step title="Authorize via OAuth" icon="lock">
-    You'll be redirected to Meta's authorization page. Log in with the account that manages your Page and grant DM access permissions.
-  </Step>
-  <Step title="Return to Autoch.at" icon="check-circle">
-    After authorization, you'll be returned to Autoch.at. The account will appear as connected and DMs will start flowing into your inbox.
+  <Step title="Save">
+    Click **Create**. You'll see "Profile created successfully".
   </Step>
 </Steps>
 
-### Inbound DM processing
+After your first profile exists, **Posts**, **Queues** and **Analytics** appear in the **Social Media** menu.
 
-When a user sends a DM to your connected Facebook Page or Instagram Business account, the message is received, processed, and routed through Autoch.at just like any other channel:
+## Manage profiles
 
-- DMs appear in your [Conversations Inbox](/pages/conversations/conversations) alongside chat, SMS, and email.
-- DM history is persisted — you can view the full conversation thread, including messages sent before Autoch.at was connected.
-- Your AI assistant can respond automatically based on its playbook and persona configuration.
-- Your team can take over and reply directly from Autoch.at.
+Each profile appears as a card with its colour, name and description.
 
-### Compliance callbacks
+- Click the **pencil** icon to rename it or change its description or colour, then click **Update**.
+- Click **View Accounts** to see the accounts inside that profile.
+- Click the **bin** icon to delete it.
 
-DM interactions are subject to Meta's messaging policies. The Native Meta Connector handles compliance callbacks natively, ensuring that your DM interactions — including AI-generated responses — meet Meta's requirements for response windows, messaging types, and user consent.
-
-<Callout kind="warning">
-You are responsible for ensuring your AI assistant's DM responses comply with Meta's messaging policies, including the 24-hour messaging window and restrictions on promotional content. Violating Meta's policies can result in messaging restrictions or account suspension.
+<Callout kind="alert">
+Deleting a profile also deletes all of its connected accounts, posts and queues. You'll be asked to confirm, and it can't be undone.
 </Callout>
 
-<Callout kind="info">
-Orphan Default Profiles — profiles created during initial setup that were never fully configured — are cleaned up automatically. No manual action is needed.
-</Callout>
+## What's next
 
-## What happens after connecting
+<Steps>
+  <Step title="Connect accounts">
+    Go to [Social Accounts](/pages/social/social-accounts) and connect the pages and profiles you want to post to.
+  </Step>
+  <Step title="Write and schedule posts">
+    Use [Posts](/pages/social/social-posts), or let [Caption Generator](/pages/social/caption-generator) draft your text.
+  </Step>
+  <Step title="Set a posting rhythm">
+    Add weekly time slots with [Queues](/pages/social/social-queues).
+  </Step>
+</Steps>
 
-Once connected:
+## Related
 
-- **New DMs** from that platform will appear in your Conversations inbox in real time.
-- **Comments** on your posts (if enabled) will also appear as conversations.
-- Your **AI assistant** can be configured to respond automatically to incoming DMs (fully supported via the Native Meta Connector for Facebook/Instagram).
-- Your team can reply directly from Autoch.at without switching to the social platform.
-
-## Managing connected accounts
-
-From the Social Profiles page, you can:
-
-- **View connection status** — See whether each account is connected and healthy.
-- **Reconnect** — If a connection breaks (for example, after a password change), you can reconnect it here.
-- **Disconnect** — Remove a social account from Autoch.at. This stops new messages from flowing in, but doesn't affect existing conversations. Disconnecting a Native Meta account will also clean up the associated webhooks and tokens.
-
-## Permissions and re-authorization
-
-Social platform permissions occasionally expire or need to be refreshed. If you see a warning that a connection needs attention, click **Reconnect** and re-authorize the account. This is a normal part of maintaining social integrations.
+<Columns cols={2}>
+  <Card title="Social Accounts" icon="share-2" href="/pages/social/social-accounts">
+    Connect Facebook, Instagram and more.
+  </Card>
+  <Card title="Workspaces" icon="building-2" href="/pages/settings/workspaces">
+    Turn the social add-on on for a workspace.
+  </Card>
+</Columns>

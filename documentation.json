@@ -181,6 +181,10 @@
                 "icon": "user-circle"
               },
               {
+                "title": "Social Accounts",
+                "path": "pages/social/social-accounts"
+              },
+              {
                 "title": "Posts",
                 "path": "pages/social/social-posts",
                 "icon": "file-text"

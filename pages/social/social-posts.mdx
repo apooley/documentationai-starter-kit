@@ -1,47 +1,99 @@
 ---
-title: Posts
-description: Create, schedule, and publish social media posts to all your connected platforms from one place.
+title: Social Posts
+description: Write one post for several social networks, attach photos or video, schedule it or add it to a queue, and track drafts, failures and retries in one list.
 ---
 
-## Publish from one place
+**Social Posts** is where you write, schedule and track your social media posts across every connected account.
 
-The **Posts** page (at **Social Media > Posts**) is your social media publishing hub. Instead of logging into each platform separately, you can write, schedule, and publish posts to all your connected social accounts from within Autoch.at.
+Find it in the left menu under **Social Media** > **Posts**. The **Posts** item appears once you've created a [profile](/pages/social/social-profiles) and connected at least one [account](/pages/social/social-accounts).
 
-## Creating a post
+## Create a post
 
-1. Go to **Social Media > Posts**.
-2. Click **Create Post**.
-3. Select which accounts you want to post to. You can post to multiple platforms at once.
-4. Write your post content. The composer shows you a preview of how the post will look on each selected platform.
-5. Add media (images or videos) if needed.
-6. Choose when to publish:
-   - **Publish now** — Post immediately.
-   - **Schedule** — Pick a specific date and time.
-   - **Add to queue** — Add to your posting queue and let Autoch.at publish it at the next optimal time slot.
+<Steps>
+  <Step title="Open the composer">
+    Click **Create Post** (top right).
+  </Step>
+  <Step title="Choose a profile">
+    Pick the **Profile** the post belongs to. The accounts you can post to come from that profile.
+  </Step>
+  <Step title="Write your text">
+    Type in **Content**. A counter under the box shows "0 / limit characters". The limit is the lowest among the platforms you tick, so you can't accidentally write too much for one of them.
+  </Step>
+  <Step title="Choose where it goes">
+    Tick the connected accounts to publish to. You can pick several at once. You must choose at least one.
+  </Step>
+  <Step title="Add media (optional)">
+    Use **Media** to upload up to 10 images or videos.
+  </Step>
+  <Step title="Timing">
+    Under **Schedule for (optional)** pick a date and time and your **Timezone** (UTC, Eastern, Central, Mountain or Pacific). Leave it empty to save the post as a draft.
+  </Step>
+  <Step title="Save">
+    Click **Create Post**. If you left the schedule empty you can instead click **Create & Add to Queue** to send it straight to the profile's [queue](/pages/social/social-queues).
+  </Step>
+</Steps>
+
+### Character limits
+
+| Platform | Limit |
+|---|---|
+| X / Twitter | 280 |
+| Bluesky | 300 |
+| Pinterest, Threads | 500 |
+| Google Business | 1,500 |
+| Instagram, TikTok | 2,200 |
+| LinkedIn | 3,000 |
+| Facebook, YouTube | 5,000 |
+| Reddit | 10,000 |
 
 <Callout kind="tip">
-Each platform has different character limits and media requirements. The composer will warn you if your post exceeds a platform's limits or if your media doesn't meet its specifications.
+Stuck for words? Open [Caption Generator](/pages/social/caption-generator), copy the result, and paste it into **Content**.
 </Callout>
 
-## Post statuses
+## Find your posts
+
+Each post card shows a status badge, the scheduled or published date, the text, the platforms and any media thumbnails.
+
+- **Search posts...** searches the text of your posts.
+- The status dropdown filters by **Draft**, **Scheduled**, **Published** or **Failed**.
+- **All Profiles** lets you narrow to one profile.
 
 | Status | Meaning |
 |---|---|
-| **Draft** | Saved but not scheduled or published |
-| **Scheduled** | Set to publish at a specific time |
-| **Queued** | Added to the posting queue |
-| **Published** | Successfully posted to the platform |
-| **Failed** | Something went wrong — click to see the error and retry |
+| **Draft** | Saved but not scheduled or published. |
+| **Scheduled** | Set to publish at a specific date and time. |
+| **Published** | Posted to the platform. |
+| **Failed** | Something went wrong when publishing. |
 
-## Editing and deleting posts
+## Actions on a post
 
-- **Drafts and scheduled posts** can be edited or deleted at any time before they're published.
-- **Published posts** cannot be edited or deleted from Autoch.at — you'll need to go to the platform directly to make changes.
+The icons at the right of each post:
 
-## Post history
+- **Chart icon (View analytics)** opens [Social Analytics](/pages/social/social-analytics) for that post. The **Analytics** button at the top opens the overall view.
+- **Clock icon (Add to queue)** appears on drafts. It places the post in the next free slot in the profile's queue.
+- **Retry icon** appears on failed posts. Click it to try publishing again.
+- **Pencil (Edit post)** reopens the composer. Change what you need and click **Update Post**.
+- **Bin (Delete post)** removes it after you confirm.
 
-The Posts page shows a history of all your published posts, including the date, platform, and basic engagement metrics (likes, comments, shares) pulled from the platform. Click any post to see its full details.
+When you filter by **Failed**, a **Retry all** button appears to retry every failed post at once.
 
-## Using the Caption Generator
+<Callout kind="info">
+Once a post has been published on a social network, changing or deleting it here may not change what people already see there. If you need to correct a published post, check it on the network itself too.
+</Callout>
 
-If you need help writing post content, try the **Caption Generator** (at **Social Media > Caption Generator**). Describe what you want to post about and let the AI draft a caption for you — then edit it to match your voice before publishing.
+## Troubleshooting
+
+- **"Please select at least one platform"**: tick at least one connected account in the composer. If none are listed, connect one under [Social Accounts](/pages/social/social-accounts).
+- **A post shows Failed**: click the retry icon. If it keeps failing, reconnect the account in Social Accounts and try again.
+- **"Post must have a profile to assign to queue"**: edit the post and choose a profile first.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Queues" icon="calendar" href="/pages/social/social-queues">
+    Publish automatically at set weekly times.
+  </Card>
+  <Card title="Caption Generator" icon="sparkles" href="/pages/social/caption-generator">
+    Draft captions with AI.
+  </Card>
+</Columns>
