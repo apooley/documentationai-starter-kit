@@ -1,54 +1,103 @@
 ---
 title: Voice Conversations
-description: Review AI phone call records, listen to recordings, read transcripts, and manage voice conversations in your inbox.
+description: Review phone calls handled by your AI assistant. Search calls, listen to recordings, read summaries, assign and tag calls, and export or clean up in bulk.
 ---
 
-## Phone calls in your inbox
+When customers call your business number and an AI assistant answers, each call appears on the **Phone / Voice** page. You can see who called, how long it lasted, a short summary, and listen to the recording.
 
-When your AI assistant handles a phone call, a record of that conversation appears in your Conversations inbox under the **Voice** channel. You can review the full transcript, listen to the recording, and manage the conversation just like any other channel.
+Open **Conversations → Phone / Voice** in the sidebar.
 
-## What you'll see in a voice conversation
+<Callout kind="info">
+Phone / Voice only appears if your plan includes the voice add-on and phone numbers are set up for your account. If the add-on isn't on your plan, the page says "Voice Not Available."
+</Callout>
 
-Each voice conversation record includes:
+## Set up voice calls
 
-- **Call details** — The caller's phone number, the number they called, the date and time, and the call duration.
-- **Transcript** — A full text transcript of the conversation, with each speaker's turns clearly labeled.
-- **Recording** — An audio recording of the call (if recording is enabled for your workspace).
-- **AI summary** — A brief AI-generated summary of the call's key points and outcome.
-- **Outcome** — Whether the call was resolved by the AI, transferred to an agent, or abandoned.
+<Steps>
+  <Step title="Get a phone number">
+    Request a number in **Settings → Phone Numbers**. See [Phone Numbers](/pages/settings/phone-numbers).
+  </Step>
+  <Step title="Choose and tune an assistant">
+    In **AI Assistant → Assistants**, open (**Edit**) the assistant that should answer calls. Choose a **Voice** for it, and set it as **Default for Voice** if it should answer every call. See [AI Assistants](/pages/ai-config/assistants).
+  </Step>
+  <Step title="Add routing rules (optional)">
+    If you have several assistants, create [routing rules](/pages/ai-config/routing-handoffs) and tick **voice** under channels.
+  </Step>
+</Steps>
 
-## Reviewing transcripts
+## The call list
 
-Transcripts are the most useful tool for understanding what happened in a call. They're fully searchable — use Ctrl+F (or Cmd+F on Mac) to find specific words or phrases within a transcript.
+The page title shows how many calls you have in total. Each row shows:
 
-If you're reviewing a call because something went wrong, the transcript will show you exactly what the AI said and how the caller responded, making it easy to identify where things went off track.
+| Column | What it shows |
+|---|---|
+| **Status** | **Completed**, **Active** (in progress), **Missed** (the call closed without a normal end), or **Ended**. |
+| **Phone Number** | The caller's number. |
+| **Contact** | Name (or Unknown), company, an unread badge, tags, and who it's **Assigned** to. |
+| **Duration** | Call length as minutes:seconds. |
+| **Summary** | An AI summary of the call: key points, outcome and mood, plus who spoke last and when. |
+| **Recording** | **Listen** opens the recording in a new tab, or "No recording." |
+| **Lifecycle** | Open, Pending, Snoozed (with an "Until" date) or Resolved. |
+| **Actions** | A **Status** drop-down and an **Assign...** drop-down. |
+| **Started** | When the call began. |
 
-## Taking over a call in progress
+Click a row to open the full call, with transcript, recording player, notes and contact details. See [Conversation Detail](/pages/conversations/conversation-detail).
 
-If an AI voice call is currently in progress and you need to intervene, you can transfer it to yourself or another agent:
+## Find calls
 
-1. Find the active call in the Conversations inbox (it will be marked as **Live**).
-2. Click **Transfer to Agent**.
-3. Select the agent to transfer to (or select yourself).
+- **Search by phone number or transcript...** finds calls by number or by words said in the call.
+- **All / Completed / Active / Missed** buttons filter by call status.
+- **All assignees** drop-down: choose Unassigned or a team member. **My Conversations** shows only your calls.
+- **All lifecycle statuses** drop-down: Open, Pending, Snoozed or Resolved.
+- **Tags**: if you've set up conversation tags, click a tag to filter. Create tags in [Conversation Tags](/pages/settings/conversation-tags).
 
-The call will be transferred immediately. The AI will stop responding and the agent will take over.
+If nothing matches, click **Clear Filters**. Click **Load More** at the bottom for older calls.
 
-## After a call ends
+## Review a call
 
-Once a call ends, the conversation record is finalized and the transcript and recording (if applicable) are attached. The conversation is assigned to whichever agent handled the final portion of the call, or left unassigned if the AI handled it entirely.
+1. Click the call row.
+2. Read the **Agent Summary** and **Transcript**.
+3. In the **Call Recording** panel, press play. It shows the duration and offers a download link when a recording is available.
 
-You can then:
-- Add internal notes to document what happened
-- Apply tags to categorize the call
-- Link the call to a client record if it wasn't automatically matched
-- Mark it as resolved
+Transcripts show what the AI said and how the caller replied, so they are the quickest way to find where a call went off track. Use your browser's find (Ctrl+F, or Cmd+F on a Mac) to search for a word.
 
-## Voice channel setup
+## After the call
 
-To enable AI voice calls, you need to:
+On the call's page you can:
 
-1. Provision a phone number in **Settings > Phone Numbers**.
-2. Configure your AI assistant to handle voice calls.
-3. Set up routing rules to direct calls appropriately.
+- Add private **Notes** for your team.
+- Add **Tags** to categorise the call.
+- Use **Link to Client Record** if it wasn't matched to a client automatically.
+- Set the status to **Resolved** when you've dealt with it.
+- Choose an owner in **Assign...**.
 
-See [Phone Numbers](/pages/settings/phone-numbers) and [Routing & Handoffs](/pages/ai-config/routing-handoffs) for setup details.
+## Work on many calls at once
+
+Tick calls using the checkboxes. A bar appears with:
+
+- **Assign selected...** then **Assign**
+- **Set status...** then **Update Status**
+- **Export Selected** to download the selected calls as a CSV file
+- **Clear Selection**
+- **Delete N** to permanently delete them (you'll be asked to confirm)
+
+<Callout kind="alert">
+Deleting conversations cannot be undone.
+</Callout>
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    All channels in one list.
+  </Card>
+  <Card title="Phone Numbers" icon="phone" href="/pages/settings/phone-numbers">
+    Get a number for voice and SMS.
+  </Card>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Pick the assistant and voice.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    Choose which assistant answers.
+  </Card>
+</Columns>

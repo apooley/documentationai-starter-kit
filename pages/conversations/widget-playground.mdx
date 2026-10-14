@@ -1,74 +1,101 @@
 ---
 title: Widget Playground
-description: Test your chat widget and AI assistant in a live sandbox before deploying to your website.
+description: Try your chat widget and AI assistant like a real visitor before it goes on your website. Pick an assistant, tweak the look, test, and copy the embed code.
 ---
 
-## Test before you go live
+The **Widget Playground** is a safe test space. You chat with your assistant exactly as a website visitor would, and you can adjust how the widget looks, all without touching your live website.
 
-The **Widget Playground** (at **Conversations > Messaging > Widget Playground**) is a live preview environment where you can interact with your chat widget and AI assistant exactly as a real visitor would — without it being on your actual website.
+Open **Conversations → Widget Playground** in the sidebar.
 
-Use it to:
-- Test your AI assistant's responses before going live
-- Verify that your widget looks correct with your branding
-- Preview different launcher styles (floating circle vs. docked bars)
-- Check that your playbooks are working as expected
-- Train new team members on what the customer experience looks like
-
-## How it works
-
-The Widget Playground loads a full, functional version of your chat widget in a sandboxed page. Conversations you start here are real conversations — they go through your actual AI assistant, follow your actual playbooks, and appear in your Conversations inbox.
-
-The only difference is that they're clearly labeled as "Playground" conversations so you can distinguish them from real customer conversations.
-
-## Starting a test conversation
-
-1. Go to **Conversations > Messaging > Widget Playground**.
-2. The widget will load in the preview pane on the right.
-3. Click the chat button to open the widget.
-4. Type a message to start a conversation.
-
-Your AI assistant will respond just as it would for a real customer. You'll even see an animated typing indicator while the AI is generating its response, giving you a true feel for the customer experience. You can test any scenario — ask questions, trigger playbooks, test escalation paths, and so on.
-
-## Customizing the preview
-
-The left panel of the Widget Playground lets you tweak the widget's appearance and behavior on the fly to see how it looks before you commit to those settings:
-
-- **Assistant** — Choose which AI assistant to test.
-- **Launcher Style** — Preview the floating circle or docked bar styles.
-- **Launcher Content** — See how icon-only, text-only, or icon+text looks on the closed launcher.
-- **Widget Color** — Test different primary colors.
-- **Position** — See how the widget looks in the bottom-right vs. bottom-left corner.
-
-When you find a combination you like, you can copy the generated embed code directly from the playground.
-
-## What to test
-
-Before going live with a new assistant or playbook, we recommend testing:
-
-- **Common questions** — Does the AI answer your most frequent questions correctly?
-- **Edge cases** — What happens when someone asks something outside the AI's knowledge? Does it handle it gracefully?
-- **Playbook triggers** — Do your playbooks start correctly when the right conditions are met?
-- **Escalation** — Does the AI hand off to a human when it should?
-- **Branding** — Does the widget look right? Are the colors, logo, and greeting message correct?
-
-<Callout kind="tip">
-Try to "break" your AI assistant in the playground before your customers do. Ask it confusing questions, give it incomplete information, and try to steer it off-topic. The more edge cases you find in testing, the better your customers' experience will be.
+<Callout kind="info">
+Changes you make here are temporary and only affect the preview. To change your real widget, go to [Settings → Chat Widget](/pages/settings/chat-widget).
 </Callout>
 
-## Training mode slash commands
+## Start a test
 
-If your assistant has **Training mode (web chat)** enabled, you can type special slash commands directly in the widget to control the session:
+<Steps>
+  <Step title="Open the Playground">
+    Click **Conversations → Widget Playground**.
+  </Step>
+  <Step title="Generate a token (first time only)">
+    If the preview says "Generate a widget token to see the preview," click **Generate Token**. This lets the preview talk to your account.
+  </Step>
+  <Step title="Pick an assistant">
+    On the right, under **Chat with assistant**, choose which assistant to test. **Default (chat default)** uses your default chat assistant. Switching assistants clears the current chat.
+  </Step>
+  <Step title="Send a message">
+    The widget is already open in the **Live Preview**. Type a message and press Enter. The assistant replies just as it would for a real customer, with a typing indicator while it thinks.
+  </Step>
+  <Step title="Start over when you want">
+    Click **Start New Session** to wipe the chat and begin fresh.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+Playground chats are temporary. They are cleaned up automatically after a short time (about 15 minutes), so don't rely on them as a record.
+</Callout>
+
+## Change how the widget looks
+
+On the left, **Customization** has:
+
+| Setting | What it does |
+|---|---|
+| **Primary Color** | The color of the launcher button and chat header. Pick a color or type a hex code such as `#3B82F6`. |
+| **Company Name** | The name shown in the widget header. |
+| **Launcher Style** | **Floating circle**, **Bottom-right bar** or **Centre-left bar**. |
+| **Launcher Content** | **Icon only**, **Text only** or **Icon + text**. |
+| **Launcher Text** | The words on the launcher, for example "Chat with us". |
+| **Position** | **Bottom Right** or **Bottom Left**. |
+| **Greeting Message** | The first message visitors see, for example "Hi! How can I help you today?" |
+
+The preview updates as you type.
+
+## Copy the embed code
+
+When you like what you see, scroll to **Embed Code** and click **Copy Code**. Paste it just before the closing `</body>` tag on every page where you want the widget to appear. If you don't see any code yet, click **Generate Token**.
+
+To make your choices permanent for your live widget, also save them in [Settings → Chat Widget](/pages/settings/chat-widget).
+
+## What to test before going live
+
+- **Common questions**: does the AI answer your most frequent questions correctly?
+- **Edge cases**: what happens when someone asks something it doesn't know?
+- **Playbooks**: do they start at the right moment? See [AI Playbooks](/pages/ai-config/playbooks).
+- **Handoffs**: does the AI pass the chat on when it should? See [Routing & Handoffs](/pages/ai-config/routing-handoffs). If you use [warm transfer](/pages/ai-config/warm-transfer), you'll see "Connecting you with *name*…" in the chat when it hands over.
+- **Branding**: are the color, name and greeting right?
+
+<Callout kind="tip">
+Try to "break" your assistant before customers do. Ask confusing questions, leave out details, and steer it off-topic.
+</Callout>
+
+## If a message fails to send
+
+If a message can't be delivered (for example, you lost your internet connection), it turns red with a short reason. Click **Retry** to send it again.
+
+## Training mode commands
+
+If the assistant has **Training mode (web chat)** switched on (in **AI Assistant → Assistants → Edit → Channels & Routing**), you'll see "Training mode enabled for this assistant" and you can type these commands in the chat:
 
 | Command | What it does |
 |---|---|
-| `/clear` | Fully resets the widget session — wipes the stored contact (name and email), conversation, draft, and session tracking, then restarts name/email collection from scratch. This does not send any message to the AI. |
-| `/flag-good` | Marks the current conversation as a good training example |
-| `/flag-bad` | Marks the current conversation as a bad training example |
+| `/clear` | Resets the widget session completely: clears the stored contact (name and email), the conversation and any draft, and restarts name and email collection. It doesn't send anything to the AI. |
+| `/flag-good` | Marks the conversation as a good training example. |
+| `/flag-bad` | Marks it as a bad training example. |
+
+Flagged conversations can be filtered under **Training review** in [Conversations](/pages/conversations/conversations). See [Training Review](/pages/ai-config/training-review).
 
 <Callout kind="tip">
-Use `/clear` when you want to simulate a brand-new visitor starting fresh — for example, to test your name/email collection flow again without refreshing the browser.
+Use `/clear` to pretend you're a brand-new visitor, for example to test the name and email questions again.
 </Callout>
 
-## Resetting the playground
+## Related pages
 
-If you want to start fresh (for example, to test a different scenario from the beginning), click **Reset Conversation** to clear the current thread and start a new one. This is equivalent to typing `/clear` in the widget when training mode is active.
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Choose which assistant answers chat.
+  </Card>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    See real customer chats.
+  </Card>
+</Columns>

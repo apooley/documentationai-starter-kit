@@ -1,82 +1,120 @@
 ---
 title: Email Workflows
-description: Automate your email responses and follow-up sequences — triggered by events like a new email arriving, a conversation being resolved, or a specific tag being applied.
+description: Decide how your AI handles incoming email. Match emails by goal and keywords, give the AI business context, and add steps like collecting details or booking.
 ---
 
-## What email workflows do
+**Email Workflows** tell your AI how to handle incoming email. Each workflow matches certain emails (for example, sales questions or support requests), gives the AI the right background information, and optionally runs steps such as pulling out the sender's details.
 
-**Email Workflows** (at **Conversations > Email Workflows**) let you automate what happens when specific events occur in your email channel. Instead of manually sending follow-ups or confirmation messages, you set up a workflow once and it runs automatically every time the trigger fires.
-
-Common uses include:
-
-- Sending an auto-acknowledgment when a new support email arrives
-- Following up with a customer 24 hours after their issue was resolved
-- Sending a different response based on the subject line or email content
-- Notifying your team when a high-priority email comes in
-
-## How workflows are structured
-
-Every workflow has three parts:
-
-1. **Trigger** — The event that starts the workflow
-2. **Conditions** (optional) — Filters that must be true for the workflow to run
-3. **Actions** — What happens when the trigger fires and conditions are met
-
-### Triggers
-
-| Trigger | When it fires |
-|---|---|
-| **New email received** | A new inbound email arrives in your inbox |
-| **Conversation resolved** | An email conversation is marked as resolved |
-| **Tag applied** | A specific tag is added to a conversation |
-| **No response after X hours** | A conversation has been open without a reply for a set time |
-| **Conversation assigned** | A conversation is assigned to a specific agent or team |
-
-### Conditions
-
-Conditions let you narrow down when a workflow should run. For example, you might only want to send an auto-acknowledgment for emails that arrive outside business hours, or only follow up with customers who were tagged as "VIP."
-
-You can add multiple conditions and choose whether all of them must be true (AND logic) or just one (OR logic).
-
-### Actions
-
-| Action | What it does |
-|---|---|
-| **Send email** | Send a message to the customer from your connected email address |
-| **Apply tag** | Add a tag to the conversation |
-| **Assign conversation** | Route the conversation to a specific agent or team |
-| **Add internal note** | Leave a private note on the conversation |
-| **Wait** | Pause the workflow for a set amount of time before the next action |
-
-You can chain multiple actions together to create multi-step sequences. For example: wait 1 hour → send a follow-up email → apply the "Followed Up" tag.
-
-## Creating a workflow
-
-1. Go to **Conversations > Email Workflows**.
-2. Click **Create Workflow**.
-3. Give it a name that describes what it does (e.g., "Auto-Acknowledge New Emails").
-4. Select your trigger.
-5. Add any conditions you need.
-6. Add your actions in sequence.
-7. Toggle the workflow to **Active** and save.
-
-<Callout kind="tip">
-Start with a simple workflow — a single trigger and a single action — and test it before building something more complex. It's much easier to debug a simple workflow than a multi-step sequence.
-</Callout>
-
-## Testing a workflow
-
-Before activating a workflow, use the **Test** button to simulate the trigger and see what would happen. Autoch.at will walk you through each step and show you the outcome without sending any real messages.
-
-## Managing workflows
-
-All your active and inactive workflows are listed on the Email Workflows page. You can:
-
-- **Toggle on/off** — Pause a workflow without deleting it
-- **Edit** — Update the trigger, conditions, or actions
-- **Duplicate** — Copy a workflow as a starting point for a new one
-- **Delete** — Permanently remove a workflow
+Open **Conversations → Email Workflows** in the sidebar.
 
 <Callout kind="info">
-Workflows run in order of priority. If multiple workflows could fire for the same event, the one listed highest on the page takes precedence. You can drag and drop workflows to reorder them.
+Email Workflows needs the email channel on your plan and the feature turned on for your account. If it isn't in your sidebar, ask your administrator or support.
 </Callout>
+
+## How a workflow works
+
+1. An email arrives at your Autoch.at email address.
+2. Autoch.at checks your **active** workflows, highest **Priority** first, and picks the first one that matches.
+3. The assigned assistant (or your default email assistant) replies, using the workflow's **Context for AI Agent** as guidance, and runs the workflow's steps.
+
+The workflow's **Goal** decides how it matches:
+
+| Goal | How it matches |
+|---|---|
+| **General Inquiry** | Every email. Use it as your catch-all and give it a low priority so more specific workflows are checked first. |
+| **Lead Capture** | The subject or body contains a sales word such as pricing, quote, interested, budget, cost, price or buy. |
+| **Help Desk Support** | The subject or body contains a support word such as support, help, issue, problem, error, bug, broken or "not working". |
+| **Appointment Booking** and **Sales Inquiry** | No automatic keyword matching. They are only used when no other workflow matches, in which case your highest-priority workflow is used. |
+
+## Check your email address
+
+Click **Email Settings** at the top to see:
+
+- **Your Incoming Email Address**, with a **Copy** button. Emails sent to it are handled by your workflows.
+- **Email Verified** or **Not Verified**, and **Auto-Respond Enabled** if automatic replies are on.
+- A link to **Settings → Email** for sending setup. See [Email settings](/pages/settings/email).
+
+## Create a workflow
+
+<Steps>
+  <Step title="Click New Workflow">
+    Choose **Start from scratch** or pick a template: **Lead Capture**, **Help Desk Support**, **Appointment Booking**, **General Inquiry** or **Sales Inquiry**. Each template shows its goal and how many steps it has.
+  </Step>
+  <Step title="Name it and choose a Goal">
+    Fill in **Workflow Name** (required), **Goal** (required) and an optional **Description**.
+  </Step>
+  <Step title="Add context for the AI">
+    In **Context for AI Agent**, describe your business, services, pricing and policies. The AI uses this as guidance and adapts it naturally. It isn't copied word for word.
+  </Step>
+  <Step title="Choose who answers (optional)">
+    **Assigned Agent (Optional)** picks a specific assistant. Leave it as "Use default agent or routing rules" to use your usual email assistant.
+  </Step>
+  <Step title="Set Priority">
+    A higher number is checked first. If an email could match several workflows, the one with the highest priority wins.
+  </Step>
+  <Step title="Add steps (optional)">
+    Under **Workflow Steps**, click **Add Step** (see below). Switch between **List View** and **Visual Editor** to see the steps as a list or as a diagram.
+  </Step>
+  <Step title="Save">
+    Click **Save Workflow**. New workflows start **Active**.
+  </Step>
+</Steps>
+
+## Steps you can add
+
+Steps run in order from top to bottom. Use the up and down arrows to reorder, **Configure** to open the settings, and the bin to remove one. Each step also has an optional **Condition (optional)** box, for example `email contains 'urgent'`, so it only runs when that is true.
+
+| Step | What it does | Settings |
+|---|---|---|
+| **Extract Information** | Looks for details in the email text, such as name, email and phone. | **Fields to Extract (comma-separated)**, for example `name, email, company, phone`. |
+| **Send Email Response** | The AI writes a reply using your context. It is queued with a short delay and includes the assistant's signature. | **Response Template**: used only if the AI can't write one. Insert extracted details with `{name}`, `{email}` and so on. |
+| **Create Support Ticket** | Creates a ticket with a reference number. | **Ticket System** (Internal System, Zendesk, Freshdesk, Jira) and **Priority** (Low, Medium, High, Urgent). |
+| **Book Appointment** | Adds a booking link to your reply. | **Calendar System** (Calendly, Cal.com, Google Calendar) and **Booking Link**. |
+| **Save to Database** | Saves the extracted details. | **Table/Collection Name**, for example `leads`. |
+
+<Callout kind="tip">
+Start simple: one workflow with a good **Context for AI Agent** and a single **Send Email Response** step. Test it, then add more.
+</Callout>
+
+## Test which workflow will match
+
+Once you have workflows, a **Test Workflow Matching** box appears on the page:
+
+1. Type an **Email Subject**, for example "Pricing inquiry".
+2. Type an **Email Body**, for example "I'm interested in your pricing plans…".
+3. Click **Test Match**.
+
+You see the **Matched Workflow** (with its priority) and why, plus **All Workflows Checked** with a MATCHED label on the winner. Testing does not send anything.
+
+## Manage workflows
+
+Each workflow card shows its name, **Active** or **Inactive**, its goal, number of **Steps** and **Priority**. Use:
+
+- **Deactivate / Activate** to pause one without deleting it.
+- The pencil icon to edit.
+- The bin icon to delete it (you'll be asked to confirm).
+
+## Context Library
+
+Click **Context Library** to store reusable snippets, such as `company_info`, that you want available across workflows. Enter a **Context key** and **Context value** and click **Add**. Use the bin to remove one.
+
+## See which workflow handled an email
+
+Open any email in [Conversation Detail](/pages/conversations/conversation-detail). A card shows the workflow that matched, its priority and the keywords that triggered it.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Outbound Email" icon="send" href="/pages/conversations/outbound-email">
+    Start emails to customers yourself.
+  </Card>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Pick the assistant that answers email.
+  </Card>
+  <Card title="Email settings" icon="mail" href="/pages/settings/email">
+    Connect and verify your email.
+  </Card>
+  <Card title="SMS Workflows" icon="message-square" href="/pages/conversations/sms-workflows">
+    The same idea for text messages.
+  </Card>
+</Columns>

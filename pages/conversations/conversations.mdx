@@ -1,87 +1,117 @@
 ---
 title: Conversations
-description: Your unified inbox for every channel — chat, SMS, email, voice, and social — all in one place.
+description: See every customer conversation across chat, SMS, email, voice and social in one list. Search, filter, assign, change status, export and bulk-manage them.
 ---
 
-## The unified inbox
+The **Conversations** page lists every customer conversation, across all channels, in one place. From here you can find a conversation, see who is handling it, update its status, and open it to read or reply.
 
-The **Conversations** page is where your team manages all customer interactions. Whether a message comes in via the chat widget on your website, an SMS text, an email, a phone call, or a social media DM, it lands here in one feed.
+Open it from **Conversations** in the left sidebar.
 
-You don't need to switch between tools or check multiple inboxes. Everything is in one place, with full context available for every conversation.
+## Where to find each channel
 
-## Navigating the inbox
+Under **Conversations** in the sidebar you'll see:
 
-The inbox has three main areas:
-
-- **Left sidebar** — Filters and conversation list. This is where you browse and select conversations.
-- **Main panel** — The conversation thread for whichever conversation you've selected.
-- **Right panel** — Client details, linked records, and conversation metadata.
-
-### Filtering conversations
-
-At the top of the conversation list, you can filter by:
-
-| Filter | What it shows |
+| Sidebar item | Shows |
 |---|---|
-| **Status** | Open, Snoozed, Resolved, or All |
-| **Channel** | Chat, SMS, Email, Voice, or Social |
-| **Assignee** | Conversations assigned to you, your team, or unassigned |
-| **Tags** | Conversations labeled with specific tags |
-| **Training Review** | Filter by training review status (All, Good, or Bad) |
-| **Search** | Full-text search across message content and client names |
+| **Chat Conversations** | The list filtered to website chat. |
+| **SMS Conversations** | Text messages (if SMS is on your plan). |
+| **Email Conversations** | Email threads (if email is on your plan). |
+| **Phone / Voice** | Phone calls (if voice is set up). |
+| **Widget Playground** | A safe place to test your assistant. See [Widget Playground](/pages/conversations/widget-playground). |
 
-Use these filters together to quickly find what you're looking for. For example: "Show me all open, unassigned email conversations tagged as Billing Issue."
+You may also see **Email Workflows**, **Outbound Email** and **SMS Workflows** if they're turned on for your account.
 
-## Conversation states
+## Read the list
 
-Every conversation has a status that tells you where it is in its lifecycle:
+Each row shows:
+
+- **Channel**: chat, SMS, email, voice, messenger or instagram. A green or red flag next to it means the conversation was flagged good or bad for training review.
+- **Contact**: name (or Unknown), phone or email, an **unread** badge, any tags, who it's **Assigned** to, the latest message, and how long ago.
+- **AI Context** (on wider screens): quick badges such as Critical or High Urgency, Frustrated, Negative or Positive mood, and Decision Stage or Considering.
+- **Status**: Open, Pending, Snoozed (with "Until" date) or Resolved.
+- **Qualification** (on very wide screens): Qualified, Unqualified or Pending, with a score and short reason when available.
+- **Actions**: **View**, and a **⋯** menu.
+
+Unread conversations are lightly highlighted. If the list is long, click **Load More** at the bottom.
+
+## Search and filter
+
+- **Search conversations...** looks at contact name, phone number, email and company. Matches are highlighted.
+- **Channel buttons:** All, Voice, SMS, Chat, Email, Messenger and Instagram, each with a count. **My Conversations** shows only ones assigned to you.
+- **Lifecycle status** drop-down: All lifecycle statuses, Open, Pending, Snoozed, Resolved.
+- **Filters** button opens more options:
+  - **Date From** / **Date To**
+  - **Qualification Status**: All, Qualified or Unqualified
+  - **Training review**: All, Good or Bad (see [Training Review](/pages/ai-config/training-review))
+  - **Assignee**: All assignees, Unassigned, or a team member
+  - **Tags**: click tags to filter. Create tags in [Conversation Tags](/pages/settings/conversation-tags).
+
+Use filters together, for example: Email + Open + Unassigned. Click **Clear All** to reset.
+
+<Callout kind="info">
+Refreshing the page keeps you where you were. If you opened Chat from the sidebar, the list stays on chat.
+</Callout>
+
+## Statuses
 
 | Status | Meaning |
 |---|---|
-| **Open** | Active and needs attention |
-| **Snoozed** | Temporarily hidden, will reappear at a set time |
-| **Resolved** | Closed — the issue was handled |
-| **Pending** | Waiting for a response from the customer |
+| **Open** | Active and needs attention. |
+| **Pending** | Waiting for the customer or for something else. |
+| **Snoozed** | Set aside for 24 hours. The row shows when the snooze ends. |
+| **Resolved** | Finished. |
 
-You can change a conversation's status from the conversation detail view or by using the quick actions in the conversation list.
+Conversations that go quiet are closed automatically, by default after about 30 minutes without a message. Closing also creates an AI summary for the conversation.
 
-Conversations that have been inactive for 30 minutes will automatically close. This triggers the post-close pipeline, which generates an AI summary and syncs the lead to your CRM (if configured).
+## Change one conversation
 
-## AI vs. human handling
+Click **⋯** (Conversation actions) on a row:
 
-Autoch.at shows you clearly whether a conversation is currently being handled by an AI assistant or a human agent. Look for the indicator at the top of the conversation thread.
+- **View details** opens the conversation. See [Conversation Detail](/pages/conversations/conversation-detail).
+- **Set lifecycle status** → Open, Pending, Snoozed (24h) or Resolved.
+- **Assign conversation** → Unassigned or a team member.
+- **Delete conversation**: permanent.
 
-When an AI is handling a conversation, it responds automatically. When a human takes over, the AI steps back. You can take over a conversation at any time by clicking **Take Over** — the AI will stop responding and the conversation will be assigned to you.
+## Change many at once
 
-You'll also see "Training: Good" or "Training: Bad" badges on conversations in the list if they have been reviewed through the Training Review feature.
+<Steps>
+  <Step title="Tick the conversations">
+    Use the checkbox on each row, or the top checkbox for all rows on screen. A blue bar appears showing "N conversations selected".
+  </Step>
+  <Step title="Choose an action">
+    - **Assign selected...** then **Assign**
+    - **Set status...** then **Update Status**
+    - **Export Selected** downloads them as a CSV file
+    - **Delete N** permanently deletes them (you're asked to confirm)
+    - **Clear Selection** un-ticks everything
+  </Step>
+</Steps>
 
-## Assigning conversations
+<Callout kind="alert">
+Deleting conversations cannot be undone. Export first if you might need a record.
+</Callout>
 
-Conversations can be assigned to specific agents or left in the shared queue for anyone to pick up.
+## Export
 
-- **Auto-assignment** — If configured in Settings > Preferences, new conversations are automatically assigned using round-robin or least-busy logic.
-- **Manual assignment** — Click the **Assignee** field in the conversation detail to assign it to a specific agent or team.
-- **Unassign** — Remove the assignee to return the conversation to the shared queue.
+Click **Export** at the top to download a CSV file of the conversations that match your channel, date and qualification filters.
 
-## Bulk actions
+## Keyboard shortcuts
 
-You can select multiple conversations in the list and apply actions to all of them at once:
+Turn them on in **Settings → Preferences** with **Enable Shortcuts** (they're off by default). Then press **g** followed by a letter: **g d** Dashboard, **g c** Conversations, **g a** Analytics, **g s** Settings. Press **?** to see the full list.
 
-- Resolve all selected conversations
-- Assign all to a specific agent
-- Apply a tag to all
-- Export selected conversations
+## Related pages
 
-This is useful for end-of-day cleanup or when a batch of similar issues comes in at once.
-
-## Channel-specific views
-
-The sidebar also has dedicated sections for each channel type, accessible from **Conversations > Messaging**:
-
-- **Chat** — Web chat conversations from your widget
-- **SMS** — Text message conversations
-- **Email** — Email conversations
-- **Voice** — Phone call records and transcripts
-- **Widget Playground** — A sandbox for testing your assistant before going live
-
-See the individual channel pages for details on what's unique to each one.
+<Columns cols={2}>
+  <Card title="Conversation Detail" icon="message-square" href="/pages/conversations/conversation-detail">
+    Read, reply and take action on one conversation.
+  </Card>
+  <Card title="Widget Playground" icon="sparkles" href="/pages/conversations/widget-playground">
+    Test your assistant before going live.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    Control who handles conversations.
+  </Card>
+  <Card title="Voice" icon="phone" href="/pages/conversations/voice">
+    Phone call conversations.
+  </Card>
+</Columns>

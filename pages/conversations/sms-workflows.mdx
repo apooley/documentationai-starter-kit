@@ -1,75 +1,82 @@
 ---
 title: SMS Workflows
-description: Automate SMS responses and follow-up messages — triggered by inbound texts, conversation events, or time-based delays.
+description: Give your AI guidance for text-message conversations. Create a workflow with a goal, business context and priority, and choose which assistant should use it.
 ---
 
-## What SMS workflows do
+**SMS Workflows** let you guide your AI on text-message conversations: what the goal is, what background information it should use, and which assistant should handle it.
 
-**SMS Workflows** (at **Conversations > SMS Workflows**) work the same way as Email Workflows, but for your SMS channel. They let you automate responses and actions based on what happens in your text message conversations.
+Open **Conversations → SMS Workflows** in the sidebar.
 
-Common uses include:
-
-- Sending an instant acknowledgment when a new text arrives
-- Following up with a customer who hasn't responded in 24 hours
-- Routing texts that contain specific keywords to the right team
-- Sending appointment reminders or confirmation messages
-
-## How SMS workflows are structured
-
-Like email workflows, every SMS workflow has three parts:
-
-1. **Trigger** — The event that starts the workflow
-2. **Conditions** (optional) — Filters that narrow down when it should run
-3. **Actions** — What happens when the trigger fires
-
-### Triggers
-
-| Trigger | When it fires |
-|---|---|
-| **New SMS received** | An inbound text message arrives |
-| **Conversation resolved** | An SMS conversation is marked as resolved |
-| **Tag applied** | A specific tag is added to the conversation |
-| **No response after X hours** | The conversation has been open without a reply for a set time |
-| **Keyword detected** | The customer's message contains a specific word or phrase |
-
-### Conditions
-
-Conditions let you target specific scenarios. For example, only run the workflow if the message arrives after business hours, or only if the customer is tagged as a "VIP."
-
-### Actions
-
-| Action | What it does |
-|---|---|
-| **Send SMS** | Send a text message to the customer |
-| **Apply tag** | Add a label to the conversation |
-| **Assign conversation** | Route to a specific agent or team |
-| **Add internal note** | Leave a private note on the conversation |
-| **Wait** | Pause before the next action |
-
-## SMS-specific considerations
-
-### Message length
-
-SMS messages have a 160-character limit per segment. Longer messages are automatically split into multiple segments, which increases cost. Keep your automated messages concise.
-
-### Opt-out handling
-
-Autoch.at automatically handles STOP/UNSTOP commands from customers. If a customer replies STOP, they will be opted out of all outbound SMS from your workspace and no further automated messages will be sent to them. This is a legal requirement in most jurisdictions.
-
-### Timing
-
-Be mindful of when your automated SMS messages are sent. Sending texts in the middle of the night is not only annoying — it may violate regulations in some regions. Use the **Wait** action combined with a business hours condition to ensure messages only go out at appropriate times.
-
-<Callout kind="warning">
-Always comply with local SMS regulations, including obtaining proper consent before sending marketing messages. Autoch.at handles opt-out mechanics automatically, but obtaining initial consent is your responsibility.
+<Callout kind="info">
+SMS Workflows needs the SMS channel on your plan, and the feature must be turned on for your account. If it isn't in your sidebar, ask your administrator or support. See also [Phone Numbers](/pages/settings/phone-numbers) to get a number for texting.
 </Callout>
 
-## Creating an SMS workflow
+## The SMS Workflows page
 
-1. Go to **Conversations > SMS Workflows**.
-2. Click **Create Workflow**.
-3. Name it clearly (e.g., "After-Hours Auto-Reply").
-4. Set your trigger, conditions, and actions.
-5. Toggle it to **Active** and save.
+Each workflow appears as a card showing its name, an **Active** badge when it's switched on, its goal, a short description, and how many steps it has and its **Priority**. Use the pencil icon to edit and the bin icon to delete (you'll be asked to confirm).
 
-The workflow will run automatically from that point forward for all matching SMS conversations.
+If you have none yet you'll see "No SMS workflows yet" with a **Create Workflow** button.
+
+## Create a workflow
+
+<Steps>
+  <Step title="Click New Workflow">
+    The editor opens.
+  </Step>
+  <Step title="Name it and pick a Goal">
+    Enter a **Workflow Name** (for example "Lead Capture") and choose a **Goal**:
+
+    - **General Inquiry**: the catch-all. It matches every message.
+    - **Lead Capture**: for people showing buying interest.
+    - **Appointment Booking**
+    - **Help Desk Support**: for people asking for help.
+    - **Sales Inquiry**
+
+    A **Description** is optional but helps your team remember what it's for.
+  </Step>
+  <Step title="Add context for the AI">
+    In **Context for AI Agent**, describe your business, services, pricing and policies. The AI uses this as guidance and adapts it naturally. It is not a script it fills in.
+  </Step>
+  <Step title="Add a Response Template (optional)">
+    A sample reply the AI can adapt. Keep it short; texts are limited to 160 characters per segment, and longer ones are split into several.
+  </Step>
+  <Step title="Choose an assistant (optional)">
+    **Assigned Agent (Optional)** picks a specific assistant. Leave it on "Use default agent or routing rules" to use your usual SMS assistant. See [AI Assistants](/pages/ai-config/assistants) and [Routing & Handoffs](/pages/ai-config/routing-handoffs).
+  </Step>
+  <Step title="Set Priority">
+    A higher number is checked first. Give specific workflows a higher priority than your General Inquiry catch-all.
+  </Step>
+  <Step title="Add steps (optional)">
+    Under **Workflow Steps**, click **Add Step** to describe what should happen. Each step has settings you open with **Configure**.
+  </Step>
+  <Step title="Switch on Active and save">
+    Tick **Active**, then save. Inactive workflows are kept but not used.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Start with one workflow and a clear **Context for AI Agent**. Add more only when you see a need.
+</Callout>
+
+## Tips for text messages
+
+- **Keep it short.** Each text segment is 160 characters. Longer replies are split into several messages.
+- **Be thoughtful about timing.** Avoid contacting people in the middle of the night, and follow your local rules on consent for marketing messages. Getting consent is your responsibility.
+- Customers can ask for a person by replying with words like "human" or "agent". See [Routing & Handoffs](/pages/ai-config/routing-handoffs).
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Email Workflows" icon="mail" href="/pages/conversations/email-workflows">
+    The same idea for email.
+  </Card>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    See your SMS conversations.
+  </Card>
+  <Card title="Phone Numbers" icon="phone" href="/pages/settings/phone-numbers">
+    Get a number for texting.
+  </Card>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Choose who answers texts.
+  </Card>
+</Columns>

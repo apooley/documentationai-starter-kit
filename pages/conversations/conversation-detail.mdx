@@ -1,134 +1,145 @@
 ---
 title: Conversation Detail
-description: Everything you need to handle, review, and resolve a conversation — the full thread, AI suggestions, client record, and reply tools.
+description: Read the full transcript, reply to customers, assign and tag a conversation, review AI summaries and qualification, and check CRM and lead delivery.
 ---
 
-## Inside a conversation
+Click **View** on any row in [Conversations](/pages/conversations/conversations) to open **Conversation Details**. This is where you read the whole conversation, reply (on chat and text channels), and see what the AI learned about the customer.
 
-When you click on a conversation in the inbox, you open the **Conversation Detail** view. This is where all the action happens — reading the thread, replying to the customer, collaborating with your team, and managing the conversation's status.
+Use **Back to conversations** at the top left to return to the list.
 
-The view is split into three panels:
+## The header
 
-- **Left** — The conversation timeline (the full message thread)
-- **Center** — The reply composer and action buttons
-- **Right** — The client profile, conversation metadata, and linked records
+At the top you'll see the contact's name, their channel and company, and their tags. On the right:
 
-## The conversation timeline
+| Control | What it does |
+|---|---|
+| **Status** | Open, Pending, Snoozed (24h) or Resolved. |
+| **Assign...** | Choose a team member, or **Unassigned**. |
+| **Tags** | Add or remove tags. Create tags in [Conversation Tags](/pages/settings/conversation-tags). |
+| Status badge | Shows the current status. A **Training: Good** or **Training: Bad** badge appears if the conversation was flagged for training review. |
 
-The timeline shows every event in the conversation in chronological order:
+<Callout kind="info">
+**Snoozed (24h)** sets the conversation aside for 24 hours. Choose **Open** or **Resolved** to change it sooner.
+</Callout>
 
-- **Customer messages** — What the customer sent, on any channel
-- **AI responses** — Replies from your AI assistant, clearly labeled
-- **Agent replies** — Responses from human agents
-- **Internal notes** — Private comments visible only to your team (not the customer)
-- **System events** — Automatic actions like assignments, status changes, and routing events
+## The transcript
 
-This gives you a complete picture of everything that happened, in the order it happened. You never have to guess what the AI said or what a previous agent did.
+The **Transcript** card shows every message in order with its time, plus attachments. For text channels each message you send shows **Sent**, **Delivered** or **Read** where available. Use the load-earlier option at the top to see older messages.
 
-## Replying to the customer
+### Agent Summary
 
-The composer at the bottom of the screen is where you write your response.
+When available, a purple **Agent Summary** card sits at the top of the transcript. It can include:
 
-### Sending a reply
+- **Conversation Summary**: a short AI summary.
+- **Business Context**: industry, company size, use case, pain points, decision criteria.
+- **Sentiment**: overall mood, urgency and engagement.
+- **Decision Making**: the contact's role, authority and buying stage.
+- **Qualification** and **Notes**.
 
-Type your message in the composer. You can use the formatting toolbar to add bold, italics, or links depending on the channel. Click the paperclip icon to attach files.
+A summary is created when a conversation ends, including when it closes automatically after being quiet. A small **Inactive** badge marks conversations closed that way.
 
-For common questions, use **Canned Responses** — click the lightning bolt icon or type `/` followed by the shortcut keyword to insert a pre-written reply. You can edit it before sending.
+## Reply to a customer
 
-### Sending and changing state
-
-When you send a reply, you'll often want to update the conversation's status at the same time. Use the dropdown next to the Send button:
-
-- **Send and Close** — Reply and mark as resolved in one click
-- **Send and Snooze** — Reply and hide the conversation until a specific time
-- **Send and Keep Open** — Reply and leave it in your active queue
-
-### Internal notes
-
-Switch the composer to **Note** mode to leave a private comment that the customer will never see. This is useful for:
-
-- Flagging something for a colleague
-- Documenting your reasoning before closing
-- `@mentioning` a teammate to ask for their input
-
-## The client panel
-
-The right panel shows the client record linked to this conversation. From here you can:
-
-- View and edit the client's contact details (name, email, phone, company)
-- See their full conversation history across all channels
-- View and edit custom fields (like account tier or CRM ID)
-- Add tags to the client's profile
-
-Changes you make here are saved to the client record and will be visible in **CRM > Clients**.
-
-## Conversation metadata
-
-Also in the right panel, you'll find metadata about the conversation itself:
-
-- **Channel** — Where this conversation came from (chat, SMS, email, etc.)
-- **Assignee** — Which agent is responsible for it
-- **Tags** — Labels applied to this conversation
-- **AI Summary** — A brief AI-generated summary of the conversation so far (useful when taking over from the AI)
-- **Linked Playbook** — Which playbook the AI was following, if any
-- **Qualification Data** — Real-time qualification fields extracted by the AI (e.g., Budget, Timeline) based on your Qualification Settings criteria
-
-## Delivery & Sync History
-
-Below the transcript on the left side, you'll find the **Delivery & Sync** panel. This panel shows the complete history of CRM syncs and lead notifications for the conversation.
-
-Expand the panel to see a chronological log of:
-- **CRM Syncs** (e.g., Dynamics 365, Salesforce)
-- **Structured XML Emails** (ADF lead delivery)
-- **Email & SMS Notifications**
-- **Webhook deliveries**
-
-If a delivery fails, the status badge will turn red and you can see the error details in the table. The right sidebar also displays a quick summary of the latest delivery status (e.g., "CRM: Delivered · Notifications: Delivered").
-
-### Manual ADF resend
-
-If an ADF (Automated Data Forwarding) send failed or was missed, you can manually trigger a resend directly from the conversation detail page. This rebuilds the Structured XML from the conversation's current fields and sends it without re-running summarization or replaying the prior email body.
+You can reply directly on **chat, SMS, Messenger and Instagram** conversations. Email and voice conversations are view-only here.
 
 <Steps>
-  <Step title="Open the conversation" icon="message-square">
-    Open the conversation in the Conversation Detail view.
+  <Step title="Type in the message box">
+    Click the box that says "Message <customer name>..." at the bottom of the transcript.
   </Step>
-  <Step title="Locate the ADF section" icon="send">
-    Scroll to the **Delivery & Sync** panel below the transcript.
+  <Step title="Use a canned response (optional)">
+    Type `/` and the start of a shortcut. A list of matching canned responses appears. Use the arrow keys and press Enter or Tab (or click one) to insert it, then edit if you like.
   </Step>
-  <Step title="Click Resend ADF" icon="refresh-cw">
-    Click **Resend ADF** to rebuild and resend the Structured XML.
-  </Step>
-  <Step title="Confirm" icon="check-circle">
-    Confirm the action. The ADF will be generated from the conversation's current state and delivered to your CRM or lead recipient.
+  <Step title="Send">
+    Press **Enter**, or click the blue send arrow. Press **Shift + Enter** for a new line.
   </Step>
 </Steps>
 
-<Callout kind="info">
-The resend rebuilds the XML from the conversation's current state, so any updates to the lead's contact info or qualification data since the original send will be reflected in the new ADF payload.
+For SMS, a counter shows characters used out of 160. Longer messages may be split into several texts.
+
+<Callout kind="tip">
+Canned responses are saved replies you set up once and reuse. See [Canned Responses](/pages/settings/canned-responses) to create them.
 </Callout>
 
-For ADF configuration options, see [Qualification Settings](/pages/crm/qualification-settings).
+## Review an AI chat
 
-## Taking over from the AI
+On **chat** conversations, a **Review** button appears next to the transcript title (when AI Playbooks is turned on for your account). It opens **Training review**, where an AI interviewer debriefs the chat with you.
 
-If an AI assistant is currently handling the conversation, you'll see a **Take Over** button at the top of the thread. Click it to:
+<Steps>
+  <Step title="Answer the interviewer">
+    The AI asks about the conversation. Type your answers in the box ("Share what was good or bad about this conversation…") and press Enter.
+  </Step>
+  <Step title="Read the findings">
+    When the interview finishes you'll see a **Review summary** (with an overall sentiment), the individual findings, **Proposed playbook changes**, **Proposed assistant changes** and **Additional guidance**. **Open playbook** and **Open assistant** links take you to the thing that would change.
+  </Step>
+  <Step title="Apply, or close">
+    Click **Apply playbook changes** (optionally ticking **Activate new playbook version immediately**) or **Apply assistant changes**. Or click **Close** to leave without changing anything.
+  </Step>
+</Steps>
 
-1. Stop the AI from responding
-2. Assign the conversation to yourself
-3. Take over the reply composer
+<Callout kind="alert">
+Playbook changes affect **every** assistant that uses that playbook. Assistant changes affect only this assistant.
+</Callout>
 
-The customer won't notice the transition — they'll just start receiving responses from you instead of the AI. The AI's previous responses remain in the timeline for full context.
+See [Training Review](/pages/ai-config/training-review), [AI Playbooks](/pages/ai-config/playbooks) and [AI Assistants](/pages/ai-config/assistants).
 
-## Training Review
+## The right-hand side
 
-For chat conversations handled by the AI, you'll see a **Review** button at the top of the thread. This opens the Training Review modal — an AI-guided debrief of how the assistant performed.
+### Contact Information
 
-The Training Review will analyze the conversation and suggest improvements to your playbook or assistant instructions. If you agree with the suggestions, you can apply them with a single click. This creates a continuous feedback loop where your AI gets smarter with every conversation.
+Shows the name, company, phone and email collected so far, or "No contact information collected yet." Use **Link to Client Record** to connect the conversation to a client in your CRM.
 
-## Snoozing and resolving
+If your account has a CRM connected, Autoch.at suggests a matching client in a **Client Linking** banner. You can accept or dismiss it. If it linked one automatically, you can view the client or **Unlink**.
 
-- **Snooze** — Hide the conversation until a specific date and time. It will reappear in your inbox automatically. Use this when you're waiting for a response or need to follow up later.
-- **Resolve** — Mark the conversation as closed. Resolved conversations move out of the active queue but remain searchable and accessible in history.
+### Qualification Data
 
-You can reopen a resolved conversation at any time if the customer follows up or the issue resurfaces.
+Fields the AI collected, such as **Budget**, **Timeline**, **Website Count** and **Current Provider**.
+
+### Notes
+
+A private notes box for your team. The customer never sees it. It saves automatically as you type, and **Note History** lists earlier notes.
+
+### Call Recording (voice)
+
+On phone conversations, a **Call Recording** panel lets you play the recording when one is available. See [Voice](/pages/conversations/voice).
+
+### Email threads and workflows (email)
+
+- A blue bar shows "Thread 2 of 3" and lets you jump to the **Previous in thread** or **Next in thread** email.
+- A card shows which [email workflow](/pages/conversations/email-workflows) handled the email and why: the keywords found, or "Fallback match (no specific keywords matched)". **Test Workflow Matching** lets you enter an **Email Subject** and **Email Body** to see which workflow would match.
+
+### Chat Widget Tracking (chat)
+
+If you use widget tracking, this card lists the tracking events sent for this chat, with filters **All, Browser, Webhook, Failed**.
+
+## Delivery & Sync
+
+Below the transcript, **Delivery & Sync** keeps a history of what was sent out about this conversation: CRM syncs, lead emails (including ADF), email and SMS notifications and webhooks. Each row shows **When**, **Type**, **Status** and **Detail**. Failed items show in red with the error.
+
+A **Delivery status** card on the right gives the latest result at a glance.
+
+### Resend an ADF lead email
+
+If an ADF (structured XML lead email) failed or was missed:
+
+1. Open the conversation.
+2. In the **Delivery status** card, click **Resend ADF**.
+3. A message confirms how many recipients it was sent to.
+
+The email is rebuilt from the conversation's current contact and summary details. Nothing is re-summarised. ADF lead emails are set up in **Settings → Notifications**.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    Back to the full list.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    Control who handles conversations.
+  </Card>
+  <Card title="Email Workflows" icon="mail" href="/pages/conversations/email-workflows">
+    How incoming email is matched.
+  </Card>
+  <Card title="Voice" icon="phone" href="/pages/conversations/voice">
+    Phone calls and recordings.
+  </Card>
+</Columns>

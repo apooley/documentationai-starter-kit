@@ -1,55 +1,109 @@
 ---
 title: Outbound Email
-description: Send one-off or bulk outbound emails to your clients directly from Autoch.at — without switching to a separate email tool.
+description: Reach out to a list of contacts by email. Create a campaign, import contacts, write a template with merge fields, set a send schedule, then launch and monitor.
 ---
 
-## Send emails directly from Autoch.at
+**Outbound Email** lets you start email conversations yourself. You build a **campaign**: a list of contacts, a first email, and a send schedule. Autoch.at then sends the first email to each contact one-to-one, spread across your chosen hours.
 
-**Outbound Email** (at **Conversations > Outbound Email**) lets you compose and send emails to your clients without leaving Autoch.at. Whether you need to send a single follow-up or a batch message to a segment of your client list, you can do it here.
+Open **Conversations → Outbound Email** in the sidebar.
 
-This is different from email workflows — workflows are automated and trigger-based. Outbound Email is for when you want to send a message manually, on demand.
-
-## Sending a one-off email
-
-1. Go to **Conversations > Outbound Email**.
-2. Click **Compose**.
-3. In the **To** field, search for the client by name or email address.
-4. Add a subject line.
-5. Write your message. You can use the formatting toolbar to add bold, italics, links, and images.
-6. Click **Send**.
-
-The email is sent immediately and a record of it appears in the client's conversation history.
-
-## Sending to multiple recipients
-
-If you need to send the same message to multiple clients:
-
-1. Click **Compose**.
-2. In the **To** field, add multiple recipients by searching for each one.
-3. Or click **Select from list** to filter your client list by tag, segment, or other criteria and select a group.
-4. Write your message.
-5. Click **Send to all**.
-
-<Callout kind="warning">
-When sending to multiple recipients, each client receives their own individual copy of the email — they won't see each other's addresses. However, be mindful of volume: sending large batches of unsolicited email can affect your domain's sender reputation.
+<Callout kind="info">
+Outbound Email must be switched on for your account and your plan must include email. If you see "Outbound email access is disabled," ask your platform administrator to enable it. If you see "Email access not enabled," your plan doesn't include email.
 </Callout>
 
-## Using templates
+## Before you start
 
-If you send similar emails regularly, save time by using a canned response as a template:
+- Connect your sending email in **Settings → Email**. See [Email settings](/pages/settings/email).
+- Have a spreadsheet of contacts ready (CSV or XLSX with a header row) that includes an email column.
+- Make sure you have permission to contact these people. Follow your local email rules.
 
-1. In the composer, click the lightning bolt icon.
-2. Search for the canned response you want to use.
-3. Select it to insert it into the composer.
-4. Customize as needed before sending.
+## Create a campaign
 
-## Tracking sent emails
+<Steps>
+  <Step title="Click New Campaign">
+    In the top right, click **New Campaign**.
+  </Step>
+  <Step title="Fill in the details">
+    Enter a **Campaign name** (for example "Outbound intro sequence"), an optional **Description** for your team, and a **Status**: Draft, Active or Paused. Draft is a safe choice while you set things up.
+  </Step>
+  <Step title="Click Create campaign">
+    The campaign appears in the **Campaigns** list on the left, with its status and number of contacts. Click a campaign to work on it.
+  </Step>
+</Steps>
 
-All outbound emails sent from Autoch.at are tracked in the client's conversation history. You can see:
+## Import contacts
 
-- When the email was sent
-- Whether it was delivered
-- Whether it was opened (if open tracking is enabled)
-- Any replies the client sent back
+The **Contact Import Wizard** has three steps: **Upload**, **Map Columns** and **Confirm**.
 
-Replies from the client will appear in your Conversations inbox as a new message in the same thread.
+<Steps>
+  <Step title="Upload">
+    Choose a CSV or XLSX file that has a header row.
+  </Step>
+  <Step title="Map Columns">
+    Tell Autoch.at which of your columns is which: **Email (required)**, **First name**, **Last name**, **Phone** and **Company**. Common column names are matched for you. Choose **Ignore** for any you don't need. A sample value shows under each so you can check.
+  </Step>
+  <Step title="Confirm">
+    Check the summary. Tick **Create or update CRM clients from imported contacts** if you'd like these people added to your [Clients](/pages/crm/clients) list. Then click **Import contacts**.
+  </Step>
+</Steps>
+
+You'll see "Imported X of Y rows. Skipped Z." If some rows had problems, **Rows needing attention** lists the row number and the issue. Imported people show in the **Contacts** table at the bottom (Email, Name, Company, Status).
+
+## Write the first email
+
+In **Initial Email Template**, fill in:
+
+- **Subject**: the subject line.
+- **Body**: the message.
+
+Click a merge-field button (**First name**, **Last name**, **Full name**, **Email**, **Company**) to insert a placeholder such as `{{first_name}}` where your cursor is. Each contact's own details replace the placeholder when it sends. The default text is a short introduction that you can edit.
+
+Click **Save template**. A tag marked **Unsaved changes** shows until you do.
+
+## Set the send schedule
+
+**Send Schedule** controls when the first emails go out:
+
+| Setting | What it does | Default |
+|---|---|---|
+| **Daily cap** | Most emails sent per day. | 200 |
+| **Per-minute throttle** | Most emails sent per minute. | 20 |
+| **Start hour** / **End hour** | Hours of the day emails may be sent. The end must be later than the start. | 9:00 to 17:00 |
+| **Weekdays** | Days of the week emails may be sent. Pick at least one. | Mon to Fri |
+
+The timezone used is shown at the bottom ("Timezone: …"). It follows your account's timezone, or UTC if none is set. Click **Save schedule**.
+
+<Callout kind="tip">
+Start with a low daily cap and increase it gradually. Sending a large batch from a new address can hurt your sender reputation and land emails in spam.
+</Callout>
+
+## Launch, pause and resume
+
+In **Campaign Actions**:
+
+1. Click **Launch campaign**. The button is only available when the campaign has a saved template and at least one contact. If not, a note tells you what's missing ("Add a template before launching" or "Import contacts before launching").
+2. Confirm in the pop-up: "This will schedule initial emails for N contacts." Check that your template and email settings are ready.
+3. You'll see "Scheduled N outbound emails."
+
+While a campaign is Active you can click **Pause campaign**; click **Resume campaign** to continue.
+
+## Check progress
+
+Under the buttons, status badges (for example "sent: 12") show how many contacts are in each state, and **Next send** shows the next scheduled time, or "Not scheduled." Use **Refresh** at the top to reload.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Email Workflows" icon="mail" href="/pages/conversations/email-workflows">
+    How incoming email is handled.
+  </Card>
+  <Card title="Email settings" icon="settings" href="/pages/settings/email">
+    Connect your email.
+  </Card>
+  <Card title="Clients" icon="users" href="/pages/crm/clients">
+    Your contact records.
+  </Card>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    Where conversations appear.
+  </Card>
+</Columns>
