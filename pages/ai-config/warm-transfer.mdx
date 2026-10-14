@@ -1,0 +1,99 @@
+---
+title: Warm Transfer Between Assistants
+description: Let one AI assistant hand a website chat to a better-suited colleague, with a short briefing so the visitor never has to repeat themselves. Setup and limits.
+---
+
+With **warm transfer**, an assistant can pass a website chat to another assistant that is better suited to help, for example a general front-desk assistant handing a pricing question to your Sales assistant. The visitor sees a short notice, and the new assistant is briefed on what the visitor needs, so nobody has to start over.
+
+<Callout kind="info">
+Warm transfer works on **website chat** only. SMS, email and voice conversations are not transferred this way.
+</Callout>
+
+## What the visitor sees
+
+1. The visitor asks something the current assistant isn't the best fit for.
+2. A notice appears in the chat: **Connecting you with *Sam*…**
+3. The new assistant introduces itself by name and carries on, using the conversation so far. It does not ask the visitor to repeat anything.
+
+## What the next assistant knows
+
+Behind the scenes, the new assistant receives a short **handover brief**:
+
+- Who it is taking over from.
+- Why it was chosen ("Why you").
+- What the visitor needs, in a sentence or two.
+
+The visitor never sees the brief. They only see the "Connecting you with…" notice and the new assistant's name.
+
+## Set it up
+
+You need to be able to edit assistants. Do this on each assistant that should be able to hand chats over.
+
+<Steps>
+  <Step title="Turn on handoffs for your business">
+    Go to **AI Assistant → Routing & Handoffs → Handoff Settings** and switch on **Enable Agent Handoff**, then **Save Settings**. Warm transfer does nothing while this is off. See [Routing & Handoffs](/pages/ai-config/routing-handoffs).
+  </Step>
+  <Step title="Give your assistants clear descriptions">
+    Open **AI Assistant → Assistants**, click **Edit** on each assistant you'll transfer *to*, and write a short **Description** of what it handles, for example "Answers pricing and plan questions." The AI uses this description to decide who is the right colleague.
+  </Step>
+  <Step title="Open the assistant that will hand chats over">
+    Click **Edit** on that assistant. (Warm transfer settings appear when editing an existing assistant, not while creating a new one.)
+  </Step>
+  <Step title="Switch on Warm transfer (website chat)">
+    In the **Behavior** step, switch on **Warm transfer (website chat)**.
+  </Step>
+  <Step title="Pick colleagues">
+    Under **Can transfer to**, tick the assistants it may hand chats to. You can pick up to **10**. Only other assistants in the **same workspace** are listed, and paused assistants are left out.
+  </Step>
+  <Step title="Save">
+    Save the assistant. On the Assistants page the card now shows a **Transfers to:** line with the names you picked, and paused colleagues are marked "(paused)".
+  </Step>
+</Steps>
+
+If you turn the switch on but pick nobody, the editor reminds you: "Pick at least one colleague, or this assistant won't transfer anyone." If handoffs are off for your business, you'll see "Handoffs are turned off for your business, so transfers won't happen until you turn them on in Routing & Handoffs → Handoff Settings."
+
+## How the AI decides
+
+- On each visitor message, the assistant checks whether the visitor clearly needs something one of your listed colleagues handles. If it can help itself, or isn't sure, it stays.
+- It can only choose from your **Can transfer to** list. It can't send chats anywhere else.
+- The list is re-checked on every message, so if a colleague is paused or removed, they are no longer chosen.
+- If the check takes too long, the current assistant simply answers.
+
+## Safety limits
+
+Transfers follow the guardrails in **Routing & Handoffs → Handoff Settings**:
+
+- **Maximum Handoffs Per Conversation**
+- **Cooldown: Minimum Messages** and **Cooldown: Minimum Minutes**
+- **Prevent Handoff Loops**
+- **Maximum Handoffs Per Hour (Optional)**
+
+If a guardrail says no, the visitor stays with the current assistant.
+
+<Callout kind="tip">
+[Routing rules](/pages/ai-config/routing-handoffs) can also move a chat to another assistant when keywords or intent match. Warm transfer is the flexible option: the AI decides based on what the visitor actually says. Use both together if you like.
+</Callout>
+
+## Test it
+
+1. Open the [Widget Playground](/pages/conversations/widget-playground).
+2. Choose the assistant that hands chats over under **Chat with assistant**.
+3. Ask something that belongs to a colleague, such as a pricing question.
+4. Look for "Connecting you with…" and check the new assistant introduces itself.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Create and edit assistants.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    Turn handoffs on and set limits.
+  </Card>
+  <Card title="Widget Playground" icon="sparkles" href="/pages/conversations/widget-playground">
+    Try a transfer.
+  </Card>
+  <Card title="Conversations" icon="inbox" href="/pages/conversations/conversations">
+    Review real chats.
+  </Card>
+</Columns>

@@ -1,0 +1,63 @@
+---
+title: Training Review and Training Mode
+description: Teach your AI from real chats. Flag good and bad conversations with chat commands, filter them in Conversations, and run an AI-guided Training review.
+---
+
+You can improve your AI by showing it what a good chat and a bad chat look like. There are three parts: **training mode** (flagging chats), **filtering** the flagged chats, and the **Training review** debrief.
+
+<Callout kind="info">
+Training mode works on **website chat**. The Review button needs AI Playbooks to be turned on for your account.
+</Callout>
+
+## 1. Turn on training mode for an assistant
+
+1. Go to **AI Assistant → Assistants** and click **Edit** on the assistant.
+2. In **Channels & Routing**, switch on **Training mode (web chat)**.
+3. Save.
+
+In the [Widget Playground](/pages/conversations/widget-playground) you'll now see "Training mode enabled for this assistant," and the chat box shows a reminder of the commands.
+
+<Callout kind="alert">
+Use training mode on a test or internal assistant. Anyone chatting with an assistant that has it on can use the commands.
+</Callout>
+
+## 2. Flag chats with commands
+
+Type one of these into the chat box:
+
+| Command | What it does |
+|---|---|
+| `/flag-good` | Marks the conversation as a good example. |
+| `/flag-bad` | Marks it as a bad example. |
+| `/clear` | Resets the widget session so you can start as a brand-new visitor. It doesn't mark anything and nothing is sent to the AI. |
+
+## 3. Find flagged chats
+
+In [Conversations](/pages/conversations/conversations):
+
+- A **green** or **red flag** icon appears beside flagged conversations.
+- Open **Filters** and set **Training review** to **All**, **Good** or **Bad**.
+- On a conversation's page, a **Training: Good** or **Training: Bad** badge shows in the header.
+
+## 4. Run a Training review
+
+On a **chat** conversation's page, click **Review** (next to **Transcript**).
+
+1. An AI interviewer asks you about the conversation. Answer in the box and press Enter.
+2. When it's done you'll see a **Review summary**, **Proposed playbook changes**, **Proposed assistant changes** and **Additional guidance**.
+3. Click **Apply playbook changes** (you can tick **Activate new playbook version immediately**), **Apply assistant changes**, or **Close** to do nothing.
+
+<Callout kind="alert">
+Playbook changes affect every assistant using that playbook. Assistant changes affect only this assistant.
+</Callout>
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Playbooks" icon="book-open" href="/pages/ai-config/playbooks">
+    What a review can change.
+  </Card>
+  <Card title="Conversation Detail" icon="message-square" href="/pages/conversations/conversation-detail">
+    Where the Review button lives.
+  </Card>
+</Columns>

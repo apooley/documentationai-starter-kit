@@ -1,69 +1,125 @@
 ---
 title: Routing & Handoffs
-description: Control when and how conversations move between AI assistants and your human team — using rules, messaging, and safety guardrails.
+description: Decide which AI assistant answers each conversation and how handoffs work. Set routing rules, handoff messages, safety limits and business hours.
 ---
 
-## How routing and handoffs work together
+Two things happen when a conversation needs to go somewhere else:
 
-The **Routing & Handoffs** page (at **AI Assistant > Routing & Handoffs**) is where you control the flow of conversations. It has two tabs that work together:
+1. **Routing Rules** decide *when* a conversation moves to a different assistant.
+2. **Handoff Settings** decide *how* that move happens: the message the customer sees, limits to prevent endless transfers, and your business hours.
 
-1. **Routing Rules** — Define *when* a conversation should be transferred (for example, "if the customer says 'speak to a human', route to the Support Team").
-2. **Handoff Settings** — Define *how* that transfer happens, including the messages sent to the customer and the guardrails that prevent abuse.
+Open **AI Assistant → Routing & Handoffs**. The two tabs are **Routing Rules** and **Handoff Settings**.
 
-When a message comes in, Autoch.at checks your Routing Rules. If a rule matches, it checks the Handoff Settings. If the guardrails allow it, the handoff executes.
-
----
+<Callout kind="info">
+How it fits together: a rule matches → Handoff Settings check the safety limits → if allowed, the customer gets the handoff message and the conversation moves.
+</Callout>
 
 ## Routing Rules
 
-Routing rules are the traffic directors for your conversations. They evaluate incoming messages and decide whether to move a conversation to a different assistant or escalate it to a human team.
+A routing rule says "if a conversation looks like *this*, send it to *that* assistant." For example: if a customer writes "pricing", pass them to your Sales assistant.
 
-### Creating a routing rule
+The rules table shows **Rule Name, Triggers, Target, Channels, Priority, Status** and **Actions** (edit or delete). Use **Search rules...** to find one and **Filter by Assistant** to show **All Rules**, **Organization-Level Rules**, or the rules for one assistant.
 
-1. Go to **AI Assistant > Routing & Handoffs**.
-2. On the **Routing Rules** tab, click **Create Rule**.
-3. Set your conditions and actions.
+### Create a rule
 
-### Conditions
+<Steps>
+  <Step title="Click Create Rule">
+    On the **Routing Rules** tab, click **Create Rule**.
+  </Step>
+  <Step title="Name it">
+    Enter a **Rule Name**, for example "Route sales inquiries to sales agent".
+  </Step>
+  <Step title="Choose where it applies">
+    Under **Assistant**, pick **Organization-Level Rule** to apply across your whole account, or pick one assistant so the rule only applies while that assistant is handling the conversation.
+  </Step>
+  <Step title="Set the trigger">
+    - **Trigger Keywords (comma-separated)**: words or phrases such as `pricing, cost, buy, purchase`. Any one of them can trigger the rule. Extra spaces and repeated words are tidied up when you click out of the box.
+    - **Trigger Intent (optional)**: let the AI recognise what the customer wants. Choose Sales, Support, Billing, Technical or General.
 
-A rule fires when one or more conditions are met. You can trigger rules based on:
+    You need at least one keyword or an intent. You can use both.
+  </Step>
+  <Step title="Choose the Target Assistant">
+    Pick the assistant that should take over. This is required.
+  </Step>
+  <Step title="Pick channels">
+    Tick any of **sms**, **chat**, **voice**, **email**.
+  </Step>
+  <Step title="Set Priority and Status">
+    **Priority** is a number; higher numbers are checked first. Use low priority for general rules and high priority for exceptions. Set **Status** to **Active** or **Inactive** (inactive rules are kept but ignored).
+  </Step>
+  <Step title="Save">
+    Click **Save Rule**.
+  </Step>
+</Steps>
 
-| Condition type | Example |
-|---|---|
-| **Keywords** | Message contains "refund", "cancel", or "speak to a human" |
-| **AI-detected intent** | The AI determines the user's goal matches `billing_issue` or `technical_support` |
-| **Channel** | Only apply the rule to SMS messages, not web chat |
-| **Time of day** | Route differently during business hours vs. after hours |
+To change a rule later, use the edit icon in the Actions column. Deleting asks you to confirm and can't be undone.
 
-### Actions
+<Callout kind="tip">
+You can also reach an assistant's rules from **AI Assistant → Assistants**: each assistant card has a **Rules** button.
+</Callout>
 
-When a condition is met, the rule executes an action:
-
-- **Route to a human team** — Escalate to a specific inbox or group of agents.
-- **Route to another assistant** — Transfer to a more specialized AI (for example, move from a general greeter to a technical troubleshooter).
-
----
+<Callout kind="info">
+Rules move a conversation to another **assistant**. To bring in a person, use the escalation settings on the assistant (Escalation Triggers and Offer Handoff After) and your inbox. See [AI Assistants](/pages/ai-config/assistants).
+</Callout>
 
 ## Handoff Settings
 
-While Routing Rules determine the destination, Handoff Settings control the experience and safety of the transfer.
+### Turn handoffs on
 
-### Handoff messages
+Switch on **Enable Agent Handoff**. This lets assistants transfer conversations to specialised assistants. When it's off, routing-based transfers and [warm transfer](/pages/ai-config/warm-transfer) between assistants don't happen, and the settings below are hidden.
 
-When a handoff happens, you'll usually want to let the customer know. You can configure different messages for different scenarios:
+### What the customer sees
 
-- **Business hours** — "I'm connecting you with a team member now. They typically reply within 5 minutes."
-- **After hours** — "Our team is offline right now. I've noted your issue and someone will follow up first thing in the morning."
-- **Assistant to assistant** — "Let me get our technical specialist to help you with that."
+- **Message Style**: Default, Professional, Casual, Brief or Detailed. Each fills in a ready-made message.
+- **Handoff Message Template**: edit the message. You can use these placeholders, which are swapped for real details:
+  - `{agent_name}`: the assistant taking over
+  - `{task_description}`: what they specialise in
+  - `{customer_intent}`: what the customer needs
+- **Show Preview** / **Hide Preview**: see how it will read.
+- **Human Response Time**: what the AI tells customers when a person will reply, such as "Within 1 business day".
 
 ### Guardrails
 
-Guardrails prevent abuse and routing loops. Even if a Routing Rule matches, a guardrail can block the handoff from happening.
+Guardrails stop customers being bounced around. If a guardrail blocks a transfer, the conversation stays where it is, even when a rule matches.
 
-- **Max handoffs per conversation** — Prevent a customer from repeatedly triggering transfers back and forth. For example, limit to 2 handoffs per conversation.
-- **Cooldown period** — Require a minimum wait between handoff requests (for example, 10 minutes between requests).
-- **Loop prevention** — If two AI assistants are endlessly transferring a conversation to each other, Autoch.at detects the loop and forces an escalation to a human.
+| Setting | What it does | Default |
+|---|---|---|
+| **Maximum Handoffs Per Conversation** | Most times one conversation can be transferred (1 to 10). | 3 |
+| **Cooldown: Minimum Messages** | Messages that must pass after a handoff before another is allowed. | 2 |
+| **Cooldown: Minimum Minutes** | Minutes that must pass after a handoff before another is allowed. Both cooldowns must be satisfied. | 5 |
+| **Prevent Handoff Loops** | Stops a conversation going back to an assistant that already handled it (A → B → A). | On |
+| **Maximum Handoffs Per Hour (Optional)** | Caps handoffs per hour. Leave empty for no limit. | No limit |
 
-<Callout kind="warning">
-Guardrails override rules. If a customer triggers a routing rule but has exceeded their handoff limit, the handoff will be blocked and the AI will send a fallback message instead.
-</Callout>
+### Business Hours Routing
+
+Tell Autoch.at when you're open so routing behaves sensibly after hours.
+
+- **Timezone**: for example `America/New_York`.
+- **Weekly Schedule**: tick **Open** for each day and set the start and end times (one block per day).
+- **Holiday Overrides**: click **Add Holiday**, pick a date, and tick **Closed** if you're closed that day. Use **Remove** to delete one.
+- **After-Hours Behavior**: what happens to routing outside your hours: **Queue (skip routing rules)**, **Defer**, **Auto Reply**, or **Allow routing**.
+
+Click **Save Settings** to save the whole tab.
+
+## Tips
+
+- Start with a few clear rules. Overlapping rules with similar keywords confuse results.
+- Test with the [Widget Playground](/pages/conversations/widget-playground) before relying on a new rule.
+- If a transfer doesn't happen, check Enable Agent Handoff is on, then check the guardrails and your business hours.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Choose each assistant's defaults and warm-transfer list.
+  </Card>
+  <Card title="Warm transfer" icon="arrow-right-left" href="/pages/ai-config/warm-transfer">
+    Pass website chats between assistants.
+  </Card>
+  <Card title="AI Safety" icon="shield" href="/pages/ai-config/ai-safety">
+    Guardrails on what the AI says.
+  </Card>
+  <Card title="Conversations" icon="message-square" href="/pages/conversations/conversations">
+    Where handoffs show up.
+  </Card>
+</Columns>

@@ -60,6 +60,10 @@
                 "icon": "database"
               },
               {
+                "title": "Training Review",
+                "path": "pages/ai-config/training-review"
+              },
+              {
                 "title": "Messaging Directives",
                 "path": "pages/ai-config/messaging-directives",
                 "icon": "list-checks"
@@ -68,6 +72,10 @@
                 "title": "Routing & Handoffs",
                 "path": "pages/ai-config/routing-handoffs",
                 "icon": "arrow-left-right"
+              },
+              {
+                "title": "Warm Transfer",
+                "path": "pages/ai-config/warm-transfer"
               },
               {
                 "title": "AI Safety",

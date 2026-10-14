@@ -1,63 +1,109 @@
 ---
 title: Messaging Directives
-description: Set persistent behavioral rules that apply across all your AI assistants — controlling tone, formatting, response length, and more.
+description: Write account-wide rules for how your AI talks to customers. Set a central directive, add chat, email or SMS rules, and define role goals and handoff guidance.
 ---
 
-## What are messaging directives?
+**Messaging Directives** are standing instructions that apply to your AI across the whole account. Use them for things that should be true no matter which assistant is answering, such as your brand voice, a required disclaimer, or how long replies should be.
 
-**Messaging Directives** (at **AI Assistant > Messaging Directives**) are workspace-wide behavioral rules that apply to every AI assistant in your workspace, regardless of their individual persona or playbook.
+Open **AI Assistant → Messaging Directives** in the sidebar.
 
-Think of them as standing orders that sit above everything else. While a persona tells an individual assistant how to behave, a messaging directive tells *all* your assistants how to behave.
-
-## Directives vs. personas
-
-It's worth understanding the difference:
-
-| | Persona | Messaging Directive |
-|---|---|---|
-| **Scope** | One assistant | All assistants in the workspace |
-| **Purpose** | Defines the assistant's role and character | Sets universal communication rules |
-| **Example** | "You are a friendly sales rep named Alex" | "Never use bullet points in responses" |
-
-Use messaging directives for rules you want to enforce consistently across your entire operation — things that should never vary between assistants.
-
-## Common uses
-
-### Response formatting
-
-If you want all your assistants to communicate in a specific way, directives are the right place to set that:
-
-- "Keep all responses under 3 sentences."
-- "Never use bullet points or numbered lists. Always write in full paragraphs."
-- "Always end your response with a question to keep the conversation going."
-
-### Tone and language
-
-- "Always use formal, professional language. Never use contractions."
-- "Respond in the same language the customer uses."
-- "Avoid jargon and technical terms. Use plain language."
-
-### Compliance and legal
-
-- "Never make specific claims about pricing. Always direct pricing questions to a human agent."
-- "Do not provide medical, legal, or financial advice."
-- "Always include this disclaimer at the end of any response about our services: [disclaimer text]."
-
-## Creating a directive
-
-1. Go to **AI Assistant > Messaging Directives**.
-2. Click **Add Directive**.
-3. Write the directive as a clear, specific instruction.
-4. Click **Save**.
-
-The directive takes effect immediately for all new conversations. Existing active conversations will pick it up on the next AI response.
-
-<Callout kind="tip">
-Write directives as direct instructions, not preferences. "Keep responses under 3 sentences" is more effective than "Try to keep responses fairly short." The more specific you are, the more reliably the AI will follow the rule.
+<Callout kind="info">
+Directives are saved for your whole account, not for a single workspace or assistant. Anything you write here is combined with each assistant's own System Prompt.
 </Callout>
 
-## Managing your directives
+## The five tabs
 
-Keep your directive list focused. A long list of conflicting or overlapping directives can confuse the AI and produce inconsistent results. Review your directives periodically and remove any that are no longer needed or that contradict each other.
+| Tab | What it does |
+|---|---|
+| **Central Directive** | One set of instructions for all channels: chat, email and SMS. |
+| **Role & Objectives** | The AI's role, what it should achieve, and when to offer a person. |
+| **Chat** | Extra rules for website chat only. |
+| **Email** | Extra rules for email only. |
+| **SMS** | Extra rules for text messages only. |
 
-If a directive is causing unexpected behavior in a specific assistant, check whether it conflicts with that assistant's persona. Persona instructions and directives can sometimes pull in opposite directions.
+Each tab has its own save button, so saving one tab never changes another.
+
+## Write a central directive
+
+<Steps>
+  <Step title="Open the Central Directive tab">
+    This is the first tab.
+  </Step>
+  <Step title="Write your instructions">
+    Type into the **Central Directive** box. Describe the AI's core personality, goals and general behavior, for example "You are a helpful assistant for Acme Co. Keep replies under three sentences and always end with a question."
+  </Step>
+  <Step title="Save">
+    Click **Save Central Directive**. You'll see a green confirmation.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+Write rules as direct instructions, not wishes. "Keep responses under 3 sentences" works better than "Try to keep responses fairly short." Be specific.
+</Callout>
+
+## Add rules for one channel
+
+Customers expect different things on different channels. For example, email can be longer and more formal, and SMS should be brief.
+
+1. Open the **Chat**, **Email** or **SMS** tab.
+2. Type the extra rules in the **CHAT Directive**, **EMAIL Directive** or **SMS Directive** box.
+3. Check the **Preview** box underneath. It shows your central directive plus the channel rules, exactly as combined.
+4. Click **Save CHAT Directive** (or EMAIL / SMS).
+
+Channel rules are added to the central directive; they don't replace it.
+
+## Role & Objectives
+
+Use this tab to tell the AI what job it is doing and what success looks like. The values are added to the AI's instructions as a checklist.
+
+| Field | What to enter |
+|---|---|
+| **Role** | Not set, Sales, Support or Hybrid. |
+| **Primary KPIs (one per line)** | What counts as a win, for example `book_demo` or `qualify_lead`. |
+| **Required Fields to Capture (one per line)** | Details the AI should collect, for example `name`, `email`, `phone`. |
+| **Escalation Triggers (one per line)** | When to bring in a person, for example "User asks for a human" or "Out-of-scope request". |
+| **Next Step Guidance** | What the AI should offer next, for example "Offer to book a demo or send a quote." |
+| **Offer Handoff After (attempts)** | A number. After this many tries, the AI offers to connect the customer with a person. |
+
+Click **Save Role Objectives** when you're done.
+
+<Callout kind="info">
+Each assistant's own editor has similar Role and handoff fields (see [AI Assistants](/pages/ai-config/assistants)). Keep them consistent so the AI isn't getting mixed messages. When a person actually takes over is controlled in [Routing & Handoffs](/pages/ai-config/routing-handoffs).
+</Callout>
+
+## Good things to put in a directive
+
+- **Format:** "Never use bullet points. Write in short paragraphs."
+- **Tone and language:** "Reply in the language the customer uses. Avoid jargon."
+- **Compliance:** "Do not give medical, legal or financial advice."
+- **Disclaimers:** "End any answer about pricing with: [your disclaimer]."
+
+## Directives or Training Context?
+
+| | |
+|---|---|
+| **Messaging Directives** | *How* the AI communicates, whatever the topic. |
+| **[Training Context](/pages/ai-config/training-context)** | *What* the AI knows: products, policies, answers. |
+
+If something sounds odd, check for conflicts. A directive that says "be brief" and an assistant prompt that says "give detailed answers" will pull the AI two ways. Keep your directives short and consistent.
+
+## Try it out
+
+Click **Widget Playground** at the top right to chat with an assistant and see your directives in action. See [Widget Playground](/pages/conversations/widget-playground).
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Each assistant's own instructions.
+  </Card>
+  <Card title="AI Safety" icon="shield" href="/pages/ai-config/ai-safety">
+    Guardrails for what the AI may say.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    When a person takes over.
+  </Card>
+  <Card title="Training Context" icon="graduation-cap" href="/pages/ai-config/training-context">
+    Facts the AI can use.
+  </Card>
+</Columns>

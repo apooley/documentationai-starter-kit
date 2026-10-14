@@ -1,85 +1,128 @@
 ---
 title: Training Context
-description: Give your AI assistants the knowledge they need to answer questions accurately — by uploading documents, crawling your website, writing FAQs, or adding custom instructions.
+description: Teach your AI assistants about your business with products, documents, website pages, instructions and FAQs, then choose which assistants use what.
 ---
 
-## Why training context matters
+An assistant's System Prompt tells it *how to behave*. **Training Context** tells it *what to say*: your products, prices, policies and answers. Without it, the AI only knows general information and can't answer questions about your business.
 
-Your assistant's persona tells it how to behave. Training context tells it what to say.
-
-Without training context, your assistant can only rely on general knowledge from its underlying AI model — which means it won't know anything specific about your products, policies, pricing, or processes. Adding training context is what transforms a generic AI into an assistant that actually knows your business.
-
-Go to **AI Assistant > Training Context** to manage your knowledge base.
-
-## The six types of training context
-
-The Training Context page is divided into six main tabs, each designed for a specific type of information:
-
-### 1. Products
-Import your product catalog so your assistant can answer questions about what you sell, pricing, features, and availability. You can import products via CSV upload, JSON upload, or by providing a URL to a CSV or JSON feed. 
-
-If your product feed encounters a sync error, you'll see a detailed error message and a **Retry sync** button to manually trigger a fresh pull.
-
-#### Product link validation
-
-The AI now requires `search_products` evidence before sending any product link in chat. When the assistant wants to share a product URL, it first searches your product catalog to verify the product exists. If no matching product is found, the assistant fails closed — it will not send a fabricated or invented link.
+Open **AI Assistant → Training Context** in the sidebar. Content is kept per workspace; the page tells you which workspace you're viewing ("Showing content for workspace…"). Change it from the sidebar.
 
 <Callout kind="info">
-This means the AI will never hallucinate product URLs. Keep your product catalog and training context up to date so the assistant can find and link to real products. If products are missing from your catalog, the AI won't be able to share links to them — even if they exist on your website.
+Training Context appears in the sidebar only when it is turned on for your account.
 </Callout>
 
-### 2. Documents
-Upload PDF, DOCX, or plain text files containing your policies, product documentation, onboarding guides, or any other reference material. Autoch.at will extract the text and make it available to your assistant.
+## The tabs
 
-### 3. UI Screens
-Upload structured UI Screens context files. This helps the AI answer questions about specific screens in your application without mixing them into general documents.
+| Tab | Use it for |
+|---|---|
+| **Overview** | See how much of your plan's training space you've used. |
+| **Products** | Your catalog: what you sell, prices, features, availability. |
+| **Documents** | Manuals, policies, guides. |
+| **UI Screens** | Structured files that describe specific screens in your app. |
+| **Website** | Pages pulled in from your website. |
+| **Instructions** | Business rules and special cases. |
+| **FAQs** | Question-and-answer pairs. |
 
-### 4. Website
-Provide a URL and Autoch.at will crawl the page and pull in its content. This is the fastest way to get your existing documentation, help center, or product pages into the system.
+On a narrow screen the tabs turn into a **Training context section** drop-down.
 
-Website crawls run as background jobs. You'll see a live progress banner showing how many pages have been crawled and the current queue size. After the initial crawl, you can re-crawl a link at any time to pick up changes.
+## Overview: how much space you have
+
+The Overview shows **characters used / your plan's limit** and a percentage bar that turns yellow at 80%, orange at 90% and red at 100%. Click **Refresh** to recalculate. If you're close to the limit, delete outdated items or combine documents.
+
+## Products
+
+<Steps>
+  <Step title="Open the Products tab">
+    Click **Import Products**, or **Add Product** to type one in.
+  </Step>
+  <Step title="Choose Format and Import Type">
+    **Format**: CSV (you'll match your columns to product fields) or JSON (no matching needed). **Import Type**: **Upload File** or **Remote URL** (a public link to a CSV or JSON file).
+  </Step>
+  <Step title="Add helpful details">
+    **Context (Optional)** is a sentence about the data, like "These are our current products and pricing." **Default Currency** is used for products with no currency.
+  </Step>
+  <Step title="Import">
+    Follow the prompts. Later, use **Sync** to pull a fresh copy from a feed URL. If a sync fails you'll see the reason and a **Retry sync** button. **Delete Feed** removes the feed.
+  </Step>
+</Steps>
 
 <Callout kind="tip">
-If your website has a sitemap, use the sitemap URL for a more complete crawl. This ensures the system finds all your pages, not just the ones linked from the homepage.
+Keep your catalog current. When the assistant shares a product link in chat, it checks your catalog first, so it only links to products that exist. Products missing from the catalog can't be linked.
 </Callout>
 
-### 5. Instructions
-Custom instructions are for specific scenarios or edge cases. These are like sticky notes for your AI — "always mention our 30-day guarantee" or "if someone asks about X, explain Y". They're great for business rules that don't fit neatly into documents or products.
+## Documents
 
-### 6. FAQs
-FAQs are the most targeted type of training context. Each FAQ is a specific question-and-answer pair. FAQs take priority over other context types when the customer's question closely matches the FAQ question.
+Click **Upload** for one file or **Bulk Upload** for several. Accepted types: PDF, DOCX, TXT, MD and XLSX. Use **New Folder** and **Move to folder** to organize, and switch between **Folder View** and **List View**.
 
-You can add FAQs in three ways:
-- **Add manually** — Write individual question-and-answer pairs directly in the app.
-- **Import CSV** — Upload a spreadsheet of FAQs.
-- **Import from URL** — Paste a link to your website's FAQ page (or paste the HTML directly). Autoch.at will scan the page, extract the questions and answers, let you preview them, and import them as drafts.
+## UI Screens
 
-## Managing your knowledge base
+Upload structured UI Screens files so the AI can answer questions about specific screens without mixing them into your general documents.
 
-### Keeping context up to date
+## Website
 
-Stale training context leads to wrong answers. Make it a habit to review your knowledge base after major product releases, policy changes, or pricing updates.
+<Steps>
+  <Step title="Enter your Base URL">
+    Type your site address, such as `https://example.com`, and click **Save**. The crawler follows links from this page and stays on the same domain.
+  </Step>
+  <Step title="Click Crawl">
+    A progress banner shows pages crawled. When it finishes, you'll see "N pages crawled".
+  </Step>
+  <Step title="Fine-tune (optional)">
+    Open **Advanced Settings** to tick **Ignore query strings and trailing slashes**, add **Exclude Paths** (like `/admin/*`) and **Exclude CSS Selectors** (like `.sidebar` or `#footer`).
+  </Step>
+</Steps>
 
-1. Go to **AI Assistant > Training Context**.
-2. Find the outdated item across the various tabs.
-3. Edit, re-sync, or re-crawl it to reflect the current information.
-4. Delete anything that's no longer accurate.
+After the first crawl, use **Re-crawl Website** to pick up changes, **Refresh Selected** (or **Refresh All**) to refresh specific pages, and **Regenerate Summaries** for pages missing a summary. **Crawl & Sources** and **Organize & Folders** switch between crawling and tidying your pages.
 
-<Callout kind="warning">
-If a customer asks a question and gets a wrong answer, the first place to check is your training context. Outdated or conflicting information is the most common cause of AI errors.
+## Instructions
+
+Short rules for your AI, like "Always mention our 30-day guarantee." Click **Add Instruction** and fill in:
+
+- **Title** and **Content**
+- **Type**: System, Product or Behavior
+- **Priority**: a number. Use it to rank which instruction matters more.
+
+Click **Create**. Use **Edit** to change one later.
+
+## FAQs
+
+FAQs are exact question-and-answer pairs. The AI uses them when a customer's question closely matches. FAQs must be **published** to be used.
+
+- **Add FAQ**: type a question and answer.
+- **Import CSV** (use **Download template** for the format) and **Export CSV**.
+- **Import from URL**: paste an FAQ page link, or paste the page's HTML, review the questions found, then import. They arrive as drafts.
+- Select FAQs and click **Publish selected** to make them live.
+
+<Callout kind="alert">
+If a site uses Cloudflare bot protection, URL import may be blocked. Use CSV import instead.
 </Callout>
 
-### Checking what's being used
+## Choose which assistants use what
 
-You can see which pieces of training context your AI is using most frequently in **Insights > Analytics** under FAQ Analytics. If a document is rarely referenced, it might be outdated or too general. If a particular FAQ is being used constantly, consider expanding on that topic in your main documentation.
+By default an assistant can use everything. On any tab, select items and click **Add to assistant** (or **Add to assistants**) to give them to specific assistants, then click **Assign**. You can also pick items inside an assistant's **Context Assignments** (see [AI Assistants](/pages/ai-config/assistants)).
 
-## Training context vs. messaging directives
+You can also **Delete selected** items in bulk, and use the page search to find an item.
 
-These two features are easy to confuse, but they serve different purposes:
+## Keep it fresh
 
-| Feature | What it does |
+If a customer gets a wrong answer, check Training Context first. Outdated or conflicting content is the most common cause. After pricing, policy or product changes: edit or re-sync the item, re-crawl the website, and delete anything no longer true.
+
+## Training Context vs. Messaging Directives
+
+| | |
 |---|---|
-| **Training Context** | Provides *information* — facts, policies, product details — that the AI uses to answer questions |
-| **Messaging Directives** | Provides *behavioral instructions* — rules about how the AI should communicate, regardless of topic |
+| **Training Context** | *Facts*: policies, product details, answers. |
+| **Messaging Directives** | *Style rules*: how the AI communicates, whatever the topic. |
 
-If you want your AI to know your return policy, add it to Training Context. If you want your AI to always end every response with a follow-up question, use a [Messaging Directive](/pages/ai-config/messaging-directives).
+Want the AI to know your return policy? Add it here. Want it to always end with a question? Use [Messaging Directives](/pages/ai-config/messaging-directives).
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Decide who uses which content.
+  </Card>
+  <Card title="Messaging Directives" icon="message-square" href="/pages/ai-config/messaging-directives">
+    Set tone and formatting rules.
+  </Card>
+</Columns>

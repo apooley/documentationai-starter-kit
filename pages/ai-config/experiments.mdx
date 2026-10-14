@@ -1,64 +1,106 @@
 ---
 title: Experiments
-description: Run A/B tests on your playbooks to find out which version drives better outcomes — and make decisions based on real data, not guesswork.
+description: Compare two playbooks on real conversations. Create a draft experiment, check it, run it, watch results, and promote the winning playbook when you're sure.
 ---
 
-## Test your playbooks before you commit
+An **experiment** splits real conversations between two or more [playbooks](/pages/ai-config/playbooks) so you can see which one works better, instead of guessing.
 
-**Experiments** (at **AI Assistant > Experiments**) let you compare two versions of a playbook side by side to see which one performs better in real conversations.
-
-Instead of guessing whether a change to your playbook will help or hurt, you can run a controlled test, measure the results, and make a data-driven decision.
-
-## When to run an experiment
-
-Experiments are most useful when you're considering a change that could meaningfully affect outcomes. Good candidates include:
-
-- Changing the opening message in a lead qualification playbook
-- Testing a more direct vs. a more conversational approach
-- Trying a different sequence of questions to improve completion rates
-- Testing whether offering a demo early vs. late in the conversation affects conversion
-
-If you're making a small, low-risk change (like fixing a typo), you don't need an experiment — just publish the update.
-
-## Setting up an experiment
-
-1. Go to **AI Assistant > Experiments** and click **Create Experiment**.
-2. Give the experiment a name (e.g., "Lead Qual - Direct vs. Conversational").
-3. Select the **Playbook** you want to test.
-4. Define your two variants:
-   - **Variant A** — Usually the current version (your control).
-   - **Variant B** — The version with your proposed change.
-5. Set the **Traffic Split** — how much of the incoming traffic each variant receives. A 50/50 split is standard, but you can weight it differently if you want to limit exposure to an untested version.
-6. Define your **Success Metric** — what you're measuring. Options typically include:
-   - Playbook completion rate
-   - Handoff rate (lower is usually better)
-   - Lead qualification rate
-   - Conversation resolution rate
-7. Click **Start Experiment**.
-
-## Reading the results
-
-As conversations flow through the experiment, Autoch.at tracks the performance of each variant. You can check the results at any time on the Experiments page.
-
-The results show:
-
-| Metric | What it tells you |
-|---|---|
-| **Conversations** | How many conversations each variant has handled |
-| **Completion rate** | What percentage of conversations reached the playbook's goal |
-| **Handoff rate** | How often each variant escalated to a human |
-| **Win probability** | A statistical estimate of which variant is performing better |
+Open **AI Assistant → Experiments** in the sidebar.
 
 <Callout kind="info">
-Give your experiment enough time to collect statistically meaningful data before drawing conclusions. A sample size of at least 100 conversations per variant is a good starting point for most use cases.
+Experiments is an advanced tool. It appears only for admins and for team members who have been given Experiments permission. If you don't see it, ask an admin. Experiments that apply to the whole account (shown as **Tenant** in the Scope column) can only be changed by an admin.
 </Callout>
 
-## Applying the winning variant
+## When to run one
 
-Once you're confident in the results:
+Experiments are worth it when a change could really affect results, for example:
 
-1. Click **Declare Winner** on the variant you want to keep.
-2. Autoch.at will publish that variant as the active version of the playbook and stop the experiment.
-3. The losing variant is archived but not deleted — you can reference it later.
+- A different opening message in a lead-qualification playbook.
+- A direct tone versus a conversational one.
+- Offering a demo early versus late in the conversation.
 
-If the experiment is inconclusive (no clear winner), you can extend it to collect more data, or try a more significant change in a new experiment.
+For small fixes such as typos, just edit and publish the playbook.
+
+## The Experiments page
+
+- **Workspace**: experiments belong to the workspace you've selected in the sidebar.
+- **Status** filter: All statuses, Draft, Active, Paused, Completed or Archived. Tick **Include archived** to see old ones. Click **Refresh** to reload.
+- **Experiment List**: Name, Status, Scope (a workspace name, or Tenant for account-wide), and Updated.
+- Click any row to open its details on the right.
+
+## Set up an experiment
+
+You need two or more playbooks first. Duplicate your current playbook and change the copy (see [AI Playbooks](/pages/ai-config/playbooks)).
+
+<Steps>
+  <Step title="Fill in Create Experiment">
+    Enter an **Experiment name** and a **Description**. Optionally set a start and end date and time.
+  </Step>
+  <Step title="Add the variants">
+    Under **Initial Variants**, each row is one playbook being tested. Give it a **Name**, the playbook's ID in the **playbook_id** box, and a **Weight**. Tick **Control** on the row that is your current playbook.
+  </Step>
+  <Step title="Create the draft">
+    Click **Create Draft Experiment**. It appears in the list with status Draft. Nothing is live yet.
+  </Step>
+  <Step title="Adjust if needed">
+    Select the experiment to edit its name, description and dates and click **Save Experiment**. Under **Variants** you can edit a row and click **Save**, or use **Add Variant** to add another.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+**Weight** controls how much of the traffic each variant gets. Equal weights give an even split. Give the untested playbook a smaller weight if you want to limit risk.
+</Callout>
+
+## Check it, then start it
+
+In **Preflight & Lifecycle**:
+
+1. Click **Preflight Activate** (or **Preflight Schedule** if you've picked dates). A report says **Eligible** or **Blocked**, with a list of **Errors** (must fix) and **Warnings** (worth reading).
+2. When it's eligible, click **Activate** to start now, or set **Schedule start** / **Schedule end** and click **Schedule**.
+3. You're asked to confirm.
+
+While it runs you can use:
+
+| Button | What it does |
+|---|---|
+| **Pause** | Pauses the experiment (status becomes Paused). |
+| **Complete** | Marks the experiment as Completed. |
+| **Stop** | Stops the experiment. |
+| **Archive** | Moves it to Archived. It's hidden unless you tick **Include archived**. |
+
+### Roll out gradually
+
+The **Rollout** section shows the rollout state, the **Percentage** of traffic, and any hold reason. Admins can click **Apply default ramp plan**, **Hold** (with a **Hold reason**), **Resume**, or **Promote cohort** (with a **Target %**) after ticking the checks **Preflight OK**, **Baseline OK** and **Guardrails OK**. **Refresh monitoring** shows the next check time and current cohort.
+
+## Read the results
+
+**Health Snapshot (Last 30 Days)** lists each experiment with a health status, how many conversations were **Exposures**, how many **Converted**, and the **Conversion** percentage.
+
+<Callout kind="info">
+Give an experiment plenty of conversations before you decide. A small sample can mislead you.
+</Callout>
+
+## Pick a winner
+
+In **Winner & Sunset**:
+
+1. Choose the best variant in **Select winner variant**. Add a **Reason (optional)**.
+2. Click **Promote winner**. Confirm "Promote this variant to default playbook behavior?"
+3. Click **Sunset losers** to retire the others.
+4. Changed your mind? Paste the promotion's ID into **Promotion audit log id (rollback)** and click **Rollback winner**.
+
+## Clean up and history
+
+- **Audit Timeline** lists every action taken on the experiment, who did it and when. Click **Load More** for older entries.
+- **Retention** shows how much old experiment data can be removed. **Dry-run cleanup** previews it. **Run cleanup** permanently deletes it and can't be undone.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Playbooks" icon="book-open" href="/pages/ai-config/playbooks">
+    Create and duplicate the playbooks you test.
+  </Card>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    See which assistants use a playbook.
+  </Card>
+</Columns>

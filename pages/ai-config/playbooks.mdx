@@ -1,104 +1,125 @@
 ---
 title: AI Playbooks
-description: Build structured, goal-oriented conversation flows that guide your AI assistants through specific tasks — from lead qualification to appointment booking.
+description: Playbooks tell an AI assistant what to achieve and how to behave, with versions you can publish or roll back. Learn to create, edit, assign and test them.
 ---
 
-## What playbooks do
+An assistant's System Prompt says *who* it is. A **playbook** says *what it is trying to achieve* and what rules to follow: its goals, tone, limits, safety rules and channel behavior. Playbooks are versioned, so you can change them safely and go back if a change doesn't work.
 
-While your assistant's persona defines *how* it speaks, a **Playbook** defines *what* it's trying to accomplish. Playbooks are step-by-step instructions that guide your assistant through a specific goal — a repeatable workflow that the AI follows every time it's relevant.
-
-Common uses include:
-
-- Qualifying a sales lead (collecting budget, authority, need, and timeline)
-- Troubleshooting a technical issue step by step
-- Collecting information for a support ticket
-- Booking a meeting or demo
-
-Playbooks make your AI consistent. Without them, the assistant improvises. With them, it follows a proven process every time.
-
-## Creating a playbook
-
-Go to **AI Assistant > AI Playbooks** and click **Create Playbook**.
-
-### Name and description
-
-Give your playbook a clear name that describes its purpose — something like "Lead Qualification" or "Password Reset Troubleshooting." The description is for your team's reference.
-
-### Goal
-
-The Primary Goal describes what the assistant is trying to achieve. This is a multi-line field, allowing you to break down complex goals into readable paragraphs or bullet points. 
-
-For example:
-```text
-Determine if the user is a qualified buyer.
-- Collect their name, company, and email address.
-- Ask about their current software stack.
-- Find out their timeline for implementation.
-```
-
-The AI uses this goal to stay on track. If the conversation drifts, it will steer back towards the goal.
-
-### Close chat after goals are met
-
-When a playbook's goals are met, you can choose whether the conversation should close automatically or stay open.
-
-Enable **Close chat after goals are met** if you want the assistant to wrap up naturally and close the conversation once the goal is achieved. The agent gives a brief closing message and the conversation ends. Disable it if you want the conversation to remain open so the user can continue chatting after the goal is met.
-
-<Callout kind="tip">
-Enable this toggle for transactional flows — like lead qualification or appointment booking — where there's no reason for the conversation to continue after the goal is achieved. Disable it for support flows where the user may have follow-up questions after the initial issue is resolved.
-</Callout>
-
-### Instructions
-
-The instructions are the heart of your playbook. They tell the assistant exactly what to do, step by step.
-
-**Tips for writing effective instructions:**
-
-- **Number your steps** — Clear sequencing helps the AI follow the flow in order.
-- **Be specific about what to collect** — If you need an email address, say so explicitly. Don't assume the AI will ask for it.
-- **Define what "done" looks like** — Tell the assistant what to do when the goal is met (e.g., "Once you have their email and company size, thank them and let them know a team member will be in touch within one business day.").
-- **Handle common detours** — If a user asks about pricing before giving their email, tell the assistant how to respond (e.g., "Give a brief overview but steer the conversation back to collecting their contact info.").
-
-## Versioning
-
-Playbooks are version-controlled, which means you can safely make changes without disrupting live conversations. When you edit a playbook, you create a new **Draft** version. Once you're happy with the changes, publish it to make it the active version.
-
-You can always view the version history and roll back to a previous version if a change doesn't perform as expected.
-
-## Attaching playbooks to assistants
-
-A playbook does nothing on its own — it needs to be attached to an assistant.
-
-1. Go to **AI Assistant > Assistants** and open the assistant you want to update.
-2. Find the **Playbooks** section in the assistant's configuration.
-3. Select the playbook you want to attach.
-
-An assistant can have multiple playbooks attached. The AI determines which one applies based on the customer's intent at the start of the conversation.
+Open **AI Assistant → AI Playbooks** in the sidebar.
 
 <Callout kind="info">
-If you have multiple playbooks attached to the same assistant, make sure each one has a distinct goal. Overlapping goals can confuse the AI about which playbook to follow.
+AI Playbooks only appears in the sidebar if it is turned on for your account. Only admins can link playbooks to assistants.
 </Callout>
 
-## Duplicating a playbook
+## The Playbooks page
 
-You can duplicate an existing playbook to quickly create a variant for A/B testing or iteration. The duplicate copies the goal, instructions, and all settings from the original, so you can tweak it without touching the working version.
+- The **left list** shows your playbooks with their status, version number and last-updated date.
+- Click one to open it on the right. The header shows **Save Draft** and **Publish New Version**, plus **Open Playground** to test it.
+- The **Used by:** line shows which assistants follow this playbook.
+- Ten tabs hold the settings: **Identity, Tone, Goals, Constraints, Safety, Channels, Tools, Model, Context, Versions**.
+
+## Create a playbook
+
+### Option 1: Create via Chat (recommended)
 
 <Steps>
-  <Step title="Open the playbook" icon="book-open">
-    Go to **AI Assistant > Playbooks** and click the playbook you want to duplicate.
+  <Step title="Click Create via Chat">
+    On the Playbooks page, click **Create via Chat**.
   </Step>
-  <Step title="Click Duplicate" icon="copy">
-    Click **Duplicate** to create a copy of the playbook.
+  <Step title="Answer the questions">
+    The builder interviews you about your business and works through Identity, Tone, Goals, Constraints, Safety, Channels and Tools. A progress bar shows where you are.
   </Step>
-  <Step title="Edit the copy" icon="edit">
-    Rename the duplicate, adjust the goal or instructions as needed, and save your changes.
+  <Step title="Check the draft">
+    Use **Draft Preview** to read what has been captured, and **Test Draft** to chat with it before saving.
+  </Step>
+  <Step title="Name and publish">
+    Under **Finalize**, enter a **Playbook Name** (just for your own reference). Leave **Activate this playbook immediately** ticked if you want it live, then click **Publish Playbook**.
   </Step>
 </Steps>
 
+### Option 2: Start from a template
+
+<Steps>
+  <Step title="Click New Playbook">
+    In the **Create Playbook** window enter a **Name**.
+  </Step>
+  <Step title="Pick a Template">
+    Choose **General Assistant** (balanced default), **Lead Qualification** (qualify inbound leads and collect contact details) or **Customer Support** (troubleshoot, then hand off to a person when needed). A short description appears under the list.
+  </Step>
+  <Step title="Click Create">
+    The playbook opens so you can adjust each tab.
+  </Step>
+</Steps>
+
+## What each tab does
+
+| Tab | What you set |
+|---|---|
+| **Identity** | **Base Prompt**, **Persona** and **Display Name** (the name the assistant introduces itself with). |
+| **Tone** | **Formality** (Casual / Professional / Formal), **Empathy**, **Verbosity** (Concise / Balanced / Detailed) and **Custom Tone Rules** (one per line). |
+| **Goals** | **Primary Goal**, **Secondary Goals**, **Success Criteria** (one per line) and the switch **Close chat after goals met**. |
+| **Constraints** | **Never Mention**, **Never Do** and **Must Include**. |
+| **Safety** | **Escalation Triggers** and **Escalation Threshold**, **Profanity Handling** (Ignore / Acknowledge / Escalate), **PII Handling** (Collect / Redact / Refuse) and **Emergency Protocol**. |
+| **Channels** | Turn each channel on or off and add channel-specific prompt additions, tone and maximum reply length (use **Inherit** to keep the main setting). |
+| **Tools** | **Allowed Tools**, **Denied Tools** and **Require Approval**. Advanced; most businesses leave this alone. |
+| **Model** | **Provider**, **Model ID** and **Temperature**. Advanced. |
+| **Context** | **Document IDs** and **Custom Instructions** that apply whenever this playbook is used. |
+| **Versions** | History of every version. |
+
 <Callout kind="tip">
-Use duplication together with [Experiments](/pages/ai-config/experiments) to A/B test playbook variations without modifying your live playbook.
+Goals work best written as a short list of what a good outcome looks like, for example "Collect name, company and email" and "Offer to book a demo". Turn on **Close chat after goals met** for one-shot flows such as booking or lead capture, and leave it off for support, where customers may have follow-up questions.
 </Callout>
 
-## A/B testing your playbooks
+## Save, publish and roll back
 
-Not sure which version of a playbook performs better? Use [Experiments](/pages/ai-config/experiments) to run an A/B test. You can compare two versions of a playbook side by side and measure which one results in better outcomes — higher completion rates, fewer handoffs, faster resolution.
+1. Make your changes and click **Save Draft** to keep them without affecting live conversations.
+2. When you're happy, click **Publish New Version**. It becomes the active version.
+3. Open the **Versions** tab to see all versions. For each you can:
+   - **View**: see its details and a "Diff vs Active" comparison.
+   - **Load into Editor**: copy it into the editor (this overwrites what you're currently editing, so you're asked to confirm).
+   - **Activate**: make that version live. Use this to roll back.
+
+## Use a playbook with an assistant
+
+An assistant follows **one playbook at a time**. There are two ways to connect them (admins only):
+
+**From the Playbooks page**
+
+1. Open the playbook and click **Assign to assistants**.
+2. Tick the assistants that should use it. If an assistant already uses a different playbook, a note says it will be switched.
+3. Click **Save assignments**. Unticking an assistant removes the playbook from it.
+
+**From the assistant**
+
+1. Go to **AI Assistant → Assistants** and click **Edit** on the assistant.
+2. Choose a playbook in the **Playbook** list (or **No playbook**) and save.
+
+See [AI Assistants](/pages/ai-config/assistants).
+
+## Duplicate or archive
+
+Click the **⋮** (Playbook actions) menu on a playbook in the list:
+
+- **Duplicate** makes a copy you can change without touching the original. Great for [Experiments](/pages/ai-config/experiments).
+- **Archive** removes it from use. To bring an archived playbook back, contact support.
+
+## Test a playbook
+
+Click **Open Playground**, pick an assistant that uses the playbook, and chat as a customer would. See [Widget Playground](/pages/conversations/widget-playground).
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="Experiments" icon="flask-conical" href="/pages/ai-config/experiments">
+    A/B test two playbooks.
+  </Card>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Link a playbook to an assistant.
+  </Card>
+  <Card title="AI Safety" icon="shield" href="/pages/ai-config/ai-safety">
+    Account-wide guardrails.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    When a person takes over.
+  </Card>
+</Columns>

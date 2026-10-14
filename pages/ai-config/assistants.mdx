@@ -1,129 +1,181 @@
 ---
 title: AI Assistants
-description: Create and configure the AI agents that handle your customer conversations across chat, SMS, email, voice, and social.
+description: Create and manage the AI assistants that answer customers on chat, SMS, email and voice. Set their personality, channels, playbook and who they hand chats to.
 ---
 
-## Your AI team members
+An **assistant** is an AI team member that talks to your customers. You can have as many as you need, for example a Support assistant, a Sales assistant and a Front-desk assistant, each with its own personality, knowledge and channels.
 
-An **Assistant** is the AI that talks to your customers. Think of it as a team member with a specific role — a support agent, a sales rep, a receptionist — that's always available and never needs a break.
+Find them under **AI Assistant → Assistants** in the left sidebar.
 
-You can create as many assistants as you need. A common setup is one assistant per purpose:
+## The Assistants page
 
-- A **Support Assistant** that answers product questions and troubleshoots issues.
-- A **Sales Assistant** that qualifies leads and books demos.
-- A **General Assistant** that handles everything else and routes to the right place.
+Each assistant appears as a card showing:
 
-Each assistant has its own persona, channel assignments, and attached playbooks. They operate independently, so you can tune each one for its specific job without affecting the others.
+- Its name (your **Internal Name** if you set one, with the **Public name** underneath).
+- Badges for the channels it is the default for: **Default**, **Email**, **SMS**, **Chat & DMs**, **Voice**.
+- Its **Workspace**, its linked **Playbook**, and, if warm transfer is on, a **Transfers to:** line.
+- Buttons: **Rules**, **Edit**, **Clone** and **Delete**.
 
-## Creating an assistant
-
-Go to **AI Assistant > Assistants** and click **Create Assistant** to get started.
-
-### Name and description
-
-Give your assistant a name that makes sense internally — your team will see this in the inbox and in reports. The description is optional but helpful if you have multiple assistants and want to remember what each one does.
-
-### The persona (system prompt)
-
-The persona is the most important part of your assistant's configuration. It's the instruction set that tells the AI who it is, how to behave, and what it's responsible for.
-
-A good persona is specific. Instead of "Be helpful and professional," try something like:
-
-> "You are a friendly and concise support agent for Acme Co. Your job is to help customers troubleshoot issues with our software products. Always ask one clarifying question before suggesting a solution. If you can't resolve an issue within two exchanges, offer to connect the customer with a human agent."
-
-The more specific you are about tone, responsibilities, and edge cases, the more consistently your assistant will behave.
-
-<Callout kind="tip">
-Keep your persona focused on behavior, not information. Use [Training Context](/pages/ai-config/training-context) to give your assistant facts about your products and policies. Use the persona to tell it how to act.
-</Callout>
-
-### Channel assignment
-
-You need to assign your assistant to at least one channel before it can respond to customers. Available channels include:
-
-| Channel | Where messages come from |
-|---|---|
-| **Web Chat** | The chat widget on your website |
-| **SMS** | Text messages to your provisioned phone numbers |
-| **Email** | Emails to your connected domains |
-| **Voice** | Phone calls to your provisioned numbers |
-| **Social** | Direct messages from connected social accounts |
-
-If you assign multiple assistants to the same channel, use [Routing Rules](/pages/ai-config/routing-handoffs) to control which one handles a given conversation.
-
-## Advanced settings
-
-Once the basics are in place, you can fine-tune how your assistant behaves.
-
-### Model selection
-
-Autoch.at lets you choose the underlying AI model that powers your assistant. The right choice depends on what your assistant needs to do:
-
-- **Standard models** are faster and more cost-effective. They work well for straightforward Q&A, simple routing, and first-response handling.
-- **Advanced models** handle more complex reasoning, multi-step playbooks, and nuanced conversations better. Use these when accuracy and depth matter more than speed.
-
-### Temperature
-
-Temperature controls how creative or predictable the assistant's responses are.
-
-A **low temperature** (closer to 0) makes responses more consistent and factual — good for support and compliance scenarios where you want the AI to stick closely to what it knows. A **high temperature** (closer to 1) makes responses more varied and conversational — better for sales or marketing contexts where a bit of personality helps.
-
-Most support assistants work best somewhere in the middle.
-
-### Playbook attachment
-
-Playbooks define what your assistant is trying to achieve in a conversation. You can attach one or more playbooks to an assistant, and the AI will determine which one applies based on the customer's intent.
-
-See [Playbooks](/pages/ai-config/playbooks) for how to create and structure them.
-
-### Product link validation
-
-Your assistant validates product links against your product catalog before sending them in chat. When the AI wants to share a product link, it uses `search_products` to verify that the product actually exists in your catalog. If no matching product is found, the assistant fails closed — it will not send a fabricated or invented URL.
+Use the **Search assistants...** box to find one. The star at the top-right of a card (**Set as default**) makes it your overall default assistant. The **Routing Rules** button at the top opens [Routing & Handoffs](/pages/ai-config/routing-handoffs).
 
 <Callout kind="info">
-This means the AI will never hallucinate product links. Keep your [Training Context](/pages/ai-config/training-context) and product catalog up to date so the assistant can find and link to real products.
+Only assistants in your current workspace are shown. Switch workspace from the sidebar to see the others.
 </Callout>
 
-## Cloning an assistant
-
-You can clone an existing assistant to any workspace within the same tenant. This is useful for promoting a tested configuration from a staging workspace to production, or for creating a variant of a working assistant without starting from scratch.
-
-When you clone, the assistant's persona, channel assignments, model settings, and temperature are copied. You can optionally include a copy of the assistant's attached playbook.
+## Create an assistant
 
 <Steps>
-  <Step title="Open the assistant" icon="settings">
-    Go to **AI Assistant > Assistants** and click the assistant you want to clone.
+  <Step title="Click Create Assistant">
+    On the Assistants page, click **Create Assistant**. Tick the channels you plan to use (Email, Chat, Voice, and SMS if your plan has it).
   </Step>
-  <Step title="Click Clone" icon="copy">
-    Click **Clone** in the assistant's configuration.
+  <Step title="Choose how to set it up">
+    - **AI-assisted setup**: answer a few questions and the AI drafts the instructions for you.
+    - **Quick setup**: pick a goal (Sales / Lead qualification, Customer support, Scheduling or Other), add a short goal description and tone, and create it.
+    - **Full manual setup**: fill in every setting yourself, using the steps below.
+
+    You can also start from a ready-made template.
   </Step>
-  <Step title="Select the target workspace" icon="layers">
-    Choose which workspace to clone the assistant into. You can clone to the current workspace or any other workspace in the same tenant.
+  <Step title="Work through the setup steps">
+    When creating a full assistant you may see a step bar at the top. The steps are **1. Basics**, **2. Channels & Routing**, **3. Knowledge**, **4. Behavior** and **5. Review**. You can click any step to jump to it.
   </Step>
-  <Step title="Choose whether to copy the playbook" icon="book-open">
-    Check **Copy playbook** if you want to include a copy of the assistant's attached playbook in the clone. Leave it unchecked if the target workspace already has the playbook you want to use.
-  </Step>
-  <Step title="Confirm" icon="check-circle">
-    Click **Confirm** to create the cloned assistant in the target workspace.
+  <Step title="Save">
+    Click **Create Assistant**. If something needs fixing, the message appears inside the pop-up, so you won't lose your work.
   </Step>
 </Steps>
 
-## Testing your assistant
+### Basics
 
-Before sending your assistant live, test it in the **Widget Playground** at **Conversations > Messaging > Widget Playground**. Select the assistant you want to test and interact with it exactly as a customer would.
+| Field | What it's for |
+|---|---|
+| **Name** (required) | The name customers see. It is also used in email signatures. |
+| **Internal Name (recommended)** | A name only your team sees, to tell assistants apart. If you leave it blank, the Name is used. |
+| **Workspace** | Which workspace the assistant belongs to. Used for routing defaults and branding. |
+| **Description** | A short note about what this assistant is for. |
+| **Playbook (recommended)** | Optional on create. Pick the playbook this assistant should follow. You can change it later. Only admins can change it. |
 
-Check that it:
-- Follows the persona you wrote
-- Uses the right training context to answer questions
-- Executes its assigned playbooks correctly
-- Triggers routing rules when it should
+### Behavior
 
-## Monitoring performance
+- **Tone**: Friendly, Professional, Concise, Empathetic, Upbeat, Casual, Salesy, or **Other** (describe it in up to 120 characters).
+- **Role**: Not set, Sales, Support or Hybrid. This shapes the assistant's goals and when it offers a handoff.
+- **Playbook**: the single playbook this assistant follows on every channel. See [AI Playbooks](/pages/ai-config/playbooks).
+- **Primary KPIs**, **Required Fields to Capture** and **Escalation Triggers**: one item per line, for example "name", "email", "User asks for a human".
+- **Next Step Guidance**: what the assistant should offer at the end, for example "Offer to book a demo or send a quote."
+- **Offer Handoff After (attempts)**: how many tries before the assistant offers a person.
+- **System Prompt** (required): the main instructions that define who the assistant is and how it behaves.
+- **Greeting Message**: the first thing it says, for example "Hello! How can I help you today?"
+- **Email Signature (Optional)**: text added after the assistant's name in emails.
 
-Once your assistant is live, keep an eye on how it's doing in **Insights > Analytics**. The metrics to watch are:
+<Callout kind="tip">
+Keep the System Prompt about *behavior* ("You are a friendly, concise support agent for Acme..."). Put facts about your business in [Training Context](/pages/ai-config/training-context) instead.
+</Callout>
 
-- **Total conversations handled** — Is it taking load off your team?
-- **Handoff rate** — How often is it escalating to humans? A very high rate might mean the persona or training context needs work.
-- **Resolution rate** — How often does it fully resolve a conversation without human help?
+### Channels & Routing
 
-If something isn't working, the most common fixes are updating the persona, adding more training context, or refining the playbook instructions.
+- **Provider** and **Model**: the AI engine behind the assistant. Most businesses leave the defaults. You only see Provider choices if your account uses its own AI keys.
+- **Voice**: the voice used on phone calls.
+- **Routing default (fallback for all channels)** plus **Default for Email**, **Default for SMS**, **Default for Chat & DMs** and **Default for Voice**. A channel-specific default wins over the overall default.
+- **Training mode (web chat)**: lets testers type /clear, /flag-good and /flag-bad in the chat widget. Use it only on a test assistant.
+- **Use Shortlinks**: turns links in messages into tracked short links. Handy for email and SMS.
+
+If you give several assistants the same channel, use [routing rules](/pages/ai-config/routing-handoffs) to decide which one answers.
+
+### Knowledge
+
+Under **Context Assignments**, **Include all context** (the default) lets the assistant use everything in your [Training Context](/pages/ai-config/training-context): documents, products, website content and instructions. Untick it to pick specific items.
+
+### Advanced Options
+
+Click **Advanced Options** to expand:
+
+- **OpenAI Temperature** (0 to 2, default 0.7): lower is more consistent, higher is more varied.
+- **Max Tokens** (default 2000): caps how long replies can be. Keep it lower for chat and SMS.
+- **Topic Boundaries**: topics to stay within, one per line.
+- **Do Not Instructions**: things it must never do or say.
+- **Query Result Limits (Per-Agent Override)**: optional caps on how much material this assistant pulls in per question: **Max Products Per Query**, **Max Documents Per Query**, **Max Website Pages Per Query**, **Max Product Description Length**, **Max Document Preview Length** and **Max Website Preview Length**. Leave them empty to use your plan's defaults.
+
+## Link a playbook
+
+An assistant follows one playbook at a time.
+
+1. Open the assistant with **Edit**.
+2. In **Behavior**, choose a playbook in the **Playbook** list (or **No playbook**).
+3. Save.
+
+You can also assign a playbook from the **AI Playbooks** page, which shows which assistants use each one.
+
+<Callout kind="info">
+Playbook linking is admin-only. If you are not an admin you will see the playbook name with "Ask an admin to change this."
+</Callout>
+
+## Hand chats to a colleague (warm transfer)
+
+On website chat, an assistant can pass a visitor to a better-suited assistant. The visitor sees "Connecting you with *name*…" and the next assistant gets a short summary of the conversation.
+
+<Steps>
+  <Step title="Open the assistant">
+    Click **Edit** on the card (warm transfer is shown when editing an existing assistant).
+  </Step>
+  <Step title="Turn it on">
+    In **Behavior**, switch on **Warm transfer (website chat)**.
+  </Step>
+  <Step title="Pick colleagues">
+    Under **Can transfer to**, tick up to 10 other assistants in the same workspace. Paused assistants are not listed. Give each colleague a clear description so the AI picks the right one.
+  </Step>
+  <Step title="Check handoffs are on">
+    Transfers only work if handoffs are on for your business. If they're off, the editor shows a warning with a link to **Routing & Handoffs → Handoff Settings**.
+  </Step>
+</Steps>
+
+See [Warm transfer between assistants](/pages/ai-config/warm-transfer) for more.
+
+## Clone an assistant
+
+<Steps>
+  <Step title="Click Clone">
+    On the assistant's card, click **Clone**.
+  </Step>
+  <Step title="Name it and pick a workspace">
+    Enter a **New name** and choose a **Target workspace**.
+  </Step>
+  <Step title="Decide about the playbook">
+    Tick **Also clone linked playbook** to make a separate copy (give it a **New playbook name**). If you leave it unticked, the copy keeps using the same playbook.
+  </Step>
+  <Step title="Confirm">
+    Click **Clone**.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+Default settings are not copied. Set the new assistant's channel defaults yourself.
+</Callout>
+
+## Delete an assistant
+
+Click **Delete** on the card, then **Delete assistant** to confirm. This cannot be undone.
+
+- Its routing rules, instructions and email assignments are deleted with it.
+- If it was a channel's default, choose another default afterwards.
+- Past conversations are kept, but no longer show which assistant handled them.
+
+## Test before you go live
+
+- Use the **Widget Playground** (sidebar → **Conversations → Widget Playground**) to chat with your assistant as a customer would. See [Widget Playground](/pages/conversations/widget-playground).
+- In the editor, **Test prompt**, **Test Email** and **Test SMS** let you try a message, and **Run test scenarios** checks the assistant against realistic requests.
+- **Quality Check** (on the Review step) checks your instructions and lists issues with suggested fixes.
+
+## Related pages
+
+<Columns cols={2}>
+  <Card title="AI Playbooks" icon="book-open" href="/pages/ai-config/playbooks">
+    Give an assistant a step-by-step goal.
+  </Card>
+  <Card title="Training Context" icon="graduation-cap" href="/pages/ai-config/training-context">
+    Teach it your business facts.
+  </Card>
+  <Card title="Routing & Handoffs" icon="route" href="/pages/ai-config/routing-handoffs">
+    Choose who answers and when a person steps in.
+  </Card>
+  <Card title="AI Safety" icon="shield" href="/pages/ai-config/ai-safety">
+    Set guardrails for what the AI can say.
+  </Card>
+</Columns>
