@@ -1,150 +1,135 @@
 ---
-title: "Chat Widget"
-description: "Configure the appearance, behavior, and tracking of your website chat widget."
-icon: "message-circle"
+title: Chat Widget
+description: Customise your website chat widget's look, launcher, contact form and proactive pop-up messages. Add allowed domains, get your embed code and track results.
 ---
 
-The Chat Widget settings allow you to customize how the Autoch.at widget looks and behaves on your website. You can adjust colors, text, launcher styles, contact collection requirements, and proactive messaging to match your brand.
+**Chat Widget** controls how the chat bubble looks and behaves on your website, who is allowed to show it, and how to add it to your pages.
 
-## Widget Configuration
+Find it in the left menu under **Settings** > **Chat Widget**. It has two tabs: **Configuration** (everything below) and **Tracking**.
 
-These settings control the visual appearance and initial behavior of the widget on your website.
+Click **Save Widget Configuration** at the bottom of the Configuration tab when you're done. You'll be warned if you try to leave with unsaved changes. To preview changes safely, use [Widget Playground](/pages/conversations/widget-playground).
 
-### Launcher Style
+## Look and feel
 
-Choose how the widget button appears when closed:
-- **Floating circle**: A standard circular button in the corner of the screen.
-- **Bottom-right bar**: A wide rectangular bar docked to the bottom right.
-- **Centre-left bar**: A vertical rectangular bar docked to the middle left of the screen.
+| Setting | What it does |
+|---|---|
+| **Launcher Style** | **Floating circle** (a round button in the corner), **Bottom-right bar** (a wide bar attached to the bottom right) or **Centre-left bar** (a vertical bar in the middle of the left edge). |
+| **Launcher Content** | **Icon only**, **Text only** or **Icon + text**. |
+| **Launcher Text** | The label on the launcher when text is shown, for example "Chat with us". |
+| **Theme** | **Light** or **Dark** chat window. |
+| **Position** | **Bottom Right**, **Bottom Left**, **Top Right** or **Top Left**. |
+| **Widget Color** | The main colour for the button, highlights and active states. Use the picker or type a hex code such as `#3B82F6`. |
+| **Header Font Colour** | Colour of the company name in the open chat header. Choose a dark colour if your widget colour is light. |
 
-### Launcher Content
+## Greeting, pictures and branding
 
-Control what is displayed inside the launcher button:
-- **Icon only**: Shows only the chat icon.
-- **Text only**: Shows only the text label.
-- **Icon + text**: Shows both the icon and the text label.
+- **Greeting Message**: the first thing visitors see when the chat opens. Keep it friendly.
+- **Avatar URL (optional)**: a picture for your AI assistant. Square images around 200 by 200 pixels work best. The address must be publicly reachable.
+- **Header Icon URL (optional)**: a small square icon that replaces the default chat icon in the header.
+- **Header Wordmark URL (optional)**: a wide logo image that replaces your company name text in the header.
 
-<Callout kind="info">
-When using **Text only** or **Icon + text**, you can customize the text using the **Launcher Text** field (e.g., "Chat with us").
+Your company name and brand colour also come from [Branding](/pages/settings/branding).
+
+### Hide "Powered by"
+
+Tick **Hide "Powered by" disclaimer** to remove the small Autoch.at line at the bottom of the widget. This needs the **White Label** add-on. Without it the box is greyed out and says "White Label add-on required to hide the disclaimer." If it's available for purchase, a **Purchase White Label** button appears next to it.
+
+<Callout kind="alert">
+We recommend telling visitors somewhere on your site that they may be talking to AI. You are responsible for any disclosure rules that apply where you operate.
 </Callout>
 
-### Theme and Colors
+## What visitors must share first
 
-- **Theme**: Choose between Light and Dark mode for the widget interface.
-- **Widget Color**: The primary accent color used for the widget button, highlights, and active states. Enter a hex code (e.g., `#3B82F6`) or use the color picker to match your brand.
-- **Header Font Colour**: The color of the company name text in the open widget header. This is useful if your widget color is light and you need dark text for contrast.
+**Contact information** decides what a visitor must enter before they can send their first message:
 
-### Contact Information
+- **Name only**
+- **Name and email**
+- **Name and phone number**
+- **Name, email, and phone number**
 
-Choose what information visitors must provide before they can start a chat. This helps you capture leads and follow up with users later.
+A name is always collected. Asking for an email or phone helps you follow up later, but each extra field may put some visitors off.
 
-- **Name only**: Visitors only need to provide their name.
-- **Name and email**: Visitors must provide their name and email address.
-- **Name and phone number**: Visitors must provide their name and phone number.
-- **Name, email, and phone number**: Visitors must provide all three fields.
+### Returning visitors
 
-<Callout kind="tip">
-Name is always collected. Email and phone are optional depending on this setting. The widget will prompt the user for this information before they can send their first message.
-</Callout>
+**Conversation reuse window (hours)** sets how long a returning visitor continues the same conversation. The default is 24. Enter 1 to 168 hours since their last message, or 0 to keep reusing the conversation until the system closes it after it goes quiet.
 
-### Branding and Images
+## Proactive messaging
 
-- **Greeting Message**: The default message shown at the top of the chat window before a conversation starts.
-- **Avatar URL**: An optional image URL for the AI assistant's avatar.
-- **Header Icon URL**: An optional image URL for the icon shown in the widget header.
-- **Header Wordmark URL**: An optional image URL for a full logo/wordmark in the header. If provided, this replaces the text-based company name.
-
-### White Labeling
-
-If your workspace has the White Label add-on enabled, you can check the **Hide "Powered by" disclaimer** box to remove the Autoch.at branding from the bottom of the widget.
-
-<Callout kind="warning">
-We recommend keeping a disclaimer on AI-assisted experiences for transparency and compliance. You are responsible for any disclosure obligations in your jurisdiction.
-</Callout>
-
-## Proactive Messaging
-
-Proactive messaging allows you to show a message bubble above the chat launcher when visitors meet certain conditions. Clicking the bubble opens the chat with your message.
-
-To use this feature, toggle **Enable proactive messaging**.
-
-### Message Template
-
-This is the text shown in the proactive bubble above the launcher. If the visitor clicks the bubble to open the chat, this text will appear as the first message from the assistant.
-
-### Triggers
-
-Configure when the proactive bubble should appear:
-
-- **Time on page**: Show the bubble after the visitor has been on the page for a specific number of seconds.
-- **Scroll depth**: Show the bubble after the visitor scrolls down a certain percentage of the page (e.g., 50%).
-- **Custom events**: Trigger the bubble when a user interacts with specific elements on your site. You can add multiple events based on:
-  - **Hover**: When the user hovers over an element.
-  - **Click**: When the user clicks an element.
-  - **Focus**: When the user focuses on an input field.
-  
-  For custom events, provide the CSS selector of the target element (e.g., `#pricing-button` or `.cta-link`).
-
-<Callout kind="tip">
-By default, proactive messages are set to **Show only once per session** to prevent annoying visitors with repeated popups. You can disable this if you want the bubble to trigger multiple times.
-</Callout>
-
-## Allowed Domains
-
-For security, the widget will only load on domains you explicitly authorize. 
-
-1. Enter your website domain (e.g., `example.com`).
-2. Click **Add Domain**.
-3. The widget will now function on that domain and any of its subdomains.
-
-## Embed Code
-
-Once you have configured your widget and added your allowed domains, click **Generate token** to create your unique embed code. 
-
-Copy this code snippet and paste it into the `<head>` or `<body>` of your website's HTML.
-
-## Tracking Integrations
-
-The Tracking tab allows you to connect your chat widget to external analytics platforms.
-
-- **Google Analytics (GA4)**: Enter your Measurement ID (e.g., `G-XXXXXXXXXX`) to send chat events to GA4.
-- **Meta Pixel**: Enter your Pixel ID to send chat events to Facebook/Meta.
-- **PostHog**: Enter your PostHog API Key and Host URL to track widget interactions.
-
-When enabled, the widget automatically fires events for actions like opening the widget, starting a conversation, and completing a goal.
-
-## Tracking Configuration
-
-The **Tracking** tab in Chat Widget settings lets you enable tracking and manage event mappings. Event mappings connect widget events to external tracking outcomes — for example, mapping a "Lead Qualified" event to a specific conversion goal in your analytics platform.
-
-### Enabling tracking
+A proactive message is a small bubble above the chat button that invites visitors to chat. Clicking it opens the chat with that text as the assistant's first message.
 
 <Steps>
-  <Step title="Open the Tracking tab" icon="bar-chart">
-    Go to **Settings > Chat Widget** and click the **Tracking** tab.
+  <Step title="Turn it on">
+    Tick **Enable proactive messaging**. If it's greyed out, the feature isn't switched on for your account yet. Contact support.
   </Step>
-  <Step title="Enable tracking" icon="toggle-left">
-    Toggle **Enable tracking** to turn on event tracking for the widget.
+  <Step title="Write the message">
+    Enter the **Message Template**, for example "Hi! How can we help you today?"
   </Step>
-  <Step title="Create an event mapping" icon="plus">
-    Click **Add event mapping** to create a new outcome. Give it a name (e.g., "Lead Qualified"), select the widget event that should trigger it, and configure the destination.
+  <Step title="Pick how noticeable it is">
+    Under **Visibility level** choose **Subtle** (small, gentle fade, good for content pages), **Standard** (balanced, with a notification dot) or **Bold** (large, bouncing, pulsing launcher, good for pricing or checkout pages). A preview shows the result. Open **Advanced visibility** to fine-tune **Bubble size**, **Entrance animation**, **Launcher emphasis**, **Accent style** and **Repeat attention pulse until dismissed**. Changing the level resets those fine-tuned choices.
   </Step>
-  <Step title="Save" icon="check">
-    Click **Save** to activate the event mapping.
+  <Step title="Choose when it appears">
+    Under **Trigger Conditions** tick any that suit you:
+    - **Time delay (seconds)**: after the visitor has been on the page for this long.
+    - **Scroll percentage**: after they scroll this far down.
+    - **Idle time (seconds)**: after they stop interacting for this long.
+    - **Exit intent**: when the mouse heads toward the top of the page, as if leaving.
+  </Step>
+  <Step title="Optionally react to clicks and hovers">
+    Click **Add Custom Event**, choose **Hover**, **Click** or **Focus**, and enter the CSS selector of the element, for example `#pricing-button` or `.cta-link`. Ask your web developer if you need help finding the selector.
+  </Step>
+  <Step title="Limit repeats">
+    **Show only once per session** is ticked by default so visitors aren't pestered. Untick it only if you want the bubble to appear again.
   </Step>
 </Steps>
 
-### chat_started event
+## Allowed domains
 
-The `autoch.at.chat_started.v1` event is emitted when a user sends their first real message in the widget chat. This is distinct from widget open events — it only fires once the user has actually typed and sent a message.
+The widget only loads on websites you approve.
 
-```json
-{
-  "event": "autoch.at.chat_started.v1",
-  "workspace_id": "ws_abc123",
-  "conversation_id": "conv_xyz789",
-  "timestamp": "2026-09-25T16:41:59Z"
-}
-```
+<Steps>
+  <Step title="Add your website">
+    Type your domain, for example `example.com`, choose the **Workspace** it belongs to, and click **Add Domain**.
+  </Step>
+  <Step title="Add every address you use">
+    Add each site or subdomain separately, for example both `example.com` and `shop.example.com`, to be safe.
+  </Step>
+</Steps>
 
-Use this event in analytics funnels to measure widget engagement and drop-off rates — for example, comparing how many visitors open the widget versus how many actually start a conversation.
+Each domain shows as Active. Use the dropdown to move it to another workspace, or **Remove** to stop it working.
+
+## Add the widget to your website
+
+<Steps>
+  <Step title="Generate a token">
+    Click **Generate token**, then **Copy token** if you need it.
+  </Step>
+  <Step title="Copy the snippet">
+    Under **Embed snippet**, click **Copy snippet**.
+  </Step>
+  <Step title="Paste it into your site">
+    Paste the code just before the closing `</body>` tag on every page where the chat should appear. If you use WordPress, Shopify, Wix or similar, look for a "custom code" or "footer scripts" area, or send the snippet to your web developer.
+  </Step>
+</Steps>
+
+<Callout kind="info">
+If the widget ever stops appearing, check that the page's domain is in **Allowed Domains**, then generate a fresh token and snippet.
+</Callout>
+
+## Tracking tab
+
+Use **Tracking** to send chat outcomes, such as a qualified lead, to your own website analytics. It only covers the embedded chat widget, not SMS, email or voice.
+
+- **Tracking Configuration**: switch on **Enable Chat Widget Tracking**, choose a **PII mode** (how much personal detail may be included), and set **Event Mappings**. Click **Add standard mappings** for the usual ones. You need at least one enabled mapping before outcomes such as Lead Qualified appear.
+- **Widget Tracking Health**: shows recent events and failures for the **Last 1 hour**, **Last 24 hours** or **Last 7 days**, split **By Event Type**.
+- **Tracking Code Templates**: ready-made snippets for your web developer to paste where your analytics scripts run. Autoch.at doesn't run this code inside the widget.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Widget Playground" icon="sparkles" href="/pages/conversations/widget-playground">
+    Test your widget before going live.
+  </Card>
+  <Card title="Branding" icon="palette" href="/pages/settings/branding">
+    Company name, logo and brand colour.
+  </Card>
+</Columns>

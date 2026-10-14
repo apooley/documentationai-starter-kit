@@ -221,6 +221,10 @@
                 "icon": "circle-user"
               },
               {
+                "title": "Account Security",
+                "path": "pages/settings/account-security"
+              },
+              {
                 "title": "Workspaces",
                 "path": "pages/settings/workspaces",
                 "icon": "layout-grid"

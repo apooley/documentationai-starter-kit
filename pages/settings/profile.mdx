@@ -1,71 +1,115 @@
 ---
 title: Profile
-description: Update your personal account details, change your password, and configure your individual notification preferences.
+description: Update your name, business name, email and password, and turn on two-step sign-in. Learn what happens when you change your email.
 ---
 
-## Your personal account settings
+**Profile** is where you manage your own login: your name, business name, email address and password, plus two-step sign-in.
 
-The **Profile** page (at **Settings > Profile**) is where you manage your own account — your name, email, password, and personal notification preferences. These settings are specific to you and don't affect other members of your workspace.
+Find it in the left menu under **Settings** > **Profile**. What you change here applies to your own account. The exception is **Business Name**, which is shared across your workspace.
 
-## Updating your profile
+## Update your details
 
-### Name and avatar
+<Steps>
+  <Step title="Edit the fields">
+    Change your **Name**, your **Business Name** (shown in the sidebar), or your **Email Address**.
+  </Step>
+  <Step title="Save">
+    Click **Save Changes**. You'll see "Profile updated successfully".
+  </Step>
+</Steps>
 
-Your display name appears in the Conversations inbox when you're assigned to a conversation, in internal notes when you @mention someone, and in any customer-facing messages you send.
+## Change your email address
 
-To update your name:
-1. Go to **Settings > Profile**.
-2. Edit the **Display Name** field.
-3. Click **Save**.
-
-To update your avatar, click the profile picture area and upload a new image. Avatars are displayed next to your messages in the conversation timeline.
-
-### Email address
-
-Your email address is used for login and for receiving notifications. To change it:
-1. Go to **Settings > Profile**.
-2. Click **Change Email**.
-3. Enter your new email address.
-4. A verification link will be sent to the new address — click it to confirm the change.
-
-### Password
-
-To change your password:
-1. Go to **Settings > Profile**.
-2. Click **Change Password**.
-3. Enter your current password, then your new password twice.
-4. Click **Save**.
-
-<Callout kind="tip">
-Use a strong, unique password and consider enabling two-factor authentication (2FA) for additional security. 2FA can be enabled in the Security section of your Profile page.
+<Callout kind="alert">
+When you change your email you are signed out straight away and can't sign back in until you confirm the new address. Check your inbox before you start.
 </Callout>
 
-## Notification preferences
+<Steps>
+  <Step title="Type the new address">
+    Replace the text in **Email Address**. A new box appears: **Current password (to confirm it's you)**.
+  </Step>
+  <Step title="Enter your current password">
+    Type your current password. If you are also changing your password at the same time, you don't need this box. The **Current Password** box in the Change Password section covers both.
+  </Step>
+  <Step title="Save">
+    Click **Save Changes**. A message says "We've sent a link to your new address. Please confirm it to sign back in." and you are signed out.
+  </Step>
+  <Step title="Confirm">
+    Open the email at the new address and click the link. Then sign in with the new email.
+  </Step>
+</Steps>
 
-You can customize how and when Autoch.at notifies you about activity in your workspace. Your preferences here override the workspace defaults set in **Settings > Preferences**.
+Only a real change counts. Capital letters or extra spaces don't trigger the confirmation. Changing your email also signs you out on all your other devices. If an admin changes your email for you, you'll also have to confirm the new address before you can sign in. See [Account Security](/pages/settings/account-security).
 
-### What you can configure
+## Change your password
 
-- **New conversation assigned to me** — Get notified when a conversation is assigned to you.
-- **Customer reply in my conversations** — Get notified when a customer replies to a conversation you're handling.
-- **@mention in a note** — Get notified when a colleague @mentions you in an internal note.
-- **Conversation waiting too long** — Get notified when a conversation you're assigned to hasn't been responded to within a set time.
+<Steps>
+  <Step title="Enter the passwords">
+    In **Change Password**, type your **Current Password**, then your **New Password** (at least 12 characters) and **Confirm New Password**. A strength meter shows how strong it is. Leave all three blank to keep your current password.
+  </Step>
+  <Step title="Save">
+    Click **Save Changes**.
+  </Step>
+</Steps>
 
-### Notification channels
+After a password change, you are signed out of every device and must sign in again with the new password.
 
-For each notification type, you can choose to receive it via:
-- **Browser notification** — A pop-up in your browser (requires permission)
-- **Email** — A notification sent to your email address
-- **Both** — Browser and email
-- **None** — Turn off this notification type entirely
+## Two-step sign-in (MFA)
 
-## Availability status
+Under **Security Settings** > **Multi-Factor Authentication**, add a second check when you sign in. The status shows **Disabled** or **Enabled**. Admin accounts especially should turn it on.
 
-Set your availability status so your team knows whether you're available to take conversations:
+<Tabs>
+  <Tab title="Authenticator app (recommended)">
+    <Steps>
+      <Step title="Start">
+        Click **Use Authenticator App**, then **Generate QR Code** if needed.
+      </Step>
+      <Step title="Scan">
+        Scan the QR code with an app such as Google Authenticator, Microsoft Authenticator, Authy or 1Password. If you can't scan it, type the key shown under "Or enter this key manually".
+      </Step>
+      <Step title="Verify">
+        Enter the 6-digit code from the app and click **Verify & Enable**.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Text message (SMS)">
+    <Steps>
+      <Step title="Start">
+        Click **Use SMS** and enter your mobile number with country code, for example +14165551234.
+      </Step>
+      <Step title="Send the code">
+        Click **Send Verification Code**.
+      </Step>
+      <Step title="Verify">
+        Enter the 6-digit code from the text message and click **Verify & Enable**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
-- **Available** — You're online and ready to handle conversations.
-- **Busy** — You're online but at capacity. New conversations won't be auto-assigned to you.
-- **Away** — You're temporarily unavailable.
-- **Offline** — You're not working. Conversations won't be assigned to you.
+### Backup codes
 
-Your status is visible to your colleagues in the team view and affects how auto-assignment works.
+When you finish setting up, you'll see a list of **Backup Codes**. Download or write them down somewhere safe. Each can be used once if you lose your phone, and you can't see them again after you click **I've Saved These Codes**.
+
+At sign-in, tick **Use backup code instead** to enter one.
+
+To get a fresh set, use **Regenerate Backup Codes** and enter your password.
+
+### Turn it off
+
+Under **Disable MFA**, enter your password and click **Disable MFA**. Turning it off signs you out everywhere.
+
+## Signing out
+
+Click **Sign Out** at the bottom of the left menu. Signing out ends your session on all your devices, not just this one.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Account Security" icon="shield" href="/pages/settings/account-security">
+    How email confirmation and sign-out on all devices work.
+  </Card>
+  <Card title="Users" icon="users" href="/pages/settings/users">
+    Admins: manage your team's access.
+  </Card>
+</Columns>

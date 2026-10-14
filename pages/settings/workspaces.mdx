@@ -1,80 +1,79 @@
 ---
 title: Workspaces
-description: Manage multiple isolated environments within your organization — each with its own AI assistants, channels, and team members.
+description: Run separate brands, locations or clients under one account. Create workspaces, choose a default, buy extra slots and switch on Voice or Social add-ons.
 ---
 
-## What are workspaces?
+A **workspace** is a separate area inside your Autoch.at account, with its own assistants, conversations and settings. Most businesses need just one. Add more if you run several brands, locations or clients and want to keep them apart.
 
-A **workspace** is a self-contained environment within your Autoch.at organization. It has its own AI assistants, training context, channels, conversations, client records, and team members.
+Find it in the left menu under **Settings** > **Workspaces**.
 
-Most businesses only need one workspace. But if you manage multiple brands, operate in different regions, or need to keep different teams completely separate, workspaces let you do that — all under one organization account.
+## Switch between workspaces
 
-Go to **Settings > Workspaces** to manage your workspaces.
+Use the workspace switcher in the left sidebar to choose which workspace you're working in. Pages that depend on a workspace, such as Social Media, then show that workspace's information. Your choice is remembered in this browser. It does not change your account's **Default** workspace.
 
-## When to use multiple workspaces
+## Your workspace allowance
 
-Here are some common reasons to create more than one workspace:
+A blue box at the top shows:
 
-- **Multiple brands** — You run two different businesses and want completely separate AI assistants, inboxes, and client records for each.
-- **Regional teams** — Your US and UK teams need different language settings, business hours, and escalation paths.
-- **Client isolation** — You're an agency managing AI chat for multiple clients and need to keep their data completely separate.
-- **Staging environment** — You want a test workspace to experiment with new configurations before rolling them out to your production workspace.
+| Item | Meaning |
+|---|---|
+| **Active workspaces** | How many you have now |
+| **Available slots** | How many you can have |
+| **Included in plan** | Slots that come with your plan |
+| **Paid workspaces** | Extra slots you've bought |
+| **Price per workspace** | The monthly price for each extra slot |
 
-## Creating a workspace
+### Buy more slots
 
-1. Go to **Settings > Workspaces**.
-2. Click **Create Workspace**.
-3. Give it a name and description.
-4. Click **Create**.
+When you reach the limit you'll see **Workspace limit reached**. Enter how many to add (1 to 10) and click **Purchase N Workspace(s)**. The monthly price is shown on the button. You can also buy ahead of time from the **Purchase Additional Workspaces** box.
 
-The new workspace starts empty — you'll need to configure its AI assistants, channels, and team members separately.
-
-## Switching between workspaces
-
-The global sidebar includes an active workspace switcher that lets you quickly change which workspace you're viewing. This replaces the old page-level "All workspaces" selectors — every scoped page now reflects the workspace you've selected in the sidebar.
-
-Your active workspace is remembered across sessions, so when you log back in you'll be in the same workspace you left off in.
+## Create a workspace
 
 <Steps>
-  <Step title="Open the workspace switcher" icon="layers">
-    Click the workspace switcher in the sidebar (it shows your current workspace name).
+  <Step title="Name it">
+    Under **Create New Workspace**, type a **Workspace Name**, such as "Downtown Clinic".
   </Step>
-  <Step title="Select a workspace" icon="check">
-    Choose the workspace you want to switch to from the dropdown.
+  <Step title="Optional details">
+    **Slug** is a short web-friendly name like `downtown-clinic`. **Workspace Identifier** is free text, up to 100 characters, such as "Clinic A Website". It can be sent to your CRM so you can see which workspace a lead came from.
   </Step>
-  <Step title="View workspace-scoped content" icon="eye">
-    The page updates immediately to show conversations, assistants, and settings for the selected workspace.
+  <Step title="Create">
+    Click **Create Workspace**. You'll see "Workspace created successfully". It starts empty, so set up its assistants and channels separately.
   </Step>
 </Steps>
 
-<Callout kind="info">
-This unifies workspace selection across all scoped pages — Conversations, Assistants, Training Context, Playbooks, and Social. You no longer need to select a workspace separately on each page.
+## Manage existing workspaces
+
+Each workspace appears as a card showing its name, **Slug** and **Identifier**.
+
+- **Set Default** makes it your account's default. The default workspace is used for new sessions and records when no workspace has been chosen yet. It's marked with a **Default** badge.
+- **Rename** lets you change the **Workspace Name**, **Slug** and **Workspace Identifier**.
+- **Delete** removes it (not available for the default). You'll choose between **Cancel billing and delete workspace** and **Keep workspace slot for future use**.
+- **Assign unassigned to default** (near the top) moves any records that don't belong to a workspace into the default one. It doesn't change the workspace you're viewing.
+
+<Callout kind="alert">
+Deleting a workspace removes the setup that lives in it. Make sure you've finished with it first.
 </Callout>
 
-## Managing workspace members
+## Workspace add-ons: Voice and Social
 
-Each workspace has its own member list. Being a member of one workspace doesn't automatically give you access to another.
+At the bottom of each workspace card, **Workspace Add-ons** has a checkbox for each:
 
-To add someone to a workspace:
-1. Go to **Settings > Workspaces** and select the workspace.
-2. Click **Add Member** and search for the user by name or email.
-3. Assign them a role within this workspace (Owner, Admin, Manager, or Agent).
+- **Voice**: AI phone calls.
+- **Social**: unlocks the **Social Media** menu (profiles, accounts, posts, queues, analytics) for that workspace.
 
-<Callout kind="info">
-Users with the Owner role at the organization level have access to all workspaces by default. Workspace-level roles only apply within that specific workspace.
-</Callout>
+Each shows its status (**Active** or **Pending**) and monthly price. Other labels you may see:
 
-## Workspace vs. organization settings
+- **Grandfathered (no charge)**: included for your account.
+- **Coming Soon**: not yet available to purchase.
+- **Active paid plan required to enable add-ons.**: use **Go to Billing** to subscribe first.
 
-It's helpful to understand which settings apply to your entire organization and which are specific to a single workspace:
+## Related
 
-| Setting | Level |
-|---|---|
-| Billing and subscription | Organization |
-| Organization branding defaults | Organization |
-| User invitations (to the org) | Organization |
-| AI assistants and playbooks | Workspace |
-| Training context | Workspace |
-| Channel connections (chat, SMS, email) | Workspace |
-| Conversations and clients | Workspace |
-| Workspace-specific branding overrides | Workspace |
+<Columns cols={2}>
+  <Card title="Social Profiles" icon="share-2" href="/pages/social/social-profiles">
+    Start using Social once the add-on is on.
+  </Card>
+  <Card title="Usage & Billing" icon="credit-card" href="/pages/settings/billing">
+    Your plan, add-ons and invoices.
+  </Card>
+</Columns>

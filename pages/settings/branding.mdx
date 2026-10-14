@@ -1,38 +1,87 @@
 ---
 title: Branding
-description: Set your logo, colors, and company name so every customer interaction looks and feels like your business.
+description: Set your company name, logo, brand colour, phone and website so chats and emails look like your business. Optionally set up custom short links.
 ---
 
-## Making Autoch.at yours
+**Branding** controls how your business appears to customers in your chat widget, emails and other customer-facing messages.
 
-The **Branding** page (at **Settings > Branding**) controls how your business appears to customers across all Autoch.at channels. The settings here apply workspace-wide — they affect the chat widget, email signatures, and any customer-facing messages sent from your workspace.
+Find it in the left menu under **Settings** > **Branding**. It has two tabs: **Branding** and **Custom Shortlinks**.
 
-## What you can configure
+## Choose where your branding applies
 
-### Company name
+At the top of the **Branding** tab, **Branding Scope** decides what you're editing:
 
-This is the name displayed to customers in the chat widget header, email footers, and system messages. Use your official business name or the brand name your customers recognize.
+- **Organization default (all workspaces)**: applies everywhere unless a workspace has its own.
+- **A specific workspace**: overrides the default for that workspace only. Any field you leave blank inherits the organization default.
 
-### Logo
+See [Workspaces](/pages/settings/workspaces) if you run more than one brand.
 
-Upload your company logo. It appears in the chat widget header and in email communications. For best results, use a square or horizontal logo in PNG or SVG format with a transparent background.
+## Set your brand details
 
-### Brand colors
+<Steps>
+  <Step title="Legal Business Name">
+    Your registered company name, used in legal documents and invoices. It has its own **Save** button.
+  </Step>
+  <Step title="Company Name (Display)">
+    The name customers see in the chat widget header, email signatures and, where supported, as the SMS sender name. It can be different from your legal name, for example a trading name.
+  </Step>
+  <Step title="Logo URL">
+    Paste the web address of your logo (PNG, JPG or SVG). It must be publicly reachable, for example `https://example.com/logo.png`. A preview appears underneath. If the preview doesn't show, the address is wrong or the image is private.
+  </Step>
+  <Step title="Primary Color">
+    Pick your brand colour with the colour picker or type a hex code such as `#2563EB`. It's used for widget buttons, links and email templates.
+  </Step>
+  <Step title="Company Phone Number">
+    Shown in the chat widget so customers can reach a person. Use international format, for example +1 (555) 123-4567.
+  </Step>
+  <Step title="Company Website">
+    Your main web address, used in email signatures and the chat widget.
+  </Step>
+  <Step title="Save">
+    Click **Save Branding**.
+  </Step>
+</Steps>
 
-Set your primary and secondary brand colors. These are applied to the chat widget's header, buttons, and accent elements, ensuring the widget matches your website's visual identity.
-
-Use hex color codes (e.g., `#2563EB`) for precise color matching.
-
-### Favicon
-
-Upload a small icon (typically 32x32 pixels) that represents your brand. This appears in browser tabs and bookmarks when customers interact with any Autoch.at-hosted pages.
-
-## Applying branding to the chat widget
-
-The colors and logo you set here are automatically applied to your chat widget. To preview how the widget looks with your branding, go to **Conversations > Messaging > Widget Playground**.
-
-For more detailed widget configuration — like the greeting message, launch behavior, and allowed domains — see [Chat Widget](/pages/settings/chat-widget).
-
-<Callout kind="info">
-If your organization uses multiple workspaces (for example, different brands or regions), each workspace has its own branding settings. Changes here only affect the current workspace.
+<Callout kind="tip">
+Check the result in [Widget Playground](/pages/conversations/widget-playground) (left menu: **Messaging** > **Widget Playground**). More widget options, including greeting text, are in [Chat Widget](/pages/settings/chat-widget).
 </Callout>
+
+## Custom Shortlinks
+
+Short links are used in text messages and emails. This tab lets you use your own short web address (for example `example.cc`) instead of the default.
+
+<Steps>
+  <Step title="Turn it on">
+    Tick **Enable custom short domain**.
+  </Step>
+  <Step title="Enter the domain">
+    Type your **Short Domain** and pick the **Workspace** it belongs to. Click **Save Domain**.
+  </Step>
+  <Step title="Set up DNS">
+    You'll see the address your domain must point to. Add this in your domain provider's DNS settings. This is usually something your web or IT person does.
+  </Step>
+  <Step title="Verify">
+    After DNS has had time to update, click **Verify DNS**.
+  </Step>
+  <Step title="Secure it">
+    When you see "DNS verified!", click **Generate SSL Certificate**. A green message "SSL certificate is active. Your domain is secure." confirms it's ready.
+  </Step>
+  <Step title="Choose the root redirect">
+    Under **Company Website**, enter where visitors go if they open the bare short domain. If left empty they're sent to https://autoch.at. Click **Save**.
+  </Step>
+</Steps>
+
+## Hiding "Powered by"
+
+To remove the "Powered by" line from your chat widget, use the white-label option in [Chat Widget](/pages/settings/chat-widget).
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Chat Widget" icon="message-square" href="/pages/settings/chat-widget">
+    Greeting, launcher style and more.
+  </Card>
+  <Card title="Workspaces" icon="building-2" href="/pages/settings/workspaces">
+    Give each brand its own look.
+  </Card>
+</Columns>

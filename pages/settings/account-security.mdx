@@ -1,0 +1,73 @@
+---
+title: Account Security
+description: How sign-in protection works in Autoch.at: email confirmation for new accounts and changes, sign-out on all devices, passwords and two-step sign-in.
+---
+
+This page explains what protects your Autoch.at login and what to expect when you change something important.
+
+## New accounts: confirm your email first
+
+When you sign up, we email you a link to confirm your address. You can't log in until you click it. If you lose the email, open the verification page and use **Resend Verification Email**.
+
+People you invite as teammates confirm their email when they accept the invitation.
+
+## When you change your email address
+
+Changing the email on a login is treated as a sensitive step, because that address controls the account.
+
+| Who changes it | What happens |
+|---|---|
+| **You, on your own Profile** | You must enter your **current password**. After you save, you are signed out and a link is emailed to the new address. You can sign in again only after clicking it. |
+| **An admin, on a teammate (Settings > Users)** | The teammate has to confirm the new address before they can sign in. If they hadn't yet accepted their invitation, the old invitation stops working and the admin must click **Resend Invitation**. |
+
+Only a real change counts. Changing capital letters or adding a space doesn't trigger the confirmation.
+
+## Sign-out on all devices
+
+Autoch.at ends your sessions everywhere, not only on the device in your hand, when you:
+
+- click **Sign Out**,
+- change or reset your password,
+- change your email address,
+- turn off two-step sign-in (MFA), or
+- have your account suspended or changed by an admin.
+
+You then sign in again on each device you use. If you ever think someone else has your login, change your password: it signs out every other device at once.
+
+## Passwords
+
+- Use at least 12 characters. A strength meter checks it as you type.
+- Don't reuse a password from another site.
+- Change it from **Settings** > **Profile** > **Change Password**, or use **Forgot your password?** on the sign-in page.
+
+## Two-step sign-in (MFA)
+
+Two-step sign-in asks for a 6-digit code as well as your password. You can use an authenticator app (recommended) or text messages, and you get backup codes in case you lose your phone. Admins in particular should turn it on. Setup steps are on the [Profile](/pages/settings/profile) page.
+
+## Checklist for account owners
+
+<Steps>
+  <Step title="Turn on two-step sign-in">
+    Do it for yourself, and ask other admins to do the same.
+  </Step>
+  <Step title="Keep your admin list short">
+    Make most teammates **User (custom permissions)**, not **Admin**. See [Users](/pages/settings/users).
+  </Step>
+  <Step title="Suspend or delete people who leave">
+    On the Users page, set their **Status** to **Suspended** or delete them. They're signed out on all devices.
+  </Step>
+  <Step title="Save your backup codes">
+    Keep them somewhere safe and separate from your phone.
+  </Step>
+</Steps>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Profile" icon="user" href="/pages/settings/profile">
+    Change your email, password and set up MFA.
+  </Card>
+  <Card title="Users" icon="users" href="/pages/settings/users">
+    Manage teammates' access.
+  </Card>
+</Columns>
