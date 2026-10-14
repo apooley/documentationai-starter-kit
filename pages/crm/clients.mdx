@@ -1,83 +1,120 @@
 ---
 title: Clients
-description: View and manage all your customer records — contact details, conversation history, tags, and custom fields — in one place.
+description: See every person your business has talked to in one searchable list. Search, tag, import, export, merge duplicates and keep notes on each client.
 ---
 
-## Your customer database
+**Clients** is your built-in contact list. Each client is one person, with their name, email, phone, company, the conversations they've had with you, and any notes your team has added.
 
-The **Clients** page (at **CRM > Clients**) is where every person who has ever contacted your business through Autoch.at lives. When a new customer sends their first message, Autoch.at automatically creates a client record for them. Over time, that record builds up a complete picture of who they are and every interaction they've had with your team.
+You'll find it in the left menu under **CRM** > **Clients**.
 
-Think of it as a lightweight CRM that's always in sync with your conversations — no manual data entry required.
+## How clients get created
 
-## Finding clients
+- **Automatically.** When a conversation (chat, SMS, email, voice or social) has an email address or phone number for the person, Autoch.at creates a client for them, or links the conversation to the matching client you already have.
+- **Anonymous chats don't create clients.** If a visitor never shares an email or phone number, there's nothing to match on, so no client is created.
+- **By hand or by import.** You can add clients yourself (see below).
 
-The Clients page shows a searchable, filterable list of all your contacts.
+## Find clients
 
-- **Search** — Find anyone by name, email, phone number, or company name.
-- **Tag filter** — Click a tag (like "VIP" or "Lead") to show only clients with that label.
-- **Sort** — Order by name, last active date, or creation date.
+- **Search box.** Type a name, email, phone number or company. The list updates as you type.
+- **Tags.** The **Tags:** row under the search box shows one button per tag. Click a tag to show only clients with it; click **All** to clear the filter.
+- **Pages.** The list shows 50 clients at a time. Use **Previous** and **Next** at the bottom.
 
-## The client record
+The table shows **Name**, **Email**, **Phone**, **Company** and **Created** for each client.
 
-Click on any client to open their full profile. Here's what you'll find:
+## Add or edit a client
 
-### Contact details
+<Steps>
+  <Step title="Open the form">
+    Click **Create Client** (top right), or click **Edit** at the end of a client's row.
+  </Step>
+  <Step title="Fill in the details">
+    Enter **First name**, **Last name**, **Email**, **Phone**, **Company** and **Notes**. All are optional.
+  </Step>
+  <Step title="Save">
+    Click **Create Client** (new) or **Save Changes** (existing).
+  </Step>
+</Steps>
 
-The basics: name, email address, phone number, and company. You can edit any of these fields directly — changes are saved immediately and reflected in all linked conversations.
+## Open a client's page
 
-### Custom fields
+Click a client's name in the list. The page shows:
 
-If your business needs to track information beyond the standard fields, you can add custom fields (like "Account Tier", "CRM ID", or "Subscription Plan") and populate them here. Custom fields can also be filled in automatically by your AI assistants during qualification conversations.
+- Their tags and a **Client ID**.
+- Four counters: **Conversations**, **Notes**, **Tags** and **Last conversation**.
+- **Combined conversation summary**, an AI-written summary across their conversations (shown when one exists).
+- **Conversations**: each linked conversation with its channel and stage. Click **Open** to jump to it in your inbox.
+- **Activity**: a timeline of events such as a conversation being linked or unlinked, a client merge, or a conversation closing after inactivity.
+- **Notes**: type in **Add a note** and click **Add note**. Use **Delete** to remove a note.
 
-### Conversation history
+Click **Back to Clients** to return to the list.
 
-A complete log of every conversation this client has had with your team across all channels — chat, SMS, email, voice, and social. Click any conversation to jump straight to it in the inbox.
+## Work with several clients at once
 
-### Activity timeline
+Tick the checkbox beside each client (the box in the header ticks everything on the current page). A bar of bulk actions appears:
 
-The Activity panel shows a chronological log of important events related to this client, such as:
-- Conversations being linked or unlinked from the profile
-- The client record being merged with another duplicate record
-- Conversations closing after inactivity (including a preview of the AI-generated summary)
+- **Export selected** downloads just those clients as a CSV file.
+- **Add tags**, **Remove tags** or **Replace tags** opens a list of your tags. Tick the ones you want and click **Apply**.
+- **Delete selected** removes them after you confirm.
 
-### Tags
+<Callout kind="alert">
+Deleting a client can't be undone. Export a backup first if you're not sure.
+</Callout>
 
-Labels applied to the client's profile. Tags help you segment your client list and filter conversations. For example, tagging a client as "VIP" lets you quickly find all VIP clients and filter their conversations in the inbox.
+## Import clients
 
-## Managing your client list
+<Steps>
+  <Step title="Open the importer">
+    Click **Import**. The **Import Clients** window opens.
+  </Step>
+  <Step title="Choose your file">
+    Pick a CSV or Excel file (.csv, .xlsx or .xls), then click **Preview file**. You'll see how many rows were found.
+  </Step>
+  <Step title="Match your columns">
+    For each Autoch.at field (Email, Phone, First name, Last name, Company, Street, City, State, ZIP, Country, Date of birth, Notes), choose the column from your file, or leave it as **Not mapped**. Columns whose names match exactly are picked for you.
+  </Step>
+  <Step title="Run the import">
+    Click **Run import**. You need to map at least **Email** or **Phone**, otherwise the button stays greyed out. When it finishes you'll see how many clients were **Imported**, **Created**, **Updated** and **Skipped**, and a note if any rows had errors.
+  </Step>
+</Steps>
 
-### Creating a client manually
+## Export all clients
 
-Autoch.at creates client records automatically, but you can also add them manually:
+Click **Export all** to download a CSV of your clients. If you've typed something in the search box, the export includes only the matching clients.
 
-1. Click **Create Client**.
-2. Fill in their contact details.
-3. Add any relevant tags or custom field values.
-4. Click **Save**.
+## Merge duplicates
 
-### Importing clients
+The same person can end up as two clients, for example if they use a work and a personal email.
 
-If you have an existing contact list, you can bring it into Autoch.at:
+<Steps>
+  <Step title="Look for duplicates">
+    Click **Review duplicates**. If any are found, a list of groups appears with the match type and how many clients are in each group (the first 10 are shown).
+  </Step>
+  <Step title="Open a group">
+    Click **Merge** on a group. The **Merge duplicate clients** window opens.
+  </Step>
+  <Step title="Choose who to keep">
+    Choose the **Primary client** (the record you want to keep), tick the **Secondary clients** to fold into it, and optionally add a **Reason (optional)**.
+  </Step>
+  <Step title="Merge">
+    Click **Merge clients**. The conversations and history of the others are combined into the primary client.
+  </Step>
+</Steps>
 
-1. Click **Import**.
-2. Upload a CSV file with your contact data.
-3. Map the columns in your file to the fields in Autoch.at.
-4. Confirm the import.
+You can also merge from a client's own page using **Merge duplicate group**, when that client is part of a duplicate group.
 
-### Exporting clients
+## Tips
 
-Click **Export all** to download your entire client list as a CSV file. This is useful for backups or for importing into other tools.
+- Add an email or phone number early in a conversation. Your AI assistant can ask for it, and it's what links the conversation to a client. See [Qualification Settings](/pages/crm/qualification-settings).
+- Clients you've synced to Microsoft Dynamics keep working here as normal. See [CRM Connections](/pages/crm/crm-connections).
+- Import is the quickest way to bring an existing customer list in. Include a header row with the column names.
 
-### Merging duplicates
+## Related
 
-Over time, the same person might contact you from different email addresses or phone numbers, creating duplicate records. Autoch.at helps you find and fix these:
-
-1. Click **Review duplicates**.
-2. Autoch.at will show you potential matches based on similar names, emails, or phone numbers.
-3. Review each suggestion and click **Merge** to combine the records.
-
-When you merge two records, their conversation histories are combined into a single, unified profile. This is permanent, so review carefully before confirming.
-
-## Connecting to an external CRM
-
-If you use Salesforce, HubSpot, or another CRM, you can sync your Autoch.at client records with it. See [CRM Connections](/pages/crm/crm-connections) for setup instructions.
+<Columns cols={2}>
+  <Card title="CRM Connections" icon="link" href="/pages/crm/crm-connections">
+    Send clients and conversation notes to Microsoft Dynamics.
+  </Card>
+  <Card title="Conversation Detail" icon="message-square" href="/pages/conversations/conversation-detail">
+    See the full thread for any conversation linked to a client.
+  </Card>
+</Columns>

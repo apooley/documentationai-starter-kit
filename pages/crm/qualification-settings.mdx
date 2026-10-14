@@ -1,95 +1,83 @@
 ---
 title: Qualification Settings
-description: Define the criteria your AI uses to qualify leads — the questions it asks, the fields it collects, and what counts as a qualified lead.
+description: Decide what makes a lead "qualified" using simple rules, AI scoring or both. Test your criteria before going live and control when lead emails are sent.
 ---
 
-## What makes a qualified lead?
+**Qualification Settings** is where you tell Autoch.at what a good lead looks like for your business. Your AI assistant checks each conversation against your criteria, so your team only spends time on leads worth chasing.
 
-**Qualification Settings** (at **Configuration > AI Assistant > Qualification Settings**) is where you define what a "qualified lead" means for your business. Your AI assistant uses these settings to guide qualification conversations — asking the right questions, collecting the right information, and making the right call about whether a lead meets your criteria.
+Find it in the left menu under **Configuration** > **Qualification Settings**. The page title is **Lead Qualification Settings**.
 
-Getting this right is one of the highest-value things you can do in Autoch.at. A well-configured qualification setup means your sales team only spends time on leads that are actually worth pursuing.
+## How it works
 
-## Qualification fields
+You create one or more **criteria**. Each one can combine:
 
-Qualification fields are the pieces of information your AI collects from a prospect during a qualification conversation. Common examples include:
+- **Simple rules**: a minimum number of messages, words that must appear (or must not), and contact details the lead must give.
+- **AI judgment**: the AI reads the conversation and gives it a score from 0 to 100 based on a description you write.
 
-- Company name and size
-- Industry or vertical
-- Budget range
-- Timeline to purchase
-- Current solution they're using
-- Decision-making authority
+When a conversation scores at or above your **Minimum Qualification Score**, the lead is marked qualified.
 
-### Adding a qualification field
+## Create a criteria
 
-1. Go to **AI Assistant > Qualification Settings**.
-2. Click **Add Field**.
-3. Choose the field type (text, number, dropdown, yes/no).
-4. Give it a label (e.g., "Budget Range") and, if it's a dropdown, add the options.
-5. Mark it as **Required** if the AI must collect this information before the conversation can be considered complete.
-6. Click **Save**.
+<Steps>
+  <Step title="Start">
+    Click **New Criteria** (top right). If you have none yet, click **Create Criteria**.
+  </Step>
+  <Step title="Name it">
+    Enter a **Name** such as "High-value lead". Leave **Enabled** ticked to use it straight away.
+  </Step>
+  <Step title="Set the priority">
+    **Priority** decides which criteria is checked first. Higher numbers go first.
+  </Step>
+  <Step title="Add simple rules (optional)">
+    Under **Rule-based Criteria**:
+    - **Minimum Message Count**: how many messages must be exchanged (starts at 3).
+    - **Required Keywords**: click **+ Add Keyword** for each word or phrase the conversation should include.
+    - **Disqualification Keywords**: words that rule a lead out.
+    - **Required Fields**: tick **Require Email or Phone** (either is enough), or **Require Email**, **Require Phone**, **Require Company**. When **Require Email or Phone** is ticked, the separate Email and Phone boxes are switched off.
+  </Step>
+  <Step title="Add AI scoring (optional)">
+    Under **AI-based Criteria**, tick **Use AI Analysis**, then fill in:
+    - **AI Prompt**: describe what a qualified lead looks like, in plain English.
+    - **Minimum AI Score (0-100)**: the score the AI must give.
+    - **AI Weight (0-1)**: how much the AI counts versus your simple rules. 0 means rules only, 1 means AI only, 0.5 is equal. Values between 0.6 and 0.8 work well for most businesses.
+  </Step>
+  <Step title="Set the bar">
+    **Minimum Qualification Score (0-100)** is the overall score a conversation needs. Start around 60 to 70 and adjust once you see real results.
+  </Step>
+  <Step title="Save">
+    Click **Save**. You'll see "Qualification criteria created".
+  </Step>
+</Steps>
 
-## Qualification criteria
+## Test before you rely on it
 
-Qualification criteria are the rules that determine whether a lead is "qualified" based on the information collected. For example:
+Open a saved criteria with **Edit** and scroll to **Test Criteria** (or click **Test** on the card). Edit the **Sample Messages** and **Sample Contact Data**, then click **Run Test**. You'll see the score, which rules matched and why it did or didn't qualify.
 
-- Budget is greater than $5,000/month
-- Company size is more than 50 employees
-- Timeline to purchase is within 6 months
+## Manage your criteria
 
-### Required Contact Fields
+Each card shows its name, whether it's **Enabled** or **Disabled**, its **Priority**, and whether it uses "AI-based evaluation" or "Rule-based evaluation".
 
-You can specify which contact details a lead must provide to be considered qualified. 
+- Use the **up/down arrows** to change the order.
+- Click **Edit** to change it.
+- Click the bin icon to delete it. You'll be asked to confirm, and it can't be undone.
 
-- **Require Email or Phone**: Use this when either contact method is enough. (This option takes precedence over the individual Email/Phone checkboxes).
-- **Require Email**: The lead must provide an email address.
-- **Require Phone**: The lead must provide a phone number.
-- **Require Company**: The lead must provide a company name.
+## Send qualified leads onward
 
-### Setting up criteria
+- **Email to a sales inbox or CRM system.** In **Settings** > **Notifications**, the **Structured Email (XML)** section has a checkbox, **Send Structured XML on lead qualification**, and **Wait after qualification (minutes)** (0 to 60). With 0, the email goes out immediately. With a higher number, Autoch.at waits for a quiet moment in the conversation, then summarises it and sends.
+- **Contact details come first.** Lead emails for sales are held back until the lead has an email address or a phone number. If it never arrives, nothing is sent. Tick **Require Email or Phone** in your criteria, or use **Resend ADF** in [Conversation Detail](/pages/conversations/conversation-detail) once you have it.
+- **CRM.** In [CRM Connections](/pages/crm/crm-connections), the **Qualified Leads Only** checkbox limits what's sent to your CRM to qualified conversations.
 
-1. In **AI Assistant > Qualification Settings**, go to the **Criteria** tab.
-2. Click **Add Criterion**.
-3. Select the field to evaluate, the comparison operator, and the value.
-4. Add as many criteria as you need.
-5. Choose whether all criteria must be met (AND) or just one (OR).
-
-As the conversation progresses, Autoch.at evaluates the collected data against your criteria in real-time. The current qualification status and extracted data are visible directly in the Conversation Detail view.
-
-## Qualification scoring (optional)
-
-Instead of a simple pass/fail, you can set up a scoring model that assigns points to different answers. For example:
-
-- Budget > $10k/month: 30 points
-- Company size > 100 employees: 20 points
-- Timeline within 3 months: 25 points
-
-Leads above a certain score threshold are marked as qualified. This gives you more nuance than a binary pass/fail — you can see at a glance how strong a lead is.
-
-## Viewing qualified leads
-
-Once your qualification settings are configured, qualified leads appear in **CRM > Clients** with a "Qualified" badge. You can filter the client list to show only qualified leads and sort by qualification score.
-
-If you've connected a CRM, qualified leads can also be automatically pushed to your CRM as new contacts or deals.
-
-## ADF (Automated Data Forwarding)
-
-When a lead qualifies, Autoch.at can automatically send an ADF (Structured XML Email) to your CRM or lead recipient. ADF is the standard format for delivering lead data to automotive and real estate CRM systems.
-
-### ADF on qualification
-
-The **Send ADF on qualification** toggle (preference key: `structured_xml_email_on_qualification`, default: on) controls whether ADF is sent automatically when a lead qualifies. When enabled, the ADF fires as soon as the lead meets your qualification criteria. When disabled, ADF sends are manual only — you'll need to trigger them from the [Conversation Detail](/pages/conversations/conversation-detail) page using the Resend ADF button.
-
-### Quiet-window delay
-
-After a lead is provisionally qualified, the system waits for a quiet window — a period of conversation silence — before summarizing and sending the ADF. This ensures the conversation has settled and the ADF summary captures the latest context, rather than cutting off a conversation that's still active.
-
-This behavior is automatic. No configuration is needed.
-
-### Deferred ADF until contact info
-
-ADF sales sends are deferred until the lead has an email address or phone number on file. If the lead qualifies but hasn't yet provided contact information, the system waits. Once an email or phone number lands in the lead record, the ADF sends automatically.
-
-<Callout kind="warning">
-If contact information is never collected, the ADF will not send. Make sure your qualification flow requires at least an email or phone number, or follow up manually using the Resend ADF button in the [Conversation Detail](/pages/conversations/conversation-detail) view.
+<Callout kind="tip">
+Start with one simple criteria: **Require Email or Phone** plus a Minimum Message Count of 3. Add AI scoring after you've reviewed a week of real conversations.
 </Callout>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Clients" icon="users" href="/pages/crm/clients">
+    Where the people behind qualified leads are kept.
+  </Card>
+  <Card title="AI Playbooks" icon="book-open" href="/pages/ai-config/playbooks">
+    Guide your assistant through the questions that qualify a lead.
+  </Card>
+</Columns>

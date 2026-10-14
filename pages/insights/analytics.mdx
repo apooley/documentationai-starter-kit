@@ -1,64 +1,106 @@
 ---
 title: Analytics
-description: Track conversation volume, AI performance, response times, lead conversion, and channel health — all in one dashboard.
+description: See how many conversations you get, how many become qualified leads, how fast you respond and how your FAQs perform. Schedule reports by email.
 ---
 
-## Understanding your performance
+**Analytics** shows how your AI assistants and team are performing. Use it to spot busy times, see whether your assistants turn conversations into leads, and decide what to improve next.
 
-The **Analytics** page (at **Insights > Analytics**) gives you a data-driven view of how your AI assistants and human team are performing. Use it to spot trends, identify problems, and make informed decisions about your configuration.
+Find it in the left menu under **Insights** > **Analytics**.
 
-The dashboard is organized into several sections, each focused on a different aspect of your operation.
+## Choose a time period
 
-## Conversation overview
+Use the dropdown at the top right: **Last 7 Days**, **Last 30 Days** or **Last 90 Days**. Every number and chart on the page updates to match.
 
-The top section shows your high-level conversation metrics for the selected time period:
+Click the green **Export** button to download the data for that period as a CSV file, handy for Excel or sharing with your team.
 
-| Metric | What it tells you |
+## The four headline numbers
+
+| Card | What it tells you |
 |---|---|
-| **Total conversations** | How many conversations were started across all channels |
-| **AI-handled** | How many were fully resolved by the AI without human intervention |
-| **Escalated to human** | How many were handed off to a human agent |
-| **Resolved** | How many were marked as resolved (by AI or human) |
-| **Average response time** | How quickly conversations received their first response |
-| **Average resolution time** | How long it took to resolve a conversation from start to finish |
+| **Total Conversations** | Every conversation your AI had in the period, across all channels. One thread counts once, however many messages it has. |
+| **Qualified Leads** | Conversations that met your [qualification criteria](/pages/crm/qualification-settings). |
+| **Conversion Rate** | Qualified leads as a share of all conversations. |
+| **Avg Call Duration** | How long calls last on average. |
 
-Use the **time range selector** at the top to filter by day, week, month, or a custom date range. Use the **channel filter** to focus on a specific channel (chat, SMS, email, voice, or social).
+Hover over the small help icon next to a card for a plain-English explanation.
 
-## AI performance
+## Charts
 
-This section focuses specifically on how your AI assistants are performing:
+- **Conversations Over Time**: a line for all conversations (blue) and a line for qualified leads (green). Look for busy days, growth and patterns.
+- **Channel Distribution** and **Conversations by Channel**: where people reach you (chat, SMS, email, voice, social), with totals, qualified counts and rates per channel.
 
-- **Handoff rate** — The percentage of conversations the AI escalated to a human. A consistently high handoff rate may indicate gaps in your training context or playbooks.
-- **Playbook completion rate** — How often the AI successfully completed its assigned playbook goal. Low completion rates often point to unclear instructions or customers who are going off-script.
-- **FAQ hit rate** — How often the AI found a relevant answer in your training context. A low hit rate means customers are asking questions your knowledge base doesn't cover.
+## Advanced Operational Metrics
 
-<Callout kind="tip">
-The **FAQ miss report** is one of the most actionable parts of Analytics. It shows you the questions your AI couldn't answer — which is exactly what you should add to your Training Context next.
+This section digs into speed and cost:
+
+- **First Response Time**: how quickly a conversation gets its first reply.
+- **Resolution Time**: how long a conversation takes from start to resolved.
+- **Agent Response Time**: how quickly your human team replies.
+- **CSAT / Satisfaction**: average customer rating and percent satisfied. If no ratings were collected you'll see "No CSAT source data in this window".
+- **Cost per Qualified Lead**: your AI spend divided by qualified leads.
+- **Conversation Volume by Hour (Heatmap, UTC)**: a grid of weekday by hour. Darker green means busier. Times are in UTC, not your local time.
+- **Assistant Performance Comparison**: a table comparing each of your AI assistants on conversations, qualified leads, qualification rate, first response, resolution and cost per qualified lead.
+
+Averages show a "p95" figure beneath them. That's the speed that 95 out of 100 conversations beat, so it highlights your slowest cases. "n" is how many conversations the figure is based on.
+
+<Callout kind="info">
+If you see "Partial metric fallback in effect", some advanced numbers couldn't be worked out for that period. The rest of the page is still accurate.
 </Callout>
 
-## Lead qualification
+## FAQ Analytics
 
-If you're using Autoch.at for lead generation, this section shows you how your qualification funnel is performing:
+Shows how well your assistant answers from your [Training Context](/pages/ai-config/training-context):
 
-- **Leads started** — Conversations where the AI began a qualification playbook
-- **Leads completed** — Conversations where the customer provided all required qualification data
-- **Qualified leads** — Conversations where the customer met your qualification criteria
-- **Conversion rate** — Qualified leads as a percentage of conversations started
+- **FAQ Hits**: successful matches to a saved answer.
+- **FAQ Misses**: attempts with no match.
+- **Near-misses**: close, but the answer was rejected as not quite right.
+- **FAQ outcomes over time**: a chart of the three above.
 
-## Channel breakdown
+Lots of misses means customers are asking things your Training Context doesn't cover. Add answers for those topics.
 
-See how each channel is performing individually. This helps you understand where your customers prefer to communicate and where your AI is most effective.
+## Scheduled Reports
 
-## Team performance
+Get a summary by email without opening the page.
 
-If your workspace has human agents, this section shows individual and team-level metrics:
+<Steps>
+  <Step title="Start">
+    In **Scheduled Reports**, click **New Schedule**.
+  </Step>
+  <Step title="Set when it sends">
+    Give it a **Name**. Choose **Frequency** (Daily, Weekly or Monthly), your **Timezone**, and the **Hour** and **Minute**. Weekly asks for a day of the week; Monthly asks for a day of the month.
+  </Step>
+  <Step title="Add recipients">
+    Type an email address under **Recipients** and click **Add**. Repeat for everyone who should receive it.
+  </Step>
+  <Step title="Choose what's included">
+    Pick a **Date Range** (Last 7, 30 or 90 days). Under **Include metrics**, tick any of Total conversations, Qualified leads, Conversion rate, Average conversation duration and Channel breakdown. Optionally tick **Include advanced metrics** and **Include time series data**. **Max Attempts** (1 to 10) is how many times Autoch.at tries to deliver if sending fails.
+  </Step>
+  <Step title="Save">
+    Check the **Preview** (subject line and summary), then click **Save Schedule**.
+  </Step>
+</Steps>
 
-- Conversations handled per agent
-- Average response time per agent
-- Resolution rate per agent
+Each schedule shows whether it's **Enabled** or **Disabled**, when it will run next and when it last ran. Buttons on each one:
 
-This data is useful for identifying top performers and spotting agents who might need additional support or training.
+- **Trigger** sends it right now.
+- **Edit** changes the settings.
+- **Disable** / **Enable** pauses or resumes it.
+- **Delete** removes it.
+- **Runs** lists recent sends with the date window, status, attempts, recipients and any error.
 
-## Exporting data
+## Tips
 
-Click the **Export** button to download any report as a CSV file. This is useful for sharing with stakeholders or importing into your own analytics tools.
+- Compare 7 days against 30 days to tell a blip from a trend.
+- Use the heatmap to plan staffing for human handoffs.
+- A falling conversion rate with steady volume often points to your qualification criteria or assistant instructions, not traffic.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Conversation Intelligence" icon="sparkles" href="/pages/insights/conversation-intelligence">
+    Follow-ups, objections and response times in detail.
+  </Card>
+  <Card title="Training Context" icon="book-open" href="/pages/ai-config/training-context">
+    Fix FAQ misses by adding answers.
+  </Card>
+</Columns>

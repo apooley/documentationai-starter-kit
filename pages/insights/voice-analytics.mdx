@@ -1,64 +1,59 @@
 ---
 title: Voice Analytics
-description: Review call volume, duration, AI handling rates, and transcripts for all your AI voice conversations.
+description: Check how your AI phone line is doing: total calls, completion rate, average length, recording coverage, tool success and a daily call volume table.
 ---
 
-## Understanding your voice channel
+**Voice Analytics** is a quick health check for your AI phone line. It summarises calls handled by your AI voice assistant so you can see how busy the line is and whether calls are being completed and recorded.
 
-**Voice Analytics** (at **Insights > Voice Analytics**) gives you detailed metrics and insights specifically for your AI voice channel — the phone calls handled by your AI assistant.
+## How to open it
 
-If you're using Autoch.at for inbound phone support, sales calls, or appointment booking via voice, this is where you track how that channel is performing.
+<Callout kind="alert">
+Voice Analytics doesn't have its own item in the left menu yet. To open it, add `/voice-analytics` to the end of your Autoch.at address in the browser (for example `https://your-app-address/voice-analytics`) and press Enter. You can bookmark it.
+</Callout>
 
-## Key metrics
+To read individual calls, listen to recordings or see transcripts, use **Conversations** > **Phone / Voice** in the left menu. See [Voice Conversations](/pages/conversations/voice).
 
-### Call volume
+## The four headline cards
 
-See how many calls your AI handled over any time period — by day, week, or month. Use this to understand peak call times and plan staffing accordingly.
-
-### Call outcomes
-
-Every call ends with one of these outcomes:
-
-| Outcome | Meaning |
+| Card | What it tells you |
 |---|---|
-| **Resolved by AI** | The AI handled the call to completion without human intervention |
-| **Transferred to agent** | The AI escalated the call to a human agent |
-| **Voicemail** | The call went to voicemail |
-| **Abandoned** | The caller hung up before the AI could help |
+| **Total Calls** | How many calls your voice assistant has handled. |
+| **Completion Rate** | The share of calls that completed. Shows a dash when there are no calls yet. |
+| **Avg Duration** | The average call length, in seconds. Very long calls can mean your assistant is struggling with a request. Very short ones can mean callers hang up quickly. |
+| **Recording Coverage** | The share of calls that have a recording available. |
 
-Tracking outcomes over time helps you understand how effectively your AI is handling calls and whether your escalation thresholds are set correctly.
+## AI Tool Call Performance
 
-### Average call duration
+**Tool Call Success Rate** shows how often your assistant's actions during a call worked, such as looking up information or booking. A low number is worth investigating: check the connected calendar or other tools in your settings.
 
-How long calls are lasting on average. Unusually long calls often indicate that the AI is struggling with a particular type of request. Very short calls may indicate callers are hanging up out of frustration.
+## Sentiment Distribution
 
-### Transfer rate
+A simple count of calls by overall caller mood (for example positive or negative). If there isn't enough data yet you'll see "No sentiment data available yet."
 
-The percentage of calls that were transferred to a human agent. Like the handoff rate for chat, a high transfer rate may indicate gaps in your AI's knowledge or playbook.
+## Call Volume Over Time
 
-## Call transcripts
+A table with one row per day: **Date**, **Calls** and **Avg Duration (s)**. Use it to spot your busiest days. If there are no calls you'll see "No voice calls in the selected period."
 
-Every call handled by Autoch.at is automatically transcribed. You can access transcripts from:
+## Live updates
 
-- **Voice Analytics** — Click on any call in the call log to view its transcript.
-- **Conversations** — Voice calls appear in the Conversations inbox with their transcript attached.
-
-Transcripts are searchable, so you can find calls that mentioned a specific topic or keyword.
-
-## AI performance on voice
-
-The Voice Analytics page also shows AI-specific metrics for your voice channel:
-
-- **Intent recognition rate** — How often the AI correctly understood what the caller was asking for.
-- **First-call resolution** — How often the AI resolved the caller's issue in a single call.
-- **Average confidence score** — A measure of how confident the AI was in its responses during calls.
-
-Low confidence scores on specific topics are a signal to improve your training context for those areas.
-
-## Listening to calls
-
-In addition to reading transcripts, you can listen to call recordings directly from the call log. Click the play button next to any call to hear the recording.
+The page updates by itself while it's open. If the live connection drops, it refreshes about once a minute.
 
 <Callout kind="info">
-Call recording is subject to local laws regarding consent. In many jurisdictions, you are required to inform callers that the call is being recorded. Autoch.at can be configured to play a disclosure message at the start of each call — contact support to enable this.
+Recording calls may require you to tell callers they're being recorded, depending on where you and your callers are. Check the rules that apply to you.
 </Callout>
+
+## Troubleshooting
+
+- **"Unable to load voice analytics. Please try again."** Refresh the page. If it keeps happening, contact support.
+- **All dashes and zeros.** Your voice line hasn't taken calls yet. Set up a number under [Phone Numbers](/pages/settings/phone-numbers) and make a test call.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Voice Conversations" icon="phone" href="/pages/conversations/voice">
+    Transcripts, recordings and call records.
+  </Card>
+  <Card title="Analytics" icon="bar-chart-3" href="/pages/insights/analytics">
+    Overall performance across every channel.
+  </Card>
+</Columns>

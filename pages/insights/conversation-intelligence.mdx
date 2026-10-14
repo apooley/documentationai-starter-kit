@@ -1,50 +1,84 @@
 ---
 title: Conversation Intelligence
-description: Automatically surface insights from your conversations — sentiment trends, common topics, escalation patterns, and more.
+description: Spot missed follow-ups, common customer objections and how reply speed affects lead qualification, then turn what you learn into playbook improvements.
 ---
 
-## Let your conversations teach you
+**Conversation Intelligence** reads through your conversations and points out three things worth acting on: conversations that went quiet without a follow-up, the objections customers keep raising, and whether faster replies lead to more qualified leads.
 
-**Conversation Intelligence** (at **Insights > Conversation Intelligence**) automatically analyzes your conversation data to surface patterns and insights you'd never find by reading individual threads.
+Find it in the left menu under **Insights** > **Conversation Intelligence**.
 
-Instead of manually reviewing hundreds of conversations to understand what customers are asking about or why they're escalating, Conversation Intelligence does that work for you and presents the findings in a clear, actionable dashboard.
+## Choose what you're looking at
 
-## What it analyzes
+Four dropdowns sit at the top right:
 
-### Topic clustering
+| Dropdown | Options |
+|---|---|
+| Date range | **Last 7 days**, **Last 30 days**, **Last 90 days** |
+| Channel | **All channels**, **Chat**, **SMS**, **Email**, **Voice**, **Web Voice** |
+| Playbook | **All playbooks**, or any one of your [AI Playbooks](/pages/ai-config/playbooks) |
+| Version | **All versions**, or a specific playbook version such as "v3 (active)". Only available once you've picked a playbook. |
 
-Autoch.at groups conversations by topic automatically — without you having to define the topics in advance. The result is a map of what your customers are actually talking about, ranked by volume.
+Next to them is **Run Analysis**. Click it to refresh the findings now. You'll see "Conversation intelligence run started." Small badges show the date of the **Latest run** and its **Status**.
 
-This is useful for:
-- Identifying the most common support issues so you can address them proactively
-- Spotting new topics that are suddenly spiking in volume
-- Finding gaps in your training context (topics the AI is struggling with)
+## Response Time vs Qualification
 
-### Sentiment analysis
+A bar chart showing how often conversations became qualified leads depending on how fast the first reply arrived. Replies are grouped as **0-5s**, **5-15s**, **15-30s** and **30s+**, with one colour per channel.
 
-Every conversation is scored for overall sentiment — positive, neutral, or negative. The dashboard shows you sentiment trends over time and lets you filter by channel, assignee, or topic.
+Use it to see whether slow replies cost you leads on a particular channel. If the 30s+ bars are much lower, look at your handoff rules and staffing for that channel. If there's nothing to show, you'll see "No response-time data for this range."
 
-A sudden drop in positive sentiment or a spike in negative sentiment is often an early warning sign of a product issue, a service problem, or a gap in your AI's handling.
+## Missed Follow-ups
 
-### Escalation patterns
+A list of conversations where a customer was left waiting. Each row shows:
 
-Conversation Intelligence tracks when and why conversations are escalated from AI to human. Common escalation triggers are surfaced automatically, so you can see exactly what's causing your AI to hand off.
+- **Conversation**: click to open it.
+- **Channel**
+- **Reason**
+- **Priority**: high-priority items are shown in red.
+- **Last Activity**: when the last message was sent.
 
-If a particular topic is causing frequent escalations, that's a signal to improve your training context or playbook for that topic.
+Two buttons on each row:
 
-### Resolution analysis
+- **Resolve** removes the item once you've dealt with it ("Follow-up resolved.").
+- **Suggest refinement** sends the issue to the playbook you selected at the top, so someone can improve it. If no playbook is selected you'll see "Select a playbook to create a refinement suggestion."
 
-See which types of conversations are resolved quickly and which ones drag on. Long resolution times often indicate that your AI or your team needs better resources to handle a particular issue type.
+If nothing is wrong you'll see "No missed follow-ups detected."
 
-## Using the insights
+## Objections
 
-The goal of Conversation Intelligence isn't just to show you data — it's to help you take action. Each insight card includes a **What to do** suggestion that points you to the right place in Autoch.at to address the finding.
+The reasons customers push back, such as price or timing. Each row shows:
 
-For example:
-- A high-volume topic with a low FAQ hit rate → Add it to your Training Context
-- A frequent escalation trigger → Update your Playbook to handle it
-- A sentiment drop on a specific channel → Investigate recent conversations on that channel
+- **Category** and **Objection**
+- **Frequency**: how often it came up.
+- **Addressed**: the share of times your assistant handled it.
+- **Example**: **View** opens a real conversation where it happened.
 
-## Filters and date ranges
+Click **Suggest refinement** to send an objection to the selected playbook as an improvement idea ("Refinement suggestion created.").
 
-Use the filters at the top of the page to focus on specific channels, date ranges, or assignees. Narrowing the scope often reveals insights that are hidden in the aggregate data.
+## A good weekly routine
+
+<Steps>
+  <Step title="Refresh">
+    Pick **Last 7 days** and click **Run Analysis**.
+  </Step>
+  <Step title="Clear follow-ups">
+    Work through **Missed Follow-ups**. Open each, reply if needed, then click **Resolve**.
+  </Step>
+  <Step title="Learn from objections">
+    Look at the objections with a high **Frequency** and a low **Addressed** percentage. Pick the relevant playbook and click **Suggest refinement**, or add an answer in [Training Context](/pages/ai-config/training-context).
+  </Step>
+</Steps>
+
+<Callout kind="info">
+Only account admins can assign playbooks to assistants. **Suggest refinement** records an idea against the playbook; it doesn't edit the playbook for you.
+</Callout>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Analytics" icon="bar-chart-3" href="/pages/insights/analytics">
+    Volume, speed, cost and FAQ performance.
+  </Card>
+  <Card title="AI Playbooks" icon="book-open" href="/pages/ai-config/playbooks">
+    Where refinements are reviewed and applied.
+  </Card>
+</Columns>

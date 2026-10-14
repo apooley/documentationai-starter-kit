@@ -140,6 +140,10 @@
                 "icon": "link"
               },
               {
+                "title": "Dynamics CRM Setup",
+                "path": "pages/crm/dynamics-setup"
+              },
+              {
                 "title": "Qualification Settings",
                 "path": "pages/crm/qualification-settings",
                 "icon": "check-circle"

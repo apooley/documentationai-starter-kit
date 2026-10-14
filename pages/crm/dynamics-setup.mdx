@@ -1,0 +1,89 @@
+---
+title: Microsoft Dynamics Setup Guide
+description: A checklist for connecting Microsoft Dynamics 365 to Autoch.at: what to gather, which connection method to pick, and how to confirm syncing works.
+---
+
+This guide walks you through connecting **Microsoft Dynamics 365** (Dataverse) so new clients and conversation notes appear in your CRM. You'll probably want your IT person or Microsoft partner nearby for the Microsoft parts.
+
+The buttons and settings are described in [CRM Connections](/pages/crm/crm-connections). This page is the checklist that comes before it.
+
+<Callout kind="info">
+Dynamics is the CRM connection available today. HubSpot and Salesforce are not available yet. If **CRM Connection** isn't in your left menu, it isn't switched on for your account. Contact support.
+</Callout>
+
+## Step 1: Gather what you need
+
+| You need | Where to find it |
+|---|---|
+| **Instance URL** | The web address of your Dynamics environment, for example `https://yourorg.crm.dynamics.com` |
+| **Directory ID (Azure AD)** | In the Microsoft Entra (Azure) admin centre, on your tenant's overview page. Also called the "Tenant ID". |
+| **A Dynamics account that can sign in and approve access** | Someone with admin rights in your Dynamics environment |
+| **Client ID and Client Secret** | Only for the "your own OAuth app" or "Service Principal" methods. Created in Microsoft Entra under **App registrations**. |
+
+## Step 2: Choose a connection method
+
+| Method | Best for | What you do |
+|---|---|---|
+| **Connect with Microsoft** (hosted) | Most businesses. Simplest. | Enter the Instance URL and Directory ID, then sign in with Microsoft. |
+| **Connect with OAuth** (your own app) | If your IT policy requires your own Microsoft app | Enter Client ID, Client Secret, Instance URL and Directory ID, then sign in. |
+| **Use Service Principal** | IT-managed, server-to-server access that doesn't depend on one person's login | Enter Client ID, Client Secret, Instance URL and Directory ID. |
+
+The button on your screen depends on how your account is set up. If you see **Connect with Microsoft**, use it.
+
+## Step 3 (own app or Service Principal only): Prepare Microsoft Entra
+
+<Steps>
+  <Step title="Register an app">
+    In Microsoft Entra, go to **App registrations** and create a new registration. Note the **Application (client) ID** and **Directory (tenant) ID**.
+  </Step>
+  <Step title="Give it Dynamics permission">
+    Under **API permissions**, add permission for **Dynamics CRM** (shown as Dataverse in some tenants), and grant admin consent if your organisation requires it. Adding only Microsoft Graph permissions is not enough.
+  </Step>
+  <Step title="Create a client secret">
+    Under **Certificates & secrets**, create a **New client secret** and copy its value straight away. Microsoft only shows it once.
+  </Step>
+  <Step title="Redirect address (own OAuth app only)">
+    If you're using your own app with sign-in, add the redirect address Autoch.at gives you (it ends with `/crm-connection/callback`) under **Authentication**. Ask support for the exact address if you don't have it.
+  </Step>
+</Steps>
+
+## Step 4: Connect
+
+Go to **CRM** > **CRM Connection**, find the **Microsoft Dynamics** card and follow the buttons for your method. When it works you'll see "Microsoft Dynamics connected successfully!" and an **Active** label.
+
+## Step 5: Check it
+
+<Steps>
+  <Step title="Test Connection">
+    Click **Test Connection**.
+  </Step>
+  <Step title="Validate Setup">
+    Click **Validate Setup**. Each requirement is listed as ready or needing attention. If it says "Sync needs attention", sign-in is fine but the table you chose needs permission changes in Dynamics. Ask your Dynamics admin.
+  </Step>
+  <Step title="Pick the table and map fields">
+    In **Dynamics table & field mapping**, choose the **Target Dataverse table** (the default is contact) and map any extra fields. Name, email and phone are filled automatically when the table has them.
+  </Step>
+  <Step title="Turn on syncing">
+    Tick **Enable Sync**, choose whether to send **Qualified Leads Only**, and keep **Sync Contacts** and **Sync Notes** ticked.
+  </Step>
+  <Step title="Try a sync">
+    Click **Sync Now**, then check the **Sync Logs** at the bottom of the page. A **Success** row means the record reached Dynamics.
+  </Step>
+</Steps>
+
+## Troubleshooting
+
+- **Error or Disconnected:** use the reconnect button on the card. For Service Principal connections, **Reconnect with saved credentials** avoids retyping details.
+- **"Needs attention" in Validate Setup:** open the check that isn't ready and follow its description, then run **Validate Setup** again.
+- **Notes look cut off:** Dynamics memo fields hold about 10,000 characters. Autoch.at keeps the newest messages and drops the oldest.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="CRM Connections" icon="link" href="/pages/crm/crm-connections">
+    Every button and setting on the connection screen.
+  </Card>
+  <Card title="Qualification Settings" icon="target" href="/pages/crm/qualification-settings">
+    Decide which leads count as qualified.
+  </Card>
+</Columns>

@@ -1,84 +1,127 @@
 ---
 title: CRM Connections
-description: Sync your Autoch.at client records with Salesforce, HubSpot, Microsoft Dynamics, or other CRMs — keeping your contact data consistent across tools.
+description: Connect Microsoft Dynamics so new clients and conversation notes flow into your CRM automatically. Choose the table, map fields and watch sync logs.
 ---
 
-## Keep your CRM in sync
+**CRM Connections** sends your clients and conversation notes to the CRM your team already uses, so nobody has to copy and paste. Today the supported business CRM is **Microsoft Dynamics** (Dynamics 365 / Dataverse). You can also link **AutoChat CRM** if your plan includes it.
 
-**CRM Connections** (at **CRM > CRM Connections**) lets you connect Autoch.at to your existing CRM so that client records, conversation data, and lead qualification results flow between the two systems automatically.
-
-When a customer chats with your AI assistant and gets qualified as a lead, that information can be pushed directly to your CRM — no manual data entry required.
-
-## Supported CRMs
-
-- **Microsoft Dynamics 365** — Entities, contacts, leads, accounts, and annotations
-- **HubSpot** — Contacts, companies, deals, and notes
-- **Salesforce** — Contacts, leads, accounts, and activities
-- **Pipedrive** — Contacts, deals, and notes
-- **Zoho CRM** — Contacts, leads, and activities
-
-Don't see your CRM? You can also connect any CRM that supports webhooks using Autoch.at's webhook integration. See [Integrations](/integrations) for details.
-
-## Connecting your CRM
-
-1. Go to **CRM > CRM Connections**.
-2. Click **Connect CRM**.
-3. Select your CRM provider.
-4. You'll be redirected to your CRM's authorization page — log in and grant Autoch.at permission to access your data.
-5. Once authorized, you'll be returned to Autoch.at to configure the sync settings.
-
-## Configuring the sync
-
-After connecting, you'll configure what data gets synced and in which direction:
-
-### Contact sync
-
-Choose whether Autoch.at should:
-- **Push contacts to CRM** — New clients created in Autoch.at are automatically created in your CRM.
-- **Pull contacts from CRM** — Contacts in your CRM are imported into Autoch.at as clients.
-- **Bidirectional sync** — Changes in either system are reflected in the other.
-
-### Field mapping
-
-Map the fields in Autoch.at to the corresponding fields in your CRM. For example, you might map Autoch.at's "Company" field to HubSpot's "Company Name" field.
-
-Custom fields you've created in Autoch.at can also be mapped to custom fields in your CRM.
-
-#### Microsoft Dynamics 365 Field Mapping
-For Microsoft Dynamics, you have granular control over exactly which Dataverse table (Entity) receives your leads. 
-- You can select the target table (e.g., `contact`, `lead`, `account`) and map Autoch.at fields to specific Dynamics attributes.
-- **Autochat Notes**: You can map the `autochat_notes` platform field to a Dynamics attribute and set its write mode to **Append** or **Replace**. Using Append allows you to push structured notes into the same memo field as the conversation summary without overwriting it.
-- Note: Standard Annotation notes are still attached to the contact/lead/account automatically when supported.
-
-### Conversation sync
-
-Choose whether to sync conversation summaries and notes to your CRM. When enabled, a note is added to the contact's record in your CRM each time a conversation is resolved, summarizing what was discussed.
-
-### Dynamics memo field truncation
-
-When a conversation's full text exceeds the Microsoft Dynamics 10,000 character Memo field limit, Autoch.at uses prefer-recent truncation: it keeps the newest conversation turns and truncates older content. This ensures the most recent context — which is usually the most relevant for your sales team — is always preserved in the CRM record.
+Find it in the left menu under **CRM** > **CRM Connection**.
 
 <Callout kind="info">
-The most recent conversation turns are always kept. Only older messages at the beginning of the conversation are truncated to fit the Dynamics Memo field cap.
+HubSpot and Salesforce connections are not available yet. Please don't plan around them. If the **CRM Connection** menu item is missing, or the page says connections are disabled, CRM connections aren't switched on for your account. Contact support.
 </Callout>
 
-## Product feed sync
+## What gets synced
 
-If your CRM connection includes a product feed (for example, syncing a vehicle inventory or product catalog), Autoch.at periodically syncs the feed to keep your product data current. When a feed sync fails, the system automatically retries with a backoff schedule:
+- **Contacts.** Name, email, phone and company for each client.
+- **Notes.** Conversation summaries and key insights (qualification status, buying stage and similar) are added to the CRM record.
+- **Anything you map yourself.** For Dynamics you can choose exactly which Autoch.at details land in which Dynamics field (see below).
 
-| Retry | Delay after failure |
+## Connect Microsoft Dynamics
+
+You'll need your Dynamics address (for example `https://yourorg.crm.dynamics.com`) and, depending on the method, your Microsoft Entra (Azure) **Directory ID**. Ask your IT person or Microsoft partner if you're unsure. For a checklist to get ready, see [Dynamics CRM Setup](/pages/crm/dynamics-setup).
+
+<Tabs>
+  <Tab title="Sign in with Microsoft (simplest)">
+    <Steps>
+      <Step title="Start">
+        On the **Microsoft Dynamics** card, click **Connect with Microsoft**.
+      </Step>
+      <Step title="Enter your environment">
+        Fill in **Instance URL** and **Directory ID (Azure AD)**, then click **Continue to Microsoft**.
+      </Step>
+      <Step title="Approve">
+        Sign in with Microsoft and approve access. You return to Autoch.at and see "Microsoft Dynamics connected successfully!". The card shows **Active** and "Hosted OAuth".
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="Your own OAuth app">
+    If the button reads **Connect with OAuth**, your account uses your own Microsoft app. Click it, enter **Client ID**, **Client Secret**, **Instance URL** and **Directory ID (Azure AD)**, click **Save OAuth Configuration**, then approve access on the Microsoft page.
+  </Tab>
+  <Tab title="Service Principal (advanced)">
+    For a server-to-server link that doesn't depend on one person's login: click **Use Service Principal**, enter **Client ID**, **Client Secret**, **Instance URL** and **Directory ID (Azure AD)**, then click **Connect**. Best for IT-managed setups.
+  </Tab>
+</Tabs>
+
+<Callout kind="alert">
+Switching between connection methods later asks you to confirm, because it changes how Autoch.at signs in to Dynamics.
+</Callout>
+
+## Check that it works
+
+After connecting, use the buttons on the card:
+
+- **Test Connection** checks that Autoch.at can reach Dynamics.
+- **Validate Setup** runs a deeper check and lists each requirement as ready or needing attention. "Needs attention" usually means a sign-in or permission problem. "Sync needs attention" means sign-in is fine but the table you chose needs permission changes; the connection stays active.
+- **Sync Now** pushes everything waiting in the queue right away. It's greyed out if **Enable Sync** is off.
+
+## Sync settings
+
+| Setting | What it does |
 |---|---|
-| 1st retry | 1 hour |
-| 2nd retry | 3 hours |
-| 3rd retry | 8 hours |
-| Subsequent retries | Every 24 hours |
+| **Enable Sync** | Turns automatic syncing on. Conversations are queued by priority and sent in the background. |
+| **Qualified Leads Only** | Only sends conversations that were marked qualified (see [Qualification Settings](/pages/crm/qualification-settings)). With this off, everything except spam is sent. |
+| **Enable Bi-directional Sync** | Dynamics only. Also lets changes made in Dynamics flow back. An **Inbound webhook status** box shows whether it's Registered and when the last event arrived. |
+| **Sync Contacts** | Sends contact details (name, email, phone, company). |
+| **Sync Notes** | Adds conversation summaries and insights as notes. |
+| **Update Interval (minutes)** | How often Autoch.at checks for new conversations to sync, from 5 to 1440. Shorter is faster but uses more of your CRM's allowance. 15 to 60 is a good range. |
 
-The retry counter resets on the first successful sync. Tenant admins receive an email notification once per failure streak — not on every individual retry — so you're alerted to persistent issues without inbox flooding.
+## Choose the Dynamics table and map fields
 
-## Monitoring the connection
+Once the connection shows **Active**, a panel called **Dynamics table & field mapping** appears.
 
-The CRM Connections page shows the status of your connection and a log of recent sync activity. If a sync fails (for example, because a required field is missing), the error will appear here with details about what went wrong.
+<Steps>
+  <Step title="Pick the table">
+    Under **Target Dataverse table**, choose where clients should land. The default is **contact**. Use **Search tables** (then **Refresh**) to find others such as lead or account. Click **Save table**.
+  </Step>
+  <Step title="Map a field">
+    In the row at the bottom, choose a **Platform field** (what Autoch.at knows), then the **Dynamics field** it should fill, then a **Write mode**, and click **Add**.
+  </Step>
+  <Step title="Remove a mapping">
+    Click the bin icon at the end of a mapping row.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+Changing the target table removes the field mappings you set up for the old table. You'll be asked to confirm first.
+</Callout>
+
+**Platform fields you can map:** Email, First name, Last name, Company, Street Address, City, State / Province, Postal Code, Country, **Autochat Summary**, **Autochat Full Text**, **Autochat Notes** and **Workspace Identifier**.
+
+**Write mode:**
+- **Replace** overwrites whatever is in the Dynamics field.
+- **Append** adds to what's already there. Use it to put **Autochat Notes** into the same memo field as **Autochat Summary** without overwriting the summary.
+
+With no mappings, name, email and phone use safe defaults when the table has matching fields.
 
 <Callout kind="info">
-If your CRM connection shows an error, the most common cause is an expired authorization token. Click **Reconnect** to re-authorize and restore the connection. For Microsoft Dynamics, if your connection drops, you can often use the **Reconnect with saved credentials** button to restore access without needing to re-enter your environment details.
+Dynamics memo fields hold about 10,000 characters. If a full conversation is longer, Autoch.at keeps the newest messages and drops the oldest, starting the text with "[Earlier messages omitted to fit CRM field limit.]".
 </Callout>
+
+## Watch the sync
+
+The **Sync Logs** table at the bottom lists each sync: **Time**, **CRM**, **Type**, **Client** and **Status**.
+
+- **Success**: your CRM is up to date.
+- **Pending**: queued and waiting its turn.
+- **Failed**: hover or read the short error. Autoch.at retries automatically. If it keeps failing, check the connection with **Test Connection** or **Validate Setup**.
+
+## Reconnect or disconnect
+
+If a card shows **Error** or **Disconnected**, use the reconnect button that matches how you connected: **Reconnect with Microsoft**, **Reconnect with OAuth** or **Reconnect Service Principal**. For Service Principal connections, **Reconnect with saved credentials** restores access without retyping your environment details.
+
+**Disconnect** stops syncing. Records already in your CRM stay there.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Clients" icon="users" href="/pages/crm/clients">
+    The contact list that gets synced.
+  </Card>
+  <Card title="Dynamics CRM Setup" icon="list-checks" href="/pages/crm/dynamics-setup">
+    What to have ready before you connect.
+  </Card>
+  <Card title="Qualification Settings" icon="target" href="/pages/crm/qualification-settings">
+    Decide what counts as a qualified lead before it's sent.
+  </Card>
+</Columns>
