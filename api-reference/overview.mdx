@@ -1,0 +1,48 @@
+---
+title: Developer overview
+description: See how to connect Autoch.at to your own tools with signed webhooks, the CRM REST API, and the website chat widget script. No coding needed for most setups.
+---
+
+# Developer overview
+
+Most Autoch.at customers never need to write code. If you do want to connect Autoch.at to your own software, a website, or an automation tool such as n8n, there are three supported ways to do it.
+
+<Columns cols={3}>
+  <Card title="Webhooks" icon="webhook" href="/api-reference/webhooks">
+    Autoch.at sends your system a message when something happens, such as a lead being qualified.
+  </Card>
+  <Card title="CRM REST API" icon="code" href="/api-reference/crm-api">
+    Read and write clients, invoices, quotes, products and projects in the Autoch.at CRM.
+  </Card>
+  <Card title="Chat widget script" icon="message-square" href="/pages/settings/chat-widget">
+    Put the AI chat on your website with a short snippet you paste in.
+  </Card>
+</Columns>
+
+## Which one should I use?
+
+| I want to... | Use |
+|---|---|
+| Get notified in another tool when a lead is qualified, an appointment is booked, or a goal is reached | [Webhooks](/api-reference/webhooks) |
+| Tell Autoch.at that a booking was confirmed or cancelled in your own booking system | The appointment callback in [Webhooks](/api-reference/webhooks) |
+| Copy my clients or invoices into another system, or create them from a form | [CRM REST API](/api-reference/crm-api) |
+| Show the AI chat on my website | [Chat widget](/pages/settings/chat-widget) |
+| Connect Microsoft Dynamics | [CRM Connections](/pages/crm/crm-connections) (no code) |
+
+## Keys and secrets
+
+<Callout kind="alert">
+Treat API keys and webhook signing secrets like passwords. Anyone who has one can act on your account. Autoch.at only shows each one once, when you create it, so copy it straight into the tool that needs it. If a key may have leaked, delete or rotate it right away.
+</Callout>
+
+- **Webhook signing secrets** are created in **Settings > Webhooks** in the main app.
+- **CRM API keys** are created in the CRM under **Settings > Integrations > API Keys**. Each key has permissions (called scopes) so you can give it read-only access.
+
+## What is not available
+
+- There is no public API for reading conversations or sending messages. Use webhooks to be told about events, and the inbox in the app to work with conversations.
+- Platform administration tools are only for the Autoch.at team and are not part of the customer API.
+
+## Need help?
+
+Email [support@autoch.at](mailto:support@autoch.at) and include what you were trying to connect.

@@ -19,7 +19,7 @@
             "icon": "rocket",
             "pages": [
               {
-                "title": "Introduction",
+                "title": "Welcome",
                 "path": "introduction",
                 "icon": "star"
               },
@@ -285,13 +285,23 @@
         ]
       },
       {
-        "tab": "API Reference",
+        "tab": "Developers",
         "icon": "code",
-        "groups": [
+        "pages": [
           {
-            "group": "Endpoints",
-            "openapi": "api-reference/openapi.yaml",
-            "pages": []
+            "title": "Developer overview",
+            "path": "api-reference/overview",
+            "icon": "book-open"
+          },
+          {
+            "title": "Webhooks",
+            "path": "api-reference/webhooks",
+            "icon": "webhook"
+          },
+          {
+            "title": "CRM REST API",
+            "path": "api-reference/crm-api",
+            "icon": "database"
           }
         ]
       },
@@ -321,7 +331,7 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Missing Documents",
+                "title": "Troubleshooting common issues",
                 "path": "help-center/troubleshooting/missing-documents"
               }
             ]
@@ -332,7 +342,7 @@
             "expandable": false,
             "pages": [
               {
-                "title": "Add Bot Integration",
+                "title": "Connecting your first channel",
                 "path": "help-center/guides/add-bot-integration"
               }
             ]
@@ -351,5 +361,27 @@
         ]
       }
     ]
-  }
+  },
+  "redirects": [
+    {
+      "source": "/api-reference/get-docs",
+      "destination": "/api-reference/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/api-reference/post-docs",
+      "destination": "/api-reference/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/api-reference/get-docs-docid",
+      "destination": "/api-reference/overview",
+      "statusCode": 301
+    },
+    {
+      "source": "/api-reference/get-authors",
+      "destination": "/api-reference/overview",
+      "statusCode": 301
+    }
+  ]
 }

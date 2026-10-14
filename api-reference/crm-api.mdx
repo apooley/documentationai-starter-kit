@@ -1,0 +1,74 @@
+---
+title: CRM REST API
+description: Read and write clients, invoices, quotes, products and projects in the Autoch.at CRM from your own software using an API key with limited permissions.
+---
+
+# CRM REST API
+
+The Autoch.at CRM has a REST API so other software can create and read your business records, for example adding a client from a website form or copying paid invoices to your accounting tool.
+
+<Callout kind="info">
+This API covers the **CRM** (clients, invoices, quotes, products, projects). It does not read conversations. To react to chat or lead events, use [Webhooks](/api-reference/webhooks).
+</Callout>
+
+## Create an API key
+
+<Steps>
+  <Step title="Open the CRM">
+    Sign in to the CRM and go to **Settings > Integrations > API Keys**.
+  </Step>
+  <Step title="Create a key">
+    Give it a name, choose the permissions (scopes) it needs and, if you like, an expiry date. Pick the smallest set you can. For example, a reporting tool only needs the "Read" scopes.
+  </Step>
+  <Step title="Copy it now">
+    The full key is shown once. Store it somewhere safe. You can change a key's permissions later, or delete it to cut off access.
+  </Step>
+</Steps>
+
+Available permissions: Clients, Invoices, Quotes, Payments, Products, Projects and Webhooks, each with a read and a write version (for example `clients:read`, `clients:write`).
+
+## Making a request
+
+Send your key in the `Authorization` header as a Bearer token:
+
+```bash
+curl "https://<your CRM API address>/v1/clients?limit=10" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+Replace `<your CRM API address>` with the API address for your CRM. If you are not sure what it is, email [support@autoch.at](mailto:support@autoch.at). The API is also described in an OpenAPI file you can import into tools such as Postman.
+
+## What you can do
+
+| Resource | Address | Actions |
+|---|---|---|
+| Clients | `/v1/clients`, `/v1/clients/{id}` | List, read, create, update, delete |
+| Invoices | `/v1/invoices`, `/v1/invoices/{id}` | List, read, create, update, change status |
+| Quotes | `/v1/quotes`, `/v1/quotes/{id}` | List, read, create, update, change status |
+| Products | `/v1/products` | List, read, create, update |
+| Projects | `/v1/projects` | List, read, create, update |
+
+Lists accept `limit` (default 50, maximum 200), `offset`, and ordering options. List replies look like `{ "data": [...], "count": 12, "has_more": false }`.
+
+To safely retry a create request without making duplicates, add an `Idempotency-Key` header with a unique value of your choice.
+
+### Example: create a client
+
+```bash
+curl -X POST "https://<your CRM API address>/v1/clients" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{ "company_name": "Acme Plumbing", "contact_person": "Sam Lee", "email": "sam@example.com", "phone": "+14165551234" }'
+```
+
+Only `company_name` is required. The reply is `{ "data": { ...the new client... } }` with status `201`.
+
+## Limits and errors
+
+- **Rate limit:** 100 requests per minute per key. Replies include `X-RateLimit-Limit`, `X-RateLimit-Remaining` and `X-RateLimit-Reset`. If you go over, you get status `429` and a `Retry-After` header.
+- **Errors** share one shape: `{ "error": { "code": "...", "message": "..." } }`. Common ones: `401` (missing, wrong or expired key), `400` (invalid data) and `404`.
+- A key can only ever see records from your own business.
+
+## No-code alternatives
+
+The CRM includes connectors and webhooks under **Settings > Integrations** for tools like Zapier and Make, so you can connect the same data without writing code.

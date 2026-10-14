@@ -1,0 +1,144 @@
+---
+title: Webhooks
+description: Send signed event messages from Autoch.at to n8n, your own server or any tool that accepts web requests, and confirm bookings back to Autoch.at.
+---
+
+# Webhooks
+
+A webhook is a web address (URL) that Autoch.at sends a message to whenever something you care about happens, for example "a lead was qualified". You use webhooks to trigger actions in other tools without anyone copying data by hand.
+
+Manage them in **Settings > Webhooks**.
+
+## Add a webhook
+
+<Steps>
+  <Step title="Open Settings > Webhooks">
+    Choose the option to add a new webhook.
+  </Step>
+  <Step title="Name it and paste the address">
+    Give it a name you will recognise and paste the URL that should receive the messages. The address must start with `http://` or `https://`.
+  </Step>
+  <Step title="Choose the events">
+    Tick the events you want sent. You can change this at any time.
+  </Step>
+  <Step title="Save and copy the signing secret">
+    Autoch.at shows the **signing secret** once. Copy it now and store it safely. It is how your system checks that a message really came from Autoch.at.
+  </Step>
+  <Step title="Send a test">
+    Click **Test** on the webhook. A test event is sent straight away so you can confirm your system receives it.
+  </Step>
+</Steps>
+
+Other buttons on each webhook: **Rotate Secret** (creates a new secret and stops the old one working) and a delivery log so you can see what was sent and whether it succeeded.
+
+## Events you can subscribe to
+
+| Event | When it is sent |
+|---|---|
+| `lead.qualified.v1` | The AI decides a lead meets your qualification rules |
+| `conversation.high_risk.v1` | A conversation is flagged as high risk |
+| `appointment.requested.v1` | A customer asks to book an appointment |
+| `appointment.booked.v1` | An appointment is confirmed |
+| `goal.triggered.v1` | One of your goals fires (see goals below) |
+| `autochat.chat_started.v1` | A visitor sends their first real message in the chat widget |
+| `autochat.contact_info_obtained.v1` | The AI collects a name, email or phone number |
+| `autochat.lead_qualified.v1` | A lead is qualified during a chat |
+| `autochat.escalation_triggered.v1` | A conversation is handed to a person |
+| `autochat.followup_scheduled.v1` / `autochat.followup_inferred.v1` | A follow-up is scheduled or detected |
+| `autochat.appointment_scheduled.v1` | An appointment is scheduled in chat |
+| `autochat.goal_met.v1` | A conversation goal is met |
+| `playbook.experiment.*` | Playbook experiment status changes such as auto-paused, auto-activated, auto-completed or guardrail warnings |
+
+<Callout kind="info">
+Goal triggers are only delivered if the `goal.triggered.v1` event is ticked on at least one active webhook.
+</Callout>
+
+## What a message looks like
+
+Every message is a JSON document with the same outer shape:
+
+```json
+{
+  "id": "event id",
+  "type": "lead.qualified.v1",
+  "occurred_at": "2026-10-14T15:04:05.000Z",
+  "tenant_id": "your account id",
+  "workspace_id": "the workspace it happened in (when relevant)",
+  "data": { "...details depend on the event..." }
+}
+```
+
+Each request also carries these headers:
+
+| Header | Meaning |
+|---|---|
+| `X-Autochat-Event-Id` | Unique id of the event. Use it to ignore duplicates. |
+| `X-Autochat-Event-Type` | The event name, for example `lead.qualified.v1` |
+| `X-Autochat-Timestamp` | When the message was signed |
+| `X-Autochat-Signature` | `sha256=` followed by a signature (see below) |
+
+## Check the signature
+
+The signature is an HMAC SHA-256 of the **raw request body followed directly by the timestamp text**, using your signing secret as the key, written in lowercase hex and prefixed with `sha256=`.
+
+<CodeGroup>
+
+```javascript
+import crypto from "crypto";
+
+function isFromAutochat(rawBody, timestamp, signatureHeader, secret) {
+  const expected =
+    "sha256=" +
+    crypto.createHmac("sha256", secret).update(rawBody + timestamp).digest("hex");
+  return crypto.timingSafeEqual(Buffer.from(expected), Buffer.from(signatureHeader));
+}
+```
+
+```python
+import hmac, hashlib
+
+def is_from_autochat(raw_body: str, timestamp: str, signature_header: str, secret: str) -> bool:
+    expected = "sha256=" + hmac.new(
+        secret.encode(), (raw_body + timestamp).encode(), hashlib.sha256
+    ).hexdigest()
+    return hmac.compare_digest(expected, signature_header)
+```
+
+</CodeGroup>
+
+Reply with any 2xx status once you have received the message. If your server is down or slow, Autoch.at retries a few times before marking the delivery as failed in the log.
+
+## Goals
+
+In **Settings > Webhooks** you can also set up goals, which fire the `goal.triggered.v1` event when something you define happens in a conversation. You can limit how many times a goal fires per conversation and choose how much contact detail and summary is included, which keeps personal information out of messages you do not want it in.
+
+## Tell Autoch.at about a booking (appointment callback)
+
+If bookings are made in your own system, you can send the result back so Autoch.at can update the conversation and fire your goals. **Settings > Webhooks** shows your callback address, which looks like:
+
+```text
+https://<your Autoch.at address>/api/webhooks/appointments/<your account id>
+```
+
+Send a `POST` with the same three signing headers (plus `X-Autochat-Webhook-Id`, the id of the webhook that holds the secret) and a JSON body:
+
+```json
+{
+  "conversation_id": "the conversation this booking belongs to",
+  "status": "confirmed",
+  "scheduled_at": "2026-10-20T14:00:00-04:00",
+  "timezone": "America/Toronto",
+  "booking_url": "https://example.com/booking/123",
+  "external_booking_id": "123",
+  "provider": "your booking tool",
+  "notes": "Optional note"
+}
+```
+
+`status` must be `confirmed`, `failed` or `canceled`. Requests with a missing or wrong signature are rejected.
+
+## Troubleshooting
+
+- **Nothing arrives.** Check the webhook is switched on, the right events are ticked, and the URL is reachable from the internet (a link that only works on your own computer will not work).
+- **Signature does not match.** Use the raw body exactly as received (do not re-format the JSON), add the timestamp header text straight after it, and make sure you are using the latest secret if you have rotated it.
+- **Lost the secret.** Click **Rotate Secret** and update your system with the new one.

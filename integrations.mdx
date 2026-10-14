@@ -1,72 +1,62 @@
 ---
 title: Integrations
-description: Connect Autoch.at to the tools you already use — CRMs, calendars, email providers, and more.
+description: See which channels, CRMs, calendars, email providers and billing tools connect to Autoch.at today, where to set each one up, and what is coming later.
 ---
 
-## Connect your stack
+# Integrations
 
-Autoch.at integrates with the tools your business already relies on. Connections are managed in **Settings** and in the **CRM** section of the platform.
+This page lists what Autoch.at connects to today. Each connection is set up inside the app, usually in **Settings** or **CRM**.
 
-## Communication channels
+<Callout kind="info">
+Some integrations depend on your plan. If a setting does not appear for you, contact [support@autoch.at](mailto:support@autoch.at).
+</Callout>
 
-These are the channels your AI assistant and team can use to communicate with customers:
+## Customer channels
 
 | Channel | How to connect |
 |---|---|
-| **Website Chat Widget** | Install the JavaScript snippet from **Settings > Chat Widget** |
-| **Email** | Configure your domain in **Settings > Email** with SPF/DKIM authentication |
-| **SMS** | Provision a phone number in **Settings > Phone Numbers** |
-| **Voice (Phone)** | Provision a phone number in **Settings > Phone Numbers** and configure your AI assistant for voice |
-| **Facebook Messenger** | Connect your Facebook Page in **Social Media > Profiles** |
-| **Instagram DMs** | Connect your Instagram Business account in **Social Media > Profiles** |
-| **LinkedIn DMs** | Connect your LinkedIn Company Page in **Social Media > Profiles** |
-| **X (Twitter) DMs** | Connect your X Business account in **Social Media > Profiles** |
+| **Website chat** | Paste the snippet from **Settings > Chat Widget** into your site. See [Chat Widget](/pages/settings/chat-widget). |
+| **Email** | Connect your domain in **Settings > Email** and publish the DNS records shown. You can also create sending (SMTP) credentials, read an existing mailbox over IMAP, or connect a Gmail or Outlook mailbox. See [Email](/pages/settings/email). |
+| **SMS and voice calls** | Get a phone number in **Settings > Phone Numbers**. Numbers are provided by Telnyx. See [Phone Numbers](/pages/settings/phone-numbers). |
+| **Facebook Messenger and Instagram messages** | Open **Social Media > Accounts**, choose **Connect Meta Account** and sign in with Facebook. Messages then arrive in your inbox. See [Social Profiles](/pages/social/social-profiles). |
 
-## CRM integrations
+## Social publishing
 
-Sync your client records and conversation data with your CRM:
+Posts, queues and analytics use a connected social account. Supported networks include Facebook, Instagram, LinkedIn, X (Twitter), TikTok, YouTube, Pinterest, Reddit, Bluesky, Threads and Google Business Profile. Direct messages are only available for Facebook Messenger and Instagram. See [Social Posts](/pages/social/social-posts).
 
-| CRM | What syncs |
+## CRM
+
+Autoch.at has its own [built-in CRM](/pages/crm/clients), so you do not need another one. If you already use a CRM, you can connect it so records stay in sync.
+
+| CRM | Status |
 |---|---|
-| **HubSpot** | Contacts, companies, deals, notes |
-| **Salesforce** | Contacts, leads, accounts, activities |
-| **Pipedrive** | Contacts, deals, notes |
-| **Zoho CRM** | Contacts, leads, activities |
+| **Microsoft Dynamics** | Available. Connect it in **CRM > CRM Connection** with a Microsoft sign-in, then choose how fields map between the two systems. |
+| **Jobber** | Available to some accounts. Connect it from the same CRM Connection page. |
+| **HubSpot** | Not available yet. It is planned for later and has no date. |
+| **Salesforce** | Not available yet. It is planned for later and has no date. |
 
-Connect your CRM at **CRM > CRM Connections**.
+Need a CRM that is not listed? You can send data out with [Webhooks](/api-reference/webhooks), or use the [CRM REST API](/api-reference/crm-api).
 
-## Calendar integrations
+See [CRM Connections](/pages/crm/crm-connections) for setup steps.
 
-Allow your AI assistant to check availability and book meetings:
+## Calendar and booking
 
-| Calendar | Notes |
+| Tool | What it does |
 |---|---|
-| **Google Calendar** | Full read/write access for availability checking and booking |
-| **Microsoft Outlook / Office 365** | Full read/write access for availability checking and booking |
-| **Calendly** | Connect your Calendly account to let the AI share your booking link |
+| **Calendly** | Connect Calendly in **Settings > Calendar** so your assistant can offer appointment times during a conversation. You paste in a Personal Access Token from your Calendly account. |
 
-Connect your calendar at **Settings > Calendar Integration**.
+You can also send booking results back from your own booking system with the appointment callback in [Webhooks](/api-reference/webhooks).
 
-## AI model providers
+## AI models
 
-By default, Autoch.at uses its own managed AI infrastructure. If you want to use your own API keys for cost control, compliance, or to use specific model versions, you can bring your own keys:
+Autoch.at provides the AI for you. On plans that include **BYOK** (bring your own keys), you can add your own **OpenAI** key to pay OpenAI directly, and a **Vapi** key for voice calls. See [BYOK](/pages/settings/byok).
 
-| Provider | Notes |
-|---|---|
-| **OpenAI** | Use your own GPT-4 or GPT-4o API key |
-| **Anthropic** | Use your own Claude API key |
+## Billing
 
-Configure BYOK at **Settings > Bring Your Own Key**.
+Subscriptions and invoices are handled by **Stripe**. See [Usage & Billing](/pages/settings/billing).
 
-## Webhooks and API
+## Webhooks and automation
 
-For integrations not listed above, Autoch.at provides:
-
-- **Webhooks** — Send real-time event notifications to any URL when conversations are created, updated, or resolved; when leads are qualified; or when other events occur.
-- **REST API** — Programmatically access and manage conversations, clients, and other data.
-
-Webhook configuration is available in **Settings**. API documentation is available at [api.autoch.at/docs](https://api.autoch.at/docs).
-
-## Zapier and Make
-
-Autoch.at connects to Zapier and Make (formerly Integromat), giving you access to thousands of additional integrations without writing any code. Search for "Autoch.at" in the Zapier or Make app directories to find available triggers and actions.
+- **[Webhooks](/api-reference/webhooks)** send signed messages to tools such as n8n or your own server when something happens (for example, a lead is qualified).
+- The **[CRM REST API](/api-reference/crm-api)** lets your software read and write clients, quotes, invoices, products and projects.
+- Zapier and Make: you can connect them through webhooks and the CRM API. There is no Autoch.at app in their directories.

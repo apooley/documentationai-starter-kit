@@ -1,15 +1,29 @@
 ---
 title: Help Center
-description: Find answers to common questions, troubleshooting guides, and tips for getting the most out of Autoch.at.
+description: Quick answers, fixes for common problems and ways to reach the Autoch.at team. Start here if something is not working or you are not sure where to look.
 ---
 
-## Getting help
+# Help Center
 
-If you can't find what you're looking for in this documentation, here are your options:
+Find quick answers here, or jump to a longer guide.
 
-- **Search the docs** — Use the search bar at the top of the page to find specific topics.
-- **Contact support** — Reach the support team via the chat widget in the bottom-right corner of this page, or email [support@autoch.at](mailto:support@autoch.at).
-- **Community** — Join the Autoch.at community forum to ask questions and share tips with other users.
+<Columns cols={3}>
+  <Card title="Getting Started FAQ" icon="circle-help" href="/help-center/faq/getting-started">
+    Sign-up, email confirmation, first-day questions.
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/help-center/troubleshooting/missing-documents">
+    Step-by-step fixes for the most common problems.
+  </Card>
+  <Card title="Connect a channel" icon="plug" href="/help-center/guides/add-bot-integration">
+    Website chat, email, SMS and social messages.
+  </Card>
+</Columns>
+
+## Contact us
+
+If you cannot find your answer, email [support@autoch.at](mailto:support@autoch.at). Tell us what you were trying to do, what you expected, what happened instead, and (if you can) paste any message you saw. A screenshot helps a lot.
+
+You can also search this site using the search bar at the top of the page.
 
 ---
 
@@ -17,84 +31,77 @@ If you can't find what you're looking for in this documentation, here are your o
 
 ### Getting started
 
-**How long does it take to set up Autoch.at?**
-Most teams have their AI assistant live within 30 minutes. The [Quickstart guide](/quickstart) walks you through the process step by step.
+**Do I need technical skills?**
+No. Setting up an assistant, teaching it about your business and adding the chat widget needs no coding. The widget is one snippet that you paste into your website. See the [Quickstart](/quickstart).
 
-**Do I need technical knowledge to set up Autoch.at?**
-No. The core setup requires no coding. The chat widget installation is a simple copy-paste of a JavaScript snippet.
+**Can I try Autoch.at before paying?**
+New accounts start with a free trial. While you are on the trial, **Usage & Billing** shows how many trial days are left. You can also test your assistant at any time in the [Widget Playground](/pages/conversations/widget-playground) before it appears on your website.
 
-**Can I try Autoch.at before committing?**
-Yes. You can test your AI assistant in the [Widget Playground](/pages/conversations/widget-playground) before installing it on your website.
+**I did not get my confirmation email.**
+Check your spam or junk folder, then open the confirmation page and choose **Resend Verification Email**. You must confirm your email before you can sign in.
 
----
+### AI assistants
 
-### AI Assistant
+**Why is my assistant giving wrong answers?**
+Usually it does not have the information yet. Add more to [Training Context](/pages/ai-config/training-context), especially FAQs for the exact questions it gets wrong. If two sources disagree, remove or fix one.
 
-**Why is my AI giving incorrect answers?**
-The most common cause is gaps in your Training Context. Go to **AI Assistant > Training Context** and add more information about the topic the AI is getting wrong. FAQs are particularly effective for ensuring precise answers to specific questions.
+**How do I stop the AI talking about certain topics?**
+Use [AI Safety](/pages/ai-config/ai-safety) to block words or topics, and [Messaging Directives](/pages/ai-config/messaging-directives) for rules that apply to every assistant.
 
-**How do I stop the AI from talking about certain topics?**
-Use **AI Safety** to add blocked keywords or topic restrictions. You can also use **Messaging Directives** to set workspace-wide behavioral rules.
+**What is the difference between a playbook and training context?**
+Training Context is what your assistant *knows* about your business. A [playbook](/pages/ai-config/playbooks) is the *plan* it follows to reach a goal, such as qualifying a lead or booking a meeting. Each assistant can have its own playbook.
 
-**Can the AI handle multiple languages?**
-Yes. Your AI assistant can communicate in the language the customer uses. You can also set a default language in the assistant's persona settings.
-
-**What's the difference between a Playbook and Training Context?**
-Training Context is your AI's knowledge base — the facts it knows about your business. Playbooks are conversation flows — the structured steps the AI follows to achieve a specific goal like qualifying a lead or booking a meeting.
-
----
+**Can one assistant pass a customer to another?**
+In web chat, yes, if you turn on transfers for that assistant and choose which colleagues it may hand over to. See [Assistants](/pages/ai-config/assistants).
 
 ### Conversations
 
-**Why aren't conversations showing up in my inbox?**
-Check that your channels are correctly configured in Settings. For chat, make sure the widget is installed on your website. For email, verify your SPF/DKIM records. For SMS and voice, confirm your phone number is provisioned and assigned.
+**Why are conversations not showing up in my inbox?**
+Check that the channel is set up (Dashboard > System Status shows this), then check the filter at the top of the inbox and the workspace selected in the sidebar. See [Troubleshooting](/help-center/troubleshooting/missing-documents).
 
-**How do I take over a conversation from the AI?**
-In the conversation detail view, click **Take Over** in the top bar. The AI will stop responding and you'll be in control. You can hand back to the AI at any time by clicking **Return to AI**.
+**How does a person take over from the AI?**
+Set up when the AI should hand over under [Routing & Handoffs](/pages/ai-config/routing-handoffs). Handed-over conversations show in your inbox with the full history, and you can assign a conversation to a team member. See [Conversation Detail](/pages/conversations/conversation-detail).
 
-**Can I see what the AI was going to say before it sends?**
-Yes. In the conversation composer, the AI's suggested response appears in the reply box before it's sent. You can edit it, discard it, or approve it.
+### Account and billing
 
----
+**Where do I see my plan and invoices?**
+In [Usage & Billing](/pages/settings/billing). Payments are handled by Stripe, and the billing portal there lets you update your card and see invoices.
 
-### Billing and account
+**I changed my email address and cannot sign in.**
+When an email address is changed, the new address must be confirmed first. Look for the confirmation email at the new address. Changing your own email also asks for your current password.
 
-**How is usage calculated?**
-Usage is calculated based on the number of AI-handled conversations per month, plus any per-message or per-minute charges for SMS and voice. See **Settings > Usage & Billing** for your current usage and plan details.
-
-**Can I change my plan?**
-Yes. Go to **Settings > Usage & Billing** and click **Change Plan** to upgrade or downgrade.
-
-**What happens if I exceed my plan limits?**
-You'll receive a notification when you're approaching your limits. If you exceed them, overage charges apply at the rates shown in your plan details.
+**I signed out on one device. Am I signed out everywhere?**
+Yes. Signing out ends your session on all devices.
 
 ---
 
 ## Troubleshooting
 
+For longer step-by-step fixes, see [Troubleshooting common issues](/help-center/troubleshooting/missing-documents).
+
 ### Chat widget not appearing
 
-1. Confirm the widget script is installed before the closing `</body>` tag on your website.
-2. Check that the widget isn't being blocked by a Content Security Policy (CSP) on your site.
-3. Verify that the widget isn't set to hidden in **Settings > Chat Widget** (check the launch rules).
-4. Clear your browser cache and try again.
+1. Make sure the snippet is on the page, just before the closing `</body>` tag.
+2. In **Settings > Chat Widget**, check your website address is listed under **Allowed Domains**.
+3. If your site blocks outside scripts (a Content Security Policy), ask your web developer to allow Autoch.at.
+4. Refresh the page with your browser cache cleared, or try a private window.
 
 ### Email not receiving messages
 
-1. Verify your MX records are pointing to Autoch.at's inbound email servers (check **Settings > Email** for the required records).
-2. Confirm your SPF and DKIM records are published correctly.
-3. Check your spam folder — the first few emails may be filtered until your domain builds a sending reputation.
+1. In **Settings > Email**, check your domain shows as verified.
+2. Confirm the DNS records shown there are published exactly as given at your domain provider. Changes can take a while to spread.
+3. Check your spam folder. A new sending domain can be filtered at first.
 
 ### AI assistant not responding
 
-1. Check that the assistant is set to **Active** in **AI Assistant > Assistants**.
-2. Verify the assistant is assigned to the correct channel.
-3. Check **AI Safety** settings — if a blocked keyword was triggered, the AI may have been silenced.
-4. Review the conversation in your inbox — the AI's response (or reason for not responding) will be visible in the timeline.
+1. Check the assistant is not paused and is set up for the channel you are testing in **Assistants**.
+2. Ask an administrator to check **AI Safety**. A blocked word can stop a reply.
+3. Open the conversation in your inbox. The timeline shows what happened.
+4. Check your plan includes the channel (for example SMS, email or voice).
 
 ### Social account connection failing
 
-1. Confirm you're logging in with an account that has admin access to the page or profile.
-2. Check that you've granted all the requested permissions during the authorization flow.
-3. Try disconnecting and reconnecting the account.
-4. If the issue persists, contact support with the error message you're seeing.
+1. Sign in with an account that manages the Page or profile you are connecting.
+2. Accept every permission requested during connection.
+3. Disconnect the account and connect it again from **Social Media > Accounts**.
+4. If it still fails, email support with the message you see.

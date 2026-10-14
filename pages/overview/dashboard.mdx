@@ -1,60 +1,60 @@
 ---
-title: "Dashboard"
-description: "Your central hub for monitoring assistant performance, system status, and quick actions."
-icon: "layout-dashboard"
+title: Dashboard
+description: Your starting screen in Autoch.at. See key numbers, finish setup, check which channels are active, read AI insights and jump to your conversations.
 ---
 
-The Dashboard is the first screen you see when you log in. It provides a high-level overview of your workspace's health, recent activity, and quick access to common tasks.
+# Dashboard
 
-## Quick Actions
+The Dashboard is the first screen you see after signing in. It shows how your business is doing at a glance and gives you shortcuts to the things you do most.
 
-At the top of the dashboard, you'll find quick action buttons to jump straight into common workflows:
-- **Test Assistant**: Opens the Widget Playground to test your AI assistant.
-- **Add Knowledge**: Takes you to the Training Context page to upload documents or add website URLs.
-- **View Conversations**: Opens the Conversations Inbox to review recent chats.
+<Callout kind="info">
+What you see depends on your plan and on the workspace you have selected in the sidebar. For example, voice call numbers only appear if your plan includes voice.
+</Callout>
 
-## Setup Wizard
+## Trial banner
 
-If you are new to Autoch.at, you will see a **Setup Wizard** card on your dashboard. This wizard guides you through the essential steps to get your workspace ready:
-1. Explore your dashboard
-2. Create your first assistant
-3. Add business knowledge
-4. Test your setup
-5. Set up widget tracking (if enabled)
+While you are on a free trial, a banner shows how many days are left. Use it to go to **Usage & Billing** and subscribe before the trial ends so nothing is interrupted. See [Usage & Billing](/pages/settings/billing).
 
-You can click **Resume Setup** to continue where you left off. Once completed, the card will disappear, but you can always reopen the wizard from **Settings > Preferences**.
+## Finish setting up
 
-## Team Invites
+If you have not finished the Setup Wizard, a reminder tells you how many setup steps are left. Click **Resume Setup Wizard** to carry on where you stopped, or dismiss the reminder. You can reopen the wizard at any time from **Settings > Preferences**. The steps are described in the [Quickstart](/quickstart).
 
-If you've been invited to join a workspace, you'll receive an email with an invitation link. Clicking the link takes you to the **Accept Invitation** page where you can set up your account.
+A **Get Started** panel also appears on brand-new accounts to point you to the first useful things to do.
 
-- **New users**: You'll be prompted to enter your name and create a password.
-- **Existing users**: If you already have an Autoch.at account with that email address, you'll be prompted to log in to accept the invite and join the new workspace.
+## Key numbers
 
-## System Status
+The cards at the top summarise the period you are viewing:
 
-The System Status panel shows the health and configuration state of your communication channels:
-- **Chat Widget**: Shows if your web widget is active and configured.
-- **Email**: Shows if your inbound email forwarding is set up.
-- **SMS**: Shows if you have provisioned a phone number for SMS.
-- **Voice**: Shows if you have provisioned a phone number for voice calls.
+- **Total Conversations**: how many conversations you have had across your channels.
+- **Qualified Leads**: how many people the AI (or your team) marked as good leads.
+- **Voice Calls**: phone calls handled. Shown only if your plan includes voice.
+- **Active Channels**: how many of your channels are switched on and working.
 
-If a service is not yet configured, you will see a red **Setup** badge. Clicking the service will take you directly to the relevant settings page.
+For deeper reports, open [Analytics](/pages/insights/analytics).
 
-## Performance Metrics
+## AI Intelligence
 
-The dashboard displays key metrics for the current billing period:
-- **Total Conversations**: The number of unique conversations handled by your assistant.
-- **Messages Sent**: The total number of messages sent by the AI.
-- **Human Handoffs**: The number of times a conversation was escalated to a human agent.
-- **Avg. Resolution Time**: The average time it takes to close a conversation.
+This panel shows short, plain-English insights about your conversations, such as what customers keep asking about. If there are none yet, click **Generate Insights** to create them. You can dismiss insights you do not need. For fuller analysis, see [Conversation Intelligence](/pages/insights/conversation-intelligence).
 
 ## Recent Activity
 
-The Recent Activity feed shows a real-time log of events in your workspace, such as:
-- New conversations started
-- Leads qualified
-- Human handoffs requested
-- Training context updates completed (e.g., website crawls finished)
+A list of what has happened lately, such as new conversations and qualified leads. Click an item to jump to it.
 
-Clicking on an activity item will take you directly to the relevant conversation or settings page.
+## Quick Actions
+
+Shortcuts to the places you visit most:
+
+- **Conversations** by channel (chat, SMS, email and voice), each with a count so you can see where messages are waiting.
+- **Assistants**: view and edit your AI assistants. See [Assistants](/pages/ai-config/assistants).
+- **Training assets**: add or update what your assistant knows. See [Training Context](/pages/ai-config/training-context).
+- **Analytics**: open detailed reports.
+- **Documentation**: opens this help site in a new tab.
+
+## System Status
+
+Shows which of your channels are ready. SMS and Voice show **Active** once you have a phone number set up, or a **Setup** prompt that takes you to the right settings page. Email and the chat widget are covered the same way. See [Phone Numbers](/pages/settings/phone-numbers), [Email](/pages/settings/email) and [Chat Widget](/pages/settings/chat-widget).
+
+## Tips
+
+- Use the workspace switcher in the sidebar to see another workspace's numbers. See [Workspaces](/pages/settings/workspaces).
+- If a card looks empty, the most likely reason is that the channel is not set up yet. Check System Status.

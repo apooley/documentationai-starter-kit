@@ -1,80 +1,71 @@
 ---
-title: Troubleshooting Common Issues
-description: Solutions to the most common problems you might run into with Autoch.at.
+title: Troubleshooting common issues
+description: Step-by-step fixes for sign-in problems, a missing chat widget, an empty inbox, wrong AI answers, handoffs, email delivery and social connections.
 ---
+
+# Troubleshooting common issues
+
+Find your problem below. If none of these fix it, email [support@autoch.at](mailto:support@autoch.at) and tell us what you tried.
+
+## I cannot sign in
+
+**Symptoms:** You see a message about verifying your email, or sign-in is refused.
+
+1. **Confirm your email.** You cannot sign in until you click the link in the confirmation email. Check spam or junk, then open the confirmation page and choose **Resend Verification Email**.
+2. **If you recently changed your email address,** the new address must be confirmed too. Look for the confirmation email at the new address.
+3. **Forgot your password?** Use **Forgot password** on the sign-in page.
+4. **Invited by a teammate?** Use the link in your invitation email to set up your account first.
 
 ## Chat widget not appearing on my website
 
-**Symptoms:** The chat widget doesn't show up when you visit your website.
+**Symptoms:** The chat bubble does not show on your site.
 
-**Solutions:**
+1. **Check the snippet.** It must be on the page just before the closing `</body>` tag. If you use a tag manager, make sure the tag runs on every page.
+2. **Check Allowed Domains.** In **Settings > Chat Widget**, your exact website address must be listed under **Allowed Domains**. A missing `www.` version is a common cause.
+3. **Check for blocking.** If your website restricts which outside scripts can load (a Content Security Policy), ask your web developer to allow Autoch.at.
+4. **Clear your cache.** Hard refresh the page or use a private window.
 
-1. **Check the installation** — Confirm the widget script is placed before the closing `</body>` tag in your HTML. If you're using a tag manager (like Google Tag Manager), make sure the tag is firing on all pages.
+## The AI started a reply but nothing appeared
 
-2. **Check for Content Security Policy (CSP) blocks** — Open your browser's developer console (F12) and look for any CSP errors. If your site has a strict CSP, you may need to whitelist Autoch.at's domains.
-
-3. **Check launch rules** — In **Settings > Chat Widget**, review the launch rules. If the widget is set to only appear on specific pages or after a delay, it may not be visible on the page you're testing.
-
-4. **Clear your cache** — Your browser may be caching an older version of the page. Try a hard refresh (Ctrl+Shift+R or Cmd+Shift+R) or test in an incognito window.
-
----
+The chat widget shows a **retry** option if a reply is interrupted. Click it to ask again. If this happens often, tell support the time it happened.
 
 ## Conversations not appearing in my inbox
 
-**Symptoms:** You know messages are being sent, but they're not showing up in your Conversations inbox.
+**Symptoms:** You know messages were sent, but they are not in your inbox.
 
-**Solutions:**
-
-1. **Check channel configuration** — Go to **Settings** and verify the relevant channel (Email, SMS, Chat) is properly configured and connected.
-
-2. **Check your filters** — Make sure you don't have an active filter in the inbox that's hiding the conversations. Click **Clear Filters** to reset.
-
-3. **Check assignment** — If conversations are assigned to a specific agent, they may not appear in your personal view. Switch to the **All Conversations** view.
-
-4. **For email** — Verify your MX and SPF/DKIM records are correctly published. Check **Settings > Email** for the required DNS records.
-
----
+1. **Check the channel is set up.** The Dashboard's System Status shows which channels are ready.
+2. **Check your filters.** Make sure the inbox is not filtered to a single channel or status.
+3. **Check your workspace.** The workspace selector in the sidebar controls what each page shows. Switch to the right one.
+4. **Missing a menu item?** SMS, email, voice, playbooks and social media depend on your plan. If an item is missing, check **Usage & Billing** or contact support.
+5. **For email,** check that your domain shows as verified in **Settings > Email** and the DNS records are published exactly as shown.
 
 ## AI assistant giving wrong answers
 
-**Symptoms:** The AI is answering questions incorrectly, making things up, or saying it doesn't know something it should know.
+1. **Add more Training Context.** Add the missing facts, especially FAQs for questions it gets wrong. See [Training Context](/pages/ai-config/training-context).
+2. **Look for conflicts.** If two sources disagree, fix or remove one.
+3. **Adjust the assistant.** Update its instructions on the [Assistants](/pages/ai-config/assistants) page. Be specific about tone and what it should not do.
+4. **Use Messaging Directives** for rules that apply to every assistant, such as never quoting prices. See [Messaging Directives](/pages/ai-config/messaging-directives).
+5. **Test your change** in the [Widget Playground](/pages/conversations/widget-playground).
 
-**Solutions:**
+## AI not handing over to a person when it should
 
-1. **Add more Training Context** — Go to **AI Assistant > Training Context** and add information about the topic the AI is getting wrong. FAQs are the most effective format for precise answers.
+1. **Review your handoff rules** in [Routing & Handoffs](/pages/ai-config/routing-handoffs).
+2. **Add a clear instruction** to the assistant, for example: "If a customer is upset, asks for a person, or has a billing dispute, hand the conversation to the team."
+3. **Check your notifications** in **Settings > Notifications** so the right people are told.
 
-2. **Check for conflicting information** — If you have multiple sources in your Training Context that contradict each other, the AI may give inconsistent answers. Review your sources for conflicts.
+## Connecting an email domain does not work
 
-3. **Refine the persona** — If the AI's tone or approach is off, update the persona in **AI Assistant > Assistants**. Be specific about how you want the AI to behave.
+1. In **Settings > Email**, copy each DNS record exactly into your domain provider.
+2. Allow time for the changes to take effect, then verify again.
+3. If emails go to spam, make sure the SPF and DKIM records are in place.
 
-4. **Use Messaging Directives** — For workspace-wide behavioral rules (like always responding in a certain language, or never making pricing commitments), use **AI Assistant > Messaging Directives**.
+## Social account connection failing
 
----
+1. **Use the right login.** Sign in with an account that manages the Page or profile.
+2. **Accept every permission** during connection. Declining some can make the connection fail or work only in part.
+3. **Reconnect.** Go to **Social Media > Accounts**, remove the account and connect it again.
+4. **Still failing?** Email support with the message you see.
 
-## AI not escalating to a human when it should
+## Still stuck?
 
-**Symptoms:** The AI keeps trying to handle conversations it should be handing off to your team.
-
-**Solutions:**
-
-1. **Review your handoff triggers** — Go to **AI Assistant > Routing & Handoffs** and check the Handoff Settings tab. Make sure your escalation triggers are configured correctly.
-
-2. **Add explicit escalation instructions** — In your AI assistant's persona, add a clear instruction like: *"If a customer expresses frustration, asks to speak to a human, or has a billing dispute, immediately transfer them to a human agent."*
-
-3. **Check agent availability** — If no agents are available, the AI may continue handling the conversation rather than leaving it unassigned. Review your routing rules for the "no agents available" scenario.
-
----
-
-## Social media account connection failing
-
-**Symptoms:** You're unable to connect a social media account, or a previously connected account is showing an error.
-
-**Solutions:**
-
-1. **Check admin access** — You must be an admin of the Facebook Page, Instagram Business account, or LinkedIn Company Page to connect it. Personal profiles cannot be connected.
-
-2. **Re-authorize the connection** — Social platform tokens expire periodically. Go to **Social Media > Profiles**, click the account showing an error, and click **Reconnect**.
-
-3. **Grant all permissions** — During the authorization flow, make sure you grant all the permissions Autoch.at requests. Declining any permissions may cause the connection to fail or work only partially.
-
-4. **Contact support** — If the issue persists, contact [support@autoch.at](mailto:support@autoch.at) with the error message you're seeing.
+See the [Help Center](/help-center) or email [support@autoch.at](mailto:support@autoch.at).
