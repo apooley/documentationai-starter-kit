@@ -163,11 +163,6 @@
                 "title": "Conversation Intelligence",
                 "path": "pages/insights/conversation-intelligence",
                 "icon": "brain"
-              },
-              {
-                "title": "Voice Analytics",
-                "path": "pages/insights/voice-analytics",
-                "icon": "phone-call"
               }
             ]
           },
@@ -258,11 +253,6 @@
                 "title": "Bring Your Own Key (BYOK)",
                 "path": "pages/settings/byok",
                 "icon": "key"
-              },
-              {
-                "title": "Canned Responses",
-                "path": "pages/settings/canned-responses",
-                "icon": "message-square"
               },
               {
                 "title": "Conversation Tags",
