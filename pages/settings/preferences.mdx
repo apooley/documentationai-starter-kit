@@ -1,118 +1,66 @@
 ---
-title: "Preferences"
-description: "Configure your notification preferences, CRM sync rules, and personal settings."
-icon: "sliders"
+title: Preferences
+description: Turn call recording on or off, open the CRM app, check storage, replay the Setup Wizard, enable keyboard shortcuts and set your default currency.
 ---
 
-The Preferences page allows you to customize how your workspace handles notifications, CRM synchronization, and personal interface settings.
+**Preferences** collects everyday workspace and personal options in one place.
+
+Find it in the left menu under **Settings** > **Preferences**.
+
+<Callout kind="info">
+Looking for lead alerts, email notifications or structured lead emails (ADF)? Those are under **Settings** > **Notifications**.
+</Callout>
 
 ## Call Recording
 
-If you have provisioned a Telnyx voice number, you can enable call recording here. 
+Tick the **Enable call recording** box to record calls handled by your AI phone line. Callers are told the call is recorded for training, quality and compliance. If the box is greyed out, call recording isn't available for your account right now.
 
-When **Enable call recording for Telnyx voice calls** is checked, all inbound and outbound calls will be recorded. Callers will hear an automated notification that the call is being recorded for training, quality, and compliance purposes.
+<Callout kind="alert">
+Recording rules differ by country, state and province. Make sure you meet the consent and notice rules that apply to you and your callers.
+</Callout>
 
 ## CRM Integration
 
-This section provides a quick link to open the CRM application. If you don't have a CRM account yet, clicking **Open CRM** will automatically create one for you and link it to your workspace.
+If your account has access to the AutoChat CRM app, click **Open CRM** to jump into it. If you haven't used it before, your account is created automatically. If you see "CRM access is not enabled for your account", ask your account admin to grant it under [Users](/pages/settings/users).
 
 ## Storage Usage
 
-Monitor your workspace's storage consumption. This includes:
-- **Database**: Storage used by your contacts, conversations, and training data.
-- **Recordings**: Storage used by voice call recordings.
+See how much of your storage allowance you've used:
+
+- **Total Storage** with a progress bar, for example "120 MB / 1000 MB".
+- **Database**: contacts, conversations and training data.
+- **Recordings**: voice call recordings.
+
+The bar turns yellow, then orange, then red as you approach your limit, and a warning appears. Delete recordings or old content you no longer need to free space.
 
 ## Setup Wizard
 
-The Setup Wizard guides you through the essential steps of configuring your workspace, such as creating an assistant, adding knowledge, and testing the chat widget.
+The Setup Wizard walks you through configuring your workspace, creating an assistant, adding knowledge and testing the widget.
 
-- **Open Setup Wizard**: Click this button to launch the onboarding wizard at any time. Your completed steps are preserved, so you can resume where you left off.
-- **Show Setup Wizard button**: When enabled, a floating Setup Wizard button will appear in the bottom-right corner of your dashboard until you complete all onboarding steps. You can disable this if you prefer to hide the floating button.
-- **Show contextual help icons**: Controls the question-mark help icons shown next to labels and settings across the app.
-- **Reset onboarding progress**: Click this if you want to walk through the Setup Wizard from the beginning again.
+- **Open Setup Wizard** starts it, or resumes where you left off.
+- **Show Setup Wizard button** shows or hides the floating wizard button on your dashboard.
+- **Show contextual help icons** shows or hides the small question-mark helpers next to labels across the app.
+- **Reset onboarding progress** clears your wizard progress so you can start again. You'll be asked to confirm. Your button and help-icon choices are kept.
 
-## Lead Notification Settings
+## Phone Numbers
 
-Configure how and when you receive notifications about new leads.
-
-### CRM Lead Sync
-
-When a conversation is inactive for 30 minutes, it automatically closes. At this point, the system can sync the lead data to your connected CRM (requires CRM Connection sync to be enabled).
-
-Choose your sync rule:
-- **Send all leads to CRM**: Every captured lead is synced, regardless of their qualification score.
-- **Only send qualified leads to CRM**: Only leads that meet your Qualification Settings criteria will be synced.
-
-### Notification Triggers
-
-Choose which events trigger an email notification:
-- **Notify when lead is qualified**: Receive an alert when a lead meets your qualification criteria.
-- **Notify when lead is unqualified**: Receive an alert when a lead fails to meet your qualification criteria.
-
-### Email Notifications
-
-Add the email addresses that should receive the lead notifications configured above. You can add multiple recipients.
-
-### Structured Email (XML)
-
-Send ADF (Auto Lead Data Format) or custom XML lead emails automatically after a conversation closes and the inactivity summary is generated. This is useful for integrating with legacy CRMs or automotive dealership systems that ingest leads via email.
-
-1. Toggle **Enable structured XML email**.
-2. Add one or more **Recipients**.
-3. Choose your **Format**:
-   - **ADF**: Standard automotive lead format. You can configure the Vendor Name, Provider Name, Service, and URL, and map Autoch.at fields (like Name, Email, Phone, Summary) to specific ADF XML paths.
-   - **Freeform**: Write your own custom XML template. You can use smart tags like `{{name}}`, `{{email}}`, `{{phone}}`, and `{{display_summary}}` to inject lead data into your template.
-
-<Callout kind="info">
-ADF XML is sent via Autoch.at's dedicated email service to ensure CRM-compatible delivery.
-</Callout>
-
-### SMS Notifications
-
-Add phone numbers (in E.164 format, e.g., `+1234567890`) to receive SMS alerts for major system events.
-
-You can opt-in to specific alert types:
-- **Usage threshold alerts**: Get notified when your workspace reaches 80% and 100% of its usage limits.
-- **BYOK key failure alerts**: Get notified if your Bring Your Own Key (OpenAI/Anthropic) API key fails or is rejected.
-- **Security alerts**: Get notified of HIGH and CRITICAL security events.
-
-## Custom Webhook
-
-You can configure a custom webhook to receive JSON payloads when conversations close.
-
-1. Toggle **Enable Webhook**.
-2. Select what data to include in the payload:
-   - **Include conversation summary**: Adds the AI-generated summary of the conversation.
-   - **Include contact details**: Adds the captured name, email, and phone number.
-   - **Include qualification score**: Adds the lead's qualification status and score.
-3. Click **Save Notification Preferences**.
-
-## n8n Webhooks
-
-If you use n8n for automation, you can send signed event payloads directly to your n8n workflows.
-
-1. Click **Add Webhook** and enter your n8n webhook URL.
-2. The system will send a test event immediately to verify the connection.
-3. Payloads are signed using HMAC SHA-256 with the `X-Autochat-Signature` header and a timestamp in `X-Autochat-Timestamp`.
-
-## Webhook Goals
-
-Goals allow you to trigger webhooks (`goal.triggered.v1`) when specific conditions are met during a conversation.
-
-1. Click **Add Goal** to define a new condition.
-2. Configure the **Per-conversation goal cap** to limit how many times goals can fire in a single conversation (1-25).
-3. Choose what data to include in the goal payload:
-   - **Include contact name and value**: Adds the contact's details.
-   - **Include AI summary**: Adds a summary of the context that triggered the goal. You can choose the summary detail level (Short, Medium, or Long).
-
-## Phone Number Provisioning
-
-If your plan allows it, you can provision a voice-capable phone number for your assistant directly from this page. Click **Provision Phone Number** to select a local number.
+A shortcut card with **Go to Phone Numbers**. See [Phone Numbers](/pages/settings/phone-numbers).
 
 ## Keyboard Shortcuts
 
-Toggle **Enable Shortcuts** to turn on keyboard shortcuts for the application interface (e.g., `Cmd+K` for the command menu).
+Tick **Enable Shortcuts** to use keyboard shortcuts for faster navigation. They're off by default so they don't clash with your browser's own shortcuts. Once on, press **g** then a letter to jump around (**g d** Dashboard, **g c** Conversations, **g a** Analytics, **g s** Settings), or **?** to see them all.
 
 ## Default Currency
 
-Select the default currency used for billing and financial metrics in your workspace.
+Choose a **Default Currency** and click **Save Default Currency**. Autoch.at uses it for products that are imported without a currency or when a currency is missing during an update. The list includes USD, CAD, EUR, GBP, AUD, NZD and many more.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Profile" icon="user" href="/pages/settings/profile">
+    Your name, email, password and security.
+  </Card>
+  <Card title="Usage & Billing" icon="credit-card" href="/pages/settings/billing">
+    Your plan and charges.
+  </Card>
+</Columns>

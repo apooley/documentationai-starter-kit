@@ -1,50 +1,55 @@
 ---
 title: Bring Your Own Key (BYOK)
-description: Connect your own OpenAI, Anthropic, or other AI provider API keys to use your own models and control your AI costs directly.
+description: Use your own OpenAI API key for your AI assistants so you pay OpenAI directly. Buy the one-time add-on, wait for approval, then add, test or remove your key.
 ---
 
-## What is BYOK?
+**BYOK** lets you use your own OpenAI account's API key for your assistants, so you can control and see your AI costs directly with the provider.
 
-**Bring Your Own Key** (BYOK) lets you connect your own API keys from AI providers like OpenAI or Anthropic to power your Autoch.at assistants. Instead of using Autoch.at's shared AI infrastructure, your assistants will call the AI provider directly using your account.
+Find it in the left menu under **Settings** > **BYOK**. The item only shows if BYOK is available on your account. If you can't see it, ask support.
 
-Go to **Settings > BYOK** to configure this.
+## How it works
 
-## Why use BYOK?
+<Steps>
+  <Step title="Buy the add-on">
+    On the BYOK page, find **AI Keys (OpenAI)** and click **Purchase Add-On**. It's a one-time price, shown as "(one-time)".
+  </Step>
+  <Step title="Wait for approval">
+    After purchase it shows **Purchased (Pending Approval)** and "Waiting for administrator approval". An Autoch.at administrator has to switch it on before you can add a key.
+  </Step>
+  <Step title="Add your key">
+    Once it shows **Enabled**, a new **AI API Keys** section appears with "No API key set". Click **Add Key**, paste your OpenAI API key into the box and click **Save**.
+  </Step>
+  <Step title="Test it">
+    Click **Test**. It makes a small test call to check the key works. If it fails, check the key's permissions and that your OpenAI account is active and paid up.
+  </Step>
+</Steps>
 
-There are a few good reasons to bring your own key:
+## Manage your key
 
-- **Cost control** — Your AI usage is billed directly to your provider account, giving you full visibility and control over costs.
-- **Model access** — Use models that aren't available in Autoch.at's standard offering, including the latest releases or fine-tuned models you've created.
-- **Data privacy** — With some providers, using your own key means your data is processed under your own agreement with the provider, not Autoch.at's.
-- **Higher rate limits** — If you have a high-tier account with your AI provider, you can use those higher limits rather than sharing capacity with other Autoch.at customers.
+Once saved, the card reads "API key configured":
 
-## Connecting an API key
+- **Test** checks the key still works.
+- **Update** replaces it with a new key.
+- **Delete** removes it permanently. The platform then goes back to using Autoch.at's own keys. Have a backup key ready if you need one.
 
-1. Go to **Settings > BYOK**.
-2. Click **Add API Key**.
-3. Select your AI provider (e.g., OpenAI, Anthropic).
-4. Paste your API key.
-5. Give it a name so you can identify it later (e.g., "OpenAI - Production").
-6. Click **Save**.
+## Keep it safe
 
-Autoch.at will verify the key is valid before saving it.
+- Keys are stored encrypted. The page only tells you whether a key is set; it never shows the key itself.
+- Never share your key or put it in emails or documents.
+- Use a separate key for Autoch.at, and rotate it regularly.
+- If you think a key has leaked, delete it in OpenAI's dashboard, then add a new one here with **Update**.
 
-<Callout kind="warning">
-Keep your API keys secure. Never share them or include them in public repositories. If a key is compromised, revoke it immediately in your AI provider's dashboard and add a new one here.
+<Callout kind="info">
+With BYOK, your AI charges appear on your OpenAI account, so check OpenAI's dashboard for usage and cost.
 </Callout>
 
-## Assigning a key to an assistant
+## Related
 
-Once you've added a key, you can assign it to specific AI assistants:
-
-1. Go to **AI Assistant > Assistants** and open the assistant you want to configure.
-2. In the **Model** section, select **Use custom API key**.
-3. Choose the key you added.
-4. Select the specific model you want to use.
-5. Save the assistant.
-
-That assistant will now use your key and model instead of Autoch.at's default.
-
-## Monitoring usage
-
-When using BYOK, your AI usage is tracked in your AI provider's dashboard, not in Autoch.at's usage metrics. Check your provider's dashboard for cost and usage information.
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    The assistants that will use your key.
+  </Card>
+  <Card title="Usage & Billing" icon="credit-card" href="/pages/settings/billing">
+    Your Autoch.at plan and charges.
+  </Card>
+</Columns>

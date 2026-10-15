@@ -1,55 +1,58 @@
 ---
-title: Calendar Integration
-description: Connect your calendar so your AI assistant can check availability and book meetings directly in conversations.
+title: Calendar
+description: Connect your Calendly account so your AI assistant can check availability, suggest times and book appointments during conversations with customers.
 ---
 
-## Let your AI book meetings
+Connect **Calendly** and your AI assistant can offer real appointment times, so customers can book without waiting for someone to reply.
 
-When you connect a calendar to Autoch.at, your AI assistant can check your real-time availability and offer booking slots to customers — all within a conversation, without any back-and-forth.
-
-Go to **Settings > Calendar** to connect your calendar.
-
-## Supported calendar providers
-
-- **Google Calendar** — Connect via Google OAuth
-- **Microsoft Outlook / Microsoft 365** — Connect via Microsoft OAuth
-- **Calendly** — Connect via Calendly OAuth
-
-## Connecting your calendar
-
-1. Go to **Settings > Calendar**.
-2. Click **Connect Calendar**.
-3. Select your calendar provider.
-4. You'll be redirected to your provider's authorization page — log in and grant Autoch.at permission to read your calendar and create events.
-5. Once authorized, you'll be returned to Autoch.at and your calendar will appear as connected.
+Find it in the left menu under **Settings** > **Calendar**. Calendly is the supported calendar today.
 
 <Callout kind="info">
-Autoch.at only reads your calendar to check availability and creates new events when a booking is confirmed. It does not modify or delete existing events.
+You need a Calendly account with at least one event type (for example "30-minute consultation"). Create these in Calendly first.
 </Callout>
 
-## Configuring booking settings
+## Connect Calendly
 
-Once your calendar is connected, you can configure how bookings work:
+<Steps>
+  <Step title="Create an access token in Calendly">
+    On the Calendar page, follow the **Calendly Integrations settings** link. In Calendly, create a **Personal Access Token** and copy it. It grants access to your calendar and event types.
+  </Step>
+  <Step title="Paste it into Autoch.at">
+    Back in Autoch.at, paste the token into **Calendly Personal Access Token**. Your token is encrypted and stored securely.
+  </Step>
+  <Step title="Connect">
+    Click **Connect Calendly**. When it works you'll see **Calendly Connected**: "Your Calendly account is connected and ready to use."
+  </Step>
+</Steps>
 
-- **Meeting duration** — The default length of meetings the AI will offer (e.g., 30 minutes, 1 hour).
-- **Buffer time** — Padding before and after meetings so you're never booked back-to-back.
-- **Availability window** — How far in advance customers can book (e.g., up to 4 weeks out).
-- **Business hours** — The days and times the AI should offer as available.
+## Set up booking
 
-## Using calendar booking in conversations
+Once connected, two more areas appear:
 
-Once configured, your AI assistant can use the calendar tool in any conversation. When a customer asks to schedule a meeting, the AI will:
+- **Enable Appointment Booking**: switch **Enable booking** on to let your AI assistant check availability, suggest meeting times and create appointments in conversations. Switch it off to stop automatic booking while keeping Calendly connected.
+- **Default Event Type**: choose which Calendly event type the assistant books by default. It uses this unless the customer asks for a different length. If the list is empty you'll see "No event types available. Please check your Calendly account."
 
-1. Check your real-time availability.
-2. Offer a few available time slots.
-3. Confirm the customer's preferred time.
-4. Create the calendar event and send a confirmation.
+**Available Event Types** lists every event type in your Calendly account with its length in minutes. Click **View** to open its booking page.
 
-The customer receives a calendar invite, and the event appears in your calendar automatically.
+<Callout kind="tip">
+To change meeting lengths, buffers or working hours, edit them in Calendly. Autoch.at follows whatever availability your Calendly event types allow.
+</Callout>
 
-## Disconnecting a calendar
+## What the customer sees
 
-1. Go to **Settings > Calendar**.
-2. Click **Disconnect** next to the calendar you want to remove.
+When a customer asks to book a time, your assistant can check your availability, offer some options, and confirm the one they choose.
 
-Disconnecting a calendar stops the AI from being able to check availability or book meetings. Existing calendar events created by Autoch.at are not affected.
+## Disconnect
+
+Click **Disconnect** in the green Calendly box. Your assistant will no longer be able to check availability or book. Appointments already made stay in Calendly.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="AI Assistants" icon="bot" href="/pages/ai-config/assistants">
+    Set up the assistant that does the booking.
+  </Card>
+  <Card title="Conversations" icon="message-square" href="/pages/conversations/conversations">
+    See booking conversations in your inbox.
+  </Card>
+</Columns>

@@ -1,43 +1,62 @@
 ---
 title: Conversation Tags
-description: Create and manage tags to categorize conversations, filter your inbox, and track trends across your support volume.
+description: Create coloured labels such as Urgent or Billing, add them to conversations and filter your inbox to find what matters. Create, edit and delete tags here.
 ---
 
-## Organize with tags
+**Conversation tags** are coloured labels you can add to a conversation, such as "Urgent", "Billing" or "VIP". They help your team sort and find conversations quickly.
 
-**Conversation Tags** (at **Settings > Conversation Tags**) are labels you can apply to conversations to categorize them. Tags make it easy to filter your inbox, identify patterns in your support volume, and report on specific issue types.
+Find the tag library in the left menu under **Settings** > **Conversation Tags**.
 
-For example, you might tag conversations as "Billing Issue", "Feature Request", "Bug Report", or "VIP Customer" — then use those tags to filter your inbox or pull reports.
+## Create a tag
 
-## Creating a tag
+<Steps>
+  <Step title="Start">
+    Click **New Tag**.
+  </Step>
+  <Step title="Name and colour">
+    Type a **Tag name**, such as "Urgent". Pick a **Color** with the colour picker or type a hex code (for example `#64748B`).
+  </Step>
+  <Step title="Save">
+    Click **Create Tag**. You'll see "Tag created".
+  </Step>
+</Steps>
 
-1. Go to **Settings > Conversation Tags**.
-2. Click **Create Tag**.
-3. Enter a name for the tag.
-4. Choose a color (this helps visually distinguish tags in the inbox).
-5. Click **Save**.
+## Manage your tags
 
-## Applying tags to conversations
+The page shows every tag as a coloured badge with its colour code. Use **Search tags** to filter the list. A counter at the bottom reads "Showing N of M".
 
-Tags can be applied to conversations in two ways:
+- Click the **pencil** to rename a tag or change its colour, then **Save Changes**.
+- Click the **bin** to delete a tag.
 
-- **Manually** — In the conversation detail view, click the **Tags** field in the right panel and select the tags you want to apply.
-- **Automatically** — Via workflows. For example, you can create an email workflow that automatically applies the "Billing Issue" tag when a customer's email contains the word "invoice."
+<Callout kind="alert">
+Deleting happens straight away, without a confirmation message.
+</Callout>
 
-## Using tags to filter conversations
+## Add tags to a conversation
 
-In the Conversations inbox, use the **Tags** filter in the left sidebar to show only conversations with a specific tag. This is useful for:
+Open a conversation and use its **Tags** area to choose the tags to apply. A conversation can have several tags.
 
-- Reviewing all open billing issues at the end of the day
-- Checking on all conversations tagged as "Escalated"
-- Pulling a list of conversations for a specific campaign or event
+## Filter by tag
 
-## Tags vs. client tags
+On the conversation lists, such as chat and SMS, use the tag filter to show only conversations with a given tag. This is handy for reviewing all "Billing" conversations at the end of the day, or checking everything marked "Escalated".
 
-Note that **Conversation Tags** are different from tags on a client's profile. Conversation tags categorize a specific conversation; client tags categorize the person. Both are available as filters in their respective views.
+## Conversation tags and client tags
 
-## Managing your tag library
+Conversation tags label a **conversation**. Client tags label a **person** on the [Clients](/pages/crm/clients) page. They are separate lists.
 
-Keep your tag list focused and consistent. Too many tags — or tags with overlapping meanings — make filtering less useful. Periodically review your tags and merge or delete any that are redundant.
+## Tips
 
-Only users with the **Admin** or **Owner** role can create, edit, or delete tags.
+- Keep your list short and clear. Too many similar tags make filtering less useful.
+- Choose distinct colours for the tags you look at most.
+- Agree names as a team, for example "Billing" not "billing issue" and "Billing Q".
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Conversations" icon="message-square" href="/pages/conversations/conversations">
+    Filter your inbox by tag.
+  </Card>
+  <Card title="Canned Responses" icon="zap" href="/pages/settings/canned-responses">
+    Quick replies for your team.
+  </Card>
+</Columns>

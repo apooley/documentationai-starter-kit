@@ -1,57 +1,100 @@
 ---
 title: Email Settings
-description: Connect your email domain, configure inbound routing, and set up DKIM/SPF authentication so your emails land in inboxes, not spam folders.
+description: Receive customer emails by forwarding or connecting Gmail or Outlook, and send replies from your own domain with verified DNS records or your SMTP server.
 ---
 
-## Connecting your email channel
+**Email** is where you set up how Autoch.at receives customer emails and how replies are sent. The page is titled **Email Configuration**.
 
-The **Email** settings page (at **Settings > Email**) is where you configure how Autoch.at sends and receives emails on your behalf.
+Find it in the left menu under **Settings** > **Email**. This item only appears if your plan includes the email channel.
 
-There are two sides to email in Autoch.at:
+There are two tabs: **Incoming** (how emails reach Autoch.at) and **Outgoing** (how replies are sent).
 
-- **Inbound** — Emails sent by customers that arrive in your Conversations inbox
-- **Outbound** — Emails sent from Autoch.at to customers, using your domain as the sender
+## Incoming: choose a method
 
-Both need to be configured before your email channel is fully functional.
+<Tabs>
+  <Tab title="Forward (simple)">
+    Best if you have a support mailbox already.
 
-## Setting up inbound email
+    <Steps>
+      <Step title="Copy your address">
+        Open the **Incoming** tab and choose **Forward your email to Autoch.at**. Under **Your Incoming Email Address**, click **Copy**. This address is assigned to your account and can't be changed.
+      </Step>
+      <Step title="Set up forwarding">
+        In your email provider (Gmail, Outlook, your domain host), create a forwarding rule that sends your support address (for example support@yourcompany.com) to the copied address.
+      </Step>
+      <Step title="Tell Autoch.at about the alias (recommended)">
+        Under **Reply-To Forwarding Alias**, type the mailbox you forward from and click **Save**. It shows **Unverified** until Autoch.at sees an email arrive from it, then **Verified**. Click **Remove** to clear it.
+      </Step>
+    </Steps>
 
-To receive customer emails in Autoch.at, you need to forward emails from your support address to Autoch.at's inbound address.
+    New emails then show up in your Conversations inbox. Emails sent to the address are handled by your [email workflows](/pages/conversations/email-workflows).
+  </Tab>
+  <Tab title="Connect Gmail or Outlook (advanced)">
+    Lets Autoch.at receive in real time and, optionally, send from the same account.
 
-1. Go to **Settings > Email**.
-2. Copy the **Inbound Email Address** shown on the page (it will look something like `workspace-id@inbound.autoch.at`).
-3. In your email provider (Gmail, Outlook, your domain host, etc.), set up a forwarding rule to send all emails from your support address (e.g., `support@yourcompany.com`) to the Autoch.at inbound address.
+    <Steps>
+      <Step title="Start">
+        Choose **Connect your email to Autoch.at**, then click **Connect Gmail** or **Connect Outlook**.
+      </Step>
+      <Step title="Sign in and approve">
+        Complete the sign-in on the Google or Microsoft page. When you return, the card shows the connected **Email**, its **Status** and the **Last sync**.
+      </Step>
+      <Step title="Disconnect later if needed">
+        Use **Disconnect Gmail** or **Disconnect Outlook**.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
 
-Once forwarding is set up, new emails will appear in your Conversations inbox within a few seconds of arrival.
+### Custom IMAP mailbox (optional)
 
-## Setting up outbound email (domain authentication)
+If you prefer, tick **Use custom IMAP mailbox** and enter the **IMAP Host** (for example imap.gmail.com), **Port** (usually 993), **IMAP Username**, **IMAP Password** and **Mailbox** (usually INBOX). Click **Test IMAP Connection**. Leave a saved password blank to keep it. If you leave this off, Autoch.at uses its default catch-all.
 
-When Autoch.at sends emails on your behalf, it needs to be authorized to use your domain. Without this, your emails may be flagged as spam or rejected by recipients' mail servers.
+## Outgoing: choose how replies are sent
 
-This is done by adding **SPF** and **DKIM** records to your domain's DNS settings.
+On the **Outgoing** tab pick one:
 
-### Step 1 — Add your sending domain
+- **Use Autochat's system to send mail**: replies go out through Autoch.at's mail system. You must verify your domain first.
+- **Connect via SMTP**: use your own mail server, or reuse your Gmail or Outlook connection.
 
-1. In **Settings > Email**, click **Add Domain**.
-2. Enter your domain (e.g., `yourcompany.com`).
-3. Autoch.at will generate the DNS records you need to add.
+### Verify your own sending domain
 
-### Step 2 — Add the DNS records
+Sending from your own domain makes replies look professional and helps them avoid spam folders.
 
-Copy the SPF and DKIM records shown and add them to your domain's DNS settings. The exact process depends on your DNS provider (Cloudflare, GoDaddy, Route 53, etc.) — refer to your provider's documentation for how to add TXT records.
+<Steps>
+  <Step title="Add the domain">
+    Under **Add Custom Domain**, type your domain without `www` or `http://`, such as `yourcompany.com`, choose the **Workspace**, and click **Add Domain**.
+  </Step>
+  <Step title="Add the DNS records">
+    A yellow **DNS Records Required** list appears. Copy each record into your domain provider's DNS settings. This is the step to hand to your IT person or web host.
+  </Step>
+  <Step title="Verify">
+    Click **Verify**. **Check Status** refreshes without triggering a check. **Auto-refresh** re-checks every 5 minutes. DNS can take from a few minutes up to 48 hours.
+  </Step>
+  <Step title="Confirm">
+    The domain moves from **Pending Verification** to verified. If you see **Verification Failed**, double-check each record's name and value.
+  </Step>
+</Steps>
 
-### Step 3 — Verify
-
-Once the records are added, click **Verify** in Autoch.at. DNS changes can take up to 48 hours to propagate, but usually happen within a few minutes.
-
-<Callout kind="info">
-You'll see a green checkmark next to each record once it's verified. Don't start sending emails until both SPF and DKIM are verified — unverified emails are likely to be marked as spam.
+<Callout kind="alert">
+Don't start sending from a new domain until it is verified, or your emails may be marked as spam or rejected.
 </Callout>
 
-## Configuring your sending address
+To remove a domain, click **Delete**. You're asked whether to remove its settings from the email service as well. Choose "No" for a temporary removal.
 
-Once your domain is verified, you can set the specific email address that outbound messages will come from (e.g., `support@yourcompany.com` or `hello@yourcompany.com`). You can also set a display name that appears alongside the address in the recipient's inbox.
+For a verified domain you can click **Create SMTP Credentials** to generate a username and password.
 
-## Email signature
+### Use your own SMTP server
 
-Add a standard signature that will be appended to all outbound emails sent from Autoch.at. This typically includes your company name, website, and any required legal disclaimers.
+Under **SMTP Configuration** enter the host, port, **SMTP Username**, **SMTP Password** and **From Email Address** (if blank, your incoming address is used). **Detect Settings** can fill these in from your email address; click **Apply Settings** to accept. Passwords are stored encrypted, and leaving the password field blank keeps the saved one. Click **Test Connection**, then **Save SMTP Configuration**. A tick-box lets you automatically respond to incoming emails using workflows.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Email Workflows" icon="mail" href="/pages/conversations/email-workflows">
+    Automate how incoming emails are handled.
+  </Card>
+  <Card title="Outbound Email" icon="send" href="/pages/conversations/outbound-email">
+    Send emails to customers yourself.
+  </Card>
+</Columns>

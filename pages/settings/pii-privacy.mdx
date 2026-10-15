@@ -1,68 +1,54 @@
 ---
 title: PII & Privacy
-description: Control how Autoch.at handles personally identifiable information — including data redaction, retention periods, and customer data deletion requests.
+description: Choose which personal details, like card numbers, emails and phone numbers, are hidden before messages go to AI, and whether personal data is stored.
 ---
 
-## Protecting your customers' data
+**PII** means personally identifiable information, such as names, phone numbers, email addresses and card numbers. **PII & Privacy** lets you control what personal information is kept in your records and what is hidden before a message is sent to the AI.
 
-The **PII & Privacy** page (at **Settings > PII & Privacy**) gives you control over how Autoch.at stores and handles personally identifiable information (PII) — things like names, email addresses, phone numbers, and any other data that could identify a specific individual.
+Find it in the left menu under **Settings** > **PII & Privacy**.
 
-Getting this right matters both for your customers' trust and for compliance with regulations like GDPR, CCPA, and PIPEDA.
+## PII Storage
 
-## PII redaction
+Tick **Enable PII Storage** to keep personal details in your client records. If you turn it off, personal details are still hidden from the AI but are not stored in your database.
 
-When PII redaction is enabled, Autoch.at automatically detects and masks sensitive information in conversation transcripts. For example, a credit card number mentioned in a chat message would be replaced with `****` in the stored transcript.
+## PII Redaction Settings
 
-This is especially useful if your AI assistants handle conversations where customers might accidentally share sensitive data — like account numbers, social security numbers, or passwords.
+Choose what to hide from the AI. When something is hidden, it is replaced with a placeholder such as [SSN] or [EMAIL] before the message goes to the AI model.
 
-### Enabling PII redaction
+| Setting | What it hides |
+|---|---|
+| **Redact SSN/SIN** | Social Security and Social Insurance numbers |
+| **Redact Credit Card Numbers** | Credit and debit card numbers |
+| **Redact Phone Numbers** | Phone numbers in various formats |
+| **Redact Email Addresses** | Email addresses |
+| **Redact Addresses** | Street addresses |
+| **Redact Date of Birth** | Dates of birth |
+| **Allow First Name** | When ticked, first names may be included in what's sent to the AI |
+| **Allow Last Name** | When ticked, last names may be included if needed |
 
-1. Go to **Settings > PII & Privacy**.
-2. Toggle on **PII Redaction**.
-3. Select the types of data you want to redact (credit card numbers, phone numbers, email addresses, etc.).
-4. Click **Save**.
+Tick the items you want covered, then click **Save PII Settings**.
 
-<Callout kind="warning">
-PII redaction is applied at storage time. Once data is redacted in a transcript, it cannot be recovered. Make sure you only redact data you genuinely don't need to store.
+<Callout kind="tip">
+If your customers might type in sensitive numbers by accident (card numbers, social security or insurance numbers), tick those redaction boxes. First names are usually fine to leave allowed, so replies can feel personal.
 </Callout>
 
-### Contact data and redaction
+## Contact details are still remembered
 
-Even when PII redaction is turned off, Autoch.at still collects and saves contact data — phone numbers and email addresses — that a user types in the chat widget. This ensures the AI agent doesn't re-ask for contact information the user has already provided.
+Even when redaction is switched off for phone numbers or emails, Autoch.at keeps the phone number or email a visitor types in chat. That way your assistant doesn't ask for it again and your team can follow up. Redaction controls what the AI sees. It doesn't stop contact details being saved for your lead.
 
-<Callout kind="info">
-Redaction controls whether PII is visible in conversation transcripts and logs. It does not prevent the system from storing contact data for lead continuity. The underlying contact data is always persisted so your team can follow up with leads, regardless of redaction settings.
-</Callout>
+## Removing a customer's data
 
-## Data retention
+To remove a person from your records, go to **CRM** > **Clients**, find them, and click **Delete** on their row (or tick several and use **Delete selected**). See [Clients](/pages/crm/clients). This can't be undone, and anything already sent to an outside CRM, such as Microsoft Dynamics, has to be removed there separately.
 
-Data retention settings control how long Autoch.at keeps your conversation history and client records before automatically deleting them.
+For a formal data-deletion request, or any questions about privacy agreements, contact support.
 
-By default, Autoch.at retains data indefinitely. If your organization has a data retention policy (for example, "delete all conversation data after 12 months"), you can configure that here.
+## Related
 
-### Setting a retention period
-
-1. Go to **Settings > PII & Privacy**.
-2. In the **Data Retention** section, set your preferred retention period (in days, months, or years).
-3. Click **Save**.
-
-Data older than the retention period will be automatically deleted on a rolling basis.
-
-## Deleting a customer's data
-
-If a customer requests that their data be deleted (a "right to erasure" request under GDPR), you can fulfill it from the client's record:
-
-1. Go to **CRM > Clients** and find the customer.
-2. Open their profile.
-3. Click **Delete Client Data**.
-4. Confirm the deletion.
-
-This permanently removes the client's personal information and conversation history from Autoch.at. This action cannot be undone.
-
-<Callout kind="info">
-Deleting a client's data does not affect any data that has already been synced to an external CRM. You'll need to handle deletion in your CRM separately.
-</Callout>
-
-## Data processing agreements
-
-If your organization requires a Data Processing Agreement (DPA) with Autoch.at for GDPR compliance, please contact our support team via the chat widget in your dashboard.
+<Columns cols={2}>
+  <Card title="Clients" icon="users" href="/pages/crm/clients">
+    Find and delete client records.
+  </Card>
+  <Card title="AI Safety" icon="shield" href="/pages/ai-config/ai-safety">
+    Guardrails for what your assistant says.
+  </Card>
+</Columns>

@@ -1,42 +1,66 @@
 ---
 title: Canned Responses
-description: Create a library of pre-written replies that your team can insert into conversations with a single click — saving time on common questions.
+description: Save quick replies your team can drop into any conversation by typing a slash and a shortcut. Includes name, company and channel placeholders.
 ---
 
-## Speed up your team's replies
+A **canned response** is a saved reply for questions you answer again and again, such as opening hours or your refund policy. Your team types a shortcut and the full reply appears in the message box, ready to edit and send.
 
-**Canned Responses** (at **Settings > Canned Responses**) are pre-written message templates that your agents can insert into any conversation with a single click or keyboard shortcut. They're ideal for the questions your team answers over and over again.
-
-Instead of typing the same answer from scratch every time, an agent types `/` followed by the shortcut keyword, and the full response is inserted into the composer — ready to review and send.
-
-## Creating a canned response
-
-1. Go to **Settings > Canned Responses**.
-2. Click **Create Canned Response**.
-3. Fill in the details:
-   - **Name** — A descriptive label for internal use (e.g., "Refund Policy Explanation")
-   - **Shortcut** — A short keyword your agents will type to find it (e.g., `refund-policy`)
-   - **Message** — The full text of the response
-4. Click **Save**.
-
-<Callout kind="tip">
-Keep shortcuts short and memorable. Agents will be typing these under pressure, so `refund` is better than `explain-our-refund-policy-to-customer`.
+<Callout kind="alert">
+There isn't a Canned Responses link in the left menu yet. To open the page, add `/settings/canned-responses` to the end of your Autoch.at address in your browser (for example `https://your-app-address/settings/canned-responses`) and press Enter. Bookmark it for next time.
 </Callout>
 
-## Using canned responses in conversations
+## Create a canned response
 
-In the conversation composer, type `/` to open the canned response picker. You can:
+<Steps>
+  <Step title="Open the form">
+    Click **New Response**.
+  </Step>
+  <Step title="Name it">
+    Enter a **Name** for your own reference, such as "Follow up".
+  </Step>
+  <Step title="Choose a shortcut">
+    Enter a **Shortcut**, such as `follow_up`. The form reminds you: "Use in compose with /shortcut". Keep it short and easy to remember.
+  </Step>
+  <Step title="Write the reply">
+    Type the message in **Content**. Use these placeholders and they're filled in automatically when the reply is used:
+    - `{{customer_name}}`
+    - `{{company_name}}`
+    - `{{channel}}`
 
-- **Browse** — Scroll through all available responses
-- **Search** — Type part of the name or shortcut to filter the list
-- **Select** — Click a response to insert it into the composer
+    For example: `Hi {{customer_name}}, just checking in...` Any other `{{...}}` text is left as you typed it.
+  </Step>
+  <Step title="Save">
+    Click **Create**. All three fields are required.
+  </Step>
+</Steps>
 
-Once inserted, you can edit the text before sending. This is useful for personalizing a template with the customer's name or specific details.
+## Use one in a conversation
 
-## Organizing canned responses
+1. Open a conversation and click in the reply box.
+2. Type `/` followed by the first letters of the shortcut or name. A list of matches appears.
+3. Pick the one you want, using the arrow keys and Enter or by clicking it. The full text is inserted.
+4. Edit it if you like, then send.
 
-If you have a large library of canned responses, you can organize them into categories (like "Billing", "Technical Support", "Sales") to make them easier to find. Create categories by clicking **Add Category** at the top of the Canned Responses page.
+## Find, edit and delete
 
-## Who can create canned responses?
+The page lists each response by **Name**, **Shortcut** (shown as `/shortcut`) and **Content**, in alphabetical order. Use **Search by name or shortcut** to filter. The first 50 matches are shown, with a count such as "Showing 12 of 12".
 
-Canned responses are workspace-wide — they're available to all agents in the workspace. Only users with the **Admin** or **Owner** role can create, edit, or delete them.
+- Click the **pencil** to edit, then **Save Changes**.
+- Click the **bin** to delete it.
+
+## Tips
+
+- Use a placeholder for the customer's name so replies feel personal.
+- Review your list now and then. Remove old replies with out-of-date prices or hours.
+- Keep one idea per response so it's easy to mix and match.
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Conversation Detail" icon="message-square" href="/pages/conversations/conversation-detail">
+    Where you use canned responses.
+  </Card>
+  <Card title="Conversation Tags" icon="tag" href="/pages/settings/conversation-tags">
+    Label conversations for sorting and filtering.
+  </Card>
+</Columns>

@@ -1,51 +1,59 @@
 ---
 title: Phone Numbers
-description: Provision and manage phone numbers for SMS and AI voice calls — including local, toll-free, and international numbers.
+description: Check your phone number status and get a business phone number for text messages and AI voice calls by choosing the area code you want.
 ---
 
-## Your voice and SMS numbers
+A business phone number lets customers text you and call your AI voice assistant. **Phone Numbers** shows whether you have one and lets you get one.
 
-The **Phone Numbers** page (at **Settings > Phone Numbers**) is where you manage the phone numbers connected to your Autoch.at workspace. These numbers are used for:
+Find it in the left menu under **Settings** > **Phone Numbers**. This item only appears when your plan includes SMS.
 
-- **Inbound SMS** — Customers text this number and the message appears in your Conversations inbox.
-- **Outbound SMS** — Messages you send to customers come from this number.
-- **AI voice calls** — Your AI voice assistant answers calls made to this number.
-- **Outbound voice** — Calls your AI initiates go out from this number.
+## Check your status
 
-## Provisioning a new number
+The **Current Status** box tells you where you stand:
 
-1. Go to **Settings > Phone Numbers**.
-2. Click **Get a Number**.
-3. Choose the number type:
-   - **Local** — A number with a local area code. Best for businesses that want to appear local to their customers.
-   - **Toll-free** — An 800/888/etc. number. Good for national businesses or customer service lines.
-4. Search by area code, region, or country.
-5. Select a number from the results.
-6. Confirm the monthly cost and click **Provision**.
+| Message | What it means |
+|---|---|
+| **You have an active phone number configured.** | You're set. The button reads **Phone Number Active**. |
+| **No phone number provisioned yet.** | You don't have one yet. |
+| **SMS not enabled on your plan. Upgrade to enable phone provisioning.** | Your plan doesn't include phone numbers. See [Usage & Billing](/pages/settings/billing). |
+| **Quota exceeded: X of Y numbers used.** | You've used all the numbers your plan allows. |
+| **Eligible to provision a phone number.** | You can get one now. |
 
-The number is immediately active and ready to use.
+## Get a phone number
+
+<Steps>
+  <Step title="Start">
+    On the **Phone Numbers** page, under **Provision Phone Number**, click **Provision Phone Number**. It opens the **Phone Number Provisioning** page, which shows how many numbers your plan allows and how many are active. Click **Refresh** if those look out of date.
+  </Step>
+  <Step title="Enter an area code">
+    Type the 3-digit **Area code**, for example 415. Autoch.at searches for an available number in that area.
+  </Step>
+  <Step title="Provision">
+    Click **Provision Phone Number**. When it finishes you'll see "Phone number provisioned" followed by your new number.
+  </Step>
+</Steps>
+
+Getting a number is optional. Many businesses start with chat and email and add a phone line later.
 
 <Callout kind="info">
-Phone number pricing varies by country, number type, and usage (per message and per minute). Check the pricing page or contact support for current rates before provisioning numbers in multiple countries.
+If the page says "Phone Provisioning Temporarily Disabled", numbers can't be ordered right now. Check back later or contact support.
 </Callout>
 
-## Assigning a number to a channel
+## Using your number
 
-Once provisioned, you need to assign the number to a channel:
+Once you have a number, texts sent to it arrive in your Conversations inbox (**SMS Conversations**) and calls appear under **Phone / Voice**. See [SMS Workflows](/pages/conversations/sms-workflows) and [Voice Conversations](/pages/conversations/voice). Review call performance in [Voice Analytics](/pages/insights/voice-analytics).
 
-- **For SMS** — Go to **Settings > SMS** and select the number as your inbound/outbound SMS number.
-- **For Voice** — Go to your AI assistant's settings and assign the number as the voice channel number.
+## Changing or releasing a number
 
-A single number can be used for both SMS and voice simultaneously.
+There's no button for renaming or releasing a number on this page. If you want to change or give up your number, contact support.
 
-## Managing existing numbers
+## Related
 
-From the Phone Numbers page, you can:
-
-- **View usage** — See how many messages and minutes have been used for each number in the current billing period.
-- **Rename** — Give a number a friendly label so you can identify it easily (e.g., "US Support Line" or "Sales - Toronto").
-- **Release** — Return a number you no longer need. Released numbers are immediately removed from your account and you stop being charged for them.
-
-<Callout kind="warning">
-Releasing a number is permanent. Once released, the number may be assigned to another customer and you won't be able to get it back. Make sure you've updated any places where customers have this number saved before releasing it.
-</Callout>
+<Columns cols={2}>
+  <Card title="Voice Conversations" icon="phone" href="/pages/conversations/voice">
+    Review AI phone calls.
+  </Card>
+  <Card title="Usage & Billing" icon="credit-card" href="/pages/settings/billing">
+    See your plan and what it includes.
+  </Card>
+</Columns>

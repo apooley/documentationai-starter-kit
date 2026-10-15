@@ -1,65 +1,78 @@
 ---
 title: Usage & Billing
-description: Review your current plan, track usage, manage payment methods, and access your invoice history.
+description: See your plan, what you've used this month, any overage charges and invoices. Subscribe, upgrade, manage payment details, cancel or reactivate.
 ---
 
-## Managing your subscription
+**Usage & Billing** shows your current plan, how much of it you've used this billing period, your invoices, and the available plans.
 
-The **Usage & Billing** page (at **Settings > Usage & Billing**) is where Owners manage the financial side of their Autoch.at workspace — your plan, payment details, and usage metrics.
+Find it in the left menu under **Settings** > **Usage & Billing**. Anyone who can see this page should be someone you trust with your payment details, usually the account owner.
 
-<Callout kind="info">
-Only users with the **Owner** role can access the Billing page. If you need to make changes to your subscription and don't have Owner access, ask your organization administrator to update your role.
-</Callout>
+## If you're on a free trial
 
-## Your current plan
+A blue **Trial Account** banner shows how many days you have left. To keep using Autoch.at after the trial, click a **Subscribe to … /mo** button in the banner or **Subscribe** on a plan card further down.
 
-The top of the page shows your current subscription plan, what's included, and your next billing date. If you want to upgrade, downgrade, or cancel, the controls are here.
+## Current Plan
 
-### Upgrading your plan
+Shows your plan name and monthly price, plus what's included:
 
-1. Click **Change Plan**.
-2. Review the available plans and their features.
-3. Select the plan you want.
-4. Confirm the change.
+- **Conversations per month**: each unique conversation counts once, however many messages it has.
+- **Voice minutes included**: marked "with Voice add-on" where relevant.
+- **Workspaces included**: how many are in your plan, and the monthly price of each extra one. See [Workspaces](/pages/settings/workspaces).
+- **SMS, Chat, Email**: your limits. Messages like "SMS not included" or "Unlimited Email" tell you what your plan covers.
 
-Upgrades take effect immediately. You'll be charged a prorated amount for the remainder of the current billing period.
+### Manage Billing
 
-### Downgrading your plan
+Click **Manage Billing** to open the secure payment portal. There you can update your card or payment method, see invoices and change your subscription.
 
-Downgrades take effect at the end of your current billing period. Until then, you'll continue to have access to your current plan's features.
+## Current Period Usage
 
-If your current usage exceeds the limits of the plan you're downgrading to, you'll be prompted to reduce usage before the downgrade can proceed.
+This shows what you've used since your billing period began:
 
-## Usage metrics
-
-The Usage section shows how much of your plan's allowances you've consumed in the current billing period:
-
-| Metric | What it measures |
+| Tile | Meaning |
 |---|---|
-| **AI conversations** | Total conversations handled by your AI assistants |
-| **Human agent seats** | Number of active agent accounts in your workspace |
-| **SMS messages** | Total SMS messages sent and received |
-| **Voice minutes** | Total minutes of AI voice calls |
-| **Storage** | Total data stored (conversation history, uploaded documents, etc.) |
+| **Conversations** | Used so far, "of" your plan limit |
+| **Voice Min** | Voice call minutes used, "of" your limit |
+| **SMS** | Text messages sent and received |
+| **Emails** | Emails sent and received |
 
-If you're approaching a limit, you'll see a warning indicator. You can either upgrade your plan or reduce usage before the limit is reached.
+Below the tiles you'll see:
 
-## Payment methods
+- **Overage Charges**: if you go over a limit, extra usage is charged at your plan's overage rate and added to your next bill. Details and a **Total Overage** are shown.
+- **Base Plan**, **Overage**, and any **Voice add-on workspaces** or **Social add-on workspaces** lines with their monthly cost, then an **Add-ons Subtotal**.
+- **Projected Total**: an estimate based on usage so far. The final amount is set at the end of the billing cycle.
 
-In the **Payment** section, you can:
+If you're close to a limit, consider upgrading before you go over. Compare plans in **Available Plans**.
 
-- **Add a payment method** — Credit card or bank transfer (depending on your plan)
-- **Update your card** — Replace an expiring or invalid card
-- **Remove a payment method** — Only available if you have another valid payment method on file
+## Recent Invoices
 
-## Invoice history
+Your past invoices are listed with **Download PDF** buttons for your accounting. If you have none yet you'll see "No invoices yet".
 
-All past invoices are listed at the bottom of the page. Click any invoice to view or download it as a PDF. This is useful for expense reporting or accounting purposes.
+## Change your plan
 
-## Cancelling your subscription
+At the bottom, **Available Plans** shows each plan's price, conversations, voice minutes, SMS and chat allowance, and email automation. Your plan is marked **Current Plan**. Click **Upgrade** on another plan, or **Subscribe** if you're on trial, and follow the prompts. To downgrade, or for other changes, use **Manage Billing** or contact support.
 
-If you need to cancel, click **Cancel Subscription** at the bottom of the page. Your access will continue until the end of the current billing period, after which your workspace will be deactivated.
+## Cancel or reactivate
 
-<Callout kind="warning">
-Cancelling your subscription will eventually result in your workspace data being deleted. If you think you might want to reactivate in the future, consider downgrading to a lower plan instead of cancelling.
+<Steps>
+  <Step title="Cancel">
+    Click **Cancel Subscription** in the Current Plan box. Confirm with **Yes, Cancel**, or click **Keep Subscription** to go back. Your plan stays active until the end of the current billing period.
+  </Step>
+  <Step title="Changed your mind?">
+    Until the period ends, an orange notice shows the end date and a **Reactivate Subscription** link. Click it to restore your subscription.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+After a subscription ends your data is kept for a limited time (the screen says 30 days) and may then be deleted. Export anything you need first, for example your clients from the [Clients](/pages/crm/clients) page.
 </Callout>
+
+## Related
+
+<Columns cols={2}>
+  <Card title="Workspaces" icon="building-2" href="/pages/settings/workspaces">
+    Extra workspaces and Voice or Social add-ons.
+  </Card>
+  <Card title="Preferences" icon="settings" href="/pages/settings/preferences">
+    Check your storage usage.
+  </Card>
+</Columns>
